@@ -4,7 +4,7 @@ with open('openai_key.txt', 'r') as f:
 os.environ['OPENAI_API_KEY'] = key
 
 import logging
-import sys, json
+import sys, json, argparse
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
@@ -12,24 +12,31 @@ from llama_index import SimpleDirectoryReader, LLMPredictor
 from llama_index.indices.knowledge_graph.base import GPTKnowledgeGraphIndex
 from langchain import OpenAI
 
-from llama_index import download_loader
+from llama_index import Document
 
-print('> Downloading Wikipedia pages.')
-WikipediaReader = download_loader("WikipediaReader")
-wiki_docs = WikipediaReader().load_data(pages=['Toronto', 'Berlin', 'Tokyo'])
+parser = argparse.ArgumentParser(description='KG Construction.')
+parser.add_argument('infiles', nargs='+')
+parser.add_argument('--load_index')
+args = parser.parse_args()
+
+assert len(args.infiles) > 0
+
+docs = []
+for infile in args.infiles:
+    with open(infile, 'r') as f:
+        docs.append(Document(f.read()))
 
 # define LLM
-# NOTE: at the time of demo, text-davinci-002 did not have rate-limit errors
 llm_predictor = LLMPredictor(llm=OpenAI(temperature=0, model_name="text-davinci-002"))
 
-try:
-    index = GPTKnowledgeGraphIndex.load_from_disk('index_kg.json', llm_predictor=llm_predictor)
-    print('> Loading Knowledge Graph from `index_kg.json`.')
-except:
+if args.load_index is not None:
+    index = GPTKnowledgeGraphIndex.load_from_disk(args.load_index, llm_predictor=llm_predictor)
+    print(f'> Loading Knowledge Graph from `{args.load_index}`.')
+else:
     print('> Creating the Knowldge Graph.')
     # NOTE: can take a while! 
     index = GPTKnowledgeGraphIndex(
-        wiki_docs, 
+        docs, 
         chunk_size_limit=512, 
         max_triplets_per_chunk=2,
         llm_predictor=llm_predictor
@@ -48,7 +55,7 @@ response = index.query(
 print(response)
 """
 
-query = "Show me the Knowledge Graph about Berlin"
+query = "Show me the triples extracted from the input documents"
 print(f'\n\n-------> {query} :\n')
 response = index.query(
     query, 

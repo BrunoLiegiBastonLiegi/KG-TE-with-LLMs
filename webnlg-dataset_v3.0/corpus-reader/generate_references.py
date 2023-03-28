@@ -52,8 +52,8 @@ def run_on_corpus_per_lang(path_to_corpus, lang):
 
 # where to find the corpus
 # English
-path = './challenge2020_train_dev_v2/en/dev'
+path = '../en/dev'
 run_on_corpus_per_lang(path, 'en')
 # Russian
-path = './challenge2020_train_dev_v2/ru/dev'
-run_on_corpus_per_lang(path, 'ru')
+#path = '../ru/dev'
+#run_on_corpus_per_lang(path, 'ru')
