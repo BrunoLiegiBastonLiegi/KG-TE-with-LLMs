@@ -7,20 +7,13 @@ import torch
 
 class CustomLLM(LLM):
 
-    def __init__(self, model, pipeline, device, out_tokens=256):
-        super().__init__()
-        #self.model = model
-        self.pipeline = Pipeline(
-            pipeline,
-            model=model,
-            device=device,
-            model_kwargs={"torch_dtype":torch.bfloat16}
-        )
-        self.out_tk
+    model: str
+    pipeline: Any
+    out_tokens: int
 
     def _call(self, prompt: str, stop: Optional[List[str]] = None) -> str:
         prompt_length = len(prompt)
-        response = self.pipeline(prompt, max_new_tokens=self.out_tk)[0]["generated_text"]
+        response = self.pipeline(prompt, max_new_tokens=self.out_tokens)[0]["generated_text"]
 
         # only return newly generated tokens
         return response[prompt_length:]

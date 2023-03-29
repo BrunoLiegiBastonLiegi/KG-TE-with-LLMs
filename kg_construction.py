@@ -26,12 +26,21 @@ for infile in args.infiles:
 
 from llm import CustomLLM
 import torch
+from transformers import pipeline as Pipeline
 
-model = "facebook/opt-iml-max-30b"
+#model = "facebook/opt-iml-max-30b"
 #model = "google/t5-v1_1-base"
+#model = "EleutherAI/gpt-j-6B"
+model = "gpt2"
 pipeline = "text-generation"
-#pipeline = "text-to-text-generation"
+#pipeline = "text2text-generation"
 device = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
+pipeline = Pipeline(
+    pipeline,
+    model=model,
+    device=device,
+    model_kwargs={"torch_dtype":torch.bfloat16}
+)
 print(f'> Using device: {device}.')
 print(f' # Model: {model}\n # Pipeline: {pipeline}')
 
@@ -40,10 +49,11 @@ llm_predictor = LLMPredictor(
     llm = CustomLLM(
         model = model,
         pipeline = pipeline,
-        device = device,
         out_tokens = 256
     )
 )
+
+print('---------------')
 
 if args.load_index is not None:
     index = GPTKnowledgeGraphIndex.load_from_disk(args.load_index, llm_predictor=llm_predictor)
