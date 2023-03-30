@@ -20,8 +20,13 @@ args = parser.parse_args()
 assert len(args.infiles) > 0
 
 docs = []
-for infile in args.infiles:
+nodes = []
+for i,infile in enumerate(args.infiles):
     with open(infile, 'r') as f:
+        chunks = f.read().split('\n')
+        chunks = [ Node(text=c, doc_id=str(i)) for c in chunks if len(c) > 0 ]
+        for c in chunks:
+            nodes.append(c)
         docs.append(Document(f.read()))
 
 from llm import CustomLLM
@@ -62,10 +67,11 @@ else:
     print('> Creating the Knowldge Graph.')
     # NOTE: can take a while! 
     index = GPTKnowledgeGraphIndex(
-        docs, 
+        #docs,
+        nodes=nodes,
         chunk_size_limit=512, 
-        max_triplets_per_chunk=2,
-        llm_predictor=llm_predictor
+        max_triplets_per_chunk=7,
+        llm_predictor=llm_predictor,
     )
     index.save_to_disk('index_kg.json')
 
