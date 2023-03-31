@@ -62,11 +62,30 @@ pipe = Pipeline(
     model=model,
     tokenizer=tokenizer,
     max_new_tokens=10,
-    device=device,
+    device_map='auto', # used for distributed
+    #device=device,
     model_kwargs={"torch_dtype":torch.bfloat16}
 )
 
 llm = HuggingFacePipeline(pipeline=pipe)
+
+kg_extraction_template =  (
+    "Some text is provided below. Given the text, extract up to "
+    "{max_knowledge_triplets} "
+    "knowledge triplets in the form of (subject, predicate, object). Avoid stopwords.\n"
+    "---------------------\n"
+    "Example:"
+    "Text: Alice is Bob's mother."
+    "Triplets:\n(Alice, is mother of, Bob)\n"
+    "Text: Philz is a coffee shop founded in Berkeley in 1982.\n"
+    "Triplets:\n"
+    "(Philz, is, coffee shop)\n"
+    "(Philz, founded in, Berkeley)\n"
+    "(Philz, founded in, 1982)\n"
+    "---------------------\n"
+    "Text: {text}\n"
+    "Triplets:\n"
+)
 
 print(f' # Model: {model_id}\n # Pipeline: {pipeline}')
 
@@ -81,6 +100,7 @@ print('---------------')
 
 if args.load_index is not None:
     print(f'> Loading Knowledge Graph from `{args.load_index}`.')
+    # not working since there is no `index_struct` key in the index dict
     index = GPTKnowledgeGraphIndex.load_from_disk(args.load_index, service_context=service_context)
 else:
     print('> Creating the Knowldge Graph.')
@@ -92,18 +112,6 @@ else:
         service_context=service_context
     )
     index.save_to_disk('index_kg.json')
-
-"""
-query = "Tell me about Berlin"
-
-print(f'\n\n-------> {query} :\n')
-response = index.query(
-    query, 
-    include_text=False, 
-    response_mode="tree_summarize"
-)
-print(response)
-"""
 
 query = "where is Karnataka located?"
 print(f'\n\n-------> {query} :\n')
