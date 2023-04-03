@@ -38,7 +38,7 @@ from langchain.llms import HuggingFacePipeline
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig, AutoModelForSeq2SeqLM
 from llama_index.indices.service_context import ServiceContext
 
-
+"""
 if torch.cuda.is_available():
     device = torch.device('cuda:0')    
 elif torch.backends.mps.is_available():
@@ -46,45 +46,22 @@ elif torch.backends.mps.is_available():
 else:
     device = torch.device('cpu')
 print(f'> Using device: {device}.')
+"""
 
 #model = "facebook/opt-iml-max-30b"
 #model_id = "google/t5-v1_1-base"
-model_id = "EleutherAI/gpt-j-6B"
-#model_id = "gpt2"
+#model_id = "EleutherAI/gpt-j-6B"
+model_id = "gpt2"
 
 tokenizer = AutoTokenizer.from_pretrained(model_id)
-#config = AutoConfig.from_pretrained(model_id)
 
-#from accelerate import init_empty_weights, load_checkpoint_and_dispatch
-
-#with init_empty_weights():
-#model = AutoModelForCausalLM.from_config(config)
-#model.tie_weights()
-model = AutoModelForCausalLM.from_pretrained(model_id, revision="float16")
+model = AutoModelForCausalLM.from_pretrained(model_id)
+#model = AutoModelForCausalLM.from_pretrained(model_id, revision="float16")
 #model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
-"""
-model = load_checkpoint_and_dispatch(
-    model,
-    model_id,
-    device_map="auto",
-    #no_split_module_classes=["GPTJBlock"]
-)
-"""
 
 pipeline = "text-generation"
 #pipeline = "text2text-generation"
 
-pipe = Pipeline(
-    pipeline,
-    model=model,
-    tokenizer=tokenizer,
-    #max_new_tokens=256,
-    device=device,
-    #device_map='auto', # used for distributed
-    #model_kwargs={"torch_dtype":torch.bfloat16}
-)
-
-llm = HuggingFacePipeline(pipeline=pipe)
 
 from llama_index.prompts.prompts import KnowledgeGraphPrompt
 
@@ -109,8 +86,20 @@ prompt = KnowledgeGraphPrompt(
     kg_extraction_template
 )
 
+max_new_tokens = 64
 
-print(f' # Model: {model_id}\n # Pipeline: {pipeline}')
+pipe = Pipeline(
+    pipeline,
+    model=model,
+    tokenizer=tokenizer,
+    max_new_tokens=max_new_tokens,
+    device_map='auto', # used for distributed
+    model_kwargs={"torch_dtype":torch.bfloat16}
+)
+
+llm = HuggingFacePipeline(pipeline=pipe)
+
+print(f' # Model: {model_id}\n # Pipeline: {pipeline}\n # Max New Tokens: {max_new_tokens}')
 
 # define LLM
 llm_predictor = LLMPredictor(
@@ -143,20 +132,15 @@ else:
 
 print('\n---------- Visualize the extracted KG ----------\n')
 import networkx as nx
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from pyvis.network import Network
 
 g = index.get_networkx_graph()
+for e in g.edges(data=True):
+    print(e)
 net = Network(notebook=True, cdn_resources="in_line", directed=True)
 net.from_nx(g)
 net.show("example.html")
-"""
-kg = index.get_networkx_graph() 
-nx.draw(kg)
-plt.show()
-for e in kg.edges(data=True):
-    print(e)
-"""
 
 query = "where is Karnataka located?"
 print(f'\n\n-------> {query} :\n')
