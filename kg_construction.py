@@ -22,7 +22,7 @@ args = parser.parse_args()
 if args.load_index is None:
     assert len(args.infiles) > 0
 
-    #docs = []
+    docs = []
     nodes = []
     for i,infile in enumerate(args.infiles):
         with open(infile, 'r') as f:
@@ -30,7 +30,7 @@ if args.load_index is None:
             chunks = [ Node(text=c, doc_id=str(i)+'-'+str(j)) for j,c in enumerate(chunks) if len(c) > 0 ]
             for c in chunks:
                 nodes.append(c)
-            #docs.append(Document(f.read()))
+            docs.append(Document(f.read()))
 
 import torch
 from transformers import pipeline as Pipeline
@@ -49,19 +49,15 @@ print(f'> Using device: {device}.')
 """
 
 #model = "facebook/opt-iml-max-30b"
-#model_id = "google/t5-v1_1-base"
-#model_id = "EleutherAI/gpt-j-6B"
-model_id = "gpt2"
+#model_id, pipeline = "google/t5-v1_1-base"
+#model_id, pipeline = "EleutherAI/gpt-j-6B", "text-generation"
+model_id, pipeline = "gpt2", "text-generation"
 
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 model = AutoModelForCausalLM.from_pretrained(model_id)
 #model = AutoModelForCausalLM.from_pretrained(model_id, revision="float16")
 #model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
-
-pipeline = "text-generation"
-#pipeline = "text2text-generation"
-
 
 from llama_index.prompts.prompts import KnowledgeGraphPrompt
 
@@ -85,7 +81,7 @@ kg_extraction_template =  (
 prompt = KnowledgeGraphPrompt(
     kg_extraction_template
 )
-
+print(prompt)
 max_new_tokens = 64
 
 pipe = Pipeline(
@@ -122,12 +118,21 @@ else:
     print('> Input text:')
     for n in nodes:
         print(n.text)
+    
     index = GPTKnowledgeGraphIndex(
         nodes=nodes,
         kg_triple_extract_template=prompt,
         max_triplets_per_chunk=7,
         service_context=service_context
     )
+    """
+    index = GPTKnowledgeGraphIndex.from_documents(
+        docs,
+        kg_triple_extract_template=prompt,
+        max_triplets_per_chunk=7,
+        service_context=service_context
+    )
+    """
     index.save_to_disk('index_kg.json')
 
 print('\n---------- Visualize the extracted KG ----------\n')
