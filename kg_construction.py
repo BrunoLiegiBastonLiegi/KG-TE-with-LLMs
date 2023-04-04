@@ -49,7 +49,7 @@ print(f'> Using device: {device}.')
 """
 
 #model = "facebook/opt-iml-max-30b"
-#model_id, pipeline = "google/t5-v1_1-base"
+#model_id, pipeline = "google/t5-v1_1-base", "text2text-generation"
 #model_id, pipeline = "EleutherAI/gpt-j-6B", "text-generation"
 model_id, pipeline = "gpt2", "text-generation"
 
@@ -81,7 +81,7 @@ kg_extraction_template =  (
 prompt = KnowledgeGraphPrompt(
     kg_extraction_template
 )
-print(prompt)
+
 max_new_tokens = 64
 
 pipe = Pipeline(
@@ -95,11 +95,49 @@ pipe = Pipeline(
 
 llm = HuggingFacePipeline(pipeline=pipe)
 
+
+# ------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------
+from langchain.llms.base import LLM
+from typing import Optional, List, Mapping, Any
+
+class CustomLLM(LLM):
+    model_name = model_id
+    pipeline = Pipeline(
+        pipeline,
+        model=model_name,
+        device_map='auto',
+        model_kwargs={"torch_dtype":torch.bfloat16}
+    )
+
+    def _call(self, prompt: str, stop: Optional[List[str]] = None) -> str:
+        prompt_length = len(prompt)
+        response = self.pipeline(prompt, max_new_tokens=max_new_tokens)[0]["generated_text"]
+
+        # only return newly generated tokens
+        return response[prompt_length:]
+
+    @property
+    def _identifying_params(self) -> Mapping[str, Any]:
+        return {"name_of_model": self.model_name}
+
+    @property
+    def _llm_type(self) -> str:
+        return "custom"
+
+    
+# ------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------
+
+
 print(f' # Model: {model_id}\n # Pipeline: {pipeline}\n # Max New Tokens: {max_new_tokens}')
 
 # define LLM
 llm_predictor = LLMPredictor(
     llm = llm
+    #llm = CustomLLM()
 )
 
 service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor, chunk_size_limit=512)
@@ -121,7 +159,7 @@ else:
     
     index = GPTKnowledgeGraphIndex(
         nodes=nodes,
-        kg_triple_extract_template=prompt,
+        #kg_triple_extract_template=prompt,
         max_triplets_per_chunk=7,
         service_context=service_context
     )
