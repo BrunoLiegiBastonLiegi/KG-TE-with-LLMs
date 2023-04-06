@@ -1,0 +1,12 @@
+import json
+
+def get_triples_from_json(infile):
+    with open(infile, 'r') as f:
+        d = json.load(f)
+    return d
+
+if __name__ == '__main__':
+    import sys
+    get_triples_from_json(sys.argv[1])
+    for k in d.key():
+        print(k)

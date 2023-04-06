@@ -16,9 +16,11 @@ from llama_index.data_structs.node_v2 import Node
 
 parser = argparse.ArgumentParser(description='KG Construction.')
 parser.add_argument('infiles', nargs='+')
+parser.add_argument('--kb', default='./webnlg-dataset_v3.0/corpus-reader/train.json')
 parser.add_argument('--load_index')
 args = parser.parse_args()
 
+# load documents
 if args.load_index is None:
     assert len(args.infiles) > 0
 
@@ -32,21 +34,16 @@ if args.load_index is None:
                 nodes.append(c)
             docs.append(Document(f.read()))
 
+# build the knowledge base
+from utils import get_triples_from_json
+
+sent2triples, kb_triples = get_triples_from_json(args.kb)
+
 import torch
 from transformers import pipeline as Pipeline
 from langchain.llms import HuggingFacePipeline
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig, AutoModelForSeq2SeqLM
 from llama_index.indices.service_context import ServiceContext
-
-"""
-if torch.cuda.is_available():
-    device = torch.device('cuda:0')    
-elif torch.backends.mps.is_available():
-    device = torch.device("mps")
-else:
-    device = torch.device('cpu')
-print(f'> Using device: {device}.')
-"""
 
 #model = "facebook/opt-iml-max-30b"
 #model_id, pipeline = "google/t5-v1_1-base", "text2text-generation"
@@ -142,6 +139,15 @@ llm_predictor = LLMPredictor(
 
 service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor, chunk_size_limit=512)
 
+# Build the Knowledge Base
+# initialize an empty index for now 
+index = GPTKnowledgeGraphIndex(
+    [],
+    service_context=service_context,
+)
+
+
+
 print('--------------------------------------------------------------')
 
 if args.load_index is not None:
@@ -159,9 +165,10 @@ else:
     
     index = GPTKnowledgeGraphIndex(
         nodes=nodes,
-        #kg_triple_extract_template=prompt,
+        kg_triple_extract_template=prompt,
         max_triplets_per_chunk=7,
-        service_context=service_context
+        service_context=service_context,
+        #include_embeddings=True
     )
     """
     index = GPTKnowledgeGraphIndex.from_documents(
