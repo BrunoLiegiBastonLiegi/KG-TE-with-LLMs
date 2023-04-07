@@ -18,6 +18,7 @@ parser = argparse.ArgumentParser(description='KG Construction.')
 parser.add_argument('infiles', nargs='+')
 parser.add_argument('--kb', default='./webnlg-dataset_v3.0/corpus-reader/train.json')
 parser.add_argument('--load_index')
+parser.add_argument('--prompt')
 args = parser.parse_args()
 
 # load documents
@@ -48,7 +49,8 @@ from llama_index.indices.service_context import ServiceContext
 #model = "facebook/opt-iml-max-30b"
 #model_id, pipeline = "google/t5-v1_1-base", "text2text-generation"
 #model_id, pipeline = "EleutherAI/gpt-j-6B", "text-generation"
-model_id, pipeline = "gpt2", "text-generation"
+model_id, pipeline = "EleutherAI/gpt-neo-1.3B", "text-generation"
+#model_id, pipeline = "gpt2", "text-generation"
 
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
@@ -58,28 +60,39 @@ model = AutoModelForCausalLM.from_pretrained(model_id)
 
 from llama_index.prompts.prompts import KnowledgeGraphPrompt
 
-kg_extraction_template =  (
-    "Some text is provided below. Given the text, extract up to "
-    "{max_knowledge_triplets} "
-    "knowledge triplets in the form of (subject, predicate, object). Avoid stopwords.\n"
-    "---------------------\n"
-    "Example:"
-    "Text: Alice is Bob's mother."
-    "Triplets:\n(Alice, is mother of, Bob)\n"
-    "Text: Philz is a coffee shop founded in Berkeley in 1982.\n"
-    "Triplets:\n"
-    "(Philz, is, coffee shop)\n"
-    "(Philz, founded in, Berkeley)\n"
-    "(Philz, founded in, 1982)\n"
-    "---------------------\n"
-    "Text: {text}\n"
-    "Triplets:\n"
-)
+if args.prompt is None:
+    kg_extraction_template =  (
+        "Some text is provided below. Given the text, extract up to "
+        "{max_knowledge_triplets} "
+        "knowledge triplets in the form of (subject, predicate, object). Avoid stopwords.\n"
+        "---------------------\n"
+        "Example:"
+        "Text: Alice is Bob's mother."
+        "Triplets:\n(Alice, is mother of, Bob)\n"
+        "Text: Philz is a coffee shop founded in Berkeley in 1982.\n"
+        "Triplets:\n"
+        "(Philz, is, coffee shop)\n"
+        "(Philz, founded in, Berkeley)\n"
+        "(Philz, founded in, 1982)\n"
+        "---------------------\n"
+        "Text: {text}\n"
+        "Triplets:\n"
+    )
+else:
+    with open(args.prompt, 'r') as f:
+        kg_extraction_template =  f.read()
+
+print(f'> Prompt:\n{kg_extraction_template}')
+
 prompt = KnowledgeGraphPrompt(
     kg_extraction_template
 )
 
 max_new_tokens = 64
+
+from accelerate import infer_auto_device_map
+dev_map = infer_auto_device_map(model)
+print(f'> Device Map:\n{dev_map}')
 
 pipe = Pipeline(
     pipeline,
@@ -141,7 +154,7 @@ service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor, chun
 
 # Build the Knowledge Base
 # initialize an empty index for now 
-index = GPTKnowledgeGraphIndex(
+kb_index = GPTKnowledgeGraphIndex(
     [],
     service_context=service_context,
 )
@@ -192,7 +205,7 @@ net = Network(notebook=True, cdn_resources="in_line", directed=True)
 net.from_nx(g)
 net.show("example.html")
 
-query = "where is Karnataka located?"
+query = "Who is the leader of Aarhus Airport?"
 print(f'\n\n-------> {query} :\n')
 response = index.query(
     query, 
