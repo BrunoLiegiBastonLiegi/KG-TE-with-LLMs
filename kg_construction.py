@@ -15,30 +15,21 @@ from llama_index.data_structs.node_v2 import Node
 
 
 parser = argparse.ArgumentParser(description='KG Construction.')
-parser.add_argument('infiles', nargs='+')
-parser.add_argument('--kb', default='./webnlg-dataset_v3.0/corpus-reader/train.json')
+parser.add_argument('--train', default='./webnlg-dataset_v3.0/corpus-reader/train.json')
+parser.add_argument('--test', default='./webnlg-dataset_v3.0/corpus-reader/dev.json')
 parser.add_argument('--load_index')
 parser.add_argument('--prompt')
 args = parser.parse_args()
 
-# load documents
-if args.load_index is None:
-    assert len(args.infiles) > 0
-
-    docs = []
-    nodes = []
-    for i,infile in enumerate(args.infiles):
-        with open(infile, 'r') as f:
-            chunks = f.read().split('\n')
-            chunks = [ Node(text=c, doc_id=str(i)+'-'+str(j)) for j,c in enumerate(chunks) if len(c) > 0 ]
-            for c in chunks:
-                nodes.append(c)
-            docs.append(Document(f.read()))
 
 # build the knowledge base
 from utils import get_triples_from_json
 
-sent2triples, kb_triples = get_triples_from_json(args.kb)
+sent2triples, kb_triples = get_triples_from_json(args.train)
+
+# load test sentences
+test_sents, true_triples = get_triples_from_json(args.test)
+
 
 import torch
 from transformers import pipeline as Pipeline
@@ -49,8 +40,8 @@ from llama_index.indices.service_context import ServiceContext
 #model = "facebook/opt-iml-max-30b"
 #model_id, pipeline = "google/t5-v1_1-base", "text2text-generation"
 #model_id, pipeline = "EleutherAI/gpt-j-6B", "text-generation"
-model_id, pipeline = "EleutherAI/gpt-neo-1.3B", "text-generation"
-#model_id, pipeline = "gpt2", "text-generation"
+#model_id, pipeline = "EleutherAI/gpt-neo-1.3B", "text-generation"
+model_id, pipeline = "gpt2", "text-generation"
 
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
@@ -159,7 +150,15 @@ kb_index = GPTKnowledgeGraphIndex(
     service_context=service_context,
 )
 
+for i, (sent, triples) in enumerate(sent2triples.items()):
+    n = Node(text=sent, doc_id=str(i))
+    for t in triples:
+        kb_index.upsert_triplet_and_node(t, n)
 
+# Prepare the sentences to extract triples from
+nodes = []
+for i, sent in enumerate(test_sents.keys()):
+    nodes.append(Node(text=sent, doc_id='test_'+str(i)))
 
 print('--------------------------------------------------------------')
 
@@ -171,8 +170,8 @@ if args.load_index is not None:
     )
 else:
     print('> Creating the Knowldge Graph.')
-    nodes = nodes[:10]
     print('> Input text:')
+    nodes = nodes[:10]
     for n in nodes:
         print(n.text)
     
@@ -183,14 +182,7 @@ else:
         service_context=service_context,
         #include_embeddings=True
     )
-    """
-    index = GPTKnowledgeGraphIndex.from_documents(
-        docs,
-        kg_triple_extract_template=prompt,
-        max_triplets_per_chunk=7,
-        service_context=service_context
-    )
-    """
+
     index.save_to_disk('index_kg.json')
 
 print('\n---------- Visualize the extracted KG ----------\n')
@@ -203,7 +195,7 @@ for e in g.edges(data=True):
     print(e)
 net = Network(notebook=True, cdn_resources="in_line", directed=True)
 net.from_nx(g)
-net.show("example.html")
+net.show("kg.html")
 
 query = "Who is the leader of Aarhus Airport?"
 print(f'\n\n-------> {query} :\n')
