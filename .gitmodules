@@ -1,0 +1,3 @@
+[submodule "webnlg-dataset_v3.0/WebNLG-Text-to-triples"]
+	path = webnlg-dataset_v3.0/WebNLG-Text-to-triples
+	url = https://github.com/WebNLG/WebNLG-Text-to-triples.git
