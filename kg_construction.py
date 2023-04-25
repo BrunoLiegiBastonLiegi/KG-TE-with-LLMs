@@ -19,6 +19,7 @@ parser.add_argument('--train', default='./webnlg-dataset_v3.0/corpus-reader/trai
 parser.add_argument('--test', default='./webnlg-dataset_v3.0/corpus-reader/dev.json')
 parser.add_argument('--load_index')
 parser.add_argument('--prompt')
+parser.add_argument('--save_triples')
 args = parser.parse_args()
 
 
@@ -157,8 +158,10 @@ for i, (sent, triples) in enumerate(sent2triples.items()):
 
 # Prepare the sentences to extract triples from
 nodes = []
-for i, sent in enumerate(test_sents.keys()):
+gt_triples = []
+for i, (sent, t) in enumerate(test_sents.items()):
     nodes.append(Node(text=sent, doc_id='test_'+str(i)))
+    gt_triples.append(t)
 
 print('--------------------------------------------------------------')
 
@@ -172,6 +175,7 @@ else:
     print('> Creating the Knowldge Graph.')
     print('> Input text:')
     nodes = nodes[:10]
+    gt_triples = gt_triples[:10]
     for n in nodes:
         print(n.text)
     
@@ -185,6 +189,8 @@ else:
 
     index.save_to_disk('index_kg.json')
 
+print(gt_triples)
+
 print('\n---------- Visualize the extracted KG ----------\n')
 import networkx as nx
 #import matplotlib.pyplot as plt
@@ -193,6 +199,11 @@ from pyvis.network import Network
 g = index.get_networkx_graph()
 for e in g.edges(data=True):
     print(e)
+outfile = 'extracted_triples.txt' if args.save_triples is None else args.save_triples 
+with open(outfile, 'w') as f:
+    for e in g.edges(data=True):
+        f.write(f"{e[0]}\t{e[2]['title']}\t{e[1]}\n")
+
 net = Network(notebook=True, cdn_resources="in_line", directed=True)
 net.from_nx(g)
 net.show("kg.html")

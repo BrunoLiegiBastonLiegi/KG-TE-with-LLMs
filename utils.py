@@ -1,5 +1,11 @@
-import json
+import json, re
 
+def normalize(string):
+    string = re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", string).lower()
+    string = re.sub(r'_', ' ', string).lower()
+    string = re.sub(r'\s+', ' ', string).lower()
+    return string
+    
 def get_triples_from_json(infile):
     sent2triple = {}
     with open(infile, 'r') as f:
@@ -7,7 +13,7 @@ def get_triples_from_json(infile):
         for v in d:
             v = list(v.values())[0]
             triples = [
-                (t['subject'], t['property'], t['object'])
+                (normalize(t['subject']), normalize(t['property']), normalize(t['object']))
                 for t in v['modifiedtripleset']
             ]
             for lex in v['lexicalisations']:
@@ -23,6 +29,15 @@ def get_triples_from_json(infile):
     return sent2triple, triples
 
 
+def evaluate(p_triples, gt_triples):
+    p_triples = set(p_triples)
+    gt_triples = set(gt_triples)
+    intersection = p_triples.intersection(gt_triples)
+    precision = len(intersection) / len(p_triples)
+    recall = len(intersection) / len(gt_triples)
+    f1 = 2 * ( precision * recall ) / ( precision + recall )
+    return precision, recall, f1
+    
 
 if __name__ == '__main__':
     import sys
