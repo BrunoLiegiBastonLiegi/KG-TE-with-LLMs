@@ -7,7 +7,9 @@ from langchain.llms import HuggingFacePipeline
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig, AutoModelForSeq2SeqLM
 from llama_index.indices.service_context import ServiceContext
 from llama_index.data_structs.node_v2 import Node
-
+from llama_index import LLMPredictor
+from llama_index.indices.knowledge_graph.base import GPTKnowledgeGraphIndex
+from tqdm import tqdm
 
 model_id, pipeline = "gpt2", "text-generation"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -52,7 +54,7 @@ def main():
     entries = ET.SubElement(root, "entries")
 
     # get access to each entry info
-    for entry in b.entries:
+    for entry in tqdm(b.entries[:10]):
         e = ET.SubElement(
             entries,
             "entry",
