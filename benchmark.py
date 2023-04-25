@@ -1,19 +1,41 @@
 import sys
 sys.path.append('./webnlg-dataset_v3.0/corpus-reader/')
 
-import torch
+import torch, argparse
 from transformers import pipeline as Pipeline
 from langchain.llms import HuggingFacePipeline
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig, AutoModelForSeq2SeqLM
+
 from llama_index.indices.service_context import ServiceContext
 from llama_index.data_structs.node_v2 import Node
 from llama_index import LLMPredictor
 from llama_index.indices.knowledge_graph.base import GPTKnowledgeGraphIndex
+from llama_index.prompts.prompts import KnowledgeGraphPrompt
+
 from tqdm import tqdm
 
+
+parser = argparse.ArgumentParser(description='WebNLG Benchmark.')
+parser.add_argument('--prompt')
+
+if args.prompt is None:
+    prompt = None
+else:
+    with open(args.prompt, 'r') as f:
+        kg_extraction_template =  f.read()
+        prompt = KnowledgeGraphPrompt(
+            kg_extraction_template
+        )
+        
 model_id, pipeline = "gpt2", "text-generation"
+#model_id, pipeline = "decapoda-research/llama-7b-hf", "text-generation"
+
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForCausalLM.from_pretrained(model_id)
+
+from accelerate import infer_auto_device_map
+dev_map = infer_auto_device_map(model)
+print(f'> Device Map:\n{dev_map}')
 
 pipe = Pipeline(
     pipeline,
@@ -73,7 +95,7 @@ def main():
 def get_triples(lexs):
     index = GPTKnowledgeGraphIndex(
         nodes=[Node(lex) for lex in lexs],
-        #kg_triple_extract_template=prompt,
+        kg_triple_extract_template=prompt,
         max_triplets_per_chunk=7,
         service_context=service_context,
     )
