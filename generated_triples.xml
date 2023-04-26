@@ -1,58 +1,21 @@
 <benchmark>
   <entries>
     <entry category="Airport" eid="Id1">
-      <generatedtripleset />
+      <generatedtripleset>
+        <gtriple>Jacob | is | coffee shop</gtriple>
+        <gtriple>Burgers | is | coffe</gtriple>
+      </generatedtripleset>
     </entry>
     <entry category="Airport" eid="Id2">
       <generatedtripleset>
-        <gtriple>Philz | founded in | Berkeley</gtriple>
+        <gtriple>riplets: (Aarhus Airport | airport) (Aarhus Airport | airport</gtriple>
+        <gtriple>The Aarhus Airport | is | 2702.0</gtriple>
       </generatedtripleset>
     </entry>
     <entry category="Airport" eid="Id3">
-      <generatedtripleset />
-    </entry>
-    <entry category="Airport" eid="Id4">
       <generatedtripleset>
-        <gtriple>c-c | or cof e of | e of e</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id5">
-      <generatedtripleset>
-        <gtriple>n the previous section | consider an instance of the Lexicalisation class. In Perl 5.18 | the (Object) field name used is lexicalisation. In th</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id6">
-      <generatedtripleset>
-        <gtriple>Alice | is mother of | Philz</gtriple>
-        <gtriple>Alice | is mother of | Philz) ------</gtriple>
-        <gtriple>Alice | is | Alice</gtriple>
-        <gtriple>Alice | is | Alic</gtriple>
-        <gtriple>Alice | is | coffee shop) ----------------</gtriple>
-        <gtriple>(Alice | is | coffee shop)</gtriple>
-        <gtriple>ow this doesn't work | and even in the above example | it still might not work</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id7">
-      <generatedtripleset>
-        <gtriple>Test | test | test</gtriple>
-        <gtriple>hope I have helped you | whether from knowledge sharing or in the comment boxes below | or it is by some erro</gtriple>
-        <gtriple>Alice | is mother of | Philz</gtriple>
-        <gtriple>Alice | is mother of | Philz) Text: &lt;benchmark_reader.Lexicalisation object at 0x7ff6a0082ad0</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id8">
-      <generatedtripleset>
-        <gtriple>Alice | is coffee shop owner | Philz</gtriple>
-        <gtriple>philz | founded | Berkeley</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id9">
-      <generatedtripleset />
-    </entry>
-    <entry category="Airport" eid="Id10">
-      <generatedtripleset>
-        <gtriple>Alice | is mother of | Philz</gtriple>
-        <gtriple>uote: -Alice | is Mother of | Phi</gtriple>
+        <gtriple>Brill | is | tiny town</gtriple>
+        <gtriple>Arsenias | is | is a small town</gtriple>
       </generatedtripleset>
     </entry>
   </entries>

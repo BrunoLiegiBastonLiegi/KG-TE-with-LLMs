@@ -18,6 +18,8 @@ from tqdm import tqdm
 parser = argparse.ArgumentParser(description='WebNLG Benchmark.')
 parser.add_argument('--prompt')
 
+args = parser.parse_args()
+
 if args.prompt is None:
     prompt = None
 else:
@@ -76,7 +78,7 @@ def main():
     entries = ET.SubElement(root, "entries")
 
     # get access to each entry info
-    for entry in tqdm(b.entries[:10]):
+    for entry in tqdm(b.entries[:3]):
         e = ET.SubElement(
             entries,
             "entry",
@@ -93,8 +95,9 @@ def main():
         tree.write("generated_triples.xml")
         
 def get_triples(lexs):
+    nodes = [Node(lex.lex) for lex in lexs]
     index = GPTKnowledgeGraphIndex(
-        nodes=[Node(lex) for lex in lexs],
+        nodes=nodes,
         kg_triple_extract_template=prompt,
         max_triplets_per_chunk=7,
         service_context=service_context,
