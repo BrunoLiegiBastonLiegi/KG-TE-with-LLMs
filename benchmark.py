@@ -1,22 +1,18 @@
-import sys
+import sys, json
 sys.path.append('./webnlg-dataset_v3.0/corpus-reader/')
 
-import torch, argparse
-from transformers import pipeline as Pipeline
-from langchain.llms import HuggingFacePipeline
-from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig, AutoModelForSeq2SeqLM
+import argparse
 
-from llama_index.indices.service_context import ServiceContext
-from llama_index.data_structs.node_v2 import Node
-from llama_index import LLMPredictor
 from llama_index.indices.knowledge_graph.base import GPTKnowledgeGraphIndex
 from llama_index.prompts.prompts import KnowledgeGraphPrompt
+from llama_index.data_structs.node_v2 import Node
 
 from tqdm import tqdm
 
 
 parser = argparse.ArgumentParser(description='WebNLG Benchmark.')
 parser.add_argument('--prompt')
+parser.add_argument('--conf', default='llm.conf')
 
 args = parser.parse_args()
 
@@ -28,28 +24,14 @@ else:
         prompt = KnowledgeGraphPrompt(
             kg_extraction_template
         )
-        
-model_id, pipeline = "gpt2", "text-generation"
-#model_id, pipeline = "decapoda-research/llama-7b-hf", "text-generation"
+    
+# prepare the llm
+from utils import get_llm
 
-tokenizer = AutoTokenizer.from_pretrained(model_id)
-model = AutoModelForCausalLM.from_pretrained(model_id)
+with open(args.conf, 'r') as f:
+    conf = json.load(f)
 
-from accelerate import infer_auto_device_map
-dev_map = infer_auto_device_map(model)
-print(f'> Device Map:\n{dev_map}')
-
-pipe = Pipeline(
-    pipeline,
-    model=model,
-    tokenizer=tokenizer,
-    max_new_tokens=64,
-    device_map='auto', # used for distributed
-    model_kwargs={"torch_dtype":torch.bfloat16}
-)
-llm = HuggingFacePipeline(pipeline=pipe)
-llm_predictor = LLMPredictor(llm = llm)
-service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor, chunk_size_limit=512)
+llm_predictor, service_context = get_llm(conf['model'], conf['pipeline'])
 
 
 def main():
@@ -78,7 +60,7 @@ def main():
     entries = ET.SubElement(root, "entries")
 
     # get access to each entry info
-    for entry in tqdm(b.entries[:3]):
+    for entry in tqdm(b.entries[:10]):
         e = ET.SubElement(
             entries,
             "entry",

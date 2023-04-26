@@ -1,0 +1,76 @@
+<benchmark>
+  <entries>
+    <entry category="Airport" eid="Id1">
+      <generatedtripleset>
+        <gtriple>The leader of | Aarhus | is Jacob Bundsgaard</gtriple>
+        <gtriple>The leader of | Aarhus | is Jacob Bund</gtriple>
+      </generatedtripleset>
+    </entry>
+    <entry category="Airport" eid="Id2">
+      <generatedtripleset>
+        <gtriple>Aarhus Airport | has a runway length of | 2702.0</gtriple>
+        <gtriple>Aarhus Airport | has a runway length of | 2702</gtriple>
+      </generatedtripleset>
+    </entry>
+    <entry category="Airport" eid="Id3">
+      <generatedtripleset>
+        <gtriple>Adirondack Regional Airport | is | 507 metres above sea level</gtriple>
+      </generatedtripleset>
+    </entry>
+    <entry category="Airport" eid="Id4">
+      <generatedtripleset>
+        <gtriple>Adirondack Regional airport | is located at | Harrietstown</gtriple>
+        <gtriple>Adirondack Regional airport | is located at | New York</gtriple>
+        <gtriple>Adirondack Regional airport | is located at | 1982</gtriple>
+        <gtriple>Harrietstown | is located in | Adirondack Regional Airport</gtriple>
+        <gtriple>New York | is located in | Adirondack Regional Airport</gtriple>
+        <gtriple>Adirondack Regional Airport | is located in | 1990</gtriple>
+      </generatedtripleset>
+    </entry>
+    <entry category="Airport" eid="Id5">
+      <generatedtripleset>
+        <gtriple>Adolfo Su&#225;rez | is | found in</gtriple>
+        <gtriple>Adolfo Su&#225;rez | is | found in San Sebasti&#225;n de los Reyes</gtriple>
+        <gtriple>Adolfo Su&#225;rez | is | in San Sebasti&#225;n de los Reyes</gtriple>
+        <gtriple>Adolfo Suarez Madrid-Barajas airport | is located at San Sebastian de los Reyes | Spain</gtriple>
+      </generatedtripleset>
+    </entry>
+    <entry category="Airport" eid="Id6">
+      <generatedtripleset>
+        <gtriple>Adolfo Su&#225;rez Madrid-Barajas Airport | runway name | 14L/32R</gtriple>
+        <gtriple>Adolfo Su&#225;rez Madrid-Barajas Airport | runway name | 14L</gtriple>
+        <gtriple>14L/32R | runway name | Adolfo Su&#225;rez Madrid&#8211;Barajas Airport</gtriple>
+        <gtriple>14L/32R | is | runway name</gtriple>
+        <gtriple>14L | runway name | Adolfo Su&#225;rez Madrid&#8211;Barajas Airport</gtriple>
+      </generatedtripleset>
+    </entry>
+    <entry category="Airport" eid="Id7">
+      <generatedtripleset>
+        <gtriple>14R/32L | is | runway for</gtriple>
+        <gtriple>14R/32L | is | runway for Adolfo Su&#225;rez Madrid&#8211;Barajas Airport</gtriple>
+        <gtriple>14R/32L | is | runway for Adolfo Su&#225;re</gtriple>
+        <gtriple>14R/32L | is | runway name</gtriple>
+      </generatedtripleset>
+    </entry>
+    <entry category="Airport" eid="Id8">
+      <generatedtripleset>
+        <gtriple>Afonso Pena | is | airport</gtriple>
+        <gtriple>Afonso Pena | is | airport of</gtriple>
+        <gtriple>Afonso Pena International Airport | is operated by | Infraero</gtriple>
+      </generatedtripleset>
+    </entry>
+    <entry category="Airport" eid="Id9">
+      <generatedtripleset>
+        <gtriple>Agra Airport | is in | Agra</gtriple>
+        <gtriple>Agra | is located in | Agra</gtriple>
+      </generatedtripleset>
+    </entry>
+    <entry category="Airport" eid="Id10">
+      <generatedtripleset>
+        <gtriple>Al-Taqaddum Air Base | is | 84 metres above sea level</gtriple>
+        <gtriple>Al-Taqaddum Air Base | elevation above the sea level | in metres</gtriple>
+        <gtriple>84 metres above sea level | is | Al Taqaddum Air Base</gtriple>
+      </generatedtripleset>
+    </entry>
+  </entries>
+</benchmark>

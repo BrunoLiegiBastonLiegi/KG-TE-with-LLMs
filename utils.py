@@ -1,4 +1,4 @@
-import json, re
+import json, re, torch
 
 def normalize(string):
     string = re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", string).lower()
@@ -37,7 +37,38 @@ def evaluate(p_triples, gt_triples):
     recall = len(intersection) / len(gt_triples)
     f1 = 2 * ( precision * recall ) / ( precision + recall )
     return precision, recall, f1
+
+
+from transformers import pipeline as Pipeline
+from langchain.llms import HuggingFacePipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig, AutoModelForSeq2SeqLM
+from accelerate import infer_auto_device_map
+from llama_index.indices.service_context import ServiceContext
+from llama_index import LLMPredictor
+
+def get_llm(model_id, pipeline):
     
+    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    model = AutoModelForCausalLM.from_pretrained(model_id)
+
+    dev_map = infer_auto_device_map(model)
+    print(f'> Using device: {set(dev_map.values())}')
+    
+    pipe = Pipeline(
+        pipeline,
+        model=model,
+        tokenizer=tokenizer,
+        max_new_tokens=64,
+        device_map='auto', # used for distributed
+        model_kwargs={"torch_dtype":torch.bfloat16}
+    )
+
+    llm = HuggingFacePipeline(pipeline=pipe)
+    llm_predictor = LLMPredictor(llm = llm)
+    service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor, chunk_size_limit=512)
+
+    return llm_predictor, service_context
+
 
 if __name__ == '__main__':
     import sys
