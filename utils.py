@@ -1,4 +1,4 @@
-import json, re, torch
+import json, re, torch, time
 
 def normalize(string):
     string = re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", string).lower()
@@ -42,17 +42,20 @@ def evaluate(p_triples, gt_triples):
 from transformers import pipeline as Pipeline
 from langchain.llms import HuggingFacePipeline
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig, AutoModelForSeq2SeqLM
-from accelerate import infer_auto_device_map
 from llama_index.indices.service_context import ServiceContext
 from llama_index import LLMPredictor
 
 def get_llm(model_id, pipeline):
-    
-    tokenizer = AutoTokenizer.from_pretrained(model_id)
-    model = AutoModelForCausalLM.from_pretrained(model_id)
 
-    dev_map = infer_auto_device_map(model)
-    print(f'> Using device: {set(dev_map.values())}')
+    print(f"> Using model: {model_id}")
+    t = time.time()
+    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    model = AutoModelForCausalLM.from_pretrained(model_id, device_map="auto")
+    print(f'> Loaded in {time.time()-t:.4f}s')
+
+    print(f'> Model data type: {model.dtype}')
+
+    print(f'> Using device: {set(model.hf_device_map.values())}')
     
     pipe = Pipeline(
         pipeline,

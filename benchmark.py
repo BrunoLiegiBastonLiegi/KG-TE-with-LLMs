@@ -1,4 +1,4 @@
-import sys, json
+import sys, json, time
 sys.path.append('./webnlg-dataset_v3.0/corpus-reader/')
 
 import argparse
@@ -33,14 +33,14 @@ with open(args.conf, 'r') as f:
 
 llm_predictor, service_context = get_llm(conf['model'], conf['pipeline'])
 
-
 def main():
 
     from benchmark_reader import Benchmark
     from benchmark_reader import select_files
 
     path_to_corpus = 'webnlg-dataset_v3.0/en/dev/'
-
+    print(f'> Using corpus: {path_to_corpus}')
+    
     # initialise Benchmark object
     b = Benchmark()
 
@@ -51,14 +51,15 @@ def main():
     b.fill_benchmark(files)
 
     # output some statistics
-    print("Number of entries: ", b.entry_count())
-    print("Number of texts: ", b.total_lexcount())
-    print("Number of distinct properties: ", len(list(b.unique_p_mtriples())))
+    #print("Number of entries: ", b.entry_count())
+    #print("Number of texts: ", b.total_lexcount())
+    #print("Number of distinct properties: ", len(list(b.unique_p_mtriples())))
 
     import xml.etree.cElementTree as ET
     root = ET.Element("benchmark")
     entries = ET.SubElement(root, "entries")
 
+    print('> Extracting triples from corpus')
     # get access to each entry info
     for entry in tqdm(b.entries[:10]):
         e = ET.SubElement(
@@ -68,7 +69,10 @@ def main():
             eid=entry.id
         )
         tripleset = ET.SubElement(e, "generatedtripleset")
+        print('> Processing Entry')
+        t = time.time()
         triples = get_triples(entry.lexs)
+        print(f'  > Processed {len(entry.lexs)} sentences in {time.time()-t:.4f}s ')
         for triple in triples:
             ET.SubElement(tripleset, "gtriple").text = triple
 

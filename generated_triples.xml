@@ -1,65 +1,22 @@
 <benchmark>
   <entries>
     <entry category="Airport" eid="Id1">
-      <generatedtripleset />
+      <generatedtripleset>
+        <gtriple>Jacob | is | Aarhus</gtriple>
+      </generatedtripleset>
     </entry>
     <entry category="Airport" eid="Id2">
       <generatedtripleset>
-        <gtriple>ext: The airfields of the Netherlands and Belgium are two of the fastest growing airports worldwide (4 | 976 | 539 passengers in 2012)</gtriple>
-        <gtriple>Amara | is | airport</gtriple>
-        <gtriple>Amara | is | city</gtriple>
+        <gtriple>Aarhus Airport | is | runway length</gtriple>
+        <gtriple>runway length | is | Sun</gtriple>
+        <gtriple>runway length | is | St. Louis</gtriple>
+        <gtriple>entences are translated using the following grammar | only. If you encounter a grammar mistake | please submit corrections</gtriple>
+        <gtriple>Aarhus | is | airport</gtriple>
+        <gtriple>arhus | is | airpor</gtriple>
       </generatedtripleset>
     </entry>
     <entry category="Airport" eid="Id3">
-      <generatedtripleset>
-        <gtriple>Dani | is | town</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id4">
-      <generatedtripleset>
-        <gtriple>ext: Echosun Air Air Base in Chilbarnok | Georgia | is the headquarters of the US Ai</gtriple>
-        <gtriple>Adirondack | is | Harrietstown</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id5">
-      <generatedtripleset>
-        <gtriple>Ahmad | is | caf&#233;</gtriple>
-        <gtriple>Jose | is | local airport</gtriple>
-        <gtriple>Alberto | is | Santa Barbara</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id6">
-      <generatedtripleset>
-        <gtriple>Frazer | has | airport</gtriple>
-        <gtriple>Abraham | is Josean | is</gtriple>
-        <gtriple>Abraham | is | Josean</gtriple>
-        <gtriple>ext: The United States Department of State issued the first legal classification of "terrorist" as a crime in the United States | and the United States attorney is a former FBI agent | James K. Klayman</gtriple>
-        <gtriple>ote that the text | if used | will be interpreted in reverse order because of the text-style restriction (subject only)</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id7">
-      <generatedtripleset>
-        <gtriple>14R/32L | is | barajas</gtriple>
-        <gtriple>Jose | a bus stop in | London)Triplets</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id8">
-      <generatedtripleset>
-        <gtriple>Infraero | is | Infraero</gtriple>
-        <gtriple>Infraero | owns | owns</gtriple>
-        <gtriple>Afonso | is | brother of</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id9">
-      <generatedtripleset>
-        <gtriple>Agra | is | airport</gtriple>
-        <gtriple>Agra | is | coffee shop</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id10">
-      <generatedtripleset>
-        <gtriple>An | base house | building</gtriple>
-      </generatedtripleset>
+      <generatedtripleset />
     </entry>
   </entries>
 </benchmark>
