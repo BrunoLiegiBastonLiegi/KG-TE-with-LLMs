@@ -2,10 +2,17 @@
   <entries>
     <entry category="Airport" eid="Id1">
       <generatedtripleset>
-        <gtriple>Bandsgaard | is | aarhus</gtriple>
-        <gtriple>aarhus | is | bundsgaard</gtriple>
-        <gtriple>aarhus | is | Bundsgaard</gtriple>
+        <gtriple>Jacob | is | aarhus</gtriple>
+        <gtriple>Aarhus | a student in | Switzerland</gtriple>
       </generatedtripleset>
+    </entry>
+    <entry category="Airport" eid="Id2">
+      <generatedtripleset>
+        <gtriple>Aarhus | Airports | runway</gtriple>
+      </generatedtripleset>
+    </entry>
+    <entry category="Airport" eid="Id3">
+      <generatedtripleset />
     </entry>
   </entries>
 </benchmark>
