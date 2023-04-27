@@ -2,21 +2,10 @@
   <entries>
     <entry category="Airport" eid="Id1">
       <generatedtripleset>
-        <gtriple>Jacob | is | Aarhus</gtriple>
+        <gtriple>Bandsgaard | is | aarhus</gtriple>
+        <gtriple>aarhus | is | bundsgaard</gtriple>
+        <gtriple>aarhus | is | Bundsgaard</gtriple>
       </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id2">
-      <generatedtripleset>
-        <gtriple>Aarhus Airport | is | runway length</gtriple>
-        <gtriple>runway length | is | Sun</gtriple>
-        <gtriple>runway length | is | St. Louis</gtriple>
-        <gtriple>entences are translated using the following grammar | only. If you encounter a grammar mistake | please submit corrections</gtriple>
-        <gtriple>Aarhus | is | airport</gtriple>
-        <gtriple>arhus | is | airpor</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id3">
-      <generatedtripleset />
     </entry>
   </entries>
 </benchmark>

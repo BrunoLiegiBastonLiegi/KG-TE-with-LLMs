@@ -50,7 +50,11 @@ def get_llm(model_id, pipeline):
     print(f"> Using model: {model_id}")
     t = time.time()
     tokenizer = AutoTokenizer.from_pretrained(model_id)
-    model = AutoModelForCausalLM.from_pretrained(model_id, device_map="auto")
+    model = AutoModelForCausalLM.from_pretrained(
+        model_id,
+        device_map="auto",
+        load_in_8bit=torch.cuda.is_available()
+    )
     print(f'> Loaded in {time.time()-t:.4f}s')
 
     print(f'> Model data type: {model.dtype}')
@@ -63,7 +67,7 @@ def get_llm(model_id, pipeline):
         tokenizer=tokenizer,
         max_new_tokens=64,
         device_map='auto', # used for distributed
-        model_kwargs={"torch_dtype":torch.bfloat16}
+        #model_kwargs={"torch_dtype":torch.bfloat16}
     )
 
     llm = HuggingFacePipeline(pipeline=pipe)
