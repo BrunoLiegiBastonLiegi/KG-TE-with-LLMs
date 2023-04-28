@@ -40,12 +40,15 @@ def evaluate(p_triples, gt_triples):
 
 
 from transformers import pipeline as Pipeline
-from langchain.llms import HuggingFacePipeline
 from transformers import AutoTokenizer
+from langchain.llms import HuggingFacePipeline
+from langchain.embeddings import HuggingFaceEmbeddings
 from llama_index.indices.service_context import ServiceContext
 from llama_index import LLMPredictor
+from llama_index.embeddings.langchain import LangchainEmbedding
 
-def get_llm(model_id, pipeline):
+
+def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2'):
 
     print(f"> Using model: {model_id}")
     t = time.time()
@@ -67,7 +70,13 @@ def get_llm(model_id, pipeline):
 
     llm = HuggingFacePipeline(pipeline=pipe)
     llm_predictor = LLMPredictor(llm = llm)
-    service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor, chunk_size_limit=512)
+    emb = HuggingFaceEmbeddings(model_name=sentence_transformer)
+    emb = LangchainEmbedding(emb)
+    service_context = ServiceContext.from_defaults(
+        llm_predictor=llm_predictor,
+        embed_model=emb,
+        chunk_size_limit=512
+    )
 
     return llm_predictor, service_context
 

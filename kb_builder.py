@@ -32,16 +32,34 @@ llm_predictor, service_context = get_llm(conf['model'], conf['pipeline'])
 # triples relevant for a specific entity of the graph
 from llama_index.data_structs.node_v2 import Node
 from llama_index import GPTListIndex
+from llama_index.indices.vector_store.vector_indices import GPTSimpleVectorIndex
+from llama_index.indices.vector_store.base_query import GPTVectorStoreIndexQuery
+from llama_index.vector_stores.simple import SimpleVectorStore
 
-nodes = []
-for n in g.nodes():
+
+nodes, id2embedding = [], {}
+for n in list(g.nodes())[:10]:
     edges = list(g.in_edges(n, data=True)) + list(g.out_edges(n, data=True))
     edges = [
         '({}, {}, {})'.format(e[0], e[2]['title'], e[1])
         for e in edges
     ]
-    nodes.append(Node(text='\n'.join(edges), doc_id=n))
-kb_index = GPTListIndex(nodes=nodes, service_context=service_context)
+    text = '\n'.join(edges)
+    node = Node(
+        text=text,
+        doc_id=n,
+    )
+    id2embedding[n] = service_context.embed_model._get_text_embedding(text)
+    nodes.append(node)
+
+vector_store = SimpleVectorStore(simple_vector_store_data_dict=id2embedding)
+#kb_index = GPTListIndex(nodes=nodes, service_context=service_context)
+kb_index = GPTSimpleVectorIndex(
+    nodes=nodes,
+    service_context=service_context,
+    #vector_store=vector_store
+)
+
 kb_index.save_to_disk(args.save)
 
 #import matplotlib.pyplot as plt

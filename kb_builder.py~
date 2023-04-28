@@ -1,8 +1,0 @@
-import argparse
-
-parser = argparse.ArgumentParser(description='KG Construction.')
-parser.add_argument('--data', default='./webnlg-dataset_v3.0/corpus-reader/train.json')
-parser.add_argument('--load_index')
-parser.add_argument('--prompt')
-parser.add_argument('--save_triples')
-args = parser.parse_args()
