@@ -52,12 +52,16 @@ def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2'):
 
     print(f"> Using model: {model_id}")
     t = time.time()
-    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(model_id)
+    except:
+        assert False, "not implemented yet"
+        
     pipe = Pipeline(
         pipeline,
         model=model_id,
         tokenizer=tokenizer,
-        max_new_tokens=64,
+        max_new_tokens=128,
         device_map='auto', # used for distributed
         model_kwargs={"torch_dtype":torch.bfloat16}
     )

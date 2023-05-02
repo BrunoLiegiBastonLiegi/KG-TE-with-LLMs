@@ -61,7 +61,7 @@ def main():
 
     print('> Extracting triples from corpus')
     # get access to each entry info
-    for entry in tqdm(b.entries[:10]):
+    for entry in tqdm(b.entries):
         e = ET.SubElement(
             entries,
             "entry",
@@ -76,16 +76,16 @@ def main():
         for triple in triples:
             ET.SubElement(tripleset, "gtriple").text = triple
 
-        tree = ET.ElementTree(root)
-        ET.indent(tree, space="  ", level=0)
-        tree.write("generated_triples.xml")
+    tree = ET.ElementTree(root)
+    ET.indent(tree, space="  ", level=0)
+    tree.write("generated_triples.xml")
         
 def get_triples(lexs):
     nodes = [Node(lex.lex) for lex in lexs]
     index = GPTKnowledgeGraphIndex(
         nodes=nodes,
         kg_triple_extract_template=prompt,
-        max_triplets_per_chunk=7,
+        max_triplets_per_chunk=10,
         service_context=service_context,
     )
     g = index.get_networkx_graph()

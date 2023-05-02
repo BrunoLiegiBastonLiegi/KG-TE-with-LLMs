@@ -30,11 +30,12 @@ llm_predictor, service_context = get_llm(conf['model'], conf['pipeline'])
 
 # create the index with nodes consisting of all the
 # triples relevant for a specific entity of the graph
-from llama_index.data_structs.node_v2 import Node
+from llama_index.data_structs.node_v2 import Node, DocumentRelationship
 from llama_index import GPTListIndex
-from llama_index.indices.vector_store.vector_indices import GPTSimpleVectorIndex
-from llama_index.indices.vector_store.base_query import GPTVectorStoreIndexQuery
+#from llama_index.indices.vector_store.vector_indices import GPTSimpleVectorIndex
+#from llama_index.indices.vector_store.base_query import GPTVectorStoreIndexQuery
 from llama_index.vector_stores.simple import SimpleVectorStore
+from llama_index import GPTVectorStoreIndex
 
 
 nodes, id2embedding = [], {}
@@ -52,9 +53,15 @@ for n in list(g.nodes())[:10]:
     id2embedding[n] = service_context.embed_model._get_text_embedding(text)
     nodes.append(node)
 
+for i,n in enumerate(nodes):
+    if i < len(nodes) - 1:
+        n.relationships[DocumentRelationship.NEXT] = nodes[i+1].get_doc_id()
+    if i > 0:
+        n.relationships[DocumentRelationship.PREVIOUS] = nodes[i-1].get_doc_id()
+
 vector_store = SimpleVectorStore(simple_vector_store_data_dict=id2embedding)
 #kb_index = GPTListIndex(nodes=nodes, service_context=service_context)
-kb_index = GPTSimpleVectorIndex(
+kb_index = GPTVectorStoreIndex(
     nodes=nodes,
     service_context=service_context,
     #vector_store=vector_store
