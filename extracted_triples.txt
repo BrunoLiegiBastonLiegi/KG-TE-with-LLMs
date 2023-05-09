@@ -1,7 +1,0 @@
-Jacob	family	friends
-Subject	predicate	object) or
-Adirondack Airport	is	are(Harrietstown))
-ext: (Alice	is mother of	(Alice)
-Fernando Suárez is a Mexican immigrant	a member of the US Navy and a friend of the US president	George W Bush
-Am	is	Madrid
-Suárez	is	airport

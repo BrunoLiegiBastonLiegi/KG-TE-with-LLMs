@@ -2,7 +2,7 @@ import argparse, json
 
 parser = argparse.ArgumentParser(description='KG Construction.')
 parser.add_argument('--data', default='./webnlg-dataset_v3.0/corpus-reader/train.json')
-parser.add_argument('--save', default='kb.json')
+parser.add_argument('--save', default='kb')
 parser.add_argument('--conf', default='llm.conf')
 args = parser.parse_args()
 
@@ -32,17 +32,14 @@ llm_predictor, service_context = get_llm(conf['model'], conf['pipeline'])
 # triples relevant for a specific entity of the graph
 from llama_index.data_structs.node_v2 import Node, DocumentRelationship
 from llama_index import GPTListIndex
-#from llama_index.indices.vector_store.vector_indices import GPTSimpleVectorIndex
-#from llama_index.indices.vector_store.base_query import GPTVectorStoreIndexQuery
-from llama_index.vector_stores.simple import SimpleVectorStore
 from llama_index import GPTVectorStoreIndex
 
 
 nodes, id2embedding = [], {}
-for n in list(g.nodes())[:10]:
+for n in list(g.nodes()):
     edges = list(g.in_edges(n, data=True)) + list(g.out_edges(n, data=True))
     edges = [
-        '({}, {}, {})'.format(e[0], e[2]['title'], e[1])
+        '({}; {}; {})'.format(e[0], e[2]['title'], e[1])
         for e in edges
     ]
     text = '\n'.join(edges)
@@ -54,20 +51,34 @@ for n in list(g.nodes())[:10]:
     nodes.append(node)
 
 for i,n in enumerate(nodes):
-    if i < len(nodes) - 1:
-        n.relationships[DocumentRelationship.NEXT] = nodes[i+1].get_doc_id()
-    if i > 0:
-        n.relationships[DocumentRelationship.PREVIOUS] = nodes[i-1].get_doc_id()
+    n.relationships[DocumentRelationship.SOURCE] = n.get_doc_id()
+    #if i < len(nodes) - 1:
+    #    n.relationships[DocumentRelationship.NEXT] = nodes[i+1].get_doc_id()
+    #if i > 0:
+    #    n.relationships[DocumentRelationship.PREVIOUS] = nodes[i-1].get_doc_id()
 
-vector_store = SimpleVectorStore(simple_vector_store_data_dict=id2embedding)
-#kb_index = GPTListIndex(nodes=nodes, service_context=service_context)
 kb_index = GPTVectorStoreIndex(
     nodes=nodes,
     service_context=service_context,
-    #vector_store=vector_store
 )
 
-kb_index.save_to_disk(args.save)
+
+
+
+# test retrieval
+from llama_index.retrievers import VectorIndexRetriever
+
+retriever = VectorIndexRetriever(
+    index=kb_index,
+    similarity_top_k=5,
+)
+
+r = retriever.retrieve("Linate Airport is located in Milan, Italy.")
+triples = [ n.node.text for n in r ]
+triples = '\n'.join(triples)
+print(triples)
+
+kb_index.storage_context.persist(args.save)
 
 #import matplotlib.pyplot as plt
 #nx.draw(g)
