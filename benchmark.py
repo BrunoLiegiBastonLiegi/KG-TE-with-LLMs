@@ -88,7 +88,7 @@ def main():
 
     print('> Extracting triples from corpus')
     # get access to each entry info
-    for entry in tqdm(b.entries[10:]):
+    for entry in tqdm(b.entries[:3]):
         e = ET.SubElement(
             entries,
             "entry",

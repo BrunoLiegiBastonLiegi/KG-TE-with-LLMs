@@ -1,4 +1,5 @@
 import argparse, json
+from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description='KG Construction.')
 parser.add_argument('--data', default='./webnlg-dataset_v3.0/corpus-reader/train.json')
@@ -30,13 +31,13 @@ llm_predictor, service_context = get_llm(conf['model'], conf['pipeline'])
 
 # create the index with nodes consisting of all the
 # triples relevant for a specific entity of the graph
-from llama_index.data_structs.node_v2 import Node, DocumentRelationship
+from llama_index.data_structs.node import Node, DocumentRelationship
 from llama_index import GPTListIndex
 from llama_index import GPTVectorStoreIndex
 
 
 nodes, id2embedding = [], {}
-for n in list(g.nodes()):
+for n in tqdm(list(g.nodes())):
     edges = list(g.in_edges(n, data=True)) + list(g.out_edges(n, data=True))
     edges = [
         '({}; {}; {})'.format(e[0], e[2]['title'], e[1])

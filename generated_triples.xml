@@ -1,85 +1,16 @@
 <benchmark>
   <entries>
     <entry category="Airport" eid="Id1">
-      <generatedtripleset>
-        <gtriple>Bundsgaard | is leader of | Aarhus</gtriple>
-        <gtriple>Bundsgaard | is not in Aarhus | he is not</gtriple>
-      </generatedtripleset>
+      <generatedtripleset />
     </entry>
     <entry category="Airport" eid="Id2">
       <generatedtripleset>
-        <gtriple>Alice | is | Bob</gtriple>
-        <gtriple>Alice | is | Bob) ----------------------------</gtriple>
-        <gtriple>Samus | the-air | theplane</gtriple>
-        <gtriple>he Aarhus Airport in fact has the same location as the airport in Australia. The Aarhus is located in West Allis | England. Airdate: August 18 | 1787</gtriple>
+        <gtriple>ext: "Airdates of the country are considered | and the term (aarhus airport | or (or? ; (2 or 3? ; or? ))</gtriple>
+        <gtriple>ext: "In the Aarhus Airport | " "In the Aarhus Airport" means "Airdates of the country are considered | and the term occurs once every six months.</gtriple>
       </generatedtripleset>
     </entry>
     <entry category="Airport" eid="Id3">
       <generatedtripleset />
-    </entry>
-    <entry category="Airport" eid="Id4">
-      <generatedtripleset>
-        <gtriple>ext: The famous L.B. Keck train | which made its debut as a train station wagon before coming to the airport in 1977 | was built in the 1940s</gtriple>
-        <gtriple>ifference: Text: I am a good artist with lots of skills which I have developed | especially my knowledge of mathematics and computer technology. This is especially relevant in my early years | because the new rules of learning which had so intrigued me helped me immensely. Whe</gtriple>
-        <gtriple>Adirondack | is | airport</gtriple>
-        <gtriple>an" | "ar" or "ah". The English term "a" starts with the letters "or". To mark an English noun | use the * prefix to mark it</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id5">
-      <generatedtripleset>
-        <gtriple>Nazario | is | Barajas airport / San Sebasti&#225;n de los Reyes</gtriple>
-        <gtriple>Nazario | are | Barajas airport / San Sebasti&#225;n de a la suerte</gtriple>
-        <gtriple>n fact | when you start adding text (on any other item) | you can actually see the text before the text is added and it gets added in its place. It helps you visualize things and it helps you think abou</gtriple>
-        <gtriple>Nada | is a woman | mother of Adolf)Triplets</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id6">
-      <generatedtripleset>
-        <gtriple>14L | is | runway name</gtriple>
-        <gtriple>runway name | is | 13L</gtriple>
-        <gtriple>(13L owns | books | watches</gtriple>
-        <gtriple>watches | books | 13L owns</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id7">
-      <generatedtripleset>
-        <gtriple>Carlo | is her wife with daughters | with the twins</gtriple>
-        <gtriple>Nas | is | Heathrow)</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id8">
-      <generatedtripleset>
-        <gtriple>Pena | is | flight</gtriple>
-        <gtriple>Afonso | is | Infraero</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id9">
-      <generatedtripleset>
-        <gtriple>Agra | is | a bakery</gtriple>
-        <gtriple>Berkeley | is | a town</gtriple>
-        <gtriple>Berkeley | is | a company</gtriple>
-        <gtriple>Berkeley | is | a corporation</gtriple>
-        <gtriple>ext: Agra | by plane | is Airport</gtriple>
-        <gtriple>xample: Text: Alice grew up in California | died in Washington | DC.Triplets: Agra Airpor</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id10">
-      <generatedtripleset>
-        <gtriple>Al-Taqaddum | air | oversea</gtriple>
-        <gtriple>ext: She was a young | vibrant | and accomplished woman who was passionate about raising her children.Her children raised her</gtriple>
-        <gtriple>Alice | is | top</gtriple>
-        <gtriple>ext: The highest altitude (in metres) above the sea level | equi to Al-Qahdah | alaqaddum of air base of Texas</gtriple>
-      </generatedtripleset>
-    </entry>
-    <entry category="Airport" eid="Id11">
-      <generatedtripleset>
-        <gtriple>Alderney | is Alderney Airport) | is Alderney Airport</gtriple>
-        <gtriple>Alderney | is | Alderney Aviation</gtriple>
-        <gtriple>Alderney | is | Aviation</gtriple>
-        <gtriple>Alderney | is | Aeronautical Aviation</gtriple>
-        <gtriple>Alderney | is | airport</gtriple>
-        <gtriple>Alderney | is | county</gtriple>
-      </generatedtripleset>
     </entry>
   </entries>
 </benchmark>
