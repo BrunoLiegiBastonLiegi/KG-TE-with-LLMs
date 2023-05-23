@@ -117,6 +117,7 @@ def get_triplet_extraction_prompt(body, examples, sentence=None, kb_retriever=No
         "Text: {text}\n"
         "Triplets:\n"
     )
+    prompt = prompt.replace(';',',')
     return KnowledgeGraphPrompt(prompt)
 
 

@@ -5,7 +5,7 @@ import argparse
 
 from llama_index.indices.knowledge_graph.base import GPTKnowledgeGraphIndex
 from llama_index.prompts.prompts import KnowledgeGraphPrompt
-from llama_index.data_structs.node_v2 import Node
+from llama_index.data_structs.node import Node
 
 from tqdm import tqdm
 
@@ -88,7 +88,7 @@ def main():
 
     print('> Extracting triples from corpus')
     # get access to each entry info
-    for entry in tqdm(b.entries[:3]):
+    for entry in tqdm(b.entries):
         e = ET.SubElement(
             entries,
             "entry",

@@ -1,16 +1,18 @@
 <benchmark>
   <entries>
     <entry category="Airport" eid="Id1">
-      <generatedtripleset />
-    </entry>
-    <entry category="Airport" eid="Id2">
       <generatedtripleset>
-        <gtriple>ext: "Airdates of the country are considered | and the term (aarhus airport | or (or? ; (2 or 3? ; or? ))</gtriple>
-        <gtriple>ext: "In the Aarhus Airport | " "In the Aarhus Airport" means "Airdates of the country are considered | and the term occurs once every six months.</gtriple>
+        <gtriple>ext: "Z&#252;tlihrer" is a Tribal organization | which exists in Germany | and has about 23 branches</gtriple>
       </generatedtripleset>
     </entry>
-    <entry category="Airport" eid="Id3">
+    <entry category="Airport" eid="Id2">
       <generatedtripleset />
+    </entry>
+    <entry category="Airport" eid="Id3">
+      <generatedtripleset>
+        <gtriple>ext: A town has 1.3m buildings | 1m farms. 4.5m employees. This city has 2.6m buildings | 2.3m workforce</gtriple>
+        <gtriple>o create more single words | it is advisable to also add 2 more. (For example | to create the first half of each word</gtriple>
+      </generatedtripleset>
     </entry>
   </entries>
 </benchmark>
