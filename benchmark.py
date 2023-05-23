@@ -53,6 +53,7 @@ with open(args.conf, 'r') as f:
     conf = json.load(f)
 
 llm_predictor, service_context = get_llm(conf['model'], conf['pipeline'])
+max_triplets = 7
 
 # prepare the kb
 if args.kb is not None:
@@ -86,6 +87,13 @@ def main():
     root = ET.Element("benchmark")
     entries = ET.SubElement(root, "entries")
 
+    # define index for triplet extraction 
+    index = GPTKnowledgeGraphIndex(
+        nodes=[],
+        max_triplets_per_chunk=max_triplets,
+        service_context=service_context,
+    )
+    
     print('> Extracting triples from corpus')
     # get access to each entry info
     for entry in tqdm(b.entries):
@@ -98,8 +106,19 @@ def main():
         tripleset = ET.SubElement(e, "generatedtripleset")
         print('> Processing Entry')
         t = time.time()
-        triples = get_triples(entry.lexs)
-        print(f'  > Processed {len(entry.lexs)} sentences in {time.time()-t:.4f}s ')
+        #triples = get_triples([entry.lexs[0]])
+        sentences = [entry.lexs[0].lex]
+        print(f'  > {sentences[0]}')
+        #prompt = get_triplet_extraction_prompt(body, examples, sentences[0], kb_retriever)
+        triples = extract_triples(
+            sentences=sentences,
+            #prompt=prompt,
+            kg_index=index,
+            #max_knowledge_triplets=max_triplets,
+            kb_retriever=kb_retriever
+        )
+        print(triples)
+        print(f'  > Processed sentence in {time.time()-t:.4f}s ')
         for triple in triples:
             ET.SubElement(tripleset, "gtriple").text = triple
 
@@ -119,9 +138,9 @@ def get_triples(lexs):
         triples = set()
         for n in nodes:
             print(n.text)
-            prompt = get_triplet_extraction_prompt(body, examples, n.text, kb_retriever)
-            print(prompt.prompt.template)
-            index.kg_triple_extract_template = prompt.partial_format(max_knowledge_triplets=10)
+            #prompt = get_triplet_extraction_prompt(body, examples, n.text, kb_retriever)
+            #print(prompt.prompt.template)
+            index.kg_triple_extract_template = prompt.partial_format(max_knowledge_triplets=max_knowledge_triplets)
             for t in index._extract_triplets(n.text):
                 triples.add(t)
     else:

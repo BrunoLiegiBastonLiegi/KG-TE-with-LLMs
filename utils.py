@@ -50,7 +50,7 @@ from llama_index.retrievers import VectorIndexRetriever
 from llama_index.prompts.prompts import KnowledgeGraphPrompt
 
 
-def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2'):
+def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', max_new_tokens=64, temperature=0.1):
 
     print(f"> Using model: {model_id}")
     t = time.time()
@@ -63,9 +63,10 @@ def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2'):
         pipeline,
         model=model_id,
         tokenizer=tokenizer,
-        max_new_tokens=128,
+        max_new_tokens=max_new_tokens,
         device_map='auto', # used for distributed
-        model_kwargs={"torch_dtype":torch.bfloat16}
+        model_kwargs={"torch_dtype":torch.bfloat16},
+        temperature=temperature
     )
     
     print(f'> Loaded in {time.time()-t:.4f}s')
@@ -106,8 +107,8 @@ def get_relevant_triples(query, retriever):
 
 
 def get_triplet_extraction_prompt(body, examples, sentence=None, kb_retriever=None):
-    if sentence is not None:
-        assert kb_retriever is not None, "Pass a kb retriever to extract the kb triples relevant to the input sentence."
+    if sentence is not None and kb_retriever is not None:
+        #assert kb_retriever is not None, "Pass a kb retriever to extract the kb triples relevant to the input sentence."
         triples = get_relevant_triples(sentence, kb_retriever)
         prompt = body + ("Make use of the following relevant triplets:\n{}\n").format(triples)
     else:
@@ -121,15 +122,56 @@ def get_triplet_extraction_prompt(body, examples, sentence=None, kb_retriever=No
     return KnowledgeGraphPrompt(prompt)
 
 
-def extract_triples(sentences, prompt, kg_index, max_knowledge_triplets=10):
+BODY = (
+    "Some text is provided below. Given the text, extract up to "
+    "{max_knowledge_triplets} "
+    "knowledge triplets in the form of (subject; predicate; object). Avoid stopwords. "
+)
+"""
+EXAMPLES = (
+    "---------------------\n"
+    "Example:\n"
+    "Text: Alice is Bob's mother.\n"
+    "Triplets:\n(Alice; is mother of; Bob)\n"
+    "Text: Philz is a coffee shop founded in Berkeley in 1982.\n"
+    "Triplets:\n"
+    "(Philz; is; coffee shop)\n"
+    "(Philz; founded in; Berkeley)\n"
+    "(Philz; founded in; 1982)\n"
+    "---------------------\n"
+)
+"""
+EXAMPLES = (
+    "---------------------\n"
+    "Example:\n"
+    "Text: Abilene, Texas is in the United States.\n"
+    "Triplets:\n(abilene, texas; country; united states)\n"
+    "Text: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.\n"
+    "Triplets:\n"
+    "(abraham a. ribicoff; spouse; casey ribicoff)\n"
+    "(abraham a. ribicoff; birth place; united states)\n"
+    "(united states; ethnic group; african americans)\n"
+    "---------------------\n"
+)
+def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=None, kb_retriever=None):
     triples = set()
+    if max_knowledge_triplets is None:
+        max_knowledge_triplets = kg_index.max_triplets_per_chunk
     for sent in sentences:
-        #prompt = get_triplet_extraction_prompt(body, examples, n.text, kb_retriever)
-        #print(prompt.prompt.template)
-        index.kg_triple_extract_template = prompt.partial_format(
+        if prompt is not None:
+            prompt = get_triplet_extraction_prompt(prompt['body'], prompt['examples'], sent, kb_retriever)
+        else:
+            global BODY, EXAMPLES
+            prompt = get_triplet_extraction_prompt(
+                body=BODY, examples=EXAMPLES,
+                sentence=sent,
+                kb_retriever=kb_retriever
+            )
+        print(prompt.prompt.template)
+        kg_index.kg_triple_extract_template = prompt.partial_format(
             max_knowledge_triplets=max_knowledge_triplets
         )
-        for t in index._extract_triplets(n.text):
+        for t in kg_index._extract_triplets(sent):
             triples.add(t)
     return list(triples)
     
