@@ -153,6 +153,7 @@ EXAMPLES = (
     "(united states; ethnic group; african americans)\n"
     "---------------------\n"
 )
+
 def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=None, kb_retriever=None):
     triples = set()
     if max_knowledge_triplets is None:

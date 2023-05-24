@@ -2,17 +2,20 @@
   <entries>
     <entry category="Airport" eid="Id1">
       <generatedtripleset>
-        <gtriple>ext: "Z&#252;tlihrer" is a Tribal organization | which exists in Germany | and has about 23 branches</gtriple>
+        <gtriple>bundsgaard | leader | jacob bundsgaard</gtriple>
+        <gtriple>bundsgaard | leader | lars l&#248;kke rasmussen</gtriple>
+        <gtriple>bundsgaard | leader | lar</gtriple>
       </generatedtripleset>
     </entry>
     <entry category="Airport" eid="Id2">
-      <generatedtripleset />
+      <generatedtripleset>
+        <gtriple>abraham a. ribicoff | runway length | 2777.0</gtriple>
+        <gtriple>abraham a. ribicoff | birth place | united states</gtriple>
+        <gtriple>united states | ethnic group | african americans</gtriple>
+      </generatedtripleset>
     </entry>
     <entry category="Airport" eid="Id3">
-      <generatedtripleset>
-        <gtriple>ext: A town has 1.3m buildings | 1m farms. 4.5m employees. This city has 2.6m buildings | 2.3m workforce</gtriple>
-        <gtriple>o create more single words | it is advisable to also add 2 more. (For example | to create the first half of each word</gtriple>
-      </generatedtripleset>
+      <generatedtripleset />
     </entry>
   </entries>
 </benchmark>

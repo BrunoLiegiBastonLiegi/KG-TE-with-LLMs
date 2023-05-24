@@ -96,7 +96,7 @@ def main():
     
     print('> Extracting triples from corpus')
     # get access to each entry info
-    for entry in tqdm(b.entries):
+    for entry in tqdm(b.entries[:3]):
         e = ET.SubElement(
             entries,
             "entry",
@@ -118,6 +118,7 @@ def main():
             kb_retriever=kb_retriever
         )
         print(triples)
+        triples = [ f"{t[0]} | {t[1]} | {t[2]}" for t in triples ]
         print(f'  > Processed sentence in {time.time()-t:.4f}s ')
         for triple in triples:
             ET.SubElement(tripleset, "gtriple").text = triple
