@@ -48,6 +48,8 @@ from llama_index import LLMPredictor, StorageContext, load_index_from_storage
 from llama_index.embeddings.langchain import LangchainEmbedding
 from llama_index.retrievers import VectorIndexRetriever
 from llama_index.prompts.prompts import KnowledgeGraphPrompt
+from functools import partial
+from collections import defaultdict
 
 
 def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', max_new_tokens=64, temperature=0.1):
@@ -106,18 +108,12 @@ def get_relevant_triples(query, retriever):
     return kb_triples
 
 
-def get_triplet_extraction_prompt(body, examples, sentence=None, kb_retriever=None):
+def get_triplet_extraction_prompt(body, examples, answer, sentence=None, kb_retriever=None):
+    prompt = f"{body}\n{examples}\n"
     if sentence is not None and kb_retriever is not None:
-        #assert kb_retriever is not None, "Pass a kb retriever to extract the kb triples relevant to the input sentence."
         triples = get_relevant_triples(sentence, kb_retriever)
-        prompt = body + ("Make use of the following relevant triplets:\n{}\n").format(triples)
-    else:
-        prompt = body + '\n'
-    prompt += examples
-    prompt += (
-        "Text: {text}\n"
-        "Triplets:\n"
-    )
+        answer = answer.format(context_triplets=triples)
+    prompt = f"{prompt}\n{answer}"
     prompt = prompt.replace(';',',')
     return KnowledgeGraphPrompt(prompt)
 
@@ -153,6 +149,10 @@ EXAMPLES = (
     "(united states; ethnic group; african americans)\n"
     "---------------------\n"
 )
+ANSWER = (
+    "Text: {text}\n"
+    "Triplets:\n"
+)
 
 def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=None, kb_retriever=None):
     triples = set()
@@ -160,9 +160,9 @@ def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=Non
         max_knowledge_triplets = kg_index.max_triplets_per_chunk
     for sent in sentences:
         if prompt is not None:
-            prompt = get_triplet_extraction_prompt(prompt['body'], prompt['examples'], sent, kb_retriever)
+            prompt = get_triplet_extraction_prompt(prompt['body'], prompt['examples'], prompt['answer'], sent, kb_retriever)
         else:
-            global BODY, EXAMPLES
+            global BODY, EXAMPLES, ANSWER
             prompt = get_triplet_extraction_prompt(
                 body=BODY, examples=EXAMPLES,
                 sentence=sent,

@@ -19,34 +19,11 @@ parser.add_argument('--kb')
 
 args = parser.parse_args()
 
-if args.prompt is None:
-    if True:#args.kb is None:
-        examples = (
-            "---------------------\n"
-            "Example:\n"
-            "Text: Alice is Bob's mother.\n"
-            "Triplets:\n(Alice; is mother of; Bob)\n"
-            "Text: Philz is a coffee shop founded in Berkeley in 1982.\n"
-            "Triplets:\n"
-            "(Philz; is; coffee shop)\n"
-            "(Philz; founded in; Berkeley)\n"
-            "(Philz; founded in; 1982)\n"
-            "---------------------\n"
-        )
-    else:
-        assert False, 'To be implemented.'
-    body = (
-        "Some text is provided below. Given the text, extract up to "
-        "{max_knowledge_triplets} "
-        "knowledge triplets in the form of (subject; predicate; object). Avoid stopwords. "
-        )
-    prompt = get_triplet_extraction_prompt(body, examples)
-else:
+if args.prompt is not None:
     with open(args.prompt, 'r') as f:
-        kg_extraction_template =  f.read()
-        prompt = KnowledgeGraphPrompt(
-            kg_extraction_template
-        )
+        prompt = json.load(f)
+else:
+    prompt = None
     
 # prepare the llm
 with open(args.conf, 'r') as f:
@@ -112,7 +89,7 @@ def main():
         #prompt = get_triplet_extraction_prompt(body, examples, sentences[0], kb_retriever)
         triples = extract_triples(
             sentences=sentences,
-            #prompt=prompt,
+            prompt=prompt,
             kg_index=index,
             #max_knowledge_triplets=max_triplets,
             kb_retriever=kb_retriever

@@ -2,20 +2,20 @@
   <entries>
     <entry category="Airport" eid="Id1">
       <generatedtripleset>
-        <gtriple>bundsgaard | leader | jacob bundsgaard</gtriple>
-        <gtriple>bundsgaard | leader | lars l&#248;kke rasmussen</gtriple>
-        <gtriple>bundsgaard | leader | lar</gtriple>
+        <gtriple>denmark | leader | lars l&#248;kke</gtriple>
+        <gtriple>denmark | leader | lars l&#248;kke rasmussen</gtriple>
       </generatedtripleset>
     </entry>
     <entry category="Airport" eid="Id2">
       <generatedtripleset>
-        <gtriple>abraham a. ribicoff | runway length | 2777.0</gtriple>
-        <gtriple>abraham a. ribicoff | birth place | united states</gtriple>
-        <gtriple>united states | ethnic group | african americans</gtriple>
+        <gtriple>aarhus airport | runway length | 2777.0</gtriple>
       </generatedtripleset>
     </entry>
     <entry category="Airport" eid="Id3">
-      <generatedtripleset />
+      <generatedtripleset>
+        <gtriple>adirondack regional airport | 1st runway length feet | 6573</gtriple>
+        <gtriple>adirondack regional airport | elevation above the sea level | 507</gtriple>
+      </generatedtripleset>
     </entry>
   </entries>
 </benchmark>
