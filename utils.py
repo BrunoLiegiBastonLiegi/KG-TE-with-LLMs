@@ -41,6 +41,7 @@ def evaluate(p_triples, gt_triples):
 
 from transformers import pipeline as Pipeline
 from transformers import AutoTokenizer
+from transformers import AutoModelForCausalLM
 from langchain.llms import HuggingFacePipeline
 from langchain.embeddings import HuggingFaceEmbeddings
 from llama_index.indices.service_context import ServiceContext
@@ -52,7 +53,7 @@ from functools import partial
 from collections import defaultdict
 
 
-def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', max_new_tokens=64, temperature=0.1):
+def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', max_new_tokens=64, temperature=0.1, load_in_4bit=False):
 
     print(f"> Using model: {model_id}")
     t = time.time()
@@ -60,18 +61,36 @@ def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', max_new
         tokenizer = AutoTokenizer.from_pretrained(model_id)
     except:
         assert False, "not implemented yet"
-        
+    print(f'> Loaded tokenizer in {time.time()-t:.4f}s')
+    """
+    t = time.time()
+    model = AutoModelForCausalLM.from_pretrained(
+        model_id,
+        device_map='auto',
+        torch_dtype=torch.float16,
+        low_cpu_mem_usage=True,
+        load_in_4bit=load_in_4bit,
+    )
+    print(f'> Loaded model in {time.time()-t:.4f}s')
+    """
+    model_kwargs = {
+        "torch_dtype":torch.bfloat16,
+        "device_map":'auto',
+        "low_cpu_mem_usage":True,
+        "load_in_4bit":load_in_4bit,
+    }
+    
+    t = time.time()
     pipe = Pipeline(
         pipeline,
         model=model_id,
         tokenizer=tokenizer,
         max_new_tokens=max_new_tokens,
-        device_map='auto', # used for distributed
-        model_kwargs={"torch_dtype":torch.bfloat16},
+        #device_map='auto', # used for distributed
+        model_kwargs=model_kwargs,
         temperature=temperature
     )
-    
-    print(f'> Loaded in {time.time()-t:.4f}s')
+    print(f'> Created pipeline in {time.time()-t:.4f}s')
 
     print(f'> Model data type: {pipe.model.dtype}')
 
@@ -164,7 +183,7 @@ def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=Non
         else:
             global BODY, EXAMPLES, ANSWER
             prompt = get_triplet_extraction_prompt(
-                body=BODY, examples=EXAMPLES,
+                body=BODY, examples=EXAMPLES, answer=ANSWER,
                 sentence=sent,
                 kb_retriever=kb_retriever
             )

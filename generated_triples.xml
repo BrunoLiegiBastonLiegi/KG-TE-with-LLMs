@@ -2,8 +2,8 @@
   <entries>
     <entry category="Airport" eid="Id1">
       <generatedtripleset>
-        <gtriple>denmark | leader | lars l&#248;kke</gtriple>
         <gtriple>denmark | leader | lars l&#248;kke rasmussen</gtriple>
+        <gtriple>denmark | leader | lars l&#248;kke</gtriple>
       </generatedtripleset>
     </entry>
     <entry category="Airport" eid="Id2">
@@ -13,8 +13,8 @@
     </entry>
     <entry category="Airport" eid="Id3">
       <generatedtripleset>
-        <gtriple>adirondack regional airport | 1st runway length feet | 6573</gtriple>
         <gtriple>adirondack regional airport | elevation above the sea level | 507</gtriple>
+        <gtriple>adirondack regional airport | 1st runway length feet | 6573</gtriple>
       </generatedtripleset>
     </entry>
   </entries>
