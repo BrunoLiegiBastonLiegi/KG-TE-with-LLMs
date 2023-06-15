@@ -11,34 +11,6 @@ from tqdm import tqdm
 
 from utils import get_llm, load_kb, get_triplet_extraction_prompt, extract_triples, normalize_triple
 
-
-parser = argparse.ArgumentParser(description='WebNLG Benchmark.')
-parser.add_argument('--prompt')
-parser.add_argument('--conf', default='llm.conf')
-parser.add_argument('--kb')
-parser.add_argument('--groundtruth', action='store_true')
-
-args = parser.parse_args()
-
-if args.prompt is not None:
-    with open(args.prompt, 'r') as f:
-        prompt = json.load(f)
-else:
-    prompt = None
-    
-# prepare the llm
-with open(args.conf, 'r') as f:
-    conf = json.load(f)
-
-llm_predictor, service_context = get_llm(conf['model'], conf['pipeline'])
-max_triplets = 7
-
-# prepare the kb
-if args.kb is not None:
-    kb_index, kb_retriever = load_kb(args.kb, service_context, similarity_top_k=2)
-else:
-    kb_index, kb_retriever = None, None
-
 def main():
 
     from benchmark_reader import Benchmark
@@ -55,11 +27,6 @@ def main():
 
     # load files to Benchmark
     b.fill_benchmark(files)
-
-    # output some statistics
-    #print("Number of entries: ", b.entry_count())
-    #print("Number of texts: ", b.total_lexcount())
-    #print("Number of distinct properties: ", len(list(b.unique_p_mtriples())))
 
     import xml.etree.cElementTree as ET
     root = ET.Element("benchmark")
@@ -100,7 +67,7 @@ def main():
                 kb_retriever=kb_retriever
             )
             triples = [ f"{t[0]} | {t[1]} | {t[2]}" for t in triples ]
-        print(triples)
+        print(f"----> Extracted Tripets: {triples}")
         print(f'  > Processed sentence in {time.time()-t:.4f}s ')
         for triple in triples:
             ET.SubElement(tripleset, "gtriple").text = triple
@@ -147,4 +114,31 @@ def get_triples(lexs):
 
 
 if __name__ == '__main__':
+    
+    parser = argparse.ArgumentParser(description='WebNLG Benchmark.')
+    parser.add_argument('--prompt')
+    parser.add_argument('--conf', default='llm.conf')
+    parser.add_argument('--kb')
+    parser.add_argument('--groundtruth', action='store_true')
+    
+    args = parser.parse_args()
+    
+    if args.prompt is not None:
+        with open(args.prompt, 'r') as f:
+            prompt = json.load(f)
+    else:
+        prompt = None
+        
+    # prepare the llm
+    with open(args.conf, 'r') as f:
+        conf = json.load(f)
+            
+    llm_predictor, service_context = get_llm(conf['model'], conf['pipeline'])
+    max_triplets = 7
+            
+    # prepare the kb
+    if args.kb is not None:
+        kb_index, kb_retriever = load_kb(args.kb, service_context, similarity_top_k=2)
+    else:
+        kb_index, kb_retriever = None, None
     main()

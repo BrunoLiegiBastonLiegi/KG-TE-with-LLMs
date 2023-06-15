@@ -40,7 +40,7 @@ def evaluate(p_triples, gt_triples):
 
 
 from transformers import pipeline as Pipeline
-from transformers import AutoTokenizer
+from transformers import AutoTokenizer, LlamaTokenizer
 from transformers import AutoModelForCausalLM
 from langchain.llms import HuggingFacePipeline
 from langchain.embeddings import HuggingFaceEmbeddings
@@ -60,7 +60,7 @@ def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', max_new
     try:
         tokenizer = AutoTokenizer.from_pretrained(model_id)
     except:
-        assert False, "not implemented yet"
+        tokenizer = LlamaTokenizer.from_pretrained(model_id)
     print(f'> Loaded tokenizer in {time.time()-t:.4f}s')
     """
     t = time.time()
@@ -77,8 +77,9 @@ def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', max_new
         "torch_dtype": torch.bfloat16,
         "device_map": 'auto',
         "low_cpu_mem_usage": True,
-        #"load_in_4bit":load_in_4bit,
     }
+    if load_in_4bit:
+        model_kwargs["load_in_4bit"] = load_in_4bit
     
     t = time.time()
     pipe = Pipeline(
@@ -86,7 +87,6 @@ def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', max_new
         model=model_id,
         tokenizer=tokenizer,
         max_new_tokens=max_new_tokens,
-        #device_map='auto', # used for distributed
         model_kwargs=model_kwargs,
         temperature=temperature
     )
@@ -128,19 +128,19 @@ def get_relevant_triples(query, retriever):
 
 
 def get_triplet_extraction_prompt(body, examples, answer, sentence=None, kb_retriever=None):
-    prompt = f"{body}\n{examples}\n"
+    prompt = f"{body}\n{examples}"
     if sentence is not None and kb_retriever is not None:
         triples = get_relevant_triples(sentence, kb_retriever)
         answer = answer.format(context_triplets=triples)
-    prompt = f"{prompt}\n{answer}"
-    prompt = prompt.replace(';',',')
+    prompt = f"{prompt}{answer}"
+    #prompt = prompt.replace(';',',')
     return KnowledgeGraphPrompt(prompt)
 
 
 BODY = (
     "Some text is provided below. Given the text, extract up to "
     "{max_knowledge_triplets} "
-    "knowledge triplets in the form of (subject; predicate; object). Avoid stopwords. "
+    "knowledge triplets in the form of (subject, predicate, object). Avoid stopwords. "
 )
 """
 EXAMPLES = (
@@ -153,19 +153,19 @@ EXAMPLES = (
     "(Philz; is; coffee shop)\n"
     "(Philz; founded in; Berkeley)\n"
     "(Philz; founded in; 1982)\n"
-    "---------------------\n"
+    "---------------------"
 )
 """
 EXAMPLES = (
     "---------------------\n"
     "Example:\n"
     "Text: Abilene, Texas is in the United States.\n"
-    "Triplets:\n(abilene, texas; country; united states)\n"
+    "Triplets:\n(abilene, texas, country, united states)\n"
     "Text: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.\n"
     "Triplets:\n"
-    "(abraham a. ribicoff; spouse; casey ribicoff)\n"
-    "(abraham a. ribicoff; birth place; united states)\n"
-    "(united states; ethnic group; african americans)\n"
+    "(abraham a. ribicoff, spouse, casey ribicoff)\n"
+    "(abraham a. ribicoff, birth place, united states)\n"
+    "(united states, ethnic group, african americans)\n"
     "---------------------\n"
 )
 ANSWER = (
@@ -187,10 +187,10 @@ def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=Non
                 sentence=sent,
                 kb_retriever=kb_retriever
             )
-        print(prompt.prompt.template)
         kg_index.kg_triple_extract_template = prompt.partial_format(
             max_knowledge_triplets=max_knowledge_triplets
         )
+        print(kg_index.kg_triple_extract_template.prompt.template)
         for t in kg_index._extract_triplets(sent):
             triples.add(t)
     return list(triples)
