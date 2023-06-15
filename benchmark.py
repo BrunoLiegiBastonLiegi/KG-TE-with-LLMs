@@ -9,13 +9,14 @@ from llama_index.data_structs.node import Node
 
 from tqdm import tqdm
 
-from utils import get_llm, load_kb, get_triplet_extraction_prompt, extract_triples
+from utils import get_llm, load_kb, get_triplet_extraction_prompt, extract_triples, normalize_triple
 
 
 parser = argparse.ArgumentParser(description='WebNLG Benchmark.')
 parser.add_argument('--prompt')
 parser.add_argument('--conf', default='llm.conf')
 parser.add_argument('--kb')
+parser.add_argument('--groundtruth', action='store_true')
 
 args = parser.parse_args()
 
@@ -73,7 +74,7 @@ def main():
     
     print('> Extracting triples from corpus')
     # get access to each entry info
-    for entry in tqdm(b.entries[:3]):
+    for entry in tqdm(b.entries):
         e = ET.SubElement(
             entries,
             "entry",
@@ -86,16 +87,20 @@ def main():
         #triples = get_triples([entry.lexs[0]])
         sentences = [entry.lexs[0].lex]
         print(f'  > {sentences[0]}')
-        #prompt = get_triplet_extraction_prompt(body, examples, sentences[0], kb_retriever)
-        triples = extract_triples(
-            sentences=sentences,
-            prompt=prompt,
-            kg_index=index,
-            #max_knowledge_triplets=max_triplets,
-            kb_retriever=kb_retriever
-        )
+        if args.groundtruth:
+            triples = []
+            for triple in entry.list_triples():
+                triples.append(normalize_triple(triple))
+        else:
+            triples = extract_triples(
+                sentences=sentences,
+                prompt=prompt,
+                kg_index=index,
+                #max_knowledge_triplets=max_triplets,
+                kb_retriever=kb_retriever
+            )
+            triples = [ f"{t[0]} | {t[1]} | {t[2]}" for t in triples ]
         print(triples)
-        triples = [ f"{t[0]} | {t[1]} | {t[2]}" for t in triples ]
         print(f'  > Processed sentence in {time.time()-t:.4f}s ')
         for triple in triples:
             ET.SubElement(tripleset, "gtriple").text = triple

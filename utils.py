@@ -74,10 +74,10 @@ def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', max_new
     print(f'> Loaded model in {time.time()-t:.4f}s')
     """
     model_kwargs = {
-        "torch_dtype":torch.bfloat16,
-        "device_map":'auto',
-        "low_cpu_mem_usage":True,
-        "load_in_4bit":load_in_4bit,
+        "torch_dtype": torch.bfloat16,
+        "device_map": 'auto',
+        "low_cpu_mem_usage": True,
+        #"load_in_4bit":load_in_4bit,
     }
     
     t = time.time()
@@ -194,6 +194,17 @@ def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=Non
         for t in kg_index._extract_triplets(sent):
             triples.add(t)
     return list(triples)
+
+def normalize_triple(triple: str) -> str:
+    newtriple = re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", triple).lower()
+    newtriple = re.sub(r'_', ' ', newtriple).lower()
+    newtriple = re.sub(r'\s+', ' ', newtriple).lower()
+    adjusttriple = newtriple.split(' | ')
+    manualmodified = re.search(r'^(.*?)(\s\((.*?)\))$', adjusttriple[-1])
+    if manualmodified:
+        adjusttriple[-1] = manualmodified.group(1)
+        newtriple = ' | '.join(adjusttriple)
+    return newtriple
     
 if __name__ == '__main__':
     import sys
