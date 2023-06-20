@@ -2,15 +2,19 @@ import argparse, json
 from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description='KG Construction.')
-parser.add_argument('--data', default='./webnlg-dataset_v3.0/corpus-reader/train.json')
-parser.add_argument('--save', default='kb')
+parser.add_argument('--data', nargs='+')
+parser.add_argument('--save')
 parser.add_argument('--conf', default='llm.conf')
 args = parser.parse_args()
 
-# import the triples
-from utils import get_triples_from_json
+dataset_dir = args.data[0].split('/')[0]
+if args.save is None:
+    args.save = f"{dataset_dir}/kb"
 
-sent2triples, kb_triples = get_triples_from_json(args.data)
+# import the triples
+from utils import get_triples_from_file
+
+sent2triples, kb_triples = get_triples_from_file(infiles=args.data, dataset=dataset_dir)
 kb_triples = [
     (t[0], t[2], {'title': t[1]})
     for t in kb_triples
@@ -40,7 +44,7 @@ nodes, id2embedding = [], {}
 for n in tqdm(list(g.nodes())):
     edges = list(g.in_edges(n, data=True)) + list(g.out_edges(n, data=True))
     edges = [
-        '({}; {}; {})'.format(e[0], e[2]['title'], e[1])
+        '({}, {}, {})'.format(e[0], e[2]['title'], e[1])
         for e in edges
     ]
     text = '\n'.join(edges)
