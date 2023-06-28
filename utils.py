@@ -1,14 +1,21 @@
-import json, re, torch, time
+import json, re, torch, time, sys
+from tqdm import tqdm
 
 def normalize(string):
     string = re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", string).lower()
     string = re.sub(r'_', ' ', string).lower()
     string = re.sub(r'\s+', ' ', string).lower()
     return string
-    
-def get_triples_from_file(infiles, dataset):
+
+sys.path.append('./webnlg-dataset_v3.0/corpus-reader/')
+from benchmark_reader import Benchmark, select_files
+
+def get_data_from_files(infiles, dataset):
     sent2triple, triples = {}, []
+    if not isinstance(infiles, list):
+        infiles = [infiles]
     if dataset == 'webnlg':
+        """
         for infile in infiles:
             with open(infile, 'r') as f:
                 d = json.load(f)['entries']
@@ -23,7 +30,19 @@ def get_triples_from_file(infiles, dataset):
                             lex['lex'] : tmp
                         })
                     triples += tmp
-            
+        """
+        for infile in infiles:
+            # initialise Benchmark object
+            b = Benchmark()
+            # collect xml files
+            files = select_files(infile)
+            # load files to Benchmark
+            b.fill_benchmark(files)
+            for entry in b.entries:
+                tmp = entry.list_triples()
+                sent2triple[entry.lexs[0].lex] = tmp
+            triples += tmp
+        
     elif dataset == 'nyt':
         for infile in infiles:
             with open(infile, 'r') as f:
@@ -33,22 +52,51 @@ def get_triples_from_file(infiles, dataset):
                     sent2triple[entry['sentence']] = tmp
                     triples += tmp
     else:
-        raise AssertionError("Unsupported dataset '{dataset}'.")
+        raise AssertionError(f"Unsupported dataset '{dataset}'.")
     triples = set(triples)
 
     return sent2triple, triples
 
 def get_data_loader(datafile: str, dataset: str):
-    sent2triples, _ = get_triples_from_file(datafile, dataset)
-    yield sent2triples.items()
+    sent2triples, _ = get_data_from_files(datafile, dataset)
+    return sent2triples.items()
+
+def triple_equality(triple_1, triple_2):
+    for x,y in zip(triple_1, triple_2):
+        if normalize(x) != normalize(y):
+            return False
+    return True
 
 def evaluate(p_triples, gt_triples):
-    p_triples = set(p_triples)
-    gt_triples = set(gt_triples)
-    intersection = p_triples.intersection(gt_triples)
-    precision = len(intersection) / len(p_triples)
-    recall = len(intersection) / len(gt_triples)
-    f1 = 2 * ( precision * recall ) / ( precision + recall )
+    TP, FP, FN = 0, 0, 0
+    to_set = lambda _list: set([tuple(l) for l in _list])
+    # Loop over the instances
+    for prediction, groundtruth in tqdm(zip(p_triples, gt_triples)):
+        prediction = [ normalize_triple(t) for t in prediction]
+        groundtruth = [ normalize_triple(t) for t in groundtruth]
+        # convert predictions list to set
+        prediction = to_set(prediction)
+        # loop over the expected triples
+        for gt_triple in groundtruth:
+            found = False
+            # check whether the correct triple was extracted
+            for pred_triple in prediction:
+                if triple_equality(gt_triple, pred_triple):
+                    # found it! 
+                    found = True
+                    # back up the triple
+                    correct_triple = pred_triple
+                    break
+            if found:
+                TP += 1
+                # remove the found triples
+                prediction.remove(correct_triple)
+            else:
+                FN += 1
+        FP += len(prediction)
+    precision = TP / (FP + TP)
+    recall = TP / (TP + FN)
+    f1 = 2 * precision * recall / (precision + recall)
     return precision, recall, f1
 
 
@@ -101,7 +149,8 @@ def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', max_new
         tokenizer=tokenizer,
         max_new_tokens=max_new_tokens,
         model_kwargs=model_kwargs,
-        temperature=temperature
+        temperature=temperature,
+        trust_remote_code=True
     )
     print(f'> Created pipeline in {time.time()-t:.4f}s')
 
@@ -133,10 +182,8 @@ def load_kb(kb_path, service_context, similarity_top_k=10):
 
 
 def get_relevant_triples(query, retriever):
-    kb_triples = '\n'.join(
-        node.node.text
-        for node in retriever.retrieve(query)
-    )
+    kb_triples = [ node.node.text for node in retriever.retrieve(query) ]
+    kb_triples = '\n'.join(kb_triples)
     return kb_triples
 
 
@@ -171,7 +218,7 @@ EXAMPLES = (
 """
 EXAMPLES = (
     "---------------------\n"
-    "Example:\n"
+    "Examples:\n"
     "Text: Abilene, Texas is in the United States.\n"
     "Triplets:\n(abilene, texas, country, united states)\n"
     "Text: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.\n"
@@ -182,11 +229,13 @@ EXAMPLES = (
     "---------------------\n"
 )
 ANSWER = (
-    "Text: {text}\n"
+    "Text: {{text}}\n"
     "Triplets:\n"
 )
 
 def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=None, kb_retriever=None):
+    if not isinstance(sentences, list):
+        sentences = [sentences]
     triples = set()
     if max_knowledge_triplets is None:
         max_knowledge_triplets = kg_index.max_triplets_per_chunk
@@ -203,20 +252,40 @@ def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=Non
         kg_index.kg_triple_extract_template = prompt.partial_format(
             max_knowledge_triplets=max_knowledge_triplets
         )
+        print('> Prompt Template:')
         print(kg_index.kg_triple_extract_template.prompt.template)
         for t in kg_index._extract_triplets(sent):
             triples.add(t)
     return list(triples)
 
-def normalize_triple(triple: str) -> str:
-    newtriple = re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", triple).lower()
-    newtriple = re.sub(r'_', ' ', newtriple).lower()
-    newtriple = re.sub(r'\s+', ' ', newtriple).lower()
-    adjusttriple = newtriple.split(' | ')
-    manualmodified = re.search(r'^(.*?)(\s\((.*?)\))$', adjusttriple[-1])
-    if manualmodified:
-        adjusttriple[-1] = manualmodified.group(1)
-        newtriple = ' | '.join(adjusttriple)
+def normalize_triple(triple):
+    if isinstance(triple, str):
+        newtriple = re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", triple).lower()
+        newtriple = re.sub(r'_', ' ', newtriple).lower()
+        newtriple = re.sub(r'\s+', ' ', newtriple).lower()
+        adjusttriple = newtriple.split(' | ')
+        manualmodified = re.search(r'^(.*?)(\s\((.*?)\))$', adjusttriple[-1])
+        if manualmodified:
+            adjusttriple[-1] = manualmodified.group(1)
+            newtriple = ' | '.join(adjusttriple)
+    elif isinstance(triple, list):
+        newtriple = []
+        for element in triple:
+            new_el = re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", element).lower()
+            new_el = re.sub(r'_', ' ', new_el).lower()
+            new_el = re.sub(r'\s+', ' ', new_el).lower()
+            if new_el != ' ' and new_el[0] == ' ':
+                new_el = new_el[1:]
+            if new_el != ' ' and new_el[-1] == ' ':
+                new_el = new_el[:-1]
+            newtriple.append(new_el)
+        manualmodified = re.search(r'^(.*?)(\s\((.*?)\))$', newtriple[-1])
+        if manualmodified:
+            newtriple[-1] = manualmodified.group(1)
+    elif isinstance(triple, tuple):
+        return normalize_triple(list(triple))    
+    else:
+        raise TypeError("Expected list or str.")    
     return newtriple
     
 if __name__ == '__main__':

@@ -1,10 +1,11 @@
 import argparse, json
 from tqdm import tqdm
 
-parser = argparse.ArgumentParser(description='KG Construction.')
+parser = argparse.ArgumentParser(description='KB Construction.')
 parser.add_argument('--data', nargs='+')
 parser.add_argument('--save')
 parser.add_argument('--conf', default='llm.conf')
+parser.add_argument('--normalize', default='store_true')
 args = parser.parse_args()
 
 dataset_dir = args.data[0].split('/')[0]
@@ -12,10 +13,11 @@ if args.save is None:
     args.save = f"{dataset_dir}/kb"
 
 # import the triples
-from utils import get_triples_from_file
+from utils import get_data_from_files, normalize_triple
 
-sent2triples, kb_triples = get_triples_from_file(infiles=args.data, dataset=dataset_dir)
-kb_triples = [
+sent2triples, kb_triples = get_data_from_files(infiles=args.data, dataset=dataset_dir)
+kb_triples = [ normalize_triple(t) for t in kb_triples ]
+edges = [
     (t[0], t[2], {'title': t[1]})
     for t in kb_triples
 ]
@@ -24,7 +26,7 @@ kb_triples = [
 import networkx as nx
 
 g = nx.DiGraph()
-g.add_edges_from(kb_triples)
+g.add_edges_from(edges)
 
 # build the llm
 from utils import get_llm
@@ -40,6 +42,8 @@ from llama_index import GPTListIndex
 from llama_index import GPTVectorStoreIndex
 
 
+# kb index with each node composed of in+out edges of the graph node
+
 nodes, id2embedding = [], {}
 for n in tqdm(list(g.nodes())):
     edges = list(g.in_edges(n, data=True)) + list(g.out_edges(n, data=True))
@@ -52,7 +56,7 @@ for n in tqdm(list(g.nodes())):
         text=text,
         doc_id=n,
     )
-    id2embedding[n] = service_context.embed_model._get_text_embedding(text)
+    #id2embedding[n] = service_context.embed_model._get_text_embedding(text)
     nodes.append(node)
 
 for i,n in enumerate(nodes):
@@ -67,23 +71,52 @@ kb_index = GPTVectorStoreIndex(
     service_context=service_context,
 )
 
+# kb index with each node composed by a single edge of the graph
 
+nodes, id2embedding = [], {}
+for i, triple in tqdm(enumerate(kb_triples), total=len(kb_triples)):
+    text = f"({triple[0]}, {triple[1]}, {triple[2]})"
+    print(f"{i}\t{text}")
+    node = Node(
+        text=text,
+        doc_id=str(i),
+    )
+    #id2embedding[i] = service_context.embed_model._get_text_embedding(text)
+    nodes.append(node)
 
+for i,n in enumerate(nodes):
+    n.relationships[DocumentRelationship.SOURCE] = n.get_doc_id()
+
+kb_index_single_triples = GPTVectorStoreIndex(
+    nodes=nodes,
+    service_context=service_context,
+)
+    
 
 # test retrieval
 from llama_index.retrievers import VectorIndexRetriever
 
-retriever = VectorIndexRetriever(
-    index=kb_index,
-    similarity_top_k=5,
-)
+for index in (kb_index, kb_index_single_triples):
+    print(f"\n> Testing index retriever\n")
+    retriever = VectorIndexRetriever(
+        index=index,
+        similarity_top_k=5,
+    )
 
-r = retriever.retrieve("Linate Airport is located in Milan, Italy.")
-triples = [ n.node.text for n in r ]
-triples = '\n'.join(triples)
-print(triples)
+    r = retriever.retrieve("Linate Airport is located in Milan, Italy.")
+    triples = [ n.node.text for n in r ]
+    triples = '\n'.join(triples)
+    print(triples)
 
-kb_index.storage_context.persist(args.save)
+save_name = f"{args.save}"
+save_name_single_triples = f"{args.save}_single_triples"
+if args.normalize:
+    save_name += "_normalized"
+    save_name_single_triples += "_normalized"
+print(f"> Saving index to save_name/.")
+kb_index.storage_context.persist(save_name)
+print(f"> Saving index to save_name_single_triples/.")
+kb_index_single_triples.storage_context.persist(save_name_single_triples)
 
 #import matplotlib.pyplot as plt
 #nx.draw(g)

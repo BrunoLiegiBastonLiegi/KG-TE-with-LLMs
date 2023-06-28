@@ -9,26 +9,12 @@ from llama_index.data_structs.node import Node
 
 from tqdm import tqdm
 
-from utils import get_llm, load_kb, get_triplet_extraction_prompt, extract_triples, normalize_triple
+import xml.etree.cElementTree as ET
 
-def main():
+from utils import get_llm, load_kb, get_triplet_extraction_prompt, extract_triples, normalize_triple, get_data_loader
 
-    from benchmark_reader import Benchmark
-    from benchmark_reader import select_files
+def main(path_to_corpus):
 
-    path_to_corpus = 'webnlg-dataset_v3.0/en/dev/'
-    print(f'> Using corpus: {path_to_corpus}')
-    
-    # initialise Benchmark object
-    b = Benchmark()
-
-    # collect xml files
-    files = select_files(path_to_corpus)
-
-    # load files to Benchmark
-    b.fill_benchmark(files)
-
-    import xml.etree.cElementTree as ET
     root = ET.Element("benchmark")
     entries = ET.SubElement(root, "entries")
 
@@ -40,42 +26,55 @@ def main():
     )
     
     print('> Extracting triples from corpus')
-    # get access to each entry info
-    for entry in tqdm(b.entries):
+    data = get_data_loader(path_to_corpus, dataset=dataset)
+    for i, (sentence, triples) in tqdm(enumerate(data), total=len(data)):
+        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
+        try:
+            cat = entry.category
+        except:
+            cat = ''#None
+            print("> WARNING: couldn't find entry category.")
+        try:
+            eid = entry.id
+        except:
+            eid = str(i)
+            print("> WARNING: couldn't find entry id.")
+            
         e = ET.SubElement(
             entries,
             "entry",
-            category=entry.category,
-            eid=entry.id
+            category=cat,
+            eid=eid
         )
         tripleset = ET.SubElement(e, "generatedtripleset")
         print('> Processing Entry')
         t = time.time()
         #triples = get_triples([entry.lexs[0]])
-        sentences = [entry.lexs[0].lex]
-        print(f'  > {sentences[0]}')
+        #sentences = [entry.lexs[0].lex]
+        print(f'  > {sentence}\n')
         if args.groundtruth:
-            triples = []
-            for triple in entry.list_triples():
-                triples.append(normalize_triple(triple))
+            triples = [ normalize_triple(triple) for triple in triples ]
         else:
             triples = extract_triples(
-                sentences=sentences,
+                sentences=sentence,
                 prompt=prompt,
                 kg_index=index,
                 #max_knowledge_triplets=max_triplets,
                 kb_retriever=kb_retriever
             )
-            triples = [ f"{t[0]} | {t[1]} | {t[2]}" for t in triples ]
-        print(f"----> Extracted Tripets: {triples}")
-        print(f'  > Processed sentence in {time.time()-t:.4f}s ')
+        triples = [ f"{t[0]} | {t[1]} | {t[2]}" for t in triples ]
+        print(f"\n----> Extracted Tripets: {triples}\n")
+        print(f'  > Processed sentence in {time.time()-t:.4f}s\n')
         for triple in triples:
             ET.SubElement(tripleset, "gtriple").text = triple
 
     tree = ET.ElementTree(root)
     ET.indent(tree, space="  ", level=0)
-    tree.write("generated_triples.xml")
-        
+    import lxml.etree as etree
+    #print(etree.tostring(tree, pretty_print=True))
+    tree.write(f"{dataset}/generated_triples.xml")
+
+"""
 def get_triples(lexs):
     global prompt
     nodes = [Node(lex.lex) for lex in lexs]
@@ -110,18 +109,22 @@ def get_triples(lexs):
         for e in triples
     ]
     return triples
-    
+"""
 
 
 if __name__ == '__main__':
     
-    parser = argparse.ArgumentParser(description='WebNLG Benchmark.')
+    parser = argparse.ArgumentParser(description='Benchmarking triplet extraction.')
+    parser.add_argument('--data')
     parser.add_argument('--prompt')
     parser.add_argument('--conf', default='llm.conf')
     parser.add_argument('--kb')
+    parser.add_argument('--top_k', default=2, type=int)
     parser.add_argument('--groundtruth', action='store_true')
     
     args = parser.parse_args()
+
+    dataset = args.data.split('/')[0]
     
     if args.prompt is not None:
         with open(args.prompt, 'r') as f:
@@ -138,7 +141,7 @@ if __name__ == '__main__':
             
     # prepare the kb
     if args.kb is not None:
-        kb_index, kb_retriever = load_kb(args.kb, service_context, similarity_top_k=2)
+        kb_index, kb_retriever = load_kb(args.kb, service_context, similarity_top_k=args.top_k)
     else:
         kb_index, kb_retriever = None, None
-    main()
+    main(args.data)

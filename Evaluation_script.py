@@ -15,6 +15,7 @@ from nltk.util import ngrams
 import string
 from sklearn.metrics import precision_score, recall_score, f1_score
 from sklearn import preprocessing
+from tqdm import tqdm
 
 sys.path.append('../../')
 from utils import normalize_triple
@@ -22,6 +23,7 @@ from utils import normalize_triple
 currentpath = os.getcwd()
 
 def getRefs(filepath):
+    print('> Collecting references...')
     with open(filepath, encoding='utf-8') as fp:
         refssoup = BeautifulSoup(fp, 'lxml')
 
@@ -29,16 +31,20 @@ def getRefs(filepath):
 
     allreftriples = []
 
-    for entry in refsentries:
+    for entry in tqdm(refsentries):
         entryreftriples = []
-        modtriplesref = entry.find('modifiedtripleset').find_all('mtriple')
+        try:
+            modtriplesref = entry.find('modifiedtripleset').find_all('mtriple')
+        except:
+            modtriplesref = entry.find('generatedtripleset').find_all('gtriple')
         for modtriple in modtriplesref:
             entryreftriples.append(normalize_triple(modtriple.text))
         allreftriples.append(entryreftriples)
 
     newreflist = []
 
-    for entry in allreftriples:
+    print('> Normalizing references...')
+    for entry in tqdm(allreftriples):
         newtriples = []
         for triple in entry:
             newtriple = re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", triple).lower()
@@ -55,6 +61,7 @@ def getRefs(filepath):
     return allreftriples, newreflist
 
 def getCands(filepath):
+    print('> Collecting candidates...')
     with open(filepath, encoding='utf-8') as fp:
         candssoup = BeautifulSoup(fp, 'lxml')
 
@@ -62,7 +69,7 @@ def getCands(filepath):
 
     allcandtriples = []
 
-    for entry in candssentries:
+    for entry in tqdm(candssentries):
         entrycandtriples = []
         modtriplescand = entry.find('generatedtripleset').find_all('gtriple')
         for modtriple in modtriplescand:
@@ -71,7 +78,8 @@ def getCands(filepath):
 
     newcandlist = []
 
-    for entry in allcandtriples:
+    print('> Normalizing candidates...')
+    for entry in tqdm(allcandtriples):
         newtriples = []
         for triple in entry:
             newtriple = re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", triple).lower()
@@ -847,8 +855,8 @@ def calculateExactTripleScore(reflist, candlist):
 def main(reffile, candfile):
     reflist, newreflist = getRefs(reffile)
     candlist, newcandlist = getCands(candfile)
-    totalsemevallist, totalsemevallistpertag = calculateAllScores(newreflist, newcandlist)
-    calculateSystemScore(totalsemevallist, totalsemevallistpertag, newreflist, newcandlist)
+    #totalsemevallist, totalsemevallistpertag = calculateAllScores(newreflist, newcandlist)
+    #calculateSystemScore(totalsemevallist, totalsemevallistpertag, newreflist, newcandlist)
     calculateExactTripleScore(reflist, candlist)
 
 #main(currentpath + '/Refs.xml', currentpath + '/Cands2.xml')
