@@ -1,1 +1,3 @@
 *.py~
+./nyt/kb*
+./webnlg/kb*

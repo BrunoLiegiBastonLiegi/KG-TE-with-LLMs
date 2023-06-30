@@ -53,6 +53,8 @@ def main(path_to_corpus):
         #sentences = [entry.lexs[0].lex]
         print(f'  > {sentence}\n')
         if args.groundtruth:
+            if dataset == 'nyt':
+                triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in triples ]
             triples = [ normalize_triple(triple) for triple in triples ]
         else:
             triples = extract_triples(
@@ -72,44 +74,14 @@ def main(path_to_corpus):
     ET.indent(tree, space="  ", level=0)
     import lxml.etree as etree
     #print(etree.tostring(tree, pretty_print=True))
-    tree.write(f"{dataset}/generated_triples.xml")
-
-"""
-def get_triples(lexs):
-    global prompt
-    nodes = [Node(lex.lex) for lex in lexs]
-    if kb_index is not None:
-        index = GPTKnowledgeGraphIndex(
-            nodes=[],
-            max_triplets_per_chunk=10,
-            service_context=service_context,
-        )
-        triples = set()
-        for n in nodes:
-            print(n.text)
-            #prompt = get_triplet_extraction_prompt(body, examples, n.text, kb_retriever)
-            #print(prompt.prompt.template)
-            index.kg_triple_extract_template = prompt.partial_format(max_knowledge_triplets=max_knowledge_triplets)
-            for t in index._extract_triplets(n.text):
-                triples.add(t)
+    if args.groundtruth:
+        save_name = f"{dataset}/groundtruth_triples"
     else:
-        index = GPTKnowledgeGraphIndex(
-            nodes=nodes,
-            kg_triple_extract_template=prompt,
-            max_triplets_per_chunk=10,
-            service_context=service_context,
-        )
-        g = index.get_networkx_graph()
-        triples = list(g.edges(data=True))
-        print(index._extract_triplets(nodes[0].text))
-    print(triples)
-    #assert False
-    triples = [
-        '{} | {} | {}'.format(e[0], e[1], e[2])
-        for e in triples
-    ]
-    return triples
-"""
+        save_name = f"{dataset}/generated_triples_{model_id}"
+        if args.kb is not None:
+            save_name += f"_kb-top-{args.top_k}"
+    save_name += '.xml'
+    tree.write(save_name)
 
 
 if __name__ == '__main__':
@@ -135,8 +107,9 @@ if __name__ == '__main__':
     # prepare the llm
     with open(args.conf, 'r') as f:
         conf = json.load(f)
-            
-    llm_predictor, service_context = get_llm(conf['model'], conf['pipeline'])
+
+    model_id, pipeline = conf.pop('model'), conf.pop('pipeline')
+    llm_predictor, service_context = get_llm(model_id, pipeline, **conf)
     max_triplets = 7
             
     # prepare the kb

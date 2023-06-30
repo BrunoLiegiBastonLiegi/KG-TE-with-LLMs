@@ -851,14 +851,49 @@ def calculateExactTripleScore(reflist, candlist):
     print('Full triple scores')
     print('-----------------------------------------------------------------')
     print('Precision: ' + str(precision) + ' Recall: ' + str(recall) + '\nF1: ' + str(f1))
+    return precision, recall, f1
+
+import numpy as np
 
 def main(reffile, candfile):
     reflist, newreflist = getRefs(reffile)
     candlist, newcandlist = getCands(candfile)
     #totalsemevallist, totalsemevallistpertag = calculateAllScores(newreflist, newcandlist)
     #calculateSystemScore(totalsemevallist, totalsemevallistpertag, newreflist, newcandlist)
+    print('\n')
     calculateExactTripleScore(reflist, candlist)
+    n_triples_to_instance = { len(ref): {'refs': [], 'cands': []}
+                              for ref in reflist }
+    for ref, cand in zip(reflist, candlist):
+        n = len(ref)
+        n_triples_to_instance[n]['refs'].append(ref)
+        n_triples_to_instance[n]['cands'].append(cand)
+        
+    n_triples_to_performance, n_triples_to_err = {}, {}
+    for n, refs_cands in n_triples_to_instance.items():
+        refs = refs_cands['refs']
+        cands = refs_cands['cands']
+        print(f"\n#### {n} Triples Sentences ####")
+        p, r, f1 = calculateExactTripleScore(refs, cands)
+        n_triples_to_performance[n] = dict(zip(['p','r','f1'], [p,r,f1]))
+        n_triples_to_err[n] = 1 / np.sqrt(len(refs))
 
+    import matplotlib.pyplot as plt
+    
+    n_triples, performance = zip(*sorted(n_triples_to_performance.items(), key=lambda x: x[0]))
+    _, errs = zip(*sorted(n_triples_to_err.items(), key=lambda x: x[0]))
+    precisions = np.array([ v['p'] for v in performance ])
+    recalls = np.array([ v['r'] for v in performance ])
+    f1s = np.array([ v['f1'] for v in performance ])
+    for metric in (precisions, recalls, f1s):
+        plt.plot(n_triples, metric)
+        plt.fill_between(n_triples, metric + errs, metric - errs, alpha=0.2)
+
+    plt.xlabel('N triples in sentence')
+    plt.ylabel('Performance')
+    plt.ylim(0,1)
+    plt.show()
+    
 #main(currentpath + '/Refs.xml', currentpath + '/Cands2.xml')
 if __name__ == '__main__':
     main(sys.argv[1], sys.argv[2])

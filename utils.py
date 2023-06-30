@@ -7,7 +7,7 @@ def normalize(string):
     string = re.sub(r'\s+', ' ', string).lower()
     return string
 
-sys.path.append('./webnlg-dataset_v3.0/corpus-reader/')
+sys.path.append('./webnlg/corpus-reader/')
 from benchmark_reader import Benchmark, select_files
 
 def get_data_from_files(infiles, dataset):
@@ -39,9 +39,10 @@ def get_data_from_files(infiles, dataset):
             # load files to Benchmark
             b.fill_benchmark(files)
             for entry in b.entries:
-                tmp = entry.list_triples()
+                tmp = [ tuple(triple.split('|'))
+                        for triple in entry.list_triples() ]
                 sent2triple[entry.lexs[0].lex] = tmp
-            triples += tmp
+                triples += tmp
         
     elif dataset == 'nyt':
         for infile in infiles:
@@ -103,6 +104,7 @@ def evaluate(p_triples, gt_triples):
 from transformers import pipeline as Pipeline
 from transformers import AutoTokenizer, LlamaTokenizer
 from transformers import AutoModelForCausalLM
+from transformers import BitsAndBytesConfig
 from langchain.llms import HuggingFacePipeline
 from langchain.embeddings import HuggingFaceEmbeddings
 from llama_index.indices.service_context import ServiceContext
@@ -114,9 +116,9 @@ from functools import partial
 from collections import defaultdict
 
 
-def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', max_new_tokens=64, temperature=0.1, load_in_4bit=False):
+def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', **model_kwargs):
 
-    print(f"> Using model: {model_id}")
+    print(f"> Preparing model: {model_id}")
     t = time.time()
     try:
         tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -133,14 +135,29 @@ def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', max_new
         load_in_4bit=load_in_4bit,
     )
     print(f'> Loaded model in {time.time()-t:.4f}s')
-    """
+    
     model_kwargs = {
         "torch_dtype": torch.bfloat16,
         "device_map": 'auto',
         "low_cpu_mem_usage": True,
     }
     if load_in_4bit:
-        model_kwargs["load_in_4bit"] = load_in_4bit
+        model_kwargs["load_in_8bit"] = load_in_4bit
+    """
+    if 'load_in_4bit' not in model_kwargs:
+        model_kwargs['load_in_4bit'] = False
+    if 'load_in_8bit' not in model_kwargs:        
+        model_kwargs['load_in_8bit'] = False
+    if model_kwargs['load_in_4bit'] and model_kwargs['load_in_8bit']:
+        raise AssertionError("Both 8bit and 4bit model loading specified, pick one.")
+    else:
+        if not (model_kwargs['load_in_4bit'] or model_kwargs['load_in_8bit']):
+            model_kwargs["torch_dtype"] = torch.bfloat16
+            
+    if 'device_map' not in model_kwargs:
+        model_kwargs['device_map'] = 'auto'
+    max_new_tokens = model_kwargs.pop('max_new_tokens')
+    temperature = model_kwargs.pop('temperature')
     
     t = time.time()
     pipe = Pipeline(

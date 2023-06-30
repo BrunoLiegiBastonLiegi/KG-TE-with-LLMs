@@ -1,0 +1,4 @@
+{
+  "model": "gpt2",
+  "pipeline": "text-generation"
+}

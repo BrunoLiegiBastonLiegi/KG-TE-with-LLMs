@@ -5,7 +5,7 @@ parser = argparse.ArgumentParser(description='KB Construction.')
 parser.add_argument('--data', nargs='+')
 parser.add_argument('--save')
 parser.add_argument('--conf', default='llm.conf')
-parser.add_argument('--normalize', default='store_true')
+parser.add_argument('--normalize', action='store_true')
 args = parser.parse_args()
 
 dataset_dir = args.data[0].split('/')[0]
@@ -16,7 +16,11 @@ if args.save is None:
 from utils import get_data_from_files, normalize_triple
 
 sent2triples, kb_triples = get_data_from_files(infiles=args.data, dataset=dataset_dir)
-kb_triples = [ normalize_triple(t) for t in kb_triples ]
+if args.normalize:
+    # get rid of all the specifications location/location/contains etc...
+    if dataset_dir == 'nyt':
+        kb_triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in kb_triples ]
+    kb_triples = [ normalize_triple(t) for t in kb_triples ]
 edges = [
     (t[0], t[2], {'title': t[1]})
     for t in kb_triples
@@ -33,7 +37,8 @@ from utils import get_llm
 with open(args.conf, 'r') as f:
     conf = json.load(f)
 
-llm_predictor, service_context = get_llm(conf['model'], conf['pipeline'])
+model_id, pipeline = conf.pop('model'), conf.pop('pipeline')
+llm_predictor, service_context = get_llm(model_id, pipeline, **conf)
 
 # create the index with nodes consisting of all the
 # triples relevant for a specific entity of the graph
@@ -113,9 +118,9 @@ save_name_single_triples = f"{args.save}_single_triples"
 if args.normalize:
     save_name += "_normalized"
     save_name_single_triples += "_normalized"
-print(f"> Saving index to save_name/.")
+print(f"> Saving index to {save_name}/.")
 kb_index.storage_context.persist(save_name)
-print(f"> Saving index to save_name_single_triples/.")
+print(f"> Saving index to {save_name_single_triples}/.")
 kb_index_single_triples.storage_context.persist(save_name_single_triples)
 
 #import matplotlib.pyplot as plt
