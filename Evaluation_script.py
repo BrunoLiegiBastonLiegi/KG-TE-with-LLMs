@@ -885,6 +885,10 @@ def main(reffile, candfile):
     precisions = np.array([ v['p'] for v in performance ])
     recalls = np.array([ v['r'] for v in performance ])
     f1s = np.array([ v['f1'] for v in performance ])
+
+    return n_triples, precisions, recalls, f1s, errs
+
+    plt.figure(figsize=(12,9))
     for metric in (precisions, recalls, f1s):
         plt.plot(n_triples, metric)
         plt.fill_between(n_triples, metric + errs, metric - errs, alpha=0.2)
@@ -892,8 +896,37 @@ def main(reffile, candfile):
     plt.xlabel('N triples in sentence')
     plt.ylabel('Performance')
     plt.ylim(0,1)
+    plt.savefig('performance_vs_n-triples.pdf', format='pdf', dpi=300)
     plt.show()
     
 #main(currentpath + '/Refs.xml', currentpath + '/Cands2.xml')
+import argparse, os, re
+import matplotlib.pyplot as plt
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2])
+    parser = argparse.ArgumentParser(description='Evaluation + plotting of P,R,F1')
+    parser.add_argument('--predictions', nargs='+')
+    parser.add_argument('--groundtruth')
+    args = parser.parse_args()
+
+    metrics = {'P': [], 'R': [], 'F1': [], 'ERR': []}
+    model_ids = []
+    for pred in args.predictions:
+        print(f'> Evaluating predictions found in: {pred}')
+        model_id = re.search('(?<=generated_triples_)(.*)(?=_kb)', os.path.basename(pred)).group()
+        model_ids.append(model_id)
+        n_triples, p, r, f1, err = main(args.groundtruth, pred)
+        for metric, vals in zip(metrics.keys(), [p,r,f1,err]):
+            metrics[metric].append(vals)
+
+    plt.figure(figsize=(12,9))
+    lines = []
+    for f1, err in zip(metrics['F1'], metrics['ERR']):
+        lines.append(plt.plot(n_triples, f1)[0])
+        plt.fill_between(n_triples, f1 + err, f1 - err, alpha=0.1)
+        
+    plt.legend(lines, model_ids)
+    plt.xlabel('N triples in sentence')
+    plt.ylabel('F1')
+    plt.ylim(0,1)
+    plt.savefig('performance_vs_n-triples.pdf', format='pdf', dpi=300)
+    plt.show()
