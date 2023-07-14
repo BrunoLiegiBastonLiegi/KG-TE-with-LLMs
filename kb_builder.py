@@ -15,7 +15,7 @@ if args.save is None:
 # import the triples
 from utils import get_data_from_files, normalize_triple
 
-sent2triples, kb_triples = get_data_from_files(infiles=args.data, dataset=dataset_dir)
+sent2triples, kb_triples = get_data_from_files(infiles=args.data)
 if args.normalize:
     # get rid of all the specifications location/location/contains etc...
     if dataset_dir == 'nyt':

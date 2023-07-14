@@ -10,56 +10,23 @@ def normalize(string):
 sys.path.append('./webnlg/corpus-reader/')
 from benchmark_reader import Benchmark, select_files
 
-def get_data_from_files(infiles, dataset):
+def get_data_from_files(infiles):
     sent2triple, triples = {}, []
     if not isinstance(infiles, list):
         infiles = [infiles]
-    if dataset == 'webnlg':
-        """
-        for infile in infiles:
-            with open(infile, 'r') as f:
-                d = json.load(f)['entries']
-                for v in d:
-                    v = list(v.values())[0]
-                    tmp = [
-                        (normalize(t['subject']), normalize(t['property']), normalize(t['object']))
-                        for t in v['modifiedtripleset']
-                    ]
-                    for lex in v['lexicalisations']:
-                        sent2triple.update({
-                            lex['lex'] : tmp
-                        })
-                    triples += tmp
-        """
-        for infile in infiles:
-            # initialise Benchmark object
-            b = Benchmark()
-            # collect xml files
-            files = select_files(infile)
-            # load files to Benchmark
-            b.fill_benchmark(files)
-            for entry in b.entries:
-                tmp = [ tuple(triple.split('|'))
-                        for triple in entry.list_triples() ]
-                sent2triple[entry.lexs[0].lex] = tmp
+    for infile in infiles:
+        with open(infile, 'r') as f:
+            entries = json.load(f)
+            for entry in entries.values():
+                tmp = [ tuple(t) for t in entry['triplets'] ] # normalization of entity/relation names needed??
+                sent2triple[entry['sentence']] = tmp
                 triples += tmp
-        
-    elif dataset == 'nyt':
-        for infile in infiles:
-            with open(infile, 'r') as f:
-                entries = json.load(f)
-                for entry in entries.values():
-                    tmp = [ tuple(t) for t in entry['triplets'] ] # normalization of entity/relation names needed??
-                    sent2triple[entry['sentence']] = tmp
-                    triples += tmp
-    else:
-        raise AssertionError(f"Unsupported dataset '{dataset}'.")
     triples = set(triples)
 
     return sent2triple, triples
 
-def get_data_loader(datafile: str, dataset: str):
-    sent2triples, _ = get_data_from_files(datafile, dataset)
+def get_data_loader(datafile: str):
+    sent2triples, _ = get_data_from_files(datafile)
     return sent2triples.items()
 
 def triple_equality(triple_1, triple_2):
@@ -285,6 +252,7 @@ def normalize_triple(triple):
         if manualmodified:
             adjusttriple[-1] = manualmodified.group(1)
             newtriple = ' | '.join(adjusttriple)
+        newtriple = newtriple.replace(',', '')
     elif isinstance(triple, list):
         newtriple = []
         for element in triple:
@@ -299,6 +267,7 @@ def normalize_triple(triple):
         manualmodified = re.search(r'^(.*?)(\s\((.*?)\))$', newtriple[-1])
         if manualmodified:
             newtriple[-1] = manualmodified.group(1)
+            newtriple = newtriple.replace(',', '')
     elif isinstance(triple, tuple):
         return normalize_triple(list(triple))    
     else:

@@ -26,7 +26,7 @@ def main(path_to_corpus):
     )
     
     print('> Extracting triples from corpus')
-    data = get_data_loader(path_to_corpus, dataset=dataset)
+    data = get_data_loader(path_to_corpus)
     for i, (sentence, triples) in tqdm(enumerate(data), total=len(data)):
         print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
         try:

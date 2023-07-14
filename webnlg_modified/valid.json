@@ -1,0 +1,8092 @@
+{
+  "0": {
+    "sentence": "Alan Bean , who was born in Wheeler , Texas , graduated from the University of Texas with a B.S . in 1955 and in 1963 NASA picked him as part of the Apollo 12 space program .",
+    "triplets": [
+      [
+        "Bean",
+        "was a crew member of",
+        "12"
+      ],
+      [
+        "Bean",
+        "birthPlace",
+        "Texas"
+      ],
+      [
+        "Bean",
+        "was selected by NASA",
+        "1963"
+      ]
+    ]
+  },
+  "1": {
+    "sentence": "Alan Bean who was born in 1932 worked for NASA and became a crew member of Apollo 12 is now currently retired .",
+    "triplets": [
+      [
+        "Bean",
+        "was a crew member of",
+        "12"
+      ],
+      [
+        "12",
+        "operator",
+        "NASA"
+      ]
+    ]
+  },
+  "2": {
+    "sentence": "Alan Shepard , who was a member of Apollo 14 , died July 21st , 1998 in California well after being picked by NASA as part of the space program .",
+    "triplets": [
+      [
+        "Shepard",
+        "was a crew member of",
+        "14"
+      ],
+      [
+        "Shepard",
+        "deathPlace",
+        "California"
+      ],
+      [
+        "14",
+        "operator",
+        "NASA"
+      ]
+    ]
+  },
+  "3": {
+    "sentence": "Alan Shepard was a crew member of NASA operated Apollo 14 who died in California which is represented by Dianne Feinstein .",
+    "triplets": [
+      [
+        "Shepard",
+        "was a crew member of",
+        "14"
+      ],
+      [
+        "Shepard",
+        "deathPlace",
+        "California"
+      ],
+      [
+        "California",
+        "senators",
+        "Feinstein"
+      ],
+      [
+        "14",
+        "operator",
+        "NASA"
+      ]
+    ]
+  },
+  "4": {
+    "sentence": "Alan Shepard was born in New Hampshire ( whose bird is the purple finch ) . He was a crew member of NASA 's Apollo 14 .",
+    "triplets": [
+      [
+        "Shepard",
+        "was a crew member of",
+        "14"
+      ],
+      [
+        "Hampshire",
+        "bird",
+        "finch"
+      ],
+      [
+        "Shepard",
+        "birthPlace",
+        "Hampshire"
+      ],
+      [
+        "14",
+        "operator",
+        "NASA"
+      ]
+    ]
+  },
+  "5": {
+    "sentence": "Retired Buzz Aldrin was once a crew member of Apollo 11 which NASA assigned him to and he was born on January 20th , 1930 .",
+    "triplets": [
+      [
+        "Aldrin",
+        "was a crew member of",
+        "11"
+      ],
+      [
+        "11",
+        "operator",
+        "NASA"
+      ]
+    ]
+  },
+  "6": {
+    "sentence": "Alan Shepard was born in New Hampshire on 1923-11-18 . He was awarded the Distinguished Service Medal and the Department of Commerce Gold Medal .",
+    "triplets": [
+      [
+        "Shepard",
+        "birthPlace",
+        "Hampshire"
+      ]
+    ]
+  },
+  "7": {
+    "sentence": "William Anders ( born in British Hong Kong ) was selected by NASA in 1963 after attending AFIT , M.S . 1962 and retired on 1969-09-01 .",
+    "triplets": [
+      [
+        "Anders",
+        "was selected by NASA",
+        "1963"
+      ],
+      [
+        "Anders",
+        "birthPlace",
+        "Kong"
+      ]
+    ]
+  },
+  "8": {
+    "sentence": "Fighter pilot William Anders , who is now retired , was part of Apollo 8 which included Frank Borman among the crew .",
+    "triplets": [
+      [
+        "Anders",
+        "occupation",
+        "pilot"
+      ],
+      [
+        "Anders",
+        "was a crew member of",
+        "8"
+      ],
+      [
+        "8",
+        "crewMembers",
+        "Borman"
+      ]
+    ]
+  },
+  "9": {
+    "sentence": "Prime Minister of Azerbaijan is Artur Rasizade with the official title of the leader of Azerbaijan . The Baku Turkish Martyrs ' Memorial is located in Baku , the capital of Azerbaijan .",
+    "triplets": [
+      [
+        "Azerbaijan",
+        "leader",
+        "Rasizade"
+      ],
+      [
+        "Azerbaijan",
+        "capital",
+        "Baku"
+      ],
+      [
+        "Azerbaijan",
+        "leaderTitle",
+        "Azerbaijan"
+      ],
+      [
+        "Memorial",
+        "location",
+        "Azerbaijan"
+      ]
+    ]
+  },
+  "10": {
+    "sentence": "108 St. Georges Terrace a 39599 square metre , 50 floor building , was completed in 1988 at a cost of 120 million Australian dollars .",
+    "triplets": [
+      [
+        "Terrace",
+        "floorCount",
+        "50"
+      ],
+      [
+        "Terrace",
+        "completionDate",
+        "1988"
+      ]
+    ]
+  },
+  "11": {
+    "sentence": "The architect of 11 Diagonal Street is Helmut Jahn and it was completed in 1983 . It has 20 floors and a floor area of 1200 square metres .",
+    "triplets": [
+      [
+        "Street",
+        "completionDate",
+        "1983"
+      ],
+      [
+        "Street",
+        "floorCount",
+        "20"
+      ],
+      [
+        "Street",
+        "architect",
+        "Jahn"
+      ]
+    ]
+  },
+  "12": {
+    "sentence": "Completed in 1985 , 200 Public Square has 45 floors and 111484 square meters space , and can be found in Cleveland , Ohio , 44114 .",
+    "triplets": [
+      [
+        "Square",
+        "floorCount",
+        "45"
+      ],
+      [
+        "Square",
+        "completionDate",
+        "1985"
+      ]
+    ]
+  },
+  "13": {
+    "sentence": "Elizabeth II is a leader in the United Kingdom which is the location of 20 Fenchurch Street . The native people are known as British and the currency is the pound sterling .",
+    "triplets": [
+      [
+        "Street",
+        "location",
+        "Kingdom"
+      ],
+      [
+        "Kingdom",
+        "demonym",
+        "people"
+      ],
+      [
+        "Kingdom",
+        "leaderName",
+        "II"
+      ],
+      [
+        "Kingdom",
+        "currency",
+        "sterling"
+      ]
+    ]
+  },
+  "14": {
+    "sentence": "Pickard Chilton designed 300 North LaSalle , Chicago , which has 60 floors and was completed in 2009 .",
+    "triplets": [
+      [
+        "LaSalle",
+        "location",
+        "Chicago"
+      ],
+      [
+        "LaSalle",
+        "architect",
+        "Chilton"
+      ],
+      [
+        "LaSalle",
+        "floorCount",
+        "60"
+      ],
+      [
+        "LaSalle",
+        "completionDate",
+        "2009"
+      ]
+    ]
+  },
+  "15": {
+    "sentence": "300 North LaSalle is located in Chicago , Cook County , Illinois , United States where the leader is Susana Mendoza .",
+    "triplets": [
+      [
+        "LaSalle",
+        "location",
+        "Chicago"
+      ],
+      [
+        "Chicago",
+        "isPartOf",
+        "Illinois"
+      ],
+      [
+        "Chicago",
+        "country",
+        "States"
+      ],
+      [
+        "Chicago",
+        "leaderName",
+        "Mendoza"
+      ]
+    ]
+  },
+  "16": {
+    "sentence": "Bella Center owns the 23 floor AC Hotel Bella Sky Copenhagen in Copenhagen , whose current tenant is Marriott International .",
+    "triplets": [
+      [
+        "Copenhagen",
+        "tenant",
+        "International"
+      ],
+      [
+        "Copenhagen",
+        "owner",
+        "Center"
+      ],
+      [
+        "Copenhagen",
+        "location",
+        "Copenhagen"
+      ],
+      [
+        "Copenhagen",
+        "floorCount",
+        "23"
+      ]
+    ]
+  },
+  "17": {
+    "sentence": "Lewis Nockalls Cottingham is the architect of Adare Manor ( completed in 1862 ) which is located in Adare in County Limerick .",
+    "triplets": [
+      [
+        "Manor",
+        "location",
+        "Adare"
+      ],
+      [
+        "Manor",
+        "architect",
+        "Cottingham"
+      ],
+      [
+        "Manor",
+        "completionDate",
+        "1862"
+      ],
+      [
+        "Manor",
+        "location",
+        "Limerick"
+      ]
+    ]
+  },
+  "18": {
+    "sentence": "Addis Ababa Stadium , named for its city location , is located in Amharic-speaking Ethiopia .",
+    "triplets": [
+      [
+        "Ababa",
+        "isPartOf",
+        "Stadium"
+      ]
+    ]
+  },
+  "19": {
+    "sentence": "The Mason School of Business are the current tenants of Alan B Miller Hall which is located in the United States . The architect of the Hall is Robert A M Stern and the building was completed on 1st June 2009 .",
+    "triplets": [
+      [
+        "Hall",
+        "architect",
+        "Stern"
+      ],
+      [
+        "Business",
+        "country",
+        "States"
+      ],
+      [
+        "Hall",
+        "currentTenants",
+        "Business"
+      ]
+    ]
+  },
+  "20": {
+    "sentence": "The College of William and Mary own Alan B Miller Hall which was completed on 1 June 2009 at 101 Ukrop Way , Virginia .",
+    "triplets": [
+      [
+        "Hall",
+        "location",
+        "Virginia"
+      ],
+      [
+        "Hall",
+        "owner",
+        "Mary"
+      ]
+    ]
+  },
+  "21": {
+    "sentence": "Ampara Hospital is in the Eastern Province , Sri Lanka , which is governed by the Eastern Provincial Council lead by Austin Fernando .",
+    "triplets": [
+      [
+        "Hospital",
+        "country",
+        "Lanka"
+      ],
+      [
+        "Hospital",
+        "state",
+        "Lanka"
+      ],
+      [
+        "Lanka",
+        "governingBody",
+        "Council"
+      ],
+      [
+        "Lanka",
+        "leaderName",
+        "Fernando"
+      ]
+    ]
+  },
+  "22": {
+    "sentence": "Ampara Hopsital is in the Eastern Province , Sri Lanka ( with capital Sri Jayawardenepura Kotte ) , where Austin Fernando is the name of the leader .",
+    "triplets": [
+      [
+        "Lanka",
+        "leaderName",
+        "Fernando"
+      ],
+      [
+        "Lanka",
+        "capital",
+        "Kotte"
+      ]
+    ]
+  },
+  "23": {
+    "sentence": "The Asser Levy Public Baths are located in New York City which is located in the U.S . Both Manhattan and Brooklyn are also situated in New York .",
+    "triplets": [
+      [
+        "Baths",
+        "location",
+        "City"
+      ],
+      [
+        "City",
+        "isPartOf",
+        "Manhattan"
+      ],
+      [
+        "City",
+        "isPartOf",
+        "Brooklyn"
+      ]
+    ]
+  },
+  "24": {
+    "sentence": "Amdavad ni Gufa is located in Ahmedabad , India , a country which prevously had the leader T. S. Thakur and now has leader Sumitra Mahajan .",
+    "triplets": [
+      [
+        "India",
+        "leaderName",
+        "Thakur"
+      ],
+      [
+        "Gufa",
+        "location",
+        "Ahmedabad"
+      ],
+      [
+        "Gufa",
+        "country",
+        "India"
+      ],
+      [
+        "India",
+        "leaderName",
+        "Mahajan"
+      ]
+    ]
+  },
+  "25": {
+    "sentence": "Paul Ryan is the leader and President Of the United States . An example of a street name in the United States is Delaware Avenue and an example of an ethic group is White Americans .",
+    "triplets": [
+      [
+        "States",
+        "leaderTitle",
+        "States"
+      ],
+      [
+        "States",
+        "leaderName",
+        "Ryan"
+      ],
+      [
+        "Avenue",
+        "location",
+        "States"
+      ],
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ]
+    ]
+  },
+  "26": {
+    "sentence": "Aktieselskab is the operating organisation for Aarhus Airport which is located at 25 metres above sea level . It has a runway name of 10L/28R and has a length of 2776.0 .",
+    "triplets": [
+      [
+        "Airport",
+        "runwayLength",
+        "2776.0"
+      ],
+      [
+        "Airport",
+        "operatingOrganisation",
+        "Aktieselskab"
+      ]
+    ]
+  },
+  "27": {
+    "sentence": "With an elevation of 610 metres above sea level , Adolfo Suarez Madrid-Barejas airport is located at Paracuellos de Jarama ( part of the Madrid community ) , In Spain .",
+    "triplets": [
+      [
+        "Jarama",
+        "country",
+        "Spain"
+      ],
+      [
+        "Jarama",
+        "isPartOf",
+        "Madrid"
+      ]
+    ]
+  },
+  "28": {
+    "sentence": "Agra airport has the location identifier VIAG and is located in Awadh , Uttar Pradesh , Bundelkhand .",
+    "triplets": [
+      [
+        "Pradesh",
+        "isPartOf",
+        "Awadh"
+      ],
+      [
+        "Pradesh",
+        "isPartOf",
+        "Bundelkhand"
+      ]
+    ]
+  },
+  "29": {
+    "sentence": "Located in Agra , Agra Airport has the IATA Location Identifier is AGR and its ICAO Location IdentifierVIAG . This airport is operated by the Airports Authority of India .",
+    "triplets": [
+      [
+        "Airport",
+        "operatingOrganisation",
+        "India"
+      ],
+      [
+        "Airport",
+        "location",
+        "Agra"
+      ]
+    ]
+  },
+  "30": {
+    "sentence": "Operated by the United States Air Force , Al Asad Airbase is in Iraq . Its runway name is 09L/27R and its runway length is 3990.0 .",
+    "triplets": [
+      [
+        "Airbase",
+        "operatingOrganisation",
+        "Force"
+      ],
+      [
+        "Airbase",
+        "location",
+        "Iraq"
+      ],
+      [
+        "Airbase",
+        "runwayLength",
+        "3990.0"
+      ]
+    ]
+  },
+  "31": {
+    "sentence": "The Al Asad Airbase is operated by the United States Air Force , which houses the The Lockheed AC-130 ( attack aircraft ) and the McDonnell Douglas F-15 Eagle ( aircraft fighter ) . The United States Air Force fought in the United States bombing of Libya in 1986 .",
+    "triplets": [
+      [
+        "Airbase",
+        "operatingOrganisation",
+        "Force"
+      ],
+      [
+        "Force",
+        "attackAircraft",
+        "AC-130"
+      ],
+      [
+        "Force",
+        "aircraftFighter",
+        "Eagle"
+      ],
+      [
+        "Force",
+        "battles",
+        "Libya"
+      ]
+    ]
+  },
+  "32": {
+    "sentence": "The United States Air Force , who is the operating organisation for Al Asad airbase , were involved in the invasion of Panama and deploy the Lockheed AC-130 on their aircraft carriers , and use the McDonnell Douglas F-15 Eagle fighter aircraft .",
+    "triplets": [
+      [
+        "Force",
+        "attackAircraft",
+        "AC-130"
+      ],
+      [
+        "Force",
+        "aircraftFighter",
+        "Eagle"
+      ],
+      [
+        "Force",
+        "battles",
+        "Panama"
+      ]
+    ]
+  },
+  "33": {
+    "sentence": "Pakistan is led by Nawaz Sharif.Punjab , a major region , contains Allama Iqbal International Airport within the city of Lahore .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Pakistan"
+      ],
+      [
+        "Airport",
+        "cityServed",
+        "Lahore"
+      ],
+      [
+        "Pakistan",
+        "country",
+        "Pakistan"
+      ]
+    ]
+  },
+  "34": {
+    "sentence": "Alpena County Regional Airport has a runway length of 1533 and is 210 metres above sea level . It is located in Maple Ridge Township , Alpena County , Michigan , United States .",
+    "triplets": [
+      [
+        "Airport",
+        "elevationAboveTheSeaLevel_(in_metres)",
+        "210"
+      ],
+      [
+        "Airport",
+        "location",
+        "Michigan"
+      ],
+      [
+        "Michigan",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "35": {
+    "sentence": "Wilson Township ( Alpena County ) , Michigan , U.S.A. , is home to the Alpena County Regional Airport , whose runway length is 1,533. and is located 210 metres above sea level .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Michigan"
+      ],
+      [
+        "Airport",
+        "elevationAboveTheSeaLevel_(in_metres)",
+        "210"
+      ]
+    ]
+  },
+  "36": {
+    "sentence": "Located in \u00c3\ufffdcolo e Bengo , with an elevation of 159 meters above sea level , is Angola International Airport . It serves the city of Luanda and has a runway that is 3800 long .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Bengo"
+      ],
+      [
+        "Airport",
+        "cityServed",
+        "Luanda"
+      ],
+      [
+        "Airport",
+        "elevationAboveTheSeaLevel_(in_metres)",
+        "159"
+      ]
+    ]
+  },
+  "37": {
+    "sentence": "Appleton , Wisconsin is a city served by Appleton International airport in Greenville . Greenville is part of Menasha ( town ) and Grand Chute , Wisconsin .",
+    "triplets": [
+      [
+        "Wisconsin",
+        "isPartOf",
+        "Wisconsin"
+      ],
+      [
+        "Wisconsin",
+        "isPartOf",
+        "Wisconsin"
+      ]
+    ]
+  },
+  "38": {
+    "sentence": "Atlantic City , New Jersey , United States is lead by Don Guardian and served by Atlantic City International airport in Egg Harbor Township , New Jersey .",
+    "triplets": [
+      [
+        "Jersey",
+        "country",
+        "States"
+      ],
+      [
+        "Jersey",
+        "leaderName",
+        "Guardian"
+      ]
+    ]
+  },
+  "39": {
+    "sentence": "Operated by the Port Authority of New York and New Jersey , Atlantic City International Airport 's runway name is 13/31 . It has a runway length of 3048.0 and is 23 metres above sea level .",
+    "triplets": [
+      [
+        "Airport",
+        "runwayLength",
+        "3048.0"
+      ],
+      [
+        "Airport",
+        "operatingOrganisation",
+        "Jersey"
+      ]
+    ]
+  },
+  "40": {
+    "sentence": "Egg Harbor Township , NJ United States is the home of Atlantic City International Airport 23.0 metres above sea level .",
+    "triplets": [
+      [
+        "Airport",
+        "elevationAboveTheSeaLevel_(in_metres)",
+        "23.0"
+      ]
+    ]
+  },
+  "41": {
+    "sentence": "Atlantic City International Airport located at Egg Harbor Township , New Jersey is operated by the Port Authority of New York and New Jersey based in New York .",
+    "triplets": [
+      [
+        "Jersey",
+        "isPartOf",
+        "Jersey"
+      ],
+      [
+        "Airport",
+        "operatingOrganisation",
+        "Jersey"
+      ],
+      [
+        "Jersey",
+        "headquarter",
+        "York"
+      ],
+      [
+        "Airport",
+        "location",
+        "Jersey"
+      ]
+    ]
+  },
+  "42": {
+    "sentence": "Afonso Pena International Airport is operated by Infraero , Brasilia . The airport is 911 meters above sea level and its runway length 2215 .",
+    "triplets": [
+      [
+        "Airport",
+        "operatingOrganisation",
+        "Infraero"
+      ]
+    ]
+  },
+  "43": {
+    "sentence": "Al-Taqaddum Air Base serves the city of Falluja located in Iraq where Fuad Masum is leader and they speak Arabic .",
+    "triplets": [
+      [
+        "Iraq",
+        "leaderName",
+        "Masum"
+      ],
+      [
+        "Iraq",
+        "language",
+        "Arabic"
+      ]
+    ]
+  },
+  "44": {
+    "sentence": "San Sebastian de los Reyes is part of the Community of Madrid , in Spain . It is where the Adolfo Suarez Madrid- Barajas airport is located and is lead by the People 's Party .",
+    "triplets": [
+      [
+        "Reyes",
+        "isPartOf",
+        "Madrid"
+      ],
+      [
+        "Reyes",
+        "country",
+        "Spain"
+      ]
+    ]
+  },
+  "45": {
+    "sentence": "Saranac Lake , which is served by Adirondack Regional Airport , is part of Harrietstown , Essex County , New York , US .",
+    "triplets": [
+      [
+        "York",
+        "isPartOf",
+        "York"
+      ],
+      [
+        "York",
+        "isPartOf",
+        "York"
+      ],
+      [
+        "Airport",
+        "cityServed",
+        "York"
+      ]
+    ]
+  },
+  "46": {
+    "sentence": "1634 : The Bavarian Crisis by Virginia DeMarce which has 448 pages and is available in hardcover can be found by its ISBN number 978-1-4165-4253-7 .",
+    "triplets": [
+      [
+        "Crisis",
+        "author",
+        "DeMarce"
+      ]
+    ]
+  },
+  "47": {
+    "sentence": "Eric Flint was born in Burbank California and is the author of 1634 : The Bavarian Crisis , The Grantville Gazettes and Grantville Gazette II .",
+    "triplets": [
+      [
+        "Crisis",
+        "author",
+        "Flint"
+      ],
+      [
+        "Flint",
+        "birthPlace",
+        "California"
+      ],
+      [
+        "Crisis",
+        "precededBy",
+        "II"
+      ],
+      [
+        "Crisis",
+        "precededBy",
+        "Gazettes"
+      ]
+    ]
+  },
+  "48": {
+    "sentence": "Eric Flint was born in Burbank , California and was influenced by Robert A Heinlein . He wrote 1634 : The Bavarian Crisis which was preceded by Grantville Gazette II .",
+    "triplets": [
+      [
+        "Crisis",
+        "author",
+        "Flint"
+      ],
+      [
+        "Flint",
+        "influencedBy",
+        "Heinlein"
+      ],
+      [
+        "Flint",
+        "birthPlace",
+        "California"
+      ],
+      [
+        "Crisis",
+        "precededBy",
+        "II"
+      ]
+    ]
+  },
+  "49": {
+    "sentence": "Eric Flint was born in Burbank , California and his work was influenced by Robert A Heinlein . He wrote 1634 : The Bavarian Crisis which is the sequel to Grantville Gazette III .",
+    "triplets": [
+      [
+        "Crisis",
+        "author",
+        "Flint"
+      ],
+      [
+        "Flint",
+        "influencedBy",
+        "Heinlein"
+      ],
+      [
+        "Flint",
+        "birthPlace",
+        "California"
+      ],
+      [
+        "Crisis",
+        "precededBy",
+        "III"
+      ]
+    ]
+  },
+  "50": {
+    "sentence": "A.T. Charlie Johnson , ( U.S. resident and Alma mater : Stanford University ) is the editor of AIP Advances.The AIP Advances ISSN # is : 2158-3226 .",
+    "triplets": [
+      [
+        "Advances",
+        "editor",
+        "Johnson"
+      ],
+      [
+        "Johnson",
+        "almaMater",
+        "University"
+      ]
+    ]
+  },
+  "51": {
+    "sentence": "A Long Long way was written in Ireland and published by Viking Press . Penguin Random House is the parent company of Viking Press . White people are an ethnic group in Ireland .",
+    "triplets": [
+      [
+        "Ireland",
+        "ethnicGroup",
+        "people"
+      ],
+      [
+        "Press",
+        "parentCompany",
+        "House"
+      ]
+    ]
+  },
+  "52": {
+    "sentence": "A Long Long Way , available in hardcover , has 292 pages . The OCLC number of the work is 57392246 and has an ISBN number of 0-670-03380-4 .",
+    "triplets": [
+      [
+        "Way",
+        "OCLC_number",
+        "57392246"
+      ]
+    ]
+  },
+  "53": {
+    "sentence": "English is the language of the United States . the country where one of the ethnic groups is Native Americans . It is also where Soho Press , which published A Loyal Character Dancer , is based .",
+    "triplets": [
+      [
+        "Dancer",
+        "publisher",
+        "Press"
+      ],
+      [
+        "Press",
+        "country",
+        "States"
+      ],
+      [
+        "States",
+        "ethnicGroup",
+        "States"
+      ],
+      [
+        "States",
+        "language",
+        "language"
+      ]
+    ]
+  },
+  "54": {
+    "sentence": "Cornell University , affiliated with the Association of American Universities , publishes the Administrative Science Quarterly . It 's president is Elizabeth Garrett and it is located in Ithaca , NY .",
+    "triplets": [
+      [
+        "Quarterly",
+        "publisher",
+        "University"
+      ],
+      [
+        "University",
+        "affiliation",
+        "Universities"
+      ],
+      [
+        "University",
+        "president",
+        "Garrett"
+      ]
+    ]
+  },
+  "55": {
+    "sentence": "Aenir , a paperback book written by Garth Nix , has an ISBN number 0-439-17684-0 and an OCLC number 45644811 .",
+    "triplets": [
+      [
+        "Aenir",
+        "OCLC_number",
+        "45644811"
+      ],
+      [
+        "Aenir",
+        "author",
+        "Nix"
+      ]
+    ]
+  },
+  "56": {
+    "sentence": "The American Journal of Math ( Am . J . Math . ) is published in the U.S. by the Johns Hopkins University Press . Johns Hopkins University is the parent company of the Johns Hopkins University Press .",
+    "triplets": [
+      [
+        "Press",
+        "parentCompany",
+        "University"
+      ]
+    ]
+  },
+  "57": {
+    "sentence": "English is the language of the USA and is also spoken in Great Britain . Native Americans are among the ethnic groups of the USA and A Loyal Character Dancer was Published there .",
+    "triplets": [
+      [
+        "language",
+        "spokenIn",
+        "Britain"
+      ]
+    ]
+  },
+  "58": {
+    "sentence": "A Wizard of Mars originates from the United States , which capital is Washington D. C and the language is English , same as in Great Britain .",
+    "triplets": [
+      [
+        "language",
+        "spokenIn",
+        "Britain"
+      ],
+      [
+        "States",
+        "language",
+        "language"
+      ],
+      [
+        "Mars",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "59": {
+    "sentence": "English is spoken in both Great Britain and the United States ( home of President Barack Obama ) . A Severed Wasp is from the United States .",
+    "triplets": [
+      [
+        "States",
+        "leaderName",
+        "Obama"
+      ],
+      [
+        "Wasp",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "60": {
+    "sentence": "1634 The Ram Rebellion comes from the United States where one of the ethnic groups are the Asian Americans . The leader of the US is the President and the capital city is Washington DC .",
+    "triplets": [
+      [
+        "States",
+        "leaderTitle",
+        "States"
+      ],
+      [
+        "Rebellion",
+        "country",
+        "States"
+      ],
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ]
+    ]
+  },
+  "61": {
+    "sentence": "The book Wolf Solent is first in a series of books written by John Cowper Powys . The sequel to this books is A Glastonbury Romance which was then followed by Weymouth Sands and then Maiden Castle .",
+    "triplets": [
+      [
+        "Romance",
+        "followedBy",
+        "Sands"
+      ],
+      [
+        "Romance",
+        "precededBy",
+        "Solent"
+      ],
+      [
+        "Romance",
+        "author",
+        "Powys"
+      ]
+    ]
+  },
+  "62": {
+    "sentence": "Carpi FC 1909 are the champions of Serie B , the league AC Cesena are in . They are managed by Massimo Drago , who was at the club ASD Licita 1931 .",
+    "triplets": [
+      [
+        "Cesena",
+        "league",
+        "B"
+      ],
+      [
+        "B",
+        "champions",
+        "1909"
+      ],
+      [
+        "Cesena",
+        "manager",
+        "Drago"
+      ],
+      [
+        "Drago",
+        "club",
+        "1931"
+      ]
+    ]
+  },
+  "63": {
+    "sentence": "In Italy , the citizens are called Italians and the capital city is Rome . The leader of Italy is Pietro Grasso . A.C. Lumezzane play in this country .",
+    "triplets": [
+      [
+        "Lumezzane",
+        "ground",
+        "Italy"
+      ],
+      [
+        "Italy",
+        "capital",
+        "Rome"
+      ],
+      [
+        "Italy",
+        "leader",
+        "Grasso"
+      ],
+      [
+        "Italy",
+        "demonym",
+        "Italians"
+      ]
+    ]
+  },
+  "64": {
+    "sentence": "Italian born Michele Marcolini has managed AC Lumezzane . He is also part of the Atalanta BC club and owns Torino FC .",
+    "triplets": [
+      [
+        "Lumezzane",
+        "manager",
+        "Marcolini"
+      ]
+    ]
+  },
+  "65": {
+    "sentence": "AFC Blackpool , who 's leader is the Conservative Party ( UK ) is located in Blackpool and has had Stuart Parker as their manager , now attached to Irlam Town Football Club .",
+    "triplets": [
+      [
+        "Blackpool",
+        "ground",
+        "Blackpool"
+      ]
+    ]
+  },
+  "66": {
+    "sentence": "Kellamergh Park is the location of the home ground for AFC Fylde who have 3180 members . . Their full name is `` Association Football Club Fylde '' and they played in 2014 .",
+    "triplets": [
+      [
+        "Fylde",
+        "season",
+        "2014"
+      ],
+      [
+        "Fylde",
+        "numberOfMembers",
+        "3180"
+      ]
+    ]
+  },
+  "67": {
+    "sentence": "Ajax Youth Academy and Jon Ajax are tenants of Sportpark De Toekomst . It is owned by AFC Ajax NV and is the homeground of AFC Ajax ( amateurs ) .",
+    "triplets": [
+      [
+        "Toekomst",
+        "tenant",
+        "Academy"
+      ],
+      [
+        "Toekomst",
+        "tenant",
+        "Ajax"
+      ]
+    ]
+  },
+  "68": {
+    "sentence": "Estadio Minicipal Coaracy da Mata Fonseca is the ground of Agremiacao Sportiva Arapiraquense , who play in the Campeonato Brasileiro S\u00c3\u00a9rie C league . This league is from Brazil and champions of it have included Vila Nova Futebol Clube .",
+    "triplets": [
+      [
+        "Arapiraquense",
+        "league",
+        "C"
+      ],
+      [
+        "C",
+        "country",
+        "Brazil"
+      ],
+      [
+        "Arapiraquense",
+        "ground",
+        "Fonseca"
+      ],
+      [
+        "C",
+        "champions",
+        "Clube"
+      ]
+    ]
+  },
+  "69": {
+    "sentence": "The ground of A.S. Gubbio 1910 is located in Italy , the country which is inhabited by Italians , where the language spoken is Italian and the leader is Sergio Mattarella .",
+    "triplets": [
+      [
+        "Italy",
+        "demonym",
+        "Italians"
+      ],
+      [
+        "Italy",
+        "leader",
+        "Mattarella"
+      ],
+      [
+        "1910",
+        "ground",
+        "Italy"
+      ],
+      [
+        "Italy",
+        "language",
+        "language"
+      ]
+    ]
+  },
+  "70": {
+    "sentence": "The ground of A.S. Gubbio 1910 is located in Italy , whose capital is Rome . Pietro Grasso is the leader of Italy and the language spoken is Italian .",
+    "triplets": [
+      [
+        "Italy",
+        "leader",
+        "Grasso"
+      ],
+      [
+        "Italy",
+        "capital",
+        "Rome"
+      ],
+      [
+        "1910",
+        "ground",
+        "Italy"
+      ],
+      [
+        "Italy",
+        "language",
+        "language"
+      ]
+    ]
+  },
+  "71": {
+    "sentence": "Located in Athens , the Olympic Stadium , is the ground for AEK Athens FC . The manager of which , used to be Gus Poyet , who , is in the Real Zaragoza club .",
+    "triplets": [
+      [
+        "Poyet",
+        "club",
+        "Zaragoza"
+      ]
+    ]
+  },
+  "72": {
+    "sentence": "The Accademia di Architettura di Mendrisio is located in Mendrisio , Switzerland . It was established in 1996 and it has 600 students .",
+    "triplets": [
+      [
+        "Mendrisio",
+        "country",
+        "Switzerland"
+      ],
+      [
+        "Mendrisio",
+        "numberOfStudents",
+        "600"
+      ],
+      [
+        "Mendrisio",
+        "city",
+        "Mendrisio"
+      ],
+      [
+        "Mendrisio",
+        "established",
+        "1996"
+      ]
+    ]
+  },
+  "73": {
+    "sentence": "Johann Schneider-Ammann is the leader of Switzerland where the Accademia di Architettura di Mendrisio which was established in 1996 is located . The Accademia has 600 students .",
+    "triplets": [
+      [
+        "Mendrisio",
+        "country",
+        "Switzerland"
+      ],
+      [
+        "Mendrisio",
+        "numberOfStudents",
+        "600"
+      ],
+      [
+        "Mendrisio",
+        "established",
+        "1996"
+      ],
+      [
+        "Switzerland",
+        "leaderName",
+        "Schneider-Ammann"
+      ]
+    ]
+  },
+  "74": {
+    "sentence": "Romania 's leader is Klaus Iohannis , its capital is Bucharest and its anthem is Desteapta-te , Romane . 1 Decembrie 1918 University is in Romania .",
+    "triplets": [
+      [
+        "Romania",
+        "leaderName",
+        "Iohannis"
+      ],
+      [
+        "Romania",
+        "capital",
+        "Bucharest"
+      ],
+      [
+        "University",
+        "country",
+        "Romania"
+      ]
+    ]
+  },
+  "75": {
+    "sentence": "Amatriciana sauce is a traditional Italian sauce from the Lazio region . Its ingredients include tomatoes , guanciale , cheese and olive oil .",
+    "triplets": [
+      [
+        "sauce",
+        "region",
+        "Lazio"
+      ],
+      [
+        "sauce",
+        "ingredient",
+        "oil"
+      ]
+    ]
+  },
+  "76": {
+    "sentence": "Asam pedas is a dish from Sumatra , where the Acehnese people are an ethnic group . The dish is also found in Malaysia , where Malay people live .",
+    "triplets": [
+      [
+        "pedas",
+        "country",
+        "Malaysia"
+      ],
+      [
+        "Malaysia",
+        "ethnicGroup",
+        "Malay"
+      ],
+      [
+        "Sumatra",
+        "ethnicGroup",
+        "people"
+      ],
+      [
+        "pedas",
+        "region",
+        "Sumatra"
+      ]
+    ]
+  },
+  "77": {
+    "sentence": "The fried chicken dish Ayam penyet is made nationwide in Java , and can also be found in Malaysia and Singapore . The Banyumasan people are an ethnic group from Java .",
+    "triplets": [
+      [
+        "penyet",
+        "ingredient",
+        "chicken"
+      ],
+      [
+        "Java",
+        "ethnicGroup",
+        "people"
+      ],
+      [
+        "penyet",
+        "country",
+        "Java"
+      ]
+    ]
+  },
+  "78": {
+    "sentence": "Ayam penyet is a popular dish in Malaysia and Indonesia . It includes Fried Chicken which is squeezed or mashed served with a sambal as a main course .",
+    "triplets": [
+      [
+        "penyet",
+        "region",
+        "Malaysia"
+      ],
+      [
+        "penyet",
+        "country",
+        "Indonesia"
+      ]
+    ]
+  },
+  "79": {
+    "sentence": "Bacon sandwiches are popular in the UK and variations include the BLT . It can also be known as a bacon butty , a bacon sarnie , a rasher sarnie , bacon sanger , piece 'n bacon , bacon cob , bacon barm and bacon muffin . Ketchup can be added to a bacon sandwich .",
+    "triplets": [
+      [
+        "sandwich",
+        "dishVariation",
+        "BLT"
+      ],
+      [
+        "sandwich",
+        "ingredient",
+        "Ketchup"
+      ]
+    ]
+  },
+  "80": {
+    "sentence": "Two leaders of France are Manuel Valls and Gerard Larcher , the country is also home to baked Alaska which hails from Hong Kong .",
+    "triplets": [
+      [
+        "Alaska",
+        "country",
+        "France"
+      ],
+      [
+        "France",
+        "leaderName",
+        "Valls"
+      ],
+      [
+        "France",
+        "leaderName",
+        "Larcher"
+      ],
+      [
+        "Alaska",
+        "region",
+        "Kong"
+      ]
+    ]
+  },
+  "81": {
+    "sentence": "Baked Alaska comes from either Paris , New York or Hong Kong and is enjoyed in China . The main ingredients of a Baked Alaska are meringue , ice cream and sponge cake ( or Christmas pudding ) .",
+    "triplets": [
+      [
+        "Alaska",
+        "country",
+        "China"
+      ]
+    ]
+  },
+  "82": {
+    "sentence": "Bakewell pudding is from the Derbyshire Dales region , which is part of Derbyshire . Bakewell tart is it 's variant , but has Frangipane as an ingredient .",
+    "triplets": [
+      [
+        "pudding",
+        "region",
+        "Dales"
+      ],
+      [
+        "pudding",
+        "dishVariation",
+        "tart"
+      ],
+      [
+        "Dales",
+        "isPartOf",
+        "Derbyshire"
+      ],
+      [
+        "tart",
+        "ingredient",
+        "Frangipane"
+      ]
+    ]
+  },
+  "83": {
+    "sentence": "Bakewell pudding originates from the Derbyshire Dales and has ground almond , jam , butter and eggs as main ingredients . It can be served warm ( freshly baked ) or cold .",
+    "triplets": [
+      [
+        "pudding",
+        "region",
+        "Dales"
+      ]
+    ]
+  },
+  "84": {
+    "sentence": "Bandeja paisa is from the Paisa region and part of the Columbian cuisine . The main ingredients of Bandeja paisa are : red beans , pork belly , white rice , ground meat , chicharon , fried egg , plantain ( patacones ) , chorizo , arepa , hogao sauce , black pudding ( morcilla ) , avocado and lemon '' .",
+    "triplets": [
+      [
+        "paisa",
+        "country",
+        "cuisine"
+      ]
+    ]
+  },
+  "85": {
+    "sentence": "Bandeja paisa originates from the Paisa region and part of the Colombian cuisine.The main ingredients of he food are red beans , pork belly , white rice , ground meat , chicharon , fried egg , plantain ( patacones ) , chorizo , arepa , hogao sauce , black pudding ( morcilla ) , avocado and lemon .",
+    "triplets": [
+      [
+        "paisa",
+        "ingredient",
+        "plantain"
+      ]
+    ]
+  },
+  "86": {
+    "sentence": "Bandeja paisa , a dish containing ground meat , is part of Columbian cuisine and from the Paisa region . The main ingredients are red beans , pork belly , white rice , ground meat , chicharon , fried egg , plantain ( patacones ) , chorizo , arepa , hogao sauce , black pudding ( morcilla ) , avocado and lemon .",
+    "triplets": [
+      [
+        "paisa",
+        "ingredient",
+        "meat"
+      ],
+      [
+        "paisa",
+        "country",
+        "cuisine"
+      ]
+    ]
+  },
+  "87": {
+    "sentence": "Bandeja paisa is found in the Antioquia Department in Columbia . The main ingredients of Bandeja paisa are red beans , pork belly , white rice , ground meat , chicharon , fried egg , plantain ( patacones ) , chorizo , arepa , hogao sauce , black pudding ( morcilla ) , avocado and lemon .",
+    "triplets": [
+      [
+        "paisa",
+        "region",
+        "Department"
+      ]
+    ]
+  },
+  "88": {
+    "sentence": "Bandeja Paisa is from the Paisa region it is a typical Colombian cuisine . The main ingredients of Bandeja paisa are red beans , pork belly , white rice , ground meat , chicharon , fried egg , plantain ( patacones ) , chorizo , arepa , hogao sauce , black pudding ( morcilla ) , avocado and lemon .",
+    "triplets": [
+      [
+        "paisa",
+        "country",
+        "cuisine"
+      ],
+      [
+        "paisa",
+        "ingredient",
+        "belly"
+      ]
+    ]
+  },
+  "89": {
+    "sentence": "Batchoy is originates from the Philippines and served as a soup.Its main ingredients are noodles , pork organs , vegetables , chicken , shrimp and beef .",
+    "triplets": [
+      [
+        "Batchoy",
+        "country",
+        "Philippines"
+      ]
+    ]
+  },
+  "90": {
+    "sentence": "Batchoy originated from the region of La Paz , Iloilo City , Phillippines . The main ingredients are noodles , pork organs , vegetables , chicken , shrimp , and beef .",
+    "triplets": [
+      [
+        "Batchoy",
+        "region",
+        "City"
+      ]
+    ]
+  },
+  "91": {
+    "sentence": "The English language is spoken in Singapore , which is where Tony Tan is the leader . It is also where the dish Beef kway teow ( which is also popular in Indonesia ) comes from .",
+    "triplets": [
+      [
+        "teow",
+        "region",
+        "Singapore"
+      ],
+      [
+        "Singapore",
+        "language",
+        "language"
+      ],
+      [
+        "teow",
+        "country",
+        "Indonesia"
+      ],
+      [
+        "Singapore",
+        "leaderName",
+        "Tan"
+      ]
+    ]
+  },
+  "92": {
+    "sentence": "Bhajji , otherwise known as Bhaji or bajji , comes from the Karnataka region . The main ingredients are gram flour and vegetables .",
+    "triplets": [
+      [
+        "Bhajji",
+        "region",
+        "Karnataka"
+      ],
+      [
+        "Bhajji",
+        "ingredient",
+        "flour"
+      ]
+    ]
+  },
+  "93": {
+    "sentence": "A cookie is a dessert and so is binignit , a dish from the Philippines , where Igorot people are part of one of the ethnic groups .",
+    "triplets": [
+      [
+        "Philippines",
+        "ethnicGroup",
+        "people"
+      ]
+    ]
+  },
+  "94": {
+    "sentence": "The Binignit is a dish from Visayas and it can be found in the Philippines . It contains sago and a main ingredient is banana .",
+    "triplets": [
+      [
+        "Binignit",
+        "region",
+        "Visayas"
+      ],
+      [
+        "Binignit",
+        "country",
+        "Philippines"
+      ]
+    ]
+  },
+  "95": {
+    "sentence": "Binignit is a dish from the region of Visayas , Phillippines . It includes coconut milk and sago .",
+    "triplets": [
+      [
+        "Binignit",
+        "region",
+        "Visayas"
+      ],
+      [
+        "Binignit",
+        "ingredient",
+        "milk"
+      ]
+    ]
+  },
+  "96": {
+    "sentence": "Bionico is served at the dessert course in Mexico , where the leader is Silvano Aureoles Conejo . Cake is also a dessert .",
+    "triplets": [
+      [
+        "Bionico",
+        "country",
+        "Mexico"
+      ],
+      [
+        "Mexico",
+        "leaderName",
+        "Conejo"
+      ]
+    ]
+  },
+  "97": {
+    "sentence": "Rome is the capital of Italy , whose leader is Matteo Renzi . Italian is spoken in Italy . Amatriciana sauce is a traditional Italian sauce .",
+    "triplets": [
+      [
+        "Italy",
+        "capital",
+        "Rome"
+      ],
+      [
+        "Italy",
+        "leaderName",
+        "Renzi"
+      ],
+      [
+        "sauce",
+        "country",
+        "Italy"
+      ]
+    ]
+  },
+  "98": {
+    "sentence": "The Javenese people are an ethnic group in Java , where Ayam penyet is from . it uses fried chicken as an igredient and as well being found nationwide in Java , it can also be found in Malaysia and Singapore .",
+    "triplets": [
+      [
+        "Java",
+        "ethnicGroup",
+        "people"
+      ],
+      [
+        "penyet",
+        "ingredient",
+        "chicken"
+      ],
+      [
+        "penyet",
+        "country",
+        "Java"
+      ]
+    ]
+  },
+  "99": {
+    "sentence": "In the Philippines they speak Philippine Spanish , eat Batchoy and are home to the ethnic groups of Igorot people and the Chinese Filipino .",
+    "triplets": [
+      [
+        "Philippines",
+        "language",
+        "Spanish"
+      ],
+      [
+        "Batchoy",
+        "country",
+        "Philippines"
+      ],
+      [
+        "Philippines",
+        "ethnicGroup",
+        "people"
+      ],
+      [
+        "Philippines",
+        "ethnicGroup",
+        "Filipino"
+      ]
+    ]
+  },
+  "100": {
+    "sentence": "Margrethe II is the Queen of Denmark where the German language is spoken . The country is the location of Aarhus airport in Tirstrup , part of the Central Denmark region .",
+    "triplets": [
+      [
+        "Tirstrup",
+        "country",
+        "Denmark"
+      ],
+      [
+        "Denmark",
+        "language",
+        "language"
+      ],
+      [
+        "Denmark",
+        "leaderName",
+        "Denmark"
+      ]
+    ]
+  },
+  "101": {
+    "sentence": "Lars Lokke Rasmussen is the leader of Denmark where the Greenlandic language is spoken . The country is the location of Aarhus airport in Tirstrup , part of the Central Denmark region .",
+    "triplets": [
+      [
+        "Tirstrup",
+        "country",
+        "Denmark"
+      ],
+      [
+        "Denmark",
+        "language",
+        "language"
+      ],
+      [
+        "Denmark",
+        "leaderName",
+        "Rasmussen"
+      ]
+    ]
+  },
+  "102": {
+    "sentence": "Aarhus airport , which serves Aarhus in Denmark , is located 25 metres above sea level and is operated by the Aktieselkab organisation . The runway name at Aarhus Airport is `` 10R/28L '' and is 2776.0 long .",
+    "triplets": [
+      [
+        "Airport",
+        "runwayLength",
+        "2776.0"
+      ]
+    ]
+  },
+  "103": {
+    "sentence": "Abilene Regional Airport serves Abilene , Texas which is part of the U.S. in Taylor County . The airport has a runway length of 2,194 .",
+    "triplets": [
+      [
+        "Airport",
+        "cityServed",
+        "Texas"
+      ],
+      [
+        "Texas",
+        "isPartOf",
+        "Texas"
+      ],
+      [
+        "Texas",
+        "isPartOf",
+        "Texas"
+      ]
+    ]
+  },
+  "104": {
+    "sentence": "Afonso Pena International Airport , with the ICAO location identifier of SBCT , is located in Sao Jose dos Pinhais and lies 911 metres above sea level . The runway at the airport is named 11/29 and is 1800 metres long .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Pinhais"
+      ]
+    ]
+  },
+  "105": {
+    "sentence": "Agra Airport is in India and operated by Airports Authority of India . Its ICAO Location ID is VIAG . The airport is 167.94 m above sea level and its runway 1818 m long .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "India"
+      ],
+      [
+        "Airport",
+        "elevationAboveTheSeaLevel_(in_metres)",
+        "167.94"
+      ],
+      [
+        "Airport",
+        "operatingOrganisation",
+        "India"
+      ]
+    ]
+  },
+  "106": {
+    "sentence": "Located in Agra , at 167.94 metres above sea level and operated by the Indian Air Force , is Agra Airport . It has a runway with the length of 1818 , and has the location identifier , VIAG .",
+    "triplets": [
+      [
+        "Airport",
+        "operatingOrganisation",
+        "Force"
+      ],
+      [
+        "Airport",
+        "elevationAboveTheSeaLevel_(in_metres)",
+        "167.94"
+      ],
+      [
+        "Airport",
+        "location",
+        "Agra"
+      ]
+    ]
+  },
+  "107": {
+    "sentence": "Allama Iqbal International Airport , which serves the city of Lahore , is located in Punjab , Pakistan and is run by the Pakistan Civil Aviation Authority . The country 's leader is Nawaz Sharif .",
+    "triplets": [
+      [
+        "Airport",
+        "operatingOrganisation",
+        "Authority"
+      ],
+      [
+        "Airport",
+        "location",
+        "Pakistan"
+      ],
+      [
+        "Airport",
+        "cityServed",
+        "Lahore"
+      ],
+      [
+        "Pakistan",
+        "country",
+        "Pakistan"
+      ],
+      [
+        "Pakistan",
+        "leaderName",
+        "Sharif"
+      ]
+    ]
+  },
+  "108": {
+    "sentence": "Operated by the Flemish government an downed by the Flemish region , is Antwerp International Airport . It serves the city of Antwerp , is 12 metres above sea level , and has a runway length of 600.0 .",
+    "triplets": [
+      [
+        "Airport",
+        "cityServed",
+        "Antwerp"
+      ],
+      [
+        "Airport",
+        "runwayLength",
+        "600.0"
+      ]
+    ]
+  },
+  "109": {
+    "sentence": "The Appleton International Airport is in Greenville , Wisconsin , U.S.A and serves Appleton , Wisconsin . Appleton is part of Grand Chute , Wisconsin and Greenville is part of Clayton Winnebago County , Wisconsin .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Wisconsin"
+      ],
+      [
+        "Airport",
+        "cityServed",
+        "Wisconsin"
+      ],
+      [
+        "Wisconsin",
+        "isPartOf",
+        "Wisconsin"
+      ],
+      [
+        "Wisconsin",
+        "isPartOf",
+        "Wisconsin"
+      ]
+    ]
+  },
+  "110": {
+    "sentence": "Appletone International Airport , which serves the city of Appleton , is found in Greenville , Wisconsin in the U.S.A. Greenville is part of the town of Menasha and Ellington .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Wisconsin"
+      ],
+      [
+        "Wisconsin",
+        "isPartOf",
+        "Wisconsin"
+      ],
+      [
+        "Wisconsin",
+        "isPartOf",
+        "Wisconsin"
+      ],
+      [
+        "Airport",
+        "cityServed",
+        "Wisconsin"
+      ]
+    ]
+  },
+  "111": {
+    "sentence": "The Athens International Airport serves the city of Athens in Greece . The leaders of Greece are Nikos Voutsis and Prokopis Pavlopoulos . Greek is spoken in that country .",
+    "triplets": [
+      [
+        "Airport",
+        "cityServed",
+        "Athens"
+      ],
+      [
+        "Athens",
+        "country",
+        "Greece"
+      ],
+      [
+        "Greece",
+        "leaderName",
+        "Voutsis"
+      ],
+      [
+        "Greece",
+        "leaderName",
+        "Pavlopoulos"
+      ]
+    ]
+  },
+  "112": {
+    "sentence": "Atlantic City International Airport is located in Egg Harbor Township , New Jersey , United States . It serves Atlantic City , part of New Jersey which is lead by Don Guardian .",
+    "triplets": [
+      [
+        "Airport",
+        "cityServed",
+        "Jersey"
+      ],
+      [
+        "Jersey",
+        "isPartOf",
+        "Jersey"
+      ],
+      [
+        "Airport",
+        "location",
+        "Jersey"
+      ],
+      [
+        "Jersey",
+        "country",
+        "States"
+      ],
+      [
+        "Jersey",
+        "leaderName",
+        "Guardian"
+      ]
+    ]
+  },
+  "113": {
+    "sentence": "Philippe of Belgium and Charles Michel are both leaders in Belgium . The French language is used in the country which is the location of Antwerp International Airport serving the city of Antwerp .",
+    "triplets": [
+      [
+        "Belgium",
+        "leaderName",
+        "Michel"
+      ],
+      [
+        "Belgium",
+        "leaderName",
+        "Belgium"
+      ],
+      [
+        "Airport",
+        "cityServed",
+        "Antwerp"
+      ],
+      [
+        "Belgium",
+        "language",
+        "language"
+      ],
+      [
+        "Antwerp",
+        "country",
+        "Belgium"
+      ]
+    ]
+  },
+  "114": {
+    "sentence": "Antwerp International Airport serves the city of Antwerp , a popular tourist destination in Belgium . Two of the leaders of which are Philippe of Belgium and Charles Michel . Belgium 's language is Dutch .",
+    "triplets": [
+      [
+        "Belgium",
+        "leaderName",
+        "Belgium"
+      ],
+      [
+        "Airport",
+        "cityServed",
+        "Antwerp"
+      ],
+      [
+        "Belgium",
+        "leaderName",
+        "Michel"
+      ],
+      [
+        "Antwerp",
+        "country",
+        "Belgium"
+      ],
+      [
+        "Belgium",
+        "language",
+        "language"
+      ]
+    ]
+  },
+  "115": {
+    "sentence": "Alan Bean was born in Wheeler , Texas on March 15 1932 . He went on to become a test pilot and is now retired .",
+    "triplets": [
+      [
+        "Bean",
+        "occupation",
+        "pilot"
+      ],
+      [
+        "Bean",
+        "birthPlace",
+        "Texas"
+      ]
+    ]
+  },
+  "116": {
+    "sentence": "Alan Shepard was born in New Hampshire on November 18th 1923 . Having worked as a test pilot , he was selected by NASA in 1959 . Shepard later died in California .",
+    "triplets": [
+      [
+        "Shepard",
+        "deathPlace",
+        "California"
+      ],
+      [
+        "Shepard",
+        "occupation",
+        "pilot"
+      ],
+      [
+        "Shepard",
+        "birthPlace",
+        "Hampshire"
+      ],
+      [
+        "Shepard",
+        "was selected by NASA",
+        "1959"
+      ]
+    ]
+  },
+  "117": {
+    "sentence": "Alan Shepard was born on 18 November 1923 in New Hampshire . He was selected to serve with NASA in 1959 and died in California .",
+    "triplets": [
+      [
+        "Shepard",
+        "deathPlace",
+        "California"
+      ],
+      [
+        "Shepard",
+        "birthPlace",
+        "Hampshire"
+      ],
+      [
+        "Shepard",
+        "was selected by NASA",
+        "1959"
+      ]
+    ]
+  },
+  "118": {
+    "sentence": "Alan Shepard was born in New Hampshire , and was selected by NASA in 1959 . He served as crew member on Apollo 14 , and died in California .",
+    "triplets": [
+      [
+        "Shepard",
+        "was a crew member of",
+        "14"
+      ],
+      [
+        "Shepard",
+        "deathPlace",
+        "California"
+      ],
+      [
+        "Shepard",
+        "birthPlace",
+        "Hampshire"
+      ],
+      [
+        "Shepard",
+        "was selected by NASA",
+        "1959"
+      ]
+    ]
+  },
+  "119": {
+    "sentence": "Alan Shepard 's birth place was New Hampshire and he died in California . He spent 13017 minutes in space and was awarded the Distinguished Service Medal by the United States Navy , which ranks higher than the Department of Commerce Gold Medal .",
+    "triplets": [
+      [
+        "Shepard",
+        "deathPlace",
+        "California"
+      ],
+      [
+        "Shepard",
+        "birthPlace",
+        "Hampshire"
+      ]
+    ]
+  },
+  "120": {
+    "sentence": "The BBC aired the TV series of Bananaman between 3 October 1983 and 15 April 1986 . It was created by Steve Bright and starred Jill Shilling .",
+    "triplets": [
+      [
+        "Bananaman",
+        "broadcastedBy",
+        "BBC"
+      ],
+      [
+        "Bananaman",
+        "starring",
+        "Shilling"
+      ],
+      [
+        "Bananaman",
+        "creator",
+        "Bright"
+      ]
+    ]
+  },
+  "121": {
+    "sentence": "Amatriciana sauce is from the Lazio region in Italy and it 's used in an Italian meal . Pecorino Romano is an ingredient of Amatriciana sauce as well as tomatoes , guanciale , cheese and olive oil .",
+    "triplets": [
+      [
+        "sauce",
+        "region",
+        "Lazio"
+      ],
+      [
+        "sauce",
+        "country",
+        "Italy"
+      ],
+      [
+        "sauce",
+        "ingredient",
+        "Romano"
+      ]
+    ]
+  },
+  "122": {
+    "sentence": "Bandeja paisa is part of Columbian cuisine from the Antioquia Department area . It includes Avocado which is a plant of the laurales order , belonging to the Lauraceae family .",
+    "triplets": [
+      [
+        "paisa",
+        "ingredient",
+        "Avocado"
+      ],
+      [
+        "paisa",
+        "country",
+        "cuisine"
+      ],
+      [
+        "Avocado",
+        "family",
+        "Lauraceae"
+      ],
+      [
+        "paisa",
+        "region",
+        "Department"
+      ]
+    ]
+  },
+  "123": {
+    "sentence": "From the United States , the Bacon Explosion has bacon and sausage as ingredients and is a main course .",
+    "triplets": [
+      [
+        "Explosion",
+        "country",
+        "States"
+      ],
+      [
+        "Explosion",
+        "ingredient",
+        "Bacon"
+      ]
+    ]
+  },
+  "124": {
+    "sentence": "Washington DC is the capital of the United States , where English is the language and where the dish bacon explosion originated . Barack Obama is leader of the US , where African Americans are an ethnic group .",
+    "triplets": [
+      [
+        "States",
+        "leaderName",
+        "Obama"
+      ],
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ],
+      [
+        "States",
+        "language",
+        "language"
+      ]
+    ]
+  },
+  "125": {
+    "sentence": "White Americans are one of the ethnic groups in the United States , a country where the the leader is called the President and Washington , D.C. is the capital city . Joe Biden is a political leader in the U.S . The country is also the origin of Bacon Explosion .",
+    "triplets": [
+      [
+        "Explosion",
+        "country",
+        "States"
+      ],
+      [
+        "States",
+        "leaderName",
+        "Biden"
+      ],
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ],
+      [
+        "States",
+        "capital",
+        "D.C."
+      ],
+      [
+        "States",
+        "leaderTitle",
+        "States"
+      ]
+    ]
+  },
+  "126": {
+    "sentence": "Elizabeth II is the leader of the UK where bacon sandwiches are a popular dish . A variation of the bacon sandwich is a BLT ( which contains tomato ) , which itself is a variation of a club sandwich .",
+    "triplets": [
+      [
+        "sandwich",
+        "dishVariation",
+        "BLT"
+      ],
+      [
+        "BLT",
+        "dishVariation",
+        "sandwich"
+      ]
+    ]
+  },
+  "127": {
+    "sentence": "A variation of the BLT is a bacon sandwich which is popular in the UK . The main ingredients in a Bacon sandwich are bread and bacon with ketchup or brown sauce as a condiment . This sandwich can also be known as a bacon butty , bacon sarnie , rasher sandwich , bacon sanger , piece 'n bacon , bacon cob , bacon barm , or bacon muffin .",
+    "triplets": [
+      [
+        "sandwich",
+        "dishVariation",
+        "BLT"
+      ],
+      [
+        "sandwich",
+        "ingredient",
+        "Bacon"
+      ]
+    ]
+  },
+  "128": {
+    "sentence": "Baked Alaska comes from France and is also served in Hong Kong . Manuel Valls is a leader in France , while Carrie Lam is a political leader in Hong Kong . Chinese is one of the languages spoken in Hong Kong .",
+    "triplets": [
+      [
+        "Alaska",
+        "country",
+        "France"
+      ],
+      [
+        "France",
+        "leaderName",
+        "Valls"
+      ],
+      [
+        "Alaska",
+        "region",
+        "Kong"
+      ]
+    ]
+  },
+  "129": {
+    "sentence": "Bakewell tart , which includes the ingredient fruit preserves , is a variant of Bakewell Pudding which comes from the Derbyshire Dales . The leader of the Derbyshire Dales , which is in the county of Derbyshire , is Patrick McLoughlin .",
+    "triplets": [
+      [
+        "Dales",
+        "leaderName",
+        "McLoughlin"
+      ],
+      [
+        "Dales",
+        "administrativeCounty",
+        "Derbyshire"
+      ],
+      [
+        "tart",
+        "ingredient",
+        "preserves"
+      ]
+    ]
+  },
+  "130": {
+    "sentence": "Lemon is a member of the family Rutaceae and is part of the genus Citrus . It is one of the ingredients in the Colombian dish Bandeja paisa , which comes from the region of Antioquia Department .",
+    "triplets": [
+      [
+        "paisa",
+        "ingredient",
+        "Lemon"
+      ],
+      [
+        "Lemon",
+        "family",
+        "Rutaceae"
+      ],
+      [
+        "Lemon",
+        "genus",
+        "Citrus"
+      ],
+      [
+        "paisa",
+        "region",
+        "Department"
+      ]
+    ]
+  },
+  "131": {
+    "sentence": "French is the national language of France where the leaders are Fran\u00c3\u00a7ois Hollande and Manuel Valls . Barny cakes , made with sponge cake , can be found in France .",
+    "triplets": [
+      [
+        "France",
+        "language",
+        "language"
+      ],
+      [
+        "France",
+        "leaderName",
+        "Hollande"
+      ],
+      [
+        "France",
+        "leaderName",
+        "Valls"
+      ]
+    ]
+  },
+  "132": {
+    "sentence": "Jusuf Kalla is a leader in Indonesia which is where batagor comes from . Siomay and Shumai are variations of the same dish and peanut sauce is one of the ingredients used .",
+    "triplets": [
+      [
+        "Siomay",
+        "ingredient",
+        "sauce"
+      ],
+      [
+        "Indonesia",
+        "leaderName",
+        "Kalla"
+      ],
+      [
+        "Shumai",
+        "dishVariation",
+        "Siomay"
+      ],
+      [
+        "Siomay",
+        "dishVariation",
+        "Shumai"
+      ]
+    ]
+  },
+  "133": {
+    "sentence": "Bhajji come from the Karnataka region , in India where the currency is the Indian rupee . It is also where Vajubhai Vala and Sumitra Mahajan are leaders .",
+    "triplets": [
+      [
+        "Bhajji",
+        "country",
+        "India"
+      ],
+      [
+        "India",
+        "currency",
+        "rupee"
+      ],
+      [
+        "India",
+        "leaderName",
+        "Mahajan"
+      ],
+      [
+        "Bhajji",
+        "region",
+        "Karnataka"
+      ],
+      [
+        "Karnataka",
+        "leaderName",
+        "Vala"
+      ]
+    ]
+  },
+  "134": {
+    "sentence": "Indian people are from India , where the leaders are T.S.Thakur and Sumitra Mahajan , the currency is the Indian rupee and the dish Bhajji originates .",
+    "triplets": [
+      [
+        "Bhajji",
+        "country",
+        "India"
+      ],
+      [
+        "India",
+        "demonym",
+        "people"
+      ],
+      [
+        "India",
+        "currency",
+        "rupee"
+      ],
+      [
+        "India",
+        "leaderName",
+        "Mahajan"
+      ]
+    ]
+  },
+  "135": {
+    "sentence": "Binignit is a dessert dish from the Mindanao region of the Philippines and the ingredients include banana and sago .",
+    "triplets": [
+      [
+        "Binignit",
+        "country",
+        "Philippines"
+      ],
+      [
+        "Binignit",
+        "region",
+        "Mindanao"
+      ]
+    ]
+  },
+  "136": {
+    "sentence": "Joko Widodo and Jusuf Kalla are leaders in Indonesia where the capital is Jakarta and Bakso ( made in China ) is found .",
+    "triplets": [
+      [
+        "Indonesia",
+        "capital",
+        "Jakarta"
+      ],
+      [
+        "Indonesia",
+        "leaderName",
+        "Kalla"
+      ],
+      [
+        "Bakso",
+        "region",
+        "Indonesia"
+      ],
+      [
+        "Indonesia",
+        "leaderName",
+        "Widodo"
+      ]
+    ]
+  },
+  "137": {
+    "sentence": "English is spoken in Singapore where the leader is Halimah Yacob . Ayam penyet is from the Singapore region of Java where the Banyumasan people are an ethnic group .",
+    "triplets": [
+      [
+        "Java",
+        "ethnicGroup",
+        "people"
+      ],
+      [
+        "Singapore",
+        "leaderName",
+        "Yacob"
+      ],
+      [
+        "penyet",
+        "region",
+        "Singapore"
+      ],
+      [
+        "penyet",
+        "country",
+        "Java"
+      ]
+    ]
+  },
+  "138": {
+    "sentence": "Ayam penyet comes from the country of Java where the Javanese are the ethnic people . Ayam penyet is also from the Singapore region where Standard Chinese is spoken and Halimah Yacob is the leader .",
+    "triplets": [
+      [
+        "Java",
+        "ethnicGroup",
+        "people"
+      ],
+      [
+        "Singapore",
+        "leaderName",
+        "Yacob"
+      ],
+      [
+        "penyet",
+        "region",
+        "Singapore"
+      ],
+      [
+        "Singapore",
+        "language",
+        "Chinese"
+      ],
+      [
+        "penyet",
+        "country",
+        "Java"
+      ]
+    ]
+  },
+  "139": {
+    "sentence": "The AWH Engineering College in Kerala , India has 250 academic staff . Kerala has Mahe , India to its northwest . The Ganges is a river in India .",
+    "triplets": [
+      [
+        "College",
+        "country",
+        "India"
+      ],
+      [
+        "College",
+        "academicStaffSize",
+        "250"
+      ],
+      [
+        "College",
+        "state",
+        "Kerala"
+      ],
+      [
+        "Kerala",
+        "has to its northwest",
+        "India"
+      ],
+      [
+        "India",
+        "river",
+        "Ganges"
+      ]
+    ]
+  },
+  "140": {
+    "sentence": "The AWH Engineering College in Kuttikkattoor , Kerala , India was established in 2001 and it has 250 academic staff .",
+    "triplets": [
+      [
+        "College",
+        "country",
+        "India"
+      ],
+      [
+        "College",
+        "established",
+        "2001"
+      ],
+      [
+        "College",
+        "academicStaffSize",
+        "250"
+      ],
+      [
+        "College",
+        "state",
+        "Kerala"
+      ]
+    ]
+  },
+  "141": {
+    "sentence": "The AWH Engineering College in Kuttikkattoor , Kerala was established in 2001 and it has 250 academic staff . The leader of Kerala is Kochi .",
+    "triplets": [
+      [
+        "College",
+        "established",
+        "2001"
+      ],
+      [
+        "Kerala",
+        "leaderName",
+        "Kochi"
+      ],
+      [
+        "College",
+        "academicStaffSize",
+        "250"
+      ],
+      [
+        "College",
+        "state",
+        "Kerala"
+      ]
+    ]
+  },
+  "142": {
+    "sentence": "The Accademia di Architettura di Mendrisio in Mendrisio , Switzerland was established in 1996 . Its dean is Mario Botta . The leader of Switzerland is Johann Schneider-Ammann .",
+    "triplets": [
+      [
+        "Mendrisio",
+        "country",
+        "Switzerland"
+      ],
+      [
+        "Mendrisio",
+        "dean",
+        "Botta"
+      ],
+      [
+        "Mendrisio",
+        "established",
+        "1996"
+      ],
+      [
+        "Mendrisio",
+        "city",
+        "Mendrisio"
+      ],
+      [
+        "Switzerland",
+        "leaderName",
+        "Schneider-Ammann"
+      ]
+    ]
+  },
+  "143": {
+    "sentence": "The Acharya Institute of Technology is affiliated with the Visvesvaraya Technological University and was established in the year 2000 in India . Its president is B.M . Reddy . The University itself is in Belgaum .",
+    "triplets": [
+      [
+        "University",
+        "city",
+        "Belgaum"
+      ],
+      [
+        "Technology",
+        "established",
+        "2000"
+      ],
+      [
+        "Technology",
+        "affiliation",
+        "University"
+      ]
+    ]
+  },
+  "144": {
+    "sentence": "AS Gubbio 1910 are located in Italy and play in Serie D whose champions are currently SS Robur Siena . The leader of Italy is Sergio Mattarella and the capital city is Rome .",
+    "triplets": [
+      [
+        "1910",
+        "league",
+        "D"
+      ],
+      [
+        "Italy",
+        "capital",
+        "Rome"
+      ],
+      [
+        "Italy",
+        "leader",
+        "Mattarella"
+      ],
+      [
+        "1910",
+        "ground",
+        "Italy"
+      ],
+      [
+        "D",
+        "champions",
+        "Siena"
+      ]
+    ]
+  },
+  "145": {
+    "sentence": "St. Vincent St.Mary High School is located in Summit County , Ohio in the United States . The Akron Summit Assault ground is at this high school .",
+    "triplets": [
+      [
+        "Assault",
+        "ground",
+        "School"
+      ],
+      [
+        "School",
+        "state",
+        "Ohio"
+      ],
+      [
+        "School",
+        "country",
+        "States"
+      ],
+      [
+        "Ohio",
+        "isPartOf",
+        "Ohio"
+      ],
+      [
+        "School",
+        "city",
+        "Ohio"
+      ]
+    ]
+  },
+  "146": {
+    "sentence": "20 Fenchurch Street is located in the United Kingdom , which has London as its capital . Queen Elizabeth II is a leader of the UK , as is Boris Johnson , and the European Parliament also has some control .",
+    "triplets": [
+      [
+        "Street",
+        "location",
+        "Kingdom"
+      ],
+      [
+        "Kingdom",
+        "capital",
+        "London"
+      ],
+      [
+        "London",
+        "leaderTitle",
+        "Parliament"
+      ],
+      [
+        "London",
+        "leaderName",
+        "Johnson"
+      ],
+      [
+        "Kingdom",
+        "leaderName",
+        "II"
+      ]
+    ]
+  },
+  "147": {
+    "sentence": "300 North LaSalle is in Chicago , Illinois which is part of the United States . It has 60 floors and the leader of Chicago is Susana Mendoza .",
+    "triplets": [
+      [
+        "LaSalle",
+        "location",
+        "Chicago"
+      ],
+      [
+        "LaSalle",
+        "floorCount",
+        "60"
+      ],
+      [
+        "Illinois",
+        "country",
+        "States"
+      ],
+      [
+        "Chicago",
+        "isPartOf",
+        "Illinois"
+      ],
+      [
+        "Chicago",
+        "leaderName",
+        "Mendoza"
+      ]
+    ]
+  },
+  "148": {
+    "sentence": "Rahm Emanuel is a leader in Chicago , Illinois , United States . 300 North LaSalle is located in the city and has 60 floors .",
+    "triplets": [
+      [
+        "LaSalle",
+        "location",
+        "Chicago"
+      ],
+      [
+        "Chicago",
+        "leaderName",
+        "Emanuel"
+      ],
+      [
+        "LaSalle",
+        "floorCount",
+        "60"
+      ],
+      [
+        "Illinois",
+        "country",
+        "States"
+      ],
+      [
+        "Chicago",
+        "isPartOf",
+        "Illinois"
+      ]
+    ]
+  },
+  "149": {
+    "sentence": "300 North LaSalle is in Chicago , Illinois where the leader is Susana Mendoza . Illinois is in the United States and the capital is called Springfield .",
+    "triplets": [
+      [
+        "LaSalle",
+        "location",
+        "Chicago"
+      ],
+      [
+        "Illinois",
+        "country",
+        "States"
+      ],
+      [
+        "Illinois",
+        "capital",
+        "Illinois"
+      ],
+      [
+        "Chicago",
+        "isPartOf",
+        "Illinois"
+      ],
+      [
+        "Chicago",
+        "leaderName",
+        "Mendoza"
+      ]
+    ]
+  },
+  "150": {
+    "sentence": "The company Populous were the architects of the 3Arena at North Wall , Dublin . The arena , which has a height of 28 metres , was completed in December 2008 and hosts concerts and events .",
+    "triplets": [
+      [
+        "3Arena",
+        "location",
+        "Dublin"
+      ]
+    ]
+  },
+  "151": {
+    "sentence": "The tenant of the AC Hotel Bella Sky Copenhagen , Denmark is Marriott International , the company which was founded in Washington DC . One of the languages in Denmark is the German and the leader of the country is Margrethe II of Denmark .",
+    "triplets": [
+      [
+        "Copenhagen",
+        "location",
+        "Denmark"
+      ],
+      [
+        "Denmark",
+        "leaderName",
+        "Denmark"
+      ],
+      [
+        "Copenhagen",
+        "tenant",
+        "International"
+      ]
+    ]
+  },
+  "152": {
+    "sentence": "The inhabitants of the Republic of Ireland are the Irish , which is also the language used in the Republic which is lead by Enda Kenny . The currency is the euro and the Republic is the location of Adare Manor .",
+    "triplets": [
+      [
+        "Manor",
+        "country",
+        "Ireland"
+      ],
+      [
+        "Ireland",
+        "leaderName",
+        "Kenny"
+      ],
+      [
+        "Ireland",
+        "language",
+        "language"
+      ]
+    ]
+  },
+  "153": {
+    "sentence": "Amdavad ni Gufa is located in Ahmedabad , Gujarat , India . Anandiben Patel was the leader of Gujarat which is lead by a Legislative Assembly .",
+    "triplets": [
+      [
+        "Gufa",
+        "location",
+        "Gujarat"
+      ],
+      [
+        "Gujarat",
+        "leaderName",
+        "Patel"
+      ],
+      [
+        "Gufa",
+        "location",
+        "Ahmedabad"
+      ],
+      [
+        "Gufa",
+        "country",
+        "India"
+      ],
+      [
+        "Gujarat",
+        "leaderTitle",
+        "Assembly"
+      ]
+    ]
+  },
+  "154": {
+    "sentence": "Located in the region of Ampara District , in the Eastern Province of Sri Lanka , is Ampara Hospital . It has a bed count of 476 and has a website .",
+    "triplets": [
+      [
+        "Hospital",
+        "country",
+        "Lanka"
+      ],
+      [
+        "Hospital",
+        "state",
+        "Lanka"
+      ],
+      [
+        "Hospital",
+        "region",
+        "District"
+      ],
+      [
+        "Hospital",
+        "bedCount",
+        "476"
+      ]
+    ]
+  },
+  "155": {
+    "sentence": "Natives of the United kingdom are called British people , their leader is Elizabeth II and 20 Fenchurch Street is located there . The capital is London and their leader is the Parliament of the United Kingdom .",
+    "triplets": [
+      [
+        "London",
+        "leaderTitle",
+        "Kingdom"
+      ],
+      [
+        "Street",
+        "location",
+        "Kingdom"
+      ],
+      [
+        "Kingdom",
+        "capital",
+        "London"
+      ],
+      [
+        "Kingdom",
+        "demonym",
+        "people"
+      ],
+      [
+        "Kingdom",
+        "leaderName",
+        "II"
+      ]
+    ]
+  },
+  "156": {
+    "sentence": "Burbank California is the birth place of Eric Flint who was influenced by Robert A Heinlein . He is the author of 1634 : The Ram Rebellion . The book is written in English , the language spoken in Great Britain .",
+    "triplets": [
+      [
+        "Rebellion",
+        "author",
+        "Flint"
+      ],
+      [
+        "Flint",
+        "influencedBy",
+        "Heinlein"
+      ],
+      [
+        "Flint",
+        "birthPlace",
+        "California"
+      ],
+      [
+        "Rebellion",
+        "language",
+        "language"
+      ],
+      [
+        "language",
+        "spokenIn",
+        "Britain"
+      ]
+    ]
+  },
+  "157": {
+    "sentence": "A Long Long Way , written in English ( language of Great Britain ) was published in ireland by Viking Press . It was followed by the novel The Secret Scripture .",
+    "triplets": [
+      [
+        "Way",
+        "language",
+        "language"
+      ],
+      [
+        "language",
+        "spokenIn",
+        "Britain"
+      ],
+      [
+        "Way",
+        "publisher",
+        "Press"
+      ],
+      [
+        "Way",
+        "followedBy",
+        "Scripture"
+      ]
+    ]
+  },
+  "158": {
+    "sentence": "A Loyal Character Dancer is written in English , which is also spoken in Great Britain . It is published by Soho Press in the United States where there are many Asian Americans .",
+    "triplets": [
+      [
+        "Dancer",
+        "publisher",
+        "Press"
+      ],
+      [
+        "Dancer",
+        "country",
+        "States"
+      ],
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ]
+    ]
+  },
+  "159": {
+    "sentence": "A Loyal Character Dancer is written in English , as spoken in Great Britain . However , it is published by Soho Press in the United States where the African Americans are an ethnic group .",
+    "triplets": [
+      [
+        "Dancer",
+        "publisher",
+        "Press"
+      ],
+      [
+        "Press",
+        "country",
+        "States"
+      ],
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ]
+    ]
+  },
+  "160": {
+    "sentence": "English is the language both of Great Britain and the United States , where Barack Obama is the leader . Alcatraz Versus the Evil Librarians originates from The US where you can find the ethnic group of African Americans .",
+    "triplets": [
+      [
+        "language",
+        "spokenIn",
+        "Britain"
+      ],
+      [
+        "States",
+        "language",
+        "language"
+      ],
+      [
+        "States",
+        "leaderName",
+        "Obama"
+      ],
+      [
+        "Librarians",
+        "country",
+        "States"
+      ],
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ]
+    ]
+  },
+  "161": {
+    "sentence": "The English language is spoken in the United Kingdom where Elizabeth II is leader and the capital city is London . The AIDS journal , from the United Kingdom , is published by Lippincott , Williams & Wilkins .",
+    "triplets": [
+      [
+        "Kingdom",
+        "language",
+        "language"
+      ],
+      [
+        "Kingdom",
+        "capital",
+        "London"
+      ],
+      [
+        "Kingdom",
+        "leaderName",
+        "II"
+      ]
+    ]
+  },
+  "162": {
+    "sentence": "The English language is spoken in Great Britain and A Fortress of Grey Ice was originally published in it despite being from the United States . The United States has an ethnic group called Asian Americans and Barack Obama is the president .",
+    "triplets": [
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ],
+      [
+        "States",
+        "leaderName",
+        "Obama"
+      ],
+      [
+        "Ice",
+        "language",
+        "language"
+      ],
+      [
+        "language",
+        "spokenIn",
+        "Britain"
+      ],
+      [
+        "Ice",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "163": {
+    "sentence": "1634 The Ram Rebellion comes from the United States , where Barack Obama is the President , and its capital city is Washington D.C. Asian Americans is one of the ethnic groups in the United States .",
+    "triplets": [
+      [
+        "States",
+        "leaderTitle",
+        "States"
+      ],
+      [
+        "States",
+        "leaderName",
+        "Obama"
+      ],
+      [
+        "States",
+        "capital",
+        "D.C."
+      ],
+      [
+        "Rebellion",
+        "country",
+        "States"
+      ],
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ]
+    ]
+  },
+  "164": {
+    "sentence": "President Barack Obama leads the United States where the population includes the ethnic group of Native Americans . It has the capital of Washington DC and 1634 The Ram Rebellion was written in the country .",
+    "triplets": [
+      [
+        "States",
+        "leaderTitle",
+        "States"
+      ],
+      [
+        "States",
+        "leaderName",
+        "Obama"
+      ],
+      [
+        "Rebellion",
+        "country",
+        "States"
+      ],
+      [
+        "States",
+        "ethnicGroup",
+        "States"
+      ]
+    ]
+  },
+  "165": {
+    "sentence": "Test pilot Alan Bean was born in Wheeler , Texas , USA .",
+    "triplets": [
+      [
+        "Bean",
+        "occupation",
+        "pilot"
+      ],
+      [
+        "Bean",
+        "birthPlace",
+        "Texas"
+      ]
+    ]
+  },
+  "166": {
+    "sentence": "Alan Bean , born in Wheeler , Texas , was a crew member of Apollo 12 where Alfred Worden served as the backup pilot .",
+    "triplets": [
+      [
+        "12",
+        "backup pilot",
+        "Worden"
+      ],
+      [
+        "Bean",
+        "was a crew member of",
+        "12"
+      ],
+      [
+        "Bean",
+        "birthPlace",
+        "Texas"
+      ]
+    ]
+  },
+  "167": {
+    "sentence": "Buss Aldrin is an American born in Glen Ridge , New Jersey in the United States of which Joe Biden is a leader .",
+    "triplets": [
+      [
+        "Aldrin",
+        "birthPlace",
+        "Jersey"
+      ],
+      [
+        "Aldrin",
+        "nationality",
+        "States"
+      ],
+      [
+        "States",
+        "leader",
+        "Biden"
+      ]
+    ]
+  },
+  "168": {
+    "sentence": "Buzz Aldrin , a US national , was a crew member on Apollo 11 operated by NASA .",
+    "triplets": [
+      [
+        "Aldrin",
+        "was a crew member of",
+        "11"
+      ],
+      [
+        "11",
+        "operator",
+        "NASA"
+      ]
+    ]
+  },
+  "169": {
+    "sentence": "Elliot See who was a student of the University of Texas at Austin and served as a test pilot , has died .",
+    "triplets": [
+      [
+        "See",
+        "almaMater",
+        "Austin"
+      ],
+      [
+        "See",
+        "occupation",
+        "pilot"
+      ]
+    ]
+  },
+  "170": {
+    "sentence": "William Anders , born in British Hong Kong , was a fighter pilot a member of Apollo 8 's crew .",
+    "triplets": [
+      [
+        "Anders",
+        "occupation",
+        "pilot"
+      ],
+      [
+        "Anders",
+        "birthPlace",
+        "Kong"
+      ],
+      [
+        "Anders",
+        "was a crew member of",
+        "8"
+      ]
+    ]
+  },
+  "171": {
+    "sentence": "NASA 's Apollo 8 crew included Frank Borman and William Anders .",
+    "triplets": [
+      [
+        "Anders",
+        "was a crew member of",
+        "8"
+      ],
+      [
+        "8",
+        "crewMembers",
+        "Borman"
+      ],
+      [
+        "8",
+        "operator",
+        "NASA"
+      ]
+    ]
+  },
+  "172": {
+    "sentence": "The comic book character Arion was created by Paul Kupperberg and Jan Duursema , a winner of the Eisner Award .",
+    "triplets": [
+      [
+        "Duursema",
+        "award",
+        "Award"
+      ]
+    ]
+  },
+  "173": {
+    "sentence": "Birmingham born architect John Madin designed 103 Colmore Row . The British politician Khalid Mahmood is one of the leaders in Birmingham .",
+    "triplets": [
+      [
+        "Row",
+        "architect",
+        "Madin"
+      ],
+      [
+        "Madin",
+        "birthPlace",
+        "Birmingham"
+      ]
+    ]
+  },
+  "174": {
+    "sentence": "108 St. Georges Terrace , completed in 1988 , is located in Perth , Australia .",
+    "triplets": [
+      [
+        "Terrace",
+        "location",
+        "Perth"
+      ],
+      [
+        "Perth",
+        "country",
+        "Australia"
+      ],
+      [
+        "Terrace",
+        "completionDate",
+        "1988"
+      ]
+    ]
+  },
+  "175": {
+    "sentence": "Completed in 1985 , 200 Public Square has 45 floors , covering 111484 square metres .",
+    "triplets": [
+      [
+        "Square",
+        "floorCount",
+        "45"
+      ],
+      [
+        "Square",
+        "completionDate",
+        "1985"
+      ]
+    ]
+  },
+  "176": {
+    "sentence": "200 Public Square , U.S. completed in 1985 has 45 floors .",
+    "triplets": [
+      [
+        "Square",
+        "floorCount",
+        "45"
+      ],
+      [
+        "Square",
+        "completionDate",
+        "1985"
+      ]
+    ]
+  },
+  "177": {
+    "sentence": "300 North LaSalle is located in Chicago , Illinois , where Rahm Emanuel is a leader .",
+    "triplets": [
+      [
+        "LaSalle",
+        "location",
+        "Chicago"
+      ],
+      [
+        "Chicago",
+        "leaderName",
+        "Emanuel"
+      ],
+      [
+        "Chicago",
+        "isPartOf",
+        "Illinois"
+      ]
+    ]
+  },
+  "178": {
+    "sentence": "The company Populous is the architect of 3Arena which is located at North Wall , Dublin . and completed in December 2008 .",
+    "triplets": [
+      [
+        "3Arena",
+        "location",
+        "Dublin"
+      ]
+    ]
+  },
+  "179": {
+    "sentence": "Architects James Pain and George Richard Pain designed Adare Manor , the building of which started in 1700 and was completed in 1862 .",
+    "triplets": [
+      [
+        "Manor",
+        "completionDate",
+        "1862"
+      ]
+    ]
+  },
+  "180": {
+    "sentence": "James Pain and George Richard Pain are the architects of Adare Manor , which was completed in 1862 , and is owned by JP McManus .",
+    "triplets": [
+      [
+        "Manor",
+        "completionDate",
+        "1862"
+      ],
+      [
+        "Manor",
+        "owner",
+        "McManus"
+      ]
+    ]
+  },
+  "181": {
+    "sentence": "Philip Charles Hardwick was the architect of Adare Manor which was started in 1700 and completed in 1862 .",
+    "triplets": [
+      [
+        "Manor",
+        "architect",
+        "Hardwick"
+      ],
+      [
+        "Manor",
+        "completionDate",
+        "1862"
+      ]
+    ]
+  },
+  "182": {
+    "sentence": "The building of the Adare Manor was started in 1700 and completed in 1862 , with the architect being George Richard Pain .",
+    "triplets": [
+      [
+        "Manor",
+        "completionDate",
+        "1862"
+      ],
+      [
+        "Manor",
+        "architect",
+        "Pain"
+      ]
+    ]
+  },
+  "183": {
+    "sentence": "The address of Akita Musuem of Art is 142 Nakadori , it has 3 floors and a floor area of 3746.66 square metres .",
+    "triplets": [
+      [
+        "Art",
+        "floorCount",
+        "3"
+      ]
+    ]
+  },
+  "184": {
+    "sentence": "Asher and Mary Isabelle Richardson House is located in Asherton , Texas , which was was built in 1911 and has the reference number 88002539 in the National Register of Historic Places..",
+    "triplets": [
+      [
+        "House",
+        "location",
+        "Texas"
+      ],
+      [
+        "House",
+        "yearOfConstruction",
+        "1911"
+      ]
+    ]
+  },
+  "185": {
+    "sentence": "Asherton , Texas is part of Dimmit County , Texas in the United States . Asher and Mary Isabelle Richardson House is in Asherton .",
+    "triplets": [
+      [
+        "Texas",
+        "isPartOf",
+        "States"
+      ],
+      [
+        "Texas",
+        "isPartOf",
+        "Texas"
+      ],
+      [
+        "House",
+        "location",
+        "Texas"
+      ]
+    ]
+  },
+  "186": {
+    "sentence": "Julia Morgan was the architect and designer of many significant buildings including Asilomar State Beach , the Asilomar Conference Grounds and the Riverside Art Museum .",
+    "triplets": [
+      [
+        "Grounds",
+        "architect",
+        "Morgan"
+      ],
+      [
+        "Morgan",
+        "significantBuilding",
+        "Museum"
+      ],
+      [
+        "Morgan",
+        "significantBuilding",
+        "Beach"
+      ]
+    ]
+  },
+  "187": {
+    "sentence": "Asilomar Conference Grounds is located on Asilomar Blvd , Pacific Grove , California . It was constructed in 1913 and has the reference number 87000823 in the National Register of Historic Places .",
+    "triplets": [
+      [
+        "Grounds",
+        "yearOfConstruction",
+        "1913"
+      ]
+    ]
+  },
+  "188": {
+    "sentence": "Anandiben Patel was the leader of Gujarat , India , the location of Amdavad ni Gufa .",
+    "triplets": [
+      [
+        "Gujarat",
+        "leaderName",
+        "Patel"
+      ],
+      [
+        "Gufa",
+        "location",
+        "Gujarat"
+      ],
+      [
+        "Gufa",
+        "country",
+        "India"
+      ]
+    ]
+  },
+  "189": {
+    "sentence": "Paul Ryan is a leader of the United States where the capital city is Washington DC . 250 Delaware Avenue is located in the country .",
+    "triplets": [
+      [
+        "States",
+        "leaderName",
+        "Ryan"
+      ],
+      [
+        "Avenue",
+        "location",
+        "States"
+      ]
+    ]
+  },
+  "190": {
+    "sentence": "250 Delaware Avenue is located in the United States , with Paul Ryan being the President of the United States .",
+    "triplets": [
+      [
+        "States",
+        "leaderTitle",
+        "States"
+      ],
+      [
+        "States",
+        "leaderName",
+        "Ryan"
+      ],
+      [
+        "Avenue",
+        "location",
+        "States"
+      ]
+    ]
+  },
+  "191": {
+    "sentence": "AWH Engineering College is located in Kerala , India . Kerala has Mahe , India to its northwest .",
+    "triplets": [
+      [
+        "College",
+        "country",
+        "India"
+      ],
+      [
+        "College",
+        "state",
+        "Kerala"
+      ],
+      [
+        "Kerala",
+        "has to its northwest",
+        "India"
+      ]
+    ]
+  },
+  "192": {
+    "sentence": "The Accademia di Architettura di Mendrisio was established in Mendrisio in 1996 . Its dean is Mario Botta .",
+    "triplets": [
+      [
+        "Mendrisio",
+        "dean",
+        "Botta"
+      ],
+      [
+        "Mendrisio",
+        "city",
+        "Mendrisio"
+      ],
+      [
+        "Mendrisio",
+        "established",
+        "1996"
+      ]
+    ]
+  },
+  "193": {
+    "sentence": "The Accademia di Architettura di Mendrisio is located in Mendrisio . Its dean is called Mario Botta and it has 600 students .",
+    "triplets": [
+      [
+        "Mendrisio",
+        "numberOfStudents",
+        "600"
+      ],
+      [
+        "Mendrisio",
+        "dean",
+        "Botta"
+      ],
+      [
+        "Mendrisio",
+        "city",
+        "Mendrisio"
+      ]
+    ]
+  },
+  "194": {
+    "sentence": "The Acharya Institute of Technology is located at Soldevanahalli , Acharya Dr. Sarcapalli Radhakrishnan Road , Hessarghatta Main Road , Bangalore , 560090 , India . It is affiliated with the Visvesvaraya Technological University .",
+    "triplets": [
+      [
+        "Technology",
+        "affiliation",
+        "University"
+      ]
+    ]
+  },
+  "195": {
+    "sentence": "Aarhus has a magistrate government . To its northeast is Mols . The School of Business and Social Sciences at the Aarhus University is located in Aarhus .",
+    "triplets": [
+      [
+        "Aarhus",
+        "has to its northeast",
+        "Mols"
+      ]
+    ]
+  },
+  "196": {
+    "sentence": "The location of Aarhus Airport is Tirstrup which is in Denmark where one of the languages is Faroese .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Tirstrup"
+      ],
+      [
+        "Tirstrup",
+        "country",
+        "Denmark"
+      ]
+    ]
+  },
+  "197": {
+    "sentence": "Denmark is lead by Lars Lokke Rasmussen and is the location of Aarhus AIrport , Tirstrup .",
+    "triplets": [
+      [
+        "Tirstrup",
+        "country",
+        "Denmark"
+      ],
+      [
+        "Denmark",
+        "leaderName",
+        "Rasmussen"
+      ]
+    ]
+  },
+  "198": {
+    "sentence": "At an elevation of 610 metres above seal level , Adolfo Suarez Madrid-Barajas Aiport is located in Madrid , in Spain .",
+    "triplets": [
+      [
+        "Madrid",
+        "country",
+        "Spain"
+      ]
+    ]
+  },
+  "199": {
+    "sentence": "Adolfo Su\u00c3\u00a1rez Madrid-Barajas Airport has an elevation of 610.0 metres above sea level and is in Paracuellos de Jarama , in Spain .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Jarama"
+      ],
+      [
+        "Jarama",
+        "country",
+        "Spain"
+      ],
+      [
+        "Airport",
+        "elevationAboveTheSeaLevel_(in_metres)",
+        "610.0"
+      ]
+    ]
+  },
+  "200": {
+    "sentence": "Awadh is part of Uttar Pradesh which is where Agra Airport is and where Ram Naik is the leader .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Pradesh"
+      ],
+      [
+        "Pradesh",
+        "isPartOf",
+        "Awadh"
+      ],
+      [
+        "Pradesh",
+        "leaderName",
+        "Naik"
+      ]
+    ]
+  },
+  "201": {
+    "sentence": "Adolfo Su\u00c3\u00a1rez Madrid Barajas Airport is found in Alcobendas which is part of the community of Madrid . The leader party at Alcobendas is the Peoples Party ( Spain ) .",
+    "triplets": [
+      [
+        "Alcobendas",
+        "isPartOf",
+        "Madrid"
+      ],
+      [
+        "Airport",
+        "location",
+        "Alcobendas"
+      ]
+    ]
+  },
+  "202": {
+    "sentence": "Alderney is served by Alderney Airport . This airport 's 1st runway is made from Poaceae and it has a runway length of 497.0 .",
+    "triplets": [
+      [
+        "Airport",
+        "1st_runway_SurfaceType",
+        "Poaceae"
+      ],
+      [
+        "Airport",
+        "runwayLength",
+        "497.0"
+      ],
+      [
+        "Airport",
+        "cityServed",
+        "Alderney"
+      ]
+    ]
+  },
+  "203": {
+    "sentence": "Alpena County Regional Airport , located in Maple Ridge Township , Michigan has a runway length of 1533.0 and has an elevation of 210 meters .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Michigan"
+      ],
+      [
+        "Airport",
+        "runwayLength",
+        "1533.0"
+      ],
+      [
+        "Airport",
+        "elevationAboveTheSeaLevel_(in_metres)",
+        "210"
+      ]
+    ]
+  },
+  "204": {
+    "sentence": "Located in \u00c3\ufffdcolo e Bengo , Angola International Airport is 159 meters above sea level and has a runway length of 4000ft .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Bengo"
+      ],
+      [
+        "Airport",
+        "elevationAboveTheSeaLevel_(in_metres)",
+        "159"
+      ]
+    ]
+  },
+  "205": {
+    "sentence": "At 159 meters above sea level , Angola International airport is located in Icolo e Bengo , in Angola .",
+    "triplets": [
+      [
+        "Bengo",
+        "country",
+        "Angola"
+      ]
+    ]
+  },
+  "206": {
+    "sentence": "Angola International Airport is located in Icolo e Bengo , Angolo , Luanda Province .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Bengo"
+      ],
+      [
+        "Bengo",
+        "country",
+        "Angola"
+      ],
+      [
+        "Bengo",
+        "isPartOf",
+        "Province"
+      ]
+    ]
+  },
+  "207": {
+    "sentence": "Antwerp International Airport serves the city of Antwerp , Belgium , where French is spoken .",
+    "triplets": [
+      [
+        "Airport",
+        "cityServed",
+        "Antwerp"
+      ],
+      [
+        "Antwerp",
+        "country",
+        "Belgium"
+      ]
+    ]
+  },
+  "208": {
+    "sentence": "The Appleton International Airport is in Greenville , which is part of Menasha , Wisconsin , USA .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Wisconsin"
+      ],
+      [
+        "Wisconsin",
+        "isPartOf",
+        "Wisconsin"
+      ]
+    ]
+  },
+  "209": {
+    "sentence": "Ashgabat is the location of Ashgabat International Airport which is elevated 211 metres above sea level and has a runway length of 900.0 metres .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Ashgabat"
+      ],
+      [
+        "Airport",
+        "elevationAboveTheSeaLevel_(in_metres)",
+        "211"
+      ],
+      [
+        "Airport",
+        "runwayLength",
+        "900.0"
+      ]
+    ]
+  },
+  "210": {
+    "sentence": "Turkmenistan Airlines is operated by Ashgabat International Airport , whose headquarters are located in Ashgabat , Turkmenistan .",
+    "triplets": [
+      [
+        "Airport",
+        "operatingOrganisation",
+        "Airlines"
+      ],
+      [
+        "Airlines",
+        "headquarter",
+        "Turkmenistan"
+      ],
+      [
+        "Airlines",
+        "headquarter",
+        "Ashgabat"
+      ]
+    ]
+  },
+  "211": {
+    "sentence": "Allama Iqbal International Airport serves the city of Lahore which is in Pakistan where Nawaz Sharif is the leader .",
+    "triplets": [
+      [
+        "Lahore",
+        "country",
+        "Pakistan"
+      ],
+      [
+        "Airport",
+        "cityServed",
+        "Lahore"
+      ],
+      [
+        "Pakistan",
+        "leaderName",
+        "Sharif"
+      ]
+    ]
+  },
+  "212": {
+    "sentence": "Sardar Ayaz Sadiq is the leader of Pakistan which is where the City of Lahore is . this city is served by Allama Iqbal International airport .",
+    "triplets": [
+      [
+        "Pakistan",
+        "leaderName",
+        "Sadiq"
+      ],
+      [
+        "Lahore",
+        "country",
+        "Pakistan"
+      ]
+    ]
+  },
+  "213": {
+    "sentence": "Poaceae , of the Commelinids order , belongs to the division of flowering plants and its the surface of the 1st runway at Alderney airport .",
+    "triplets": [
+      [
+        "Poaceae",
+        "order",
+        "Commelinids"
+      ]
+    ]
+  },
+  "214": {
+    "sentence": "Peter St\u00c3\u00b6ger is manager of 1 . FC K\u00c3\u00b6ln and is affiliated with SC Wiener Neustadt . He is currently at the FK Austria Wien club .",
+    "triplets": [
+      [
+        "K\u00c3\u00b6ln",
+        "manager",
+        "St\u00c3\u00b6ger"
+      ],
+      [
+        "St\u00c3\u00b6ger",
+        "club",
+        "Neustadt"
+      ],
+      [
+        "St\u00c3\u00b6ger",
+        "club",
+        "Wien"
+      ]
+    ]
+  },
+  "215": {
+    "sentence": "The manager of FC Magdeburg is Jens H\u00c3\u00a4rtel who played for Berliner AK 07 and belongs to the club 1 . FC Union Berlin .",
+    "triplets": [
+      [
+        "Magdeburg",
+        "manager",
+        "H\u00c3\u00a4rtel"
+      ],
+      [
+        "H\u00c3\u00a4rtel",
+        "club",
+        "07"
+      ],
+      [
+        "H\u00c3\u00a4rtel",
+        "club",
+        "Berlin"
+      ]
+    ]
+  },
+  "216": {
+    "sentence": "Jens H\u00c3\u00a4rtel was previously the manager of 1 FC Magdeburg . He is in the RB Leipzig club and is part of the club 1 . FC Union Berlin .",
+    "triplets": [
+      [
+        "Magdeburg",
+        "manager",
+        "H\u00c3\u00a4rtel"
+      ],
+      [
+        "H\u00c3\u00a4rtel",
+        "club",
+        "Leipzig"
+      ],
+      [
+        "H\u00c3\u00a4rtel",
+        "club",
+        "Berlin"
+      ]
+    ]
+  },
+  "217": {
+    "sentence": "Verona , Italy is the home to A.C. Chievo Verona which has 39371 members and the full name of `` Associazione Calcio ChievoVerona S.r.l . `` .",
+    "triplets": [
+      [
+        "Verona",
+        "numberOfMembers",
+        "39371"
+      ]
+    ]
+  },
+  "218": {
+    "sentence": "Associazione Calcio Chievo Verona is managed by Rolando Maran , who has previously worked at FC Bari 1908 and Carrarese Calcio .",
+    "triplets": [
+      [
+        "Verona",
+        "manager",
+        "Maran"
+      ],
+      [
+        "Maran",
+        "club",
+        "1908"
+      ],
+      [
+        "Maran",
+        "club",
+        "Calcio"
+      ]
+    ]
+  },
+  "219": {
+    "sentence": "The A.E Dimitra Efxeinoupolis club is located in Greece where two of the leaders are Alexis Tsipras and Prokopis Pavlopoulos .",
+    "triplets": [
+      [
+        "Efxeinoupolis",
+        "location",
+        "Greece"
+      ],
+      [
+        "Greece",
+        "leader",
+        "Tsipras"
+      ],
+      [
+        "Greece",
+        "leader",
+        "Pavlopoulos"
+      ]
+    ]
+  },
+  "220": {
+    "sentence": "A.S. Livorno Calcio are managed by Christian Panucci who has played for Chelsea FC and is attached to the club Genoa CFC .",
+    "triplets": [
+      [
+        "Calcio",
+        "manager",
+        "Panucci"
+      ]
+    ]
+  },
+  "221": {
+    "sentence": "Agremia\u00c3\u00a7\u00c3\u00a3o Sportiva Arapiraquense play in the Campeonato Brasileiro S\u00c3\u00a9rie C league in Brazil in 2015 .",
+    "triplets": [
+      [
+        "Arapiraquense",
+        "league",
+        "C"
+      ],
+      [
+        "C",
+        "country",
+        "Brazil"
+      ],
+      [
+        "Arapiraquense",
+        "season",
+        "2015"
+      ]
+    ]
+  },
+  "222": {
+    "sentence": "The full name of Agremia\u00c3\u00a7\u00c3\u00a3o Sportiva Arapiraquense is `` Agremia\u00c3\u00a7\u00c3\u00a3o Sportiva Arapiraquense '' . The club has 17000 members and competed in the 2015 Campeonato Brasileiro S\u00c3\u00a9rie C .",
+    "triplets": [
+      [
+        "Arapiraquense",
+        "numberOfMembers",
+        "17000"
+      ],
+      [
+        "Arapiraquense",
+        "season",
+        "C"
+      ]
+    ]
+  },
+  "223": {
+    "sentence": "Akron Summit Assault 's ground is located at St Vincent-St Mary High School , Akron , Ohio , United States .",
+    "triplets": [
+      [
+        "Assault",
+        "ground",
+        "School"
+      ],
+      [
+        "Ohio",
+        "location",
+        "States"
+      ],
+      [
+        "School",
+        "city",
+        "Ohio"
+      ]
+    ]
+  },
+  "224": {
+    "sentence": "Verona , Italy is the home to A.C. Chievo Verona who played in Serie A where the champions were Juventus F.C .",
+    "triplets": [
+      [
+        "Verona",
+        "league",
+        "A"
+      ]
+    ]
+  },
+  "225": {
+    "sentence": "Coming from Spain , is the dish Ajoblanco ( alternatively known as Ajo blanco ) which has almond as an ingredient .",
+    "triplets": [
+      [
+        "Ajoblanco",
+        "country",
+        "Spain"
+      ]
+    ]
+  },
+  "226": {
+    "sentence": "Almond , which is one of the ingredients of Ajoblanco , is part of the Rosaceae family and also part of the order of Rosids .",
+    "triplets": [
+      [
+        "Ajoblanco",
+        "ingredient",
+        "Almond"
+      ],
+      [
+        "Almond",
+        "family",
+        "Rosaceae"
+      ],
+      [
+        "Almond",
+        "order",
+        "Rosids"
+      ]
+    ]
+  },
+  "227": {
+    "sentence": "Avocado is one of the ingredients in the dish Bandeja paisa which is found in the Antioquia Department . The Antioquia Department can be found in the country of Colombia .",
+    "triplets": [
+      [
+        "Department",
+        "country",
+        "Colombia"
+      ],
+      [
+        "paisa",
+        "ingredient",
+        "Avocado"
+      ],
+      [
+        "paisa",
+        "region",
+        "Department"
+      ]
+    ]
+  },
+  "228": {
+    "sentence": "Chorizo is an ingredient in Bandeja paisa , a dish from the Antioquia Department region , in Colombia .",
+    "triplets": [
+      [
+        "Department",
+        "country",
+        "Colombia"
+      ],
+      [
+        "paisa",
+        "ingredient",
+        "Chorizo"
+      ],
+      [
+        "paisa",
+        "region",
+        "Department"
+      ]
+    ]
+  },
+  "229": {
+    "sentence": "Arem-arem is a dish of Javanese cuisine , originating from the country of Indonesia , one of whose leaders is Jusuf Kalla .",
+    "triplets": [
+      [
+        "Arem-arem",
+        "country",
+        "Indonesia"
+      ],
+      [
+        "Indonesia",
+        "leaderName",
+        "Kalla"
+      ],
+      [
+        "Arem-arem",
+        "region",
+        "cuisine"
+      ]
+    ]
+  },
+  "230": {
+    "sentence": "The sauce called arrabbiata can be found in Italy where Pietro Grasso is the leader and Rome is the capitol city .",
+    "triplets": [
+      [
+        "sauce",
+        "country",
+        "Italy"
+      ],
+      [
+        "Italy",
+        "leaderName",
+        "Grasso"
+      ],
+      [
+        "Italy",
+        "capital",
+        "Rome"
+      ]
+    ]
+  },
+  "231": {
+    "sentence": "Cuttlefish is an ingredient in Arr\u00c3\u00b2s negre which is from the Catalonia region , in Spain .",
+    "triplets": [
+      [
+        "negre",
+        "country",
+        "Spain"
+      ],
+      [
+        "negre",
+        "region",
+        "Catalonia"
+      ],
+      [
+        "negre",
+        "ingredient",
+        "Cuttlefish"
+      ]
+    ]
+  },
+  "232": {
+    "sentence": "Arr\u00c3\u00b2s negre is a dish from the Catalonia region of Spain , the country where Felipe VI is the leader .",
+    "triplets": [
+      [
+        "negre",
+        "country",
+        "Spain"
+      ],
+      [
+        "Spain",
+        "leaderName",
+        "Spain"
+      ],
+      [
+        "negre",
+        "region",
+        "Catalonia"
+      ]
+    ]
+  },
+  "233": {
+    "sentence": "The main ingredients of Asam pedas are fish cooked in sour and hot sauce . It is popular in Indonesia and can be found in the region of Sumatra and Malay peninsula .",
+    "triplets": [
+      [
+        "pedas",
+        "country",
+        "Indonesia"
+      ]
+    ]
+  },
+  "234": {
+    "sentence": "Putrajaya is the capital of Malaysia which has a Malay ethnic group . Asam pedas is a food from there .",
+    "triplets": [
+      [
+        "pedas",
+        "country",
+        "Malaysia"
+      ],
+      [
+        "Malaysia",
+        "capital",
+        "Putrajaya"
+      ],
+      [
+        "Malaysia",
+        "ethnicGroup",
+        "Malay"
+      ]
+    ]
+  },
+  "235": {
+    "sentence": "A dish from Sumatra , Malaysia and Indonesia called asam pedas is fish cooked in a sour and hot sauce .",
+    "triplets": [
+      [
+        "pedas",
+        "region",
+        "Sumatra"
+      ]
+    ]
+  },
+  "236": {
+    "sentence": "Fried chicken is an ingredient of the Javan dish Ayam penyet which is popular in Malaysia .",
+    "triplets": [
+      [
+        "penyet",
+        "region",
+        "Malaysia"
+      ],
+      [
+        "penyet",
+        "ingredient",
+        "chicken"
+      ]
+    ]
+  },
+  "237": {
+    "sentence": "Bacon Explosion comes from the United States where Asian Americans are one of the ethnic groups and John Roberts is a leader .",
+    "triplets": [
+      [
+        "Explosion",
+        "country",
+        "States"
+      ],
+      [
+        "States",
+        "leaderName",
+        "Roberts"
+      ],
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ]
+    ]
+  },
+  "238": {
+    "sentence": "Brown sauce is an ingredient in a bacon sandwich which is considered a variation of A BLT , which is itself considered to be variation of a club sandwich .",
+    "triplets": [
+      [
+        "sandwich",
+        "dishVariation",
+        "BLT"
+      ],
+      [
+        "BLT",
+        "dishVariation",
+        "sandwich"
+      ],
+      [
+        "sandwich",
+        "ingredient",
+        "sauce"
+      ]
+    ]
+  },
+  "239": {
+    "sentence": "Christmas pudding is an ingredient in Baked Alaska , which comes from the region of New York and the country of France .",
+    "triplets": [
+      [
+        "Alaska",
+        "country",
+        "France"
+      ],
+      [
+        "Alaska",
+        "region",
+        "York"
+      ],
+      [
+        "Alaska",
+        "ingredient",
+        "pudding"
+      ]
+    ]
+  },
+  "240": {
+    "sentence": "Sponge cake is an ingredient of Baked Alaska , a dessert . Sandesh is a nice confectionery dessert .",
+    "triplets": [
+      [
+        "Alaska",
+        "ingredient",
+        "cake"
+      ]
+    ]
+  },
+  "241": {
+    "sentence": "Sponge cake is an ingredient of Baked Alaska , which can come from either Paris ( France ) , New York or Hong Kong .",
+    "triplets": [
+      [
+        "Alaska",
+        "country",
+        "France"
+      ],
+      [
+        "Alaska",
+        "ingredient",
+        "cake"
+      ]
+    ]
+  },
+  "242": {
+    "sentence": "Bakewell tart includes fruit preserves among it 's ingredients . It is a variant of Bakewell pudding and comes from the region of the Derbyshire Dales .",
+    "triplets": [
+      [
+        "pudding",
+        "dishVariation",
+        "tart"
+      ],
+      [
+        "tart",
+        "region",
+        "Dales"
+      ],
+      [
+        "tart",
+        "ingredient",
+        "preserves"
+      ]
+    ]
+  },
+  "243": {
+    "sentence": "Bakewell pudding ( a variation of which is Bakewell tart that uses shortcrust patry ) , is from the Derbyshire Dales region .",
+    "triplets": [
+      [
+        "pudding",
+        "region",
+        "Dales"
+      ],
+      [
+        "pudding",
+        "dishVariation",
+        "tart"
+      ]
+    ]
+  },
+  "244": {
+    "sentence": "Bandeja paisa , containing Chicharr\u00c3\u00b3n , originates from the Paisa region and is part of Columbian cuisine .",
+    "triplets": [
+      [
+        "paisa",
+        "ingredient",
+        "Chicharr\u00c3\u00b3n"
+      ],
+      [
+        "paisa",
+        "country",
+        "cuisine"
+      ]
+    ]
+  },
+  "245": {
+    "sentence": "France , led by Claude Bartolone and Francois Hollande , is the location of Barny cakes .",
+    "triplets": [
+      [
+        "France",
+        "leaderName",
+        "Hollande"
+      ],
+      [
+        "France",
+        "leaderName",
+        "Bartolone"
+      ]
+    ]
+  },
+  "246": {
+    "sentence": "Batagor and Shumai are variations of a dish that contains peanut sauce .",
+    "triplets": [
+      [
+        "Batagor",
+        "ingredient",
+        "sauce"
+      ],
+      [
+        "Batagor",
+        "dishVariation",
+        "Shumai"
+      ]
+    ]
+  },
+  "247": {
+    "sentence": "A dish which comes from Indonesia and is popular in Singapore is beef kway teow , it has sesame oil among it 's ingredients .",
+    "triplets": [
+      [
+        "teow",
+        "country",
+        "Singapore"
+      ],
+      [
+        "teow",
+        "ingredient",
+        "oil"
+      ],
+      [
+        "teow",
+        "region",
+        "Indonesia"
+      ]
+    ]
+  },
+  "248": {
+    "sentence": "Coming form India and made with gram flour , Bhajji , has the alternative names Bhaji and bajji .",
+    "triplets": [
+      [
+        "Bhajji",
+        "country",
+        "India"
+      ],
+      [
+        "Bhajji",
+        "ingredient",
+        "flour"
+      ]
+    ]
+  },
+  "249": {
+    "sentence": "Bhajji originates from India where Narendra Modi and Sunmitra Mahajan are leaders , .",
+    "triplets": [
+      [
+        "Bhajji",
+        "country",
+        "India"
+      ],
+      [
+        "India",
+        "leaderName",
+        "Modi"
+      ],
+      [
+        "India",
+        "leaderName",
+        "Mahajan"
+      ]
+    ]
+  },
+  "250": {
+    "sentence": "Bionico is a food found in Mexico , where Silvano Aureoles Conejo leads the Mexican people .",
+    "triplets": [
+      [
+        "Bionico",
+        "country",
+        "Mexico"
+      ],
+      [
+        "Mexico",
+        "leaderName",
+        "Conejo"
+      ]
+    ]
+  },
+  "251": {
+    "sentence": "Jusuf Kalla is the leader of Indonesia where the language is Indonesian and one of the local dishes is Bakso .",
+    "triplets": [
+      [
+        "Indonesia",
+        "language",
+        "language"
+      ],
+      [
+        "Indonesia",
+        "leaderName",
+        "Kalla"
+      ],
+      [
+        "Bakso",
+        "country",
+        "Indonesia"
+      ]
+    ]
+  },
+  "252": {
+    "sentence": "Rome is the capital of Italy , where Matteo Renzi is a leader , and where Amatriciana sauce can be found .",
+    "triplets": [
+      [
+        "Italy",
+        "capital",
+        "Rome"
+      ],
+      [
+        "Italy",
+        "leaderName",
+        "Renzi"
+      ],
+      [
+        "sauce",
+        "country",
+        "Italy"
+      ]
+    ]
+  },
+  "253": {
+    "sentence": "The Javenese people are an ethnic group in Java , where the food ayam penyet is found . The dish is from the Singapore region .",
+    "triplets": [
+      [
+        "Java",
+        "ethnicGroup",
+        "people"
+      ],
+      [
+        "penyet",
+        "region",
+        "Singapore"
+      ],
+      [
+        "penyet",
+        "country",
+        "Java"
+      ]
+    ]
+  },
+  "254": {
+    "sentence": "The Moro people are an ethnic group in the Philippines , where Arabic is a language spoken . It is also the country Batchoy comes from .",
+    "triplets": [
+      [
+        "Philippines",
+        "language",
+        "Arabic"
+      ],
+      [
+        "Batchoy",
+        "country",
+        "Philippines"
+      ],
+      [
+        "Philippines",
+        "ethnicGroup",
+        "people"
+      ]
+    ]
+  },
+  "255": {
+    "sentence": "Batchoy is eaten in the Philippines where Philippine Spanish is the language and one of the ethnic groups is the Igorot people .",
+    "triplets": [
+      [
+        "Philippines",
+        "language",
+        "Spanish"
+      ],
+      [
+        "Batchoy",
+        "country",
+        "Philippines"
+      ],
+      [
+        "Philippines",
+        "ethnicGroup",
+        "people"
+      ]
+    ]
+  },
+  "256": {
+    "sentence": "Beef kway teow is a dish from the country of Singapore where the currency is the Singapore dollar and the leader is Tony Tan .",
+    "triplets": [
+      [
+        "Singapore",
+        "leaderName",
+        "Tan"
+      ],
+      [
+        "teow",
+        "country",
+        "Singapore"
+      ],
+      [
+        "Singapore",
+        "currency",
+        "dollar"
+      ]
+    ]
+  },
+  "257": {
+    "sentence": "Felipe VI of Spain is the leader of Spain , where Spaniards are the ethinic group and where Ajoblanco originates from .",
+    "triplets": [
+      [
+        "Spain",
+        "leaderName",
+        "Spain"
+      ],
+      [
+        "Ajoblanco",
+        "country",
+        "Spain"
+      ],
+      [
+        "Spain",
+        "ethnicGroup",
+        "Spaniards"
+      ]
+    ]
+  },
+  "258": {
+    "sentence": "The ethnic group of native Americans are from the United States where The president is the leader and baked Alaska is a dish .",
+    "triplets": [
+      [
+        "States",
+        "ethnicGroup",
+        "States"
+      ],
+      [
+        "States",
+        "leaderTitle",
+        "States"
+      ],
+      [
+        "Alaska",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "259": {
+    "sentence": "The Ataturk monument ( Izmir ) is located in Turkey , where the largest city is Istanbul and the capital is Ankara .",
+    "triplets": [
+      [
+        "Turkey",
+        "capital",
+        "Ankara"
+      ],
+      [
+        "Turkey",
+        "largestCity",
+        "Istanbul"
+      ]
+    ]
+  },
+  "260": {
+    "sentence": "Born in Burbank California , Eric Flint wrote 1634 : The Bavarian Crisis which was preceded by Grantville Gazette II .",
+    "triplets": [
+      [
+        "Crisis",
+        "author",
+        "Flint"
+      ],
+      [
+        "Flint",
+        "birthPlace",
+        "California"
+      ],
+      [
+        "Crisis",
+        "precededBy",
+        "II"
+      ]
+    ]
+  },
+  "261": {
+    "sentence": "`` 1634 : The Ram Rebellion '' is the sequel to `` 1634 : The Galileo Affair '' , written by Eric Flint , who was born in Burbank , California .",
+    "triplets": [
+      [
+        "Rebellion",
+        "author",
+        "Flint"
+      ],
+      [
+        "Flint",
+        "birthPlace",
+        "California"
+      ],
+      [
+        "Rebellion",
+        "precededBy",
+        "Affair"
+      ]
+    ]
+  },
+  "262": {
+    "sentence": "ACM Transactions on Information Systems ( abbreviated to ACM Trans . Inf . Syst ) is part of the academic Discipline of Computer Science and has the LCCN number 89646863 .",
+    "triplets": [
+      [
+        "Systems",
+        "LCCN_number",
+        "89646863"
+      ]
+    ]
+  },
+  "263": {
+    "sentence": "A T Charlie Johnson , whose alma mater is Stanford University , is the doctoral advisor for Michael Tinkham and the editor of AIP Advances .",
+    "triplets": [
+      [
+        "Advances",
+        "editor",
+        "Johnson"
+      ],
+      [
+        "Johnson",
+        "doctoralAdvisor",
+        "Tinkham"
+      ],
+      [
+        "Johnson",
+        "almaMater",
+        "University"
+      ]
+    ]
+  },
+  "264": {
+    "sentence": "A Fortress of Grey Ice was written in the United States in English which is spoken in Great Britain .",
+    "triplets": [
+      [
+        "Ice",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "265": {
+    "sentence": "A Fortress of Grey Ice was written by J. V. Jones and is found in hardcover with the OCLC number 51969173 .",
+    "triplets": [
+      [
+        "Ice",
+        "OCLC_number",
+        "51969173"
+      ],
+      [
+        "Ice",
+        "author",
+        "Jones"
+      ]
+    ]
+  },
+  "266": {
+    "sentence": "The book `` A Fortress of Grey Ice '' was written by J V Jones , can be found in print and has 672 pages .",
+    "triplets": [
+      [
+        "Ice",
+        "author",
+        "Jones"
+      ]
+    ]
+  },
+  "267": {
+    "sentence": "The OCLC number for A Glastonbury Romance is 76798317 . It has 1174 pages and is in print .",
+    "triplets": [
+      [
+        "Romance",
+        "OCLC_number",
+        "76798317"
+      ]
+    ]
+  },
+  "268": {
+    "sentence": "A Long Long Way has a OCLC number of 57392246 and a ISBN number of 0-670-03380-4 .",
+    "triplets": [
+      [
+        "Way",
+        "OCLC_number",
+        "57392246"
+      ]
+    ]
+  },
+  "269": {
+    "sentence": "A Long Long Way , the prequel to The Secret Scripture , was published by Viking Press .",
+    "triplets": [
+      [
+        "Way",
+        "publisher",
+        "Press"
+      ],
+      [
+        "Way",
+        "followedBy",
+        "Scripture"
+      ]
+    ]
+  },
+  "270": {
+    "sentence": "The OCLC number of A Loyal Character Dancer is 49805501. its author is Qiu Xiaolong and it can be found in hardcover .",
+    "triplets": [
+      [
+        "Dancer",
+        "author",
+        "Xiaolong"
+      ]
+    ]
+  },
+  "271": {
+    "sentence": "The OCLC number of A Wizard of Mars is 318875313 . It was written by Diane Duane and published in print .",
+    "triplets": [
+      [
+        "Mars",
+        "OCLC_number",
+        "318875313"
+      ],
+      [
+        "Mars",
+        "author",
+        "Duane"
+      ]
+    ]
+  },
+  "272": {
+    "sentence": "The book Alcatraz Versus the Evil Librarians is written in the English language and comes from the U.S. One of the ethnic groups in the U.S. are White Americans .",
+    "triplets": [
+      [
+        "Librarians",
+        "language",
+        "language"
+      ]
+    ]
+  },
+  "273": {
+    "sentence": "The American Journal of Mathematics was first published in 1878 and is abbreviated to Am . J . Math . It has the ISSN number `` 0002-9327 '' .",
+    "triplets": [
+      [
+        "Mathematics",
+        "firstPublicationYear",
+        "1878"
+      ]
+    ]
+  },
+  "274": {
+    "sentence": "Many Asian Americans live in the United States , the country where English is the language and where 'A Fortress of Grey Ice ' is from .",
+    "triplets": [
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ],
+      [
+        "Ice",
+        "language",
+        "language"
+      ],
+      [
+        "Ice",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "275": {
+    "sentence": "A Fortress of Grey Ice is from the United States where the English language is used and one of the ethnic groups are the Native Americans .",
+    "triplets": [
+      [
+        "States",
+        "language",
+        "language"
+      ],
+      [
+        "Ice",
+        "country",
+        "States"
+      ],
+      [
+        "States",
+        "ethnicGroup",
+        "States"
+      ]
+    ]
+  },
+  "276": {
+    "sentence": "Alcatraz Versus the Evil Librarians is from The United States where one of the ethnic groups is African American and the language used is English .",
+    "triplets": [
+      [
+        "States",
+        "language",
+        "language"
+      ],
+      [
+        "Librarians",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "277": {
+    "sentence": "Viking Press in the United States published A Long Long Way which was followed by The Secret Scripture .",
+    "triplets": [
+      [
+        "Press",
+        "country",
+        "States"
+      ],
+      [
+        "Way",
+        "publisher",
+        "Press"
+      ],
+      [
+        "Way",
+        "followedBy",
+        "Scripture"
+      ]
+    ]
+  },
+  "278": {
+    "sentence": "A Long Long Way is published by Viking Press from the United States , parent company Penguin Random House .",
+    "triplets": [
+      [
+        "Press",
+        "country",
+        "States"
+      ],
+      [
+        "Way",
+        "publisher",
+        "Press"
+      ],
+      [
+        "Press",
+        "parentCompany",
+        "House"
+      ]
+    ]
+  },
+  "279": {
+    "sentence": "Tim Brooke-Taylor starred in Bananaman .",
+    "triplets": [
+      [
+        "Bananaman",
+        "starring",
+        "Brooke-Taylor"
+      ]
+    ]
+  },
+  "280": {
+    "sentence": "Bill Oddie was born in Rochdale .",
+    "triplets": [
+      [
+        "Oddie",
+        "birthPlace",
+        "Rochdale"
+      ]
+    ]
+  },
+  "281": {
+    "sentence": "Doug Moench won the Inkpot Award .",
+    "triplets": [
+      [
+        "Moench",
+        "award",
+        "Award"
+      ]
+    ]
+  },
+  "282": {
+    "sentence": "Gene Colan has been awarded the Eisner Award .",
+    "triplets": [
+      [
+        "Colan",
+        "award",
+        "Award"
+      ]
+    ]
+  },
+  "283": {
+    "sentence": "Len Wein won the Inkpot Award .",
+    "triplets": [
+      [
+        "Wein",
+        "award",
+        "Award"
+      ]
+    ]
+  },
+  "284": {
+    "sentence": "Akron is in Summit County , Ohio .",
+    "triplets": [
+      [
+        "Ohio",
+        "isPartOf",
+        "Ohio"
+      ]
+    ]
+  },
+  "285": {
+    "sentence": "Alabama is in the United States .",
+    "triplets": [
+      [
+        "Alabama",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "286": {
+    "sentence": "Albany is a city in Dougherty County , Georgia .",
+    "triplets": [
+      [
+        "Georgia",
+        "isPartOf",
+        "Georgia"
+      ]
+    ]
+  },
+  "287": {
+    "sentence": "The leader of Albuquerque ( New Mexico ) is called the Mayor of Albuquerque .",
+    "triplets": [
+      [
+        "Mexico",
+        "leaderTitle",
+        "Albuquerque"
+      ]
+    ]
+  },
+  "288": {
+    "sentence": "In Albuquerque ( New Mexico ) , the leader is called , the United States House of Representatives .",
+    "triplets": [
+      [
+        "Mexico",
+        "leaderTitle",
+        "Representatives"
+      ]
+    ]
+  },
+  "289": {
+    "sentence": "Alexandria is part of the Monroe Township which is in Madison County , in Indiana .",
+    "triplets": [
+      [
+        "Indiana",
+        "isPartOf",
+        "Indiana"
+      ]
+    ]
+  },
+  "290": {
+    "sentence": "Tom Tait is a leader in Anaheim , California .",
+    "triplets": [
+      [
+        "California",
+        "leader",
+        "Tait"
+      ]
+    ]
+  },
+  "291": {
+    "sentence": "Ann Arbor is in Michigan .",
+    "triplets": [
+      [
+        "Michigan",
+        "isPartOf",
+        "Michigan"
+      ]
+    ]
+  },
+  "292": {
+    "sentence": "Auburn is in Pierce County , Washington .",
+    "triplets": [
+      [
+        "Washington",
+        "isPartOf",
+        "Washington"
+      ]
+    ]
+  },
+  "293": {
+    "sentence": "Mayor is the title of the leader of Auburn , in Washington .",
+    "triplets": [
+      [
+        "Washington",
+        "leaderTitle",
+        "Mayor"
+      ]
+    ]
+  },
+  "294": {
+    "sentence": "The California State Senate is located at the California State Capitol .",
+    "triplets": [
+      [
+        "Senate",
+        "location",
+        "Capitol"
+      ]
+    ]
+  },
+  "295": {
+    "sentence": "Jones County , Texas is in the United States .",
+    "triplets": [
+      [
+        "Texas",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "296": {
+    "sentence": "Anderson is the largest city in Madison County , Indiana .",
+    "triplets": [
+      [
+        "Indiana",
+        "largestCity",
+        "Indiana"
+      ]
+    ]
+  },
+  "297": {
+    "sentence": "Arabic is a language found in Michigan .",
+    "triplets": [
+      [
+        "Michigan",
+        "language",
+        "Arabic"
+      ]
+    ]
+  },
+  "298": {
+    "sentence": "Monroe Township is in Madison County which is a part of Indiana .",
+    "triplets": [
+      [
+        "Indiana",
+        "isPartOf",
+        "Indiana"
+      ]
+    ]
+  },
+  "299": {
+    "sentence": "Austin is the capital city of Texas .",
+    "triplets": [
+      [
+        "Texas",
+        "capital",
+        "Texas"
+      ]
+    ]
+  },
+  "300": {
+    "sentence": "Houston is the largest city in Texas .",
+    "triplets": [
+      [
+        "Texas",
+        "largestCity",
+        "Houston"
+      ]
+    ]
+  },
+  "301": {
+    "sentence": "Union Township is in Madison County , which is in Indiana , in the United States .",
+    "triplets": [
+      [
+        "Indiana",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "302": {
+    "sentence": "African Americans are an ethnic group in the United States .",
+    "triplets": [
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ]
+    ]
+  },
+  "303": {
+    "sentence": "White Americans are an ethnic group in the United States .",
+    "triplets": [
+      [
+        "States",
+        "ethnicGroup",
+        "Americans"
+      ]
+    ]
+  },
+  "304": {
+    "sentence": "Al Asad Airbase is found in Iraq .",
+    "triplets": [
+      [
+        "Airbase",
+        "location",
+        "Iraq"
+      ]
+    ]
+  },
+  "305": {
+    "sentence": "Alcobendas is part of Community of Madrid .",
+    "triplets": [
+      [
+        "Alcobendas",
+        "isPartOf",
+        "Madrid"
+      ]
+    ]
+  },
+  "306": {
+    "sentence": "The length of the first runway at Amsterdam Airport Schiphol is 3800 metres .",
+    "triplets": [
+      [
+        "Schiphol",
+        "1st_runway_LengthMetre",
+        "3800"
+      ]
+    ]
+  },
+  "307": {
+    "sentence": "Appleton International Airport is 1st 8002 runway length .",
+    "triplets": [
+      [
+        "Airport",
+        "1st_runway_LengthFeet",
+        "8002"
+      ]
+    ]
+  },
+  "308": {
+    "sentence": "Atlantic City , New Jersey is part of New Jersey .",
+    "triplets": [
+      [
+        "Jersey",
+        "isPartOf",
+        "Jersey"
+      ]
+    ]
+  },
+  "309": {
+    "sentence": "The runway length of Atlantic City International Airport is 3048.0 .",
+    "triplets": [
+      [
+        "Airport",
+        "runwayLength",
+        "3048.0"
+      ]
+    ]
+  },
+  "310": {
+    "sentence": "Greenlandic is the language spoken in Denmark .",
+    "triplets": [
+      [
+        "Denmark",
+        "language",
+        "language"
+      ]
+    ]
+  },
+  "311": {
+    "sentence": "Greece 's leader name is Prokopis Pavlopoulos .",
+    "triplets": [
+      [
+        "Greece",
+        "leaderName",
+        "Pavlopoulos"
+      ]
+    ]
+  },
+  "312": {
+    "sentence": "Greenville , Wisconsin , is part of Clayton Winnebago County , Wisconsin .",
+    "triplets": [
+      [
+        "Wisconsin",
+        "isPartOf",
+        "Wisconsin"
+      ]
+    ]
+  },
+  "313": {
+    "sentence": "South Jersey Transportation Authority 's leader name is Stephen Dilts .",
+    "triplets": [
+      [
+        "Authority",
+        "leaderName",
+        "Dilts"
+      ]
+    ]
+  },
+  "314": {
+    "sentence": "The headquarters of Turkmenistan Airlines are located in Turkmenistan .",
+    "triplets": [
+      [
+        "Airlines",
+        "headquarter",
+        "Turkmenistan"
+      ]
+    ]
+  },
+  "315": {
+    "sentence": "The hub airport for Turkmenistan Airlines is Turkmenbashi International Airport .",
+    "triplets": [
+      [
+        "Airlines",
+        "hubAirport",
+        "Airport"
+      ]
+    ]
+  },
+  "316": {
+    "sentence": "Uttar Pradesh is part of Bundelkhand .",
+    "triplets": [
+      [
+        "Pradesh",
+        "isPartOf",
+        "Bundelkhand"
+      ]
+    ]
+  },
+  "317": {
+    "sentence": "Wilson Township , Alpena County , Michigan is part of the United States .",
+    "triplets": [
+      [
+        "Michigan",
+        "isPartOf",
+        "States"
+      ]
+    ]
+  },
+  "318": {
+    "sentence": "\u00c3\ufffdcolo e Bengo is in Angola .",
+    "triplets": [
+      [
+        "Bengo",
+        "country",
+        "Angola"
+      ]
+    ]
+  },
+  "319": {
+    "sentence": "1634 : The Galileo Affair was followed by 1634 : The Ram Rebellion .",
+    "triplets": [
+      [
+        "Affair",
+        "followedBy",
+        "Rebellion"
+      ]
+    ]
+  },
+  "320": {
+    "sentence": "A T Charlie Johnson is a United States national .",
+    "triplets": [
+      [
+        "Johnson",
+        "nationality",
+        "States"
+      ]
+    ]
+  },
+  "321": {
+    "sentence": "The author of A Glastonbury Romance is John Cowper Powys .",
+    "triplets": [
+      [
+        "Romance",
+        "author",
+        "Powys"
+      ]
+    ]
+  },
+  "322": {
+    "sentence": "A Loyal Character Dancer was penned by Qiu Xiaolong .",
+    "triplets": [
+      [
+        "Dancer",
+        "author",
+        "Xiaolong"
+      ]
+    ]
+  },
+  "323": {
+    "sentence": "A Severed Wasp was written in the English language .",
+    "triplets": [
+      [
+        "Wasp",
+        "language",
+        "language"
+      ]
+    ]
+  },
+  "324": {
+    "sentence": "The Administrative Science Quarterly comes under the academic discipline of Management .",
+    "triplets": [
+      [
+        "Quarterly",
+        "academicDiscipline",
+        "Management"
+      ]
+    ]
+  },
+  "325": {
+    "sentence": "The book Aenir was written by Australians .",
+    "triplets": [
+      [
+        "Aenir",
+        "country",
+        "Australians"
+      ]
+    ]
+  },
+  "326": {
+    "sentence": "Alcatraz Versus the Scrivener 's Bones was authored by Brandon Sanderson .",
+    "triplets": [
+      [
+        "Bones",
+        "author",
+        "Sanderson"
+      ]
+    ]
+  },
+  "327": {
+    "sentence": "Weymouth Sands ' author was John Cowper Powys .",
+    "triplets": [
+      [
+        "Sands",
+        "author",
+        "Powys"
+      ]
+    ]
+  },
+  "328": {
+    "sentence": "Alan Bean was selected by Nasa in 1963 .",
+    "triplets": [
+      [
+        "Bean",
+        "was selected by NASA",
+        "1963"
+      ]
+    ]
+  },
+  "329": {
+    "sentence": "Alan Shepard was the Chief of the Astronaut Office .",
+    "triplets": [
+      [
+        "Shepard",
+        "title",
+        "Office"
+      ]
+    ]
+  },
+  "330": {
+    "sentence": "Frank Borman was an Apollo 8 Commander .",
+    "triplets": [
+      [
+        "8",
+        "commander",
+        "Borman"
+      ]
+    ]
+  },
+  "331": {
+    "sentence": "Chris Patten served as a representative of British Hong Kong .",
+    "triplets": [
+      [
+        "Kong",
+        "representative",
+        "Patten"
+      ]
+    ]
+  },
+  "332": {
+    "sentence": "Dallas is in Collin County , Texas .",
+    "triplets": [
+      [
+        "Dallas",
+        "part",
+        "Texas"
+      ]
+    ]
+  },
+  "333": {
+    "sentence": "The nationality of Elliot See is United States .",
+    "triplets": [
+      [
+        "See",
+        "nationality",
+        "States"
+      ]
+    ]
+  },
+  "334": {
+    "sentence": "The purple finch is a native bird to New Hampshire .",
+    "triplets": [
+      [
+        "Hampshire",
+        "bird",
+        "finch"
+      ]
+    ]
+  },
+  "335": {
+    "sentence": "St. Louis was situated in the Kingdom of France .",
+    "triplets": [
+      [
+        "Louis",
+        "isPartOf",
+        "France"
+      ]
+    ]
+  },
+  "336": {
+    "sentence": "The architect of 11 Diagonal Street is Helmut Jahn .",
+    "triplets": [
+      [
+        "Street",
+        "architect",
+        "Jahn"
+      ]
+    ]
+  },
+  "337": {
+    "sentence": "There are 34 floors at 20 Fenchurch Street .",
+    "triplets": [
+      [
+        "Street",
+        "floorCount",
+        "34"
+      ]
+    ]
+  },
+  "338": {
+    "sentence": "The 3Arena is located in Dublin .",
+    "triplets": [
+      [
+        "3Arena",
+        "location",
+        "Dublin"
+      ]
+    ]
+  },
+  "339": {
+    "sentence": "Philip Charles Hardwick was the architect of Adare Manor .",
+    "triplets": [
+      [
+        "Manor",
+        "architect",
+        "Hardwick"
+      ]
+    ]
+  },
+  "340": {
+    "sentence": "Adisham Hall was completed in 1931 .",
+    "triplets": [
+      [
+        "Hall",
+        "completionDate",
+        "1931"
+      ]
+    ]
+  },
+  "341": {
+    "sentence": "Akita Museum of Art is located in Akita Prefecture .",
+    "triplets": [
+      [
+        "Art",
+        "location",
+        "Prefecture"
+      ]
+    ]
+  },
+  "342": {
+    "sentence": "Amdavad ni Gufa was completed in 1995 .",
+    "triplets": [
+      [
+        "Gufa",
+        "completionDate",
+        "1995"
+      ]
+    ]
+  },
+  "343": {
+    "sentence": "Amdavad ni Gufa is located in India .",
+    "triplets": [
+      [
+        "Gufa",
+        "country",
+        "India"
+      ]
+    ]
+  },
+  "344": {
+    "sentence": "The location of Amdavad ni Gufa is Ahmedabad .",
+    "triplets": [
+      [
+        "Gufa",
+        "location",
+        "Ahmedabad"
+      ]
+    ]
+  },
+  "345": {
+    "sentence": "Asher and Mary Isabelle Richardson House is located in Asherton , Texas .",
+    "triplets": [
+      [
+        "House",
+        "location",
+        "Texas"
+      ]
+    ]
+  },
+  "346": {
+    "sentence": "The Liberal Democrats are the leaders of Birmingham .",
+    "triplets": [
+      [
+        "Birmingham",
+        "leaderName",
+        "Democrats"
+      ]
+    ]
+  },
+  "347": {
+    "sentence": "Copenhagen is the capital of Denmark .",
+    "triplets": [
+      [
+        "Denmark",
+        "capital",
+        "Copenhagen"
+      ]
+    ]
+  },
+  "348": {
+    "sentence": "There is an ethnic group of Vietnamese people in Japan .",
+    "triplets": [
+      [
+        "Japan",
+        "ethnicGroup",
+        "Japan"
+      ]
+    ]
+  },
+  "349": {
+    "sentence": "New York City is part of New York .",
+    "triplets": [
+      [
+        "City",
+        "isPartOf",
+        "York"
+      ]
+    ]
+  },
+  "350": {
+    "sentence": "Pacific Grove , California is in the United States .",
+    "triplets": [
+      [
+        "California",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "351": {
+    "sentence": "The 1 Decembrie 1918 University is located in the country of Romania .",
+    "triplets": [
+      [
+        "University",
+        "country",
+        "Romania"
+      ]
+    ]
+  },
+  "352": {
+    "sentence": "Mols is to the northeast of Aarhus .",
+    "triplets": [
+      [
+        "Aarhus",
+        "has to its northeast",
+        "Mols"
+      ]
+    ]
+  },
+  "353": {
+    "sentence": "There are 600 students at the Accademia di Architettura di Mendrisio .",
+    "triplets": [
+      [
+        "Mendrisio",
+        "numberOfStudents",
+        "600"
+      ]
+    ]
+  },
+  "354": {
+    "sentence": "All India Council for Technical Education is located in Mumbai .",
+    "triplets": [
+      [
+        "Education",
+        "location",
+        "Mumbai"
+      ]
+    ]
+  },
+  "355": {
+    "sentence": "Denmark is led by a Monarch .",
+    "triplets": [
+      [
+        "Denmark",
+        "leaderTitle",
+        "Denmark"
+      ]
+    ]
+  },
+  "356": {
+    "sentence": "Olive oil is an ingredient in Ajoblanco .",
+    "triplets": [
+      [
+        "Ajoblanco",
+        "ingredient",
+        "oil"
+      ]
+    ]
+  },
+  "357": {
+    "sentence": "Ajoblanco is a food found in Andalusia .",
+    "triplets": [
+      [
+        "Ajoblanco",
+        "region",
+        "Andalusia"
+      ]
+    ]
+  },
+  "358": {
+    "sentence": "Tomato is an ingredient in Arrabbiata sauce .",
+    "triplets": [
+      [
+        "sauce",
+        "ingredient",
+        "Tomato"
+      ]
+    ]
+  },
+  "359": {
+    "sentence": "Bacon is an ingredient in a Bacon Explosion .",
+    "triplets": [
+      [
+        "Explosion",
+        "ingredient",
+        "Bacon"
+      ]
+    ]
+  },
+  "360": {
+    "sentence": "Baked Alaska is a dish in China .",
+    "triplets": [
+      [
+        "Alaska",
+        "country",
+        "China"
+      ]
+    ]
+  },
+  "361": {
+    "sentence": "Baked Alaska is from the country of France .",
+    "triplets": [
+      [
+        "Alaska",
+        "country",
+        "France"
+      ]
+    ]
+  },
+  "362": {
+    "sentence": "A variant of bakewell pudding is bakewell tart .",
+    "triplets": [
+      [
+        "pudding",
+        "dishVariation",
+        "tart"
+      ]
+    ]
+  },
+  "363": {
+    "sentence": "Celery is an ingredient of Bakso .",
+    "triplets": [
+      [
+        "Bakso",
+        "ingredient",
+        "Celery"
+      ]
+    ]
+  },
+  "364": {
+    "sentence": "Beef is an ingredient of Batchoy .",
+    "triplets": [
+      [
+        "Batchoy",
+        "ingredient",
+        "Beef"
+      ]
+    ]
+  },
+  "365": {
+    "sentence": "The county Binignit comes from is the Philippines .",
+    "triplets": [
+      [
+        "Binignit",
+        "country",
+        "Philippines"
+      ]
+    ]
+  },
+  "366": {
+    "sentence": "Sour cream is an ingredient of Bionico .",
+    "triplets": [
+      [
+        "Bionico",
+        "ingredient",
+        "cream"
+      ]
+    ]
+  },
+  "367": {
+    "sentence": "Claude Bartolone is a leader of France .",
+    "triplets": [
+      [
+        "France",
+        "leaderName",
+        "Bartolone"
+      ]
+    ]
+  },
+  "368": {
+    "sentence": "Joko Widodo is the leader of Indonesia .",
+    "triplets": [
+      [
+        "Indonesia",
+        "leaderName",
+        "Widodo"
+      ]
+    ]
+  },
+  "369": {
+    "sentence": "Matteo Renzi is a leader from Italy .",
+    "triplets": [
+      [
+        "Italy",
+        "leaderName",
+        "Renzi"
+      ]
+    ]
+  },
+  "370": {
+    "sentence": "Pietro Grasso is the leader of Italy .",
+    "triplets": [
+      [
+        "Italy",
+        "leaderName",
+        "Grasso"
+      ]
+    ]
+  },
+  "371": {
+    "sentence": "The capital of Malaysia is Putrajaya .",
+    "triplets": [
+      [
+        "Malaysia",
+        "capital",
+        "Putrajaya"
+      ]
+    ]
+  },
+  "372": {
+    "sentence": "Mondelez International was founded in Chicago .",
+    "triplets": [
+      [
+        "International",
+        "foundationPlace",
+        "Chicago"
+      ]
+    ]
+  },
+  "373": {
+    "sentence": "The Chinese Filipino is an ethnic group in the Philippines .",
+    "triplets": [
+      [
+        "Philippines",
+        "ethnicGroup",
+        "Filipino"
+      ]
+    ]
+  },
+  "374": {
+    "sentence": "Shiitake is an ingredient of Shumai .",
+    "triplets": [
+      [
+        "Shumai",
+        "ingredient",
+        "Shiitake"
+      ]
+    ]
+  },
+  "375": {
+    "sentence": "Standard Chinese is a language spoken in Singapore .",
+    "triplets": [
+      [
+        "Singapore",
+        "language",
+        "Chinese"
+      ]
+    ]
+  },
+  "376": {
+    "sentence": "One the ethnic groups on Sumatra is the Acehnese people .",
+    "triplets": [
+      [
+        "Sumatra",
+        "ethnicGroup",
+        "people"
+      ]
+    ]
+  },
+  "377": {
+    "sentence": "Barack Obama is a leader of the United States .",
+    "triplets": [
+      [
+        "States",
+        "leaderName",
+        "Obama"
+      ]
+    ]
+  },
+  "378": {
+    "sentence": "London is the capital of England .",
+    "triplets": [
+      [
+        "England",
+        "capital",
+        "London"
+      ]
+    ]
+  },
+  "379": {
+    "sentence": "The largest city in Turkey is Istanbul .",
+    "triplets": [
+      [
+        "Turkey",
+        "largestCity",
+        "Istanbul"
+      ]
+    ]
+  },
+  "380": {
+    "sentence": "1 FC K\u00c3\u00b6ln played in the 2014 season .",
+    "triplets": [
+      [
+        "K\u00c3\u00b6ln",
+        "season",
+        "2014"
+      ]
+    ]
+  },
+  "381": {
+    "sentence": "AC Chievo Verona play in the Serie A league .",
+    "triplets": [
+      [
+        "Verona",
+        "league",
+        "A"
+      ]
+    ]
+  },
+  "382": {
+    "sentence": "AC Lumezzane has 4150 members .",
+    "triplets": [
+      [
+        "Lumezzane",
+        "numberOfMembers",
+        "4150"
+      ]
+    ]
+  },
+  "383": {
+    "sentence": "AFC Fylde has 3180 members .",
+    "triplets": [
+      [
+        "Fylde",
+        "numberOfMembers",
+        "3180"
+      ]
+    ]
+  },
+  "384": {
+    "sentence": "A S Livorno Calcio 's home ground is the Stadio Armando Picchi .",
+    "triplets": [
+      [
+        "Calcio",
+        "ground",
+        "Picchi"
+      ]
+    ]
+  },
+  "385": {
+    "sentence": "The chairman of the A.S. Roma is James Pallotta .",
+    "triplets": [
+      [
+        "Roma",
+        "chairman",
+        "Pallotta"
+      ]
+    ]
+  },
+  "386": {
+    "sentence": "AFC Ajax played in the 2014 season .",
+    "triplets": [
+      [
+        "Ajax",
+        "season",
+        "2014"
+      ]
+    ]
+  },
+  "387": {
+    "sentence": "the AZAL Arena is located in Azerbaijan .",
+    "triplets": [
+      [
+        "Arena",
+        "location",
+        "Azerbaijan"
+      ]
+    ]
+  },
+  "388": {
+    "sentence": "AZAL PFK play their home matches at the AZAL Arena .",
+    "triplets": [
+      [
+        "PFK",
+        "ground",
+        "Arena"
+      ]
+    ]
+  },
+  "389": {
+    "sentence": "AZ Alkmaar 's ground is the AFAS Stadion .",
+    "triplets": [
+      [
+        "Alkmaar",
+        "ground",
+        "Stadion"
+      ]
+    ]
+  },
+  "390": {
+    "sentence": "Christian Panucci played for the Italy national football team .",
+    "triplets": [
+      [
+        "Panucci",
+        "club",
+        "team"
+      ]
+    ]
+  },
+  "391": {
+    "sentence": "Italy is inhabited by Italians .",
+    "triplets": [
+      [
+        "Italy",
+        "demonym",
+        "Italians"
+      ]
+    ]
+  },
+  "392": {
+    "sentence": "Jens H\u00c3\u00a4rtel is in the RB Leipzig club .",
+    "triplets": [
+      [
+        "H\u00c3\u00a4rtel",
+        "club",
+        "Leipzig"
+      ]
+    ]
+  },
+  "393": {
+    "sentence": "Max Huiberts is associated with the club AZ Alkmaar .",
+    "triplets": [
+      [
+        "Huiberts",
+        "club",
+        "Alkmaar"
+      ]
+    ]
+  },
+  "394": {
+    "sentence": "Michele Marcolini plays for A.C. Chievo Verona .",
+    "triplets": [
+      [
+        "Marcolini",
+        "club",
+        "Verona"
+      ]
+    ]
+  },
+  "395": {
+    "sentence": "Michele Marcolini was born in Italy .",
+    "triplets": [
+      [
+        "Marcolini",
+        "placeOfBirth",
+        "Italy"
+      ]
+    ]
+  },
+  "396": {
+    "sentence": "The 11th Mississippi Monument is located in Adams County , Pennsylvania . It was established in 2000 and it is categorized as a Contributing Property . Adams County has Cumberland County ( Pa ) to its north ; Maryland 's Frederick County to its north east and Carroll County , Maryland to its southeast .",
+    "triplets": [
+      [
+        "Pennsylvania",
+        "has to its southeast",
+        "Maryland"
+      ],
+      [
+        "Monument",
+        "established",
+        "2000"
+      ],
+      [
+        "Pennsylvania",
+        "has to its north",
+        "Pennsylvania"
+      ],
+      [
+        "Pennsylvania",
+        "has to its southwest",
+        "Maryland"
+      ],
+      [
+        "Monument",
+        "location",
+        "Pennsylvania"
+      ]
+    ]
+  },
+  "397": {
+    "sentence": "The Baku Turkish Maryrs ' Memorial is dedicated to the Ottoman Army Soldiers killed in the Battle of Baku . It is located in Azerbaijan . The capital of Azeribaijan is Baku and its leader is Prime Minister Artur Rasizade . Azerbaijan has legislature of National Assembly .",
+    "triplets": [
+      [
+        "Azerbaijan",
+        "capital",
+        "Baku"
+      ],
+      [
+        "Azerbaijan",
+        "leaderTitle",
+        "Azerbaijan"
+      ],
+      [
+        "Memorial",
+        "location",
+        "Azerbaijan"
+      ],
+      [
+        "Azerbaijan",
+        "leaderName",
+        "Rasizade"
+      ]
+    ]
+  },
+  "398": {
+    "sentence": "The Baku Turkish Martyrs ' Memorial is located in Azerbaijan whose capital is Baku . The memorial is dedicated to Ottoman Army soldiers killed in the Battle of Baku and is called Turk Sehitleri Aniti . It was designed by H\u00c3\u00bcseyin B\u00c3\u00bct\u00c3\u00bcner and Hilmi G\u00c3\u00bcner . Azerbaijan is led by the Prime Minister .",
+    "triplets": [
+      [
+        "Azerbaijan",
+        "capital",
+        "Baku"
+      ],
+      [
+        "Azerbaijan",
+        "leaderTitle",
+        "Azerbaijan"
+      ],
+      [
+        "Memorial",
+        "location",
+        "Azerbaijan"
+      ]
+    ]
+  },
+  "399": {
+    "sentence": "Frederick , Maryland is the nearest city to the Monocacy National Battlefield of Frederick County , Maryland . It is the location of the 14th New Jersey Volunteer Infantry Monument which was established on 11 July 1907 which is categorised as belonging to the historic districts of the United States .",
+    "triplets": [
+      [
+        "Battlefield",
+        "location",
+        "Maryland"
+      ],
+      [
+        "Monument",
+        "category",
+        "States"
+      ],
+      [
+        "Monument",
+        "district",
+        "Battlefield"
+      ],
+      [
+        "Battlefield",
+        "nearestCity",
+        "Maryland"
+      ]
+    ]
+  },
+  "400": {
+    "sentence": "The 1 Decembrie 1918 University is located in Alba Iulia , Alba , Romania . Its Latun name is `` Universitas Apulensis '' and its nickname is `` Uab '' . Its rectore is Breaz Valer Daniel .",
+    "triplets": [
+      [
+        "University",
+        "nickname",
+        "Uab"
+      ],
+      [
+        "University",
+        "city",
+        "Iulia"
+      ],
+      [
+        "University",
+        "country",
+        "Romania"
+      ],
+      [
+        "University",
+        "state",
+        "Alba"
+      ]
+    ]
+  },
+  "401": {
+    "sentence": "AWH Engineering College is in Kuttikkattoor , India in the state of Kerala . The school has 250 employees and Kerala is ruled by Kochi . The Ganges River is also found in India .",
+    "triplets": [
+      [
+        "College",
+        "country",
+        "India"
+      ],
+      [
+        "Kerala",
+        "leaderName",
+        "Kochi"
+      ],
+      [
+        "College",
+        "academicStaffSize",
+        "250"
+      ],
+      [
+        "College",
+        "state",
+        "Kerala"
+      ],
+      [
+        "India",
+        "river",
+        "Ganges"
+      ]
+    ]
+  },
+  "402": {
+    "sentence": "Acharya Institute of Technology , which is in the state of Karnataka , is affiliated with Visvesvaraya Technological University in Belgium . The school was given its Technical Campus status by the All India Council for Technical Education in Mumbai . To the west of Karnataka is the Arabian Sea .",
+    "triplets": [
+      [
+        "Technology",
+        "affiliation",
+        "University"
+      ],
+      [
+        "Technology",
+        "was given the 'Technical Campus' status by",
+        "Education"
+      ],
+      [
+        "Education",
+        "location",
+        "Mumbai"
+      ],
+      [
+        "Karnataka",
+        "has to its west",
+        "Sea"
+      ],
+      [
+        "Technology",
+        "state",
+        "Karnataka"
+      ]
+    ]
+  },
+  "403": {
+    "sentence": "The Acharya Institute of Technology is situated in the city of Bangalore in the state of Karnataka , India . The president of the institute is B.M . Reddy and director Dr. G. P. Prabhukumar . Acharya Institute also has strong connections with the Visvesvaraya Technological University .",
+    "triplets": [
+      [
+        "Technology",
+        "city",
+        "Bangalore"
+      ],
+      [
+        "Technology",
+        "state",
+        "Karnataka"
+      ],
+      [
+        "Technology",
+        "affiliation",
+        "University"
+      ]
+    ]
+  },
+  "404": {
+    "sentence": "The Acharya Institute of Technology was established in 2000 in India . Its president is B.M . Reddy and its director is Dr. G. P. Prabhukumar . The institute is an affiliate of Visvesvaraya Technological University , which is located in the city of Belgaum .",
+    "triplets": [
+      [
+        "University",
+        "city",
+        "Belgaum"
+      ],
+      [
+        "Technology",
+        "established",
+        "2000"
+      ],
+      [
+        "Technology",
+        "affiliation",
+        "University"
+      ]
+    ]
+  },
+  "405": {
+    "sentence": "The Acharya Institute of Techology in Soldevanahalli , Acharya Dr. Sarvapalli Radhakrishnan Road , Hessarghatta Main Road , Bangalore - 560090 , India was established in 2000 . Its president is B.M . Reddy . It is associated with the Visvesvaraya Technological University in Belgaum .",
+    "triplets": [
+      [
+        "University",
+        "city",
+        "Belgaum"
+      ]
+    ]
+  },
+  "406": {
+    "sentence": "The 1 Decembrie 1918 University is located in Alba Iulia , Alba County , Romania . Romania 's capital is Bucharest , its leader is Klaus Iohannis and its ethnic group is Germans of Romania .",
+    "triplets": [
+      [
+        "Romania",
+        "ethnicGroup",
+        "Romania"
+      ],
+      [
+        "Iulia",
+        "isPartOf",
+        "County"
+      ],
+      [
+        "Romania",
+        "leaderName",
+        "Iohannis"
+      ],
+      [
+        "Romania",
+        "capital",
+        "Bucharest"
+      ],
+      [
+        "University",
+        "city",
+        "Iulia"
+      ],
+      [
+        "University",
+        "country",
+        "Romania"
+      ]
+    ]
+  },
+  "407": {
+    "sentence": "Alan Shepard was born in New Hampshire and died in California . He went school at NWC and graduated with an MA in 1957 , was a test pilot and was a crew member aboard Apollo 14 which was operated by NASA .",
+    "triplets": [
+      [
+        "Shepard",
+        "was a crew member of",
+        "14"
+      ],
+      [
+        "Shepard",
+        "occupation",
+        "pilot"
+      ],
+      [
+        "Shepard",
+        "deathPlace",
+        "California"
+      ],
+      [
+        "Shepard",
+        "birthPlace",
+        "Hampshire"
+      ],
+      [
+        "14",
+        "operator",
+        "NASA"
+      ]
+    ]
+  },
+  "408": {
+    "sentence": "Alan Shepard was born in New Hampshire and died in California . His occupation was a test pilot and he was selected by NASA in 1959 . The United States Navy awarded the Distinguished Service Medal to Alan Shepard , which ranks higher than Department of Commerce Gold Medal .",
+    "triplets": [
+      [
+        "Shepard",
+        "occupation",
+        "pilot"
+      ],
+      [
+        "Shepard",
+        "was selected by NASA",
+        "1959"
+      ],
+      [
+        "Shepard",
+        "deathPlace",
+        "California"
+      ],
+      [
+        "Shepard",
+        "birthPlace",
+        "Hampshire"
+      ]
+    ]
+  },
+  "409": {
+    "sentence": "Alan Shepard was born in New Hampshire , and died in California . He was selected by NASA in 1959 , after graduating from NWC with a M.A . in 1957 .",
+    "triplets": [
+      [
+        "Shepard",
+        "deathPlace",
+        "California"
+      ],
+      [
+        "Shepard",
+        "birthPlace",
+        "Hampshire"
+      ],
+      [
+        "Shepard",
+        "was selected by NASA",
+        "1959"
+      ]
+    ]
+  },
+  "410": {
+    "sentence": "Alan Bean joined NASA in 1963 where he became a member of the Apollo 12 mission along with Alfred Worden as back up pilot and David Scott as commander .",
+    "triplets": [
+      [
+        "12",
+        "backup pilot",
+        "Worden"
+      ],
+      [
+        "Bean",
+        "was a crew member of",
+        "12"
+      ],
+      [
+        "12",
+        "operator",
+        "NASA"
+      ],
+      [
+        "12",
+        "commander",
+        "Scott"
+      ],
+      [
+        "Bean",
+        "was selected by NASA",
+        "1963"
+      ]
+    ]
+  },
+  "411": {
+    "sentence": "Alan Bean was born on the 15th of March 1932 and selected to be part of NASA 's Apollo 12 mission in 1963 . Apollo 12 was commanded by David Scott and included backup pilot Alfred Worden .",
+    "triplets": [
+      [
+        "12",
+        "backup pilot",
+        "Worden"
+      ],
+      [
+        "Bean",
+        "was a crew member of",
+        "12"
+      ],
+      [
+        "12",
+        "operator",
+        "NASA"
+      ],
+      [
+        "12",
+        "commander",
+        "Scott"
+      ],
+      [
+        "Bean",
+        "was selected by NASA",
+        "1963"
+      ]
+    ]
+  },
+  "412": {
+    "sentence": "American fighter pilot Buzz Aldrin was born on January 20 , 1930 , in Glen Ridge , New Jersey . He would serve as a crew member aboard NASA 's Apollo 11 program .",
+    "triplets": [
+      [
+        "Aldrin",
+        "birthPlace",
+        "Jersey"
+      ],
+      [
+        "Aldrin",
+        "was a crew member of",
+        "11"
+      ],
+      [
+        "Aldrin",
+        "occupation",
+        "pilot"
+      ],
+      [
+        "11",
+        "operator",
+        "NASA"
+      ]
+    ]
+  },
+  "413": {
+    "sentence": "Buzz Aldrin was born in Glen Ridge , Essex County , New Jersey . He joined NASA in 1963 , where he would go on to serve as a crew member aboard the Apollo 11 mission . That mission also included backup pilot William Anders .",
+    "triplets": [
+      [
+        "Aldrin",
+        "birthPlace",
+        "Jersey"
+      ],
+      [
+        "Aldrin",
+        "was a crew member of",
+        "11"
+      ],
+      [
+        "Aldrin",
+        "was selected by NASA",
+        "1963"
+      ],
+      [
+        "Jersey",
+        "isPartOf",
+        "Jersey"
+      ],
+      [
+        "11",
+        "backup pilot",
+        "Anders"
+      ],
+      [
+        "11",
+        "operator",
+        "NASA"
+      ]
+    ]
+  },
+  "414": {
+    "sentence": "Elliot See ( born in Dallas ) was a student at University of Texas at Austin , and was later chosen to serve as a test pilot . He passed away in St. Louis on the 28th of February , 1966 .",
+    "triplets": [
+      [
+        "See",
+        "almaMater",
+        "Austin"
+      ],
+      [
+        "See",
+        "deathPlace",
+        "Louis"
+      ],
+      [
+        "See",
+        "birthPlace",
+        "Dallas"
+      ],
+      [
+        "See",
+        "occupation",
+        "pilot"
+      ]
+    ]
+  },
+  "415": {
+    "sentence": "Elliot See , now deceased , was born in Dallas and became a test pilot . He studied at University of Texas in Austin which is affiliated to the University of Texas system and is competing in the Big 12 conference .",
+    "triplets": [
+      [
+        "See",
+        "almaMater",
+        "Austin"
+      ],
+      [
+        "See",
+        "occupation",
+        "pilot"
+      ],
+      [
+        "See",
+        "birthPlace",
+        "Dallas"
+      ]
+    ]
+  },
+  "416": {
+    "sentence": "The University of Texas , Austin , in Dallas , Collin County , is an affiliate of the University of Texas system . Its sporting teams compete in the Big 12 Conference and their mascot is Hook'em . A notable alumni of the university is Dallas-born Elliot See .",
+    "triplets": [
+      [
+        "See",
+        "almaMater",
+        "Austin"
+      ],
+      [
+        "See",
+        "birthPlace",
+        "Dallas"
+      ],
+      [
+        "Austin",
+        "compete in",
+        "Conference"
+      ],
+      [
+        "Dallas",
+        "part",
+        "Texas"
+      ]
+    ]
+  },
+  "417": {
+    "sentence": "William Anders was born in 1933 and joined NASA in 1963 . He served as a crew member of Apollo 8 , operated by NASA . The backup pilot was Buzz Aldrin and Frank Borman was also a crew member .",
+    "triplets": [
+      [
+        "Anders",
+        "was a crew member of",
+        "8"
+      ],
+      [
+        "8",
+        "backup pilot",
+        "Aldrin"
+      ],
+      [
+        "8",
+        "crewMembers",
+        "Borman"
+      ],
+      [
+        "8",
+        "operator",
+        "NASA"
+      ],
+      [
+        "Anders",
+        "was selected by NASA",
+        "1963"
+      ]
+    ]
+  },
+  "418": {
+    "sentence": "William Anders was born Oct 17th in British Hong Kong . He was crew member on Apollo 8 in 1963 . He retired .",
+    "triplets": [
+      [
+        "Anders",
+        "was selected by NASA",
+        "1963"
+      ],
+      [
+        "Anders",
+        "birthPlace",
+        "Kong"
+      ],
+      [
+        "Anders",
+        "was a crew member of",
+        "8"
+      ]
+    ]
+  },
+  "419": {
+    "sentence": "Tim Brooke-Taylor , born in England , starred in Bananaman .",
+    "triplets": [
+      [
+        "Bananaman",
+        "starring",
+        "Brooke-Taylor"
+      ],
+      [
+        "Brooke-Taylor",
+        "birthPlace",
+        "England"
+      ]
+    ]
+  },
+  "420": {
+    "sentence": "Aarhus Lufthavn A/S is the operation organisation of Aarhus Airport which has a runway length of 2702.0 .",
+    "triplets": [
+      [
+        "Airport",
+        "runwayLength",
+        "2702.0"
+      ]
+    ]
+  },
+  "421": {
+    "sentence": "The Abilene regional airport serves Abilene , Jones County , Texas .",
+    "triplets": [
+      [
+        "Texas",
+        "isPartOf",
+        "Texas"
+      ]
+    ]
+  },
+  "422": {
+    "sentence": "Adolfo Suarez Madrid- Barajas airport is located at San Sebastian de los Reyes , in Spain .",
+    "triplets": [
+      [
+        "Reyes",
+        "country",
+        "Spain"
+      ]
+    ]
+  },
+  "423": {
+    "sentence": "Agra Airport is located in India , where the leader is Narendra Modi .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "India"
+      ],
+      [
+        "India",
+        "leaderName",
+        "Modi"
+      ]
+    ]
+  },
+  "424": {
+    "sentence": "Alderney Airport serves the English speaking city of Alderney .",
+    "triplets": [
+      [
+        "Airport",
+        "cityServed",
+        "Alderney"
+      ]
+    ]
+  },
+  "425": {
+    "sentence": "The Alderney Airport serves Alderney whose leader is Elizabeth II .",
+    "triplets": [
+      [
+        "Airport",
+        "cityServed",
+        "Alderney"
+      ],
+      [
+        "Alderney",
+        "leaderName",
+        "II"
+      ]
+    ]
+  },
+  "426": {
+    "sentence": "Alpena County Regional Airport has an elevation of 210 metres above sea level and is located at Wilson Township , Alpena County , Michigan .",
+    "triplets": [
+      [
+        "Airport",
+        "location",
+        "Michigan"
+      ],
+      [
+        "Airport",
+        "elevationAboveTheSeaLevel_(in_metres)",
+        "210"
+      ]
+    ]
+  },
+  "427": {
+    "sentence": "The Amsterdam Airport Schiphol in Haarlemmermeer is -3.3528 metres above sea level .",
+    "triplets": [
+      [
+        "Schiphol",
+        "elevationAboveTheSeaLevel_(in_metres)",
+        "-3.3528"
+      ],
+      [
+        "Schiphol",
+        "location",
+        "Haarlemmermeer"
+      ]
+    ]
+  },
+  "428": {
+    "sentence": "Antwerp International Airport serves the city of Antwerp in Belgium .",
+    "triplets": [
+      [
+        "Airport",
+        "cityServed",
+        "Antwerp"
+      ],
+      [
+        "Antwerp",
+        "country",
+        "Belgium"
+      ]
+    ]
+  },
+  "429": {
+    "sentence": "Appleton International airport is located in Greenville , Wisconsin , in the United States .",
+    "triplets": [
+      [
+        "Wisconsin",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "430": {
+    "sentence": "Poaceae is the order of Commelinids , it is also the surface type of the second runway of Ardmore Airport , New Zealand .",
+    "triplets": [
+      [
+        "Poaceae",
+        "order",
+        "Commelinids"
+      ]
+    ]
+  },
+  "431": {
+    "sentence": "Alan Shepard was born in New Hampshire and he served as the Chief of the Astronaut Office .",
+    "triplets": [
+      [
+        "Shepard",
+        "title",
+        "Office"
+      ],
+      [
+        "Shepard",
+        "birthPlace",
+        "Hampshire"
+      ]
+    ]
+  },
+  "432": {
+    "sentence": "Elliot See graduated from the University of Texas at Austin , affiliated to the university of Texas system .",
+    "triplets": [
+      [
+        "See",
+        "almaMater",
+        "Austin"
+      ]
+    ]
+  },
+  "433": {
+    "sentence": "Elliot See died in St. Louis , the Kingdom of France .",
+    "triplets": [
+      [
+        "See",
+        "deathPlace",
+        "Louis"
+      ],
+      [
+        "Louis",
+        "isPartOf",
+        "France"
+      ]
+    ]
+  },
+  "434": {
+    "sentence": "Born on 17 October , 1933 , William Anders joined NASA in 1963 .",
+    "triplets": [
+      [
+        "Anders",
+        "was selected by NASA",
+        "1963"
+      ]
+    ]
+  },
+  "435": {
+    "sentence": "The Accademia di Architettura di Mendrisio is located in the city of Mendrisio in Switzerland .",
+    "triplets": [
+      [
+        "Mendrisio",
+        "country",
+        "Switzerland"
+      ],
+      [
+        "Mendrisio",
+        "city",
+        "Mendrisio"
+      ]
+    ]
+  },
+  "436": {
+    "sentence": "The Acharya Institute of Technology was established in India in 2000 .",
+    "triplets": [
+      [
+        "Technology",
+        "established",
+        "2000"
+      ]
+    ]
+  },
+  "437": {
+    "sentence": "1 Decembrie 1918 University is located in Romania whose leader is Klaus Johannis .",
+    "triplets": [
+      [
+        "University",
+        "country",
+        "Romania"
+      ]
+    ]
+  },
+  "438": {
+    "sentence": "The 1 Decembrie 1918 University is in the country of Romania who has the patron saint Andrew the Apostle .",
+    "triplets": [
+      [
+        "Romania",
+        "patronSaint",
+        "Apostle"
+      ],
+      [
+        "University",
+        "country",
+        "Romania"
+      ]
+    ]
+  },
+  "439": {
+    "sentence": "Peter St\u00c3\u00b6ger is at the FK Austria Wien club and manages 1 FC Koln .",
+    "triplets": [
+      [
+        "St\u00c3\u00b6ger",
+        "club",
+        "Wien"
+      ]
+    ]
+  },
+  "440": {
+    "sentence": "3 Liga league team 1FC Magdeburg has 27250 members .",
+    "triplets": [
+      [
+        "Magdeburg",
+        "league",
+        "Liga"
+      ],
+      [
+        "Magdeburg",
+        "numberOfMembers",
+        "27250"
+      ]
+    ]
+  },
+  "441": {
+    "sentence": "A > C Cesena ground is in Cesena , the team is in the Serie B league .",
+    "triplets": [
+      [
+        "Cesena",
+        "ground",
+        "Cesena"
+      ],
+      [
+        "Cesena",
+        "league",
+        "B"
+      ]
+    ]
+  },
+  "442": {
+    "sentence": "A.C. Cesena is in Italy and has 23900 members .",
+    "triplets": [
+      [
+        "Cesena",
+        "ground",
+        "Italy"
+      ],
+      [
+        "Cesena",
+        "numberOfMembers",
+        "23900"
+      ]
+    ]
+  },
+  "443": {
+    "sentence": "Associazione Calcio Chievo Verona is managed by Rolando Maran , who is in the Unione Triestina 2012 S.S.D . club .",
+    "triplets": [
+      [
+        "Verona",
+        "manager",
+        "Maran"
+      ]
+    ]
+  },
+  "444": {
+    "sentence": "Michele Marcolini has been manager of AC Lumezzane and played for Torino FC .",
+    "triplets": [
+      [
+        "Lumezzane",
+        "manager",
+        "Marcolini"
+      ]
+    ]
+  },
+  "445": {
+    "sentence": "A.E Dimitra Efxeinoupolis is located in Greece , the capital of which is Athens .",
+    "triplets": [
+      [
+        "Efxeinoupolis",
+        "location",
+        "Greece"
+      ],
+      [
+        "Greece",
+        "capital",
+        "Athens"
+      ]
+    ]
+  },
+  "446": {
+    "sentence": "A.F.C . Blackpool , is in Blackpool , and play in the English Football League .",
+    "triplets": [
+      [
+        "Blackpool",
+        "ground",
+        "Blackpool"
+      ]
+    ]
+  },
+  "447": {
+    "sentence": "AFC Fylde 's manager is Dave Challinor who once played for Bury F.C .",
+    "triplets": [
+      [
+        "Fylde",
+        "manager",
+        "Challinor"
+      ]
+    ]
+  },
+  "448": {
+    "sentence": "A.S. Livorno Calcio is managed by Christian Panucci who played football for Genoa C.F.C .",
+    "triplets": [
+      [
+        "Calcio",
+        "manager",
+        "Panucci"
+      ]
+    ]
+  },
+  "449": {
+    "sentence": "A.S. Livorno Calcio is managed by Christian Panucci who plays for Inter Milan .",
+    "triplets": [
+      [
+        "Calcio",
+        "manager",
+        "Panucci"
+      ],
+      [
+        "Panucci",
+        "club",
+        "Milan"
+      ]
+    ]
+  },
+  "450": {
+    "sentence": "AS Roma play in the Serie A league and have a ground in Rome .",
+    "triplets": [
+      [
+        "Roma",
+        "league",
+        "A"
+      ],
+      [
+        "Roma",
+        "ground",
+        "Rome"
+      ]
+    ]
+  },
+  "451": {
+    "sentence": "The manager of AFC Ajax 's manager is Frank de Boer who is also attached to the club FC Barcelona .",
+    "triplets": [
+      [
+        "Ajax",
+        "manager",
+        "Boer"
+      ],
+      [
+        "Boer",
+        "club",
+        "Barcelona"
+      ]
+    ]
+  },
+  "452": {
+    "sentence": "AZ Alkmaar has 17023 members and played in the 2014 season .",
+    "triplets": [
+      [
+        "Alkmaar",
+        "season",
+        "2014"
+      ],
+      [
+        "Alkmaar",
+        "numberOfMembers",
+        "17023"
+      ]
+    ]
+  },
+  "453": {
+    "sentence": "Agremiacao Sportiva Arapiraquense which has 17000 members and the nickname Asa Gigante .",
+    "triplets": [
+      [
+        "Arapiraquense",
+        "numberOfMembers",
+        "17000"
+      ]
+    ]
+  },
+  "454": {
+    "sentence": "Akron Summit Assault 's ground is St. Vincent-St. Mary High School in the United States .",
+    "triplets": [
+      [
+        "Assault",
+        "ground",
+        "School"
+      ],
+      [
+        "School",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "455": {
+    "sentence": "Arrabbiata sauce originates from the region of Rome and includes the ingredient garlic .",
+    "triplets": [
+      [
+        "sauce",
+        "region",
+        "Rome"
+      ]
+    ]
+  },
+  "456": {
+    "sentence": "Asam pedas is a dish from Sumatra which is a food found in Malaysia .",
+    "triplets": [
+      [
+        "pedas",
+        "country",
+        "Malaysia"
+      ],
+      [
+        "pedas",
+        "region",
+        "Sumatra"
+      ]
+    ]
+  },
+  "457": {
+    "sentence": "Asam pedas is a food found in Malaysia , a country that has Malay people as an ethnic group .",
+    "triplets": [
+      [
+        "pedas",
+        "country",
+        "Malaysia"
+      ],
+      [
+        "Malaysia",
+        "ethnicGroup",
+        "Malay"
+      ]
+    ]
+  },
+  "458": {
+    "sentence": "Ayam penyet is from Singapore region where standard Chinese is spoken .",
+    "triplets": [
+      [
+        "penyet",
+        "region",
+        "Singapore"
+      ],
+      [
+        "Singapore",
+        "language",
+        "Chinese"
+      ]
+    ]
+  },
+  "459": {
+    "sentence": "Bacon sandwich is a dish from the United Kingdom and not surprisingly includes bacon as an ingredient .",
+    "triplets": [
+      [
+        "sandwich",
+        "country",
+        "Kingdom"
+      ],
+      [
+        "sandwich",
+        "ingredient",
+        "Bacon"
+      ]
+    ]
+  },
+  "460": {
+    "sentence": "The bacon sandwich , to which ketchup is often added , comes from the United Kingdom .",
+    "triplets": [
+      [
+        "sandwich",
+        "country",
+        "Kingdom"
+      ]
+    ]
+  },
+  "461": {
+    "sentence": "Meringue is found in Baked Alaska which France , USA and China claim to have invented .",
+    "triplets": [
+      [
+        "Alaska",
+        "ingredient",
+        "Meringue"
+      ]
+    ]
+  },
+  "462": {
+    "sentence": "Tapioca is an ingredient in Bakso which comes from Indonesia .",
+    "triplets": [
+      [
+        "Bakso",
+        "ingredient",
+        "Tapioca"
+      ],
+      [
+        "Bakso",
+        "country",
+        "Indonesia"
+      ]
+    ]
+  },
+  "463": {
+    "sentence": "Bandeja paisa is a traditional dish from the Paisa region and is part of Colombian cuisine .",
+    "triplets": [
+      [
+        "paisa",
+        "country",
+        "cuisine"
+      ]
+    ]
+  },
+  "464": {
+    "sentence": "Avocado is one of the ingredients in the Colombian dish Bandeja paisa .",
+    "triplets": [
+      [
+        "paisa",
+        "ingredient",
+        "Avocado"
+      ]
+    ]
+  },
+  "465": {
+    "sentence": "Lemon is an ingredient of Bandeja paisa and is part of Columbian cuisine .",
+    "triplets": [
+      [
+        "paisa",
+        "ingredient",
+        "Lemon"
+      ],
+      [
+        "paisa",
+        "country",
+        "cuisine"
+      ]
+    ]
+  },
+  "466": {
+    "sentence": "Lemon comes from the plant order Sapindales and is an ingredient in the dish Banjeda paisa .",
+    "triplets": [
+      [
+        "paisa",
+        "ingredient",
+        "Lemon"
+      ],
+      [
+        "Lemon",
+        "order",
+        "Sapindales"
+      ]
+    ]
+  },
+  "467": {
+    "sentence": "Batchoy is eaten in the Philippines where the Ilocano people are an ethnic group .",
+    "triplets": [
+      [
+        "Batchoy",
+        "country",
+        "Philippines"
+      ],
+      [
+        "Philippines",
+        "ethnicGroup",
+        "people"
+      ]
+    ]
+  },
+  "468": {
+    "sentence": "Noodles , pork organs , vegetables , chicken , shrimp and beef are main ingredients of Batchoy which is found in La Paz , Iloilo City .",
+    "triplets": [
+      [
+        "Batchoy",
+        "region",
+        "City"
+      ]
+    ]
+  },
+  "469": {
+    "sentence": "Standard Chinese is a language spoken in Singapore where Beef kway teow is a popular dish .",
+    "triplets": [
+      [
+        "teow",
+        "country",
+        "Singapore"
+      ],
+      [
+        "Singapore",
+        "language",
+        "Chinese"
+      ]
+    ]
+  },
+  "470": {
+    "sentence": "The ingredient condensed milk is used in Bionico and this derives from the region of Jalisco .",
+    "triplets": [
+      [
+        "Bionico",
+        "region",
+        "Jalisco"
+      ],
+      [
+        "Bionico",
+        "ingredient",
+        "milk"
+      ]
+    ]
+  },
+  "471": {
+    "sentence": "Ajoblanco originates from the country of Spain where the leader is Felipe VI of Spain .",
+    "triplets": [
+      [
+        "Spain",
+        "leaderName",
+        "Spain"
+      ],
+      [
+        "Ajoblanco",
+        "country",
+        "Spain"
+      ]
+    ]
+  },
+  "472": {
+    "sentence": "300 North LaSalle is located in Cook County , Chicago , Illinois .",
+    "triplets": [
+      [
+        "LaSalle",
+        "location",
+        "Chicago"
+      ],
+      [
+        "Chicago",
+        "isPartOf",
+        "Illinois"
+      ]
+    ]
+  },
+  "473": {
+    "sentence": "Adare Manore is located in Adare which is a part of Munster .",
+    "triplets": [
+      [
+        "Adare",
+        "isPartOf",
+        "Munster"
+      ]
+    ]
+  },
+  "474": {
+    "sentence": "The Akita Museum of Art has 3 floors and 3746.66 square metres of floor area .",
+    "triplets": [
+      [
+        "Art",
+        "floorCount",
+        "3"
+      ]
+    ]
+  },
+  "475": {
+    "sentence": "Alan B Miller Hall in Virginia is owned by The College of William and Mary .",
+    "triplets": [
+      [
+        "Hall",
+        "location",
+        "Virginia"
+      ],
+      [
+        "Hall",
+        "owner",
+        "Mary"
+      ]
+    ]
+  },
+  "476": {
+    "sentence": "Asher and Mary Isabelle Richardson House , built in 1911 , is located at U.S. Route 83 .",
+    "triplets": [
+      [
+        "House",
+        "location",
+        "83"
+      ],
+      [
+        "House",
+        "yearOfConstruction",
+        "1911"
+      ]
+    ]
+  },
+  "477": {
+    "sentence": "The Asilomar Conference Grounds , with an Arts and Crafts movement style architecture , is located at Pacific Grove , California .",
+    "triplets": [
+      [
+        "Grounds",
+        "location",
+        "California"
+      ],
+      [
+        "Grounds",
+        "architecturalStyle",
+        "movement"
+      ]
+    ]
+  },
+  "478": {
+    "sentence": "Asser Levy Public Baths are located in New York City which Manhattan is a part of .",
+    "triplets": [
+      [
+        "Baths",
+        "location",
+        "City"
+      ],
+      [
+        "City",
+        "isPartOf",
+        "Manhattan"
+      ]
+    ]
+  },
+  "479": {
+    "sentence": "T S Thakur is the leader of India ; also the location of Amdavad ni Gufa .",
+    "triplets": [
+      [
+        "India",
+        "leaderName",
+        "Thakur"
+      ],
+      [
+        "Gufa",
+        "country",
+        "India"
+      ]
+    ]
+  },
+  "480": {
+    "sentence": "The AIDS ( journal ) is published by Lippincott Williams & Wilkins whose parent company is Wolters Kluwer .",
+    "triplets": [
+      [
+        "Wilkins",
+        "parentCompany",
+        "Kluwer"
+      ]
+    ]
+  },
+  "481": {
+    "sentence": "A Glastonbury Romance is published by The Bodley Head which was founded by Charles Elkin Mathews .",
+    "triplets": [
+      [
+        "Romance",
+        "publisher",
+        "Head"
+      ],
+      [
+        "Head",
+        "founder",
+        "Mathews"
+      ]
+    ]
+  },
+  "482": {
+    "sentence": "A Loyal Character Dancer is published in the United States , the capital of which is Washington D.C .",
+    "triplets": [
+      [
+        "Dancer",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "483": {
+    "sentence": "Garth Nix is the author of `` Above the Veil , '' ISBN number 0-439-17685-9 .",
+    "triplets": [
+      [
+        "Veil",
+        "author",
+        "Nix"
+      ]
+    ]
+  },
+  "484": {
+    "sentence": "Addiction journal is published by Wiley-Blackwell , whose parent company is John Wiley & Sons .",
+    "triplets": [
+      [
+        "Wiley-Blackwell",
+        "parentCompany",
+        "Sons"
+      ]
+    ]
+  },
+  "485": {
+    "sentence": "Administrative Science Quarterly was published by Cornell University which is affiliated with the Association of American Universities .",
+    "triplets": [
+      [
+        "Quarterly",
+        "publisher",
+        "University"
+      ],
+      [
+        "University",
+        "affiliation",
+        "Universities"
+      ]
+    ]
+  },
+  "486": {
+    "sentence": "Administrative Science Quarterly was published by Cornell University where Elizabetth Garrett is the president .",
+    "triplets": [
+      [
+        "Quarterly",
+        "publisher",
+        "University"
+      ],
+      [
+        "University",
+        "president",
+        "Garrett"
+      ]
+    ]
+  },
+  "487": {
+    "sentence": "Aenir is a paperback and was written by Garth Nix .",
+    "triplets": [
+      [
+        "Aenir",
+        "author",
+        "Nix"
+      ]
+    ]
+  },
+  "488": {
+    "sentence": "A Fortress of Grey Ice is from the United States , led by President Barack Obama .",
+    "triplets": [
+      [
+        "States",
+        "leaderName",
+        "Obama"
+      ],
+      [
+        "Ice",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "489": {
+    "sentence": "A Fortress of Grey Ice is from the United States where the leader is known as the President .",
+    "triplets": [
+      [
+        "States",
+        "leaderTitle",
+        "States"
+      ],
+      [
+        "Ice",
+        "country",
+        "States"
+      ]
+    ]
+  },
+  "490": {
+    "sentence": "The 14th New Jersey Volunteer Infantry Monument is found in the Monocacy National Battlefield , Frederick County , Maryland . Located near to the city of Frederick , the monument was established on 11th July 1907 , is owned by the National Park Service and belongs to the category of Historic districts in the United States .",
+    "triplets": [
+      [
+        "Battlefield",
+        "location",
+        "Maryland"
+      ],
+      [
+        "Monument",
+        "category",
+        "States"
+      ],
+      [
+        "Monument",
+        "district",
+        "Battlefield"
+      ],
+      [
+        "Battlefield",
+        "nearestCity",
+        "Maryland"
+      ],
+      [
+        "Monument",
+        "owningOrganisation",
+        "Service"
+      ]
+    ]
+  },
+  "491": {
+    "sentence": "The Atat\u00c3\u00bcrk Monument in \u00c4\u00b0zmir is a bronze monument designed by Pietro Canonica , and inaugurated on July 27th , 1932 . It is located in Turkey , where the capital city is Ankara , the currency is the Turkish lira , and the leader is named Ahmet Davuto\u00c4\u0178lu .",
+    "triplets": [
+      [
+        "Turkey",
+        "leader",
+        "Davuto\u00c4\u0178lu"
+      ],
+      [
+        "Turkey",
+        "capital",
+        "Ankara"
+      ],
+      [
+        "Turkey",
+        "currency",
+        "lira"
+      ]
+    ]
+  },
+  "492": {
+    "sentence": "The leader of Kerala is Kochi and the state lies southeast of Mahe in India . It is the location of the AWH Engineering College which was established in 2001 in the city of Kuttikkattoor in the state of Kerala and has an academic staff of 250 .",
+    "triplets": [
+      [
+        "College",
+        "country",
+        "India"
+      ],
+      [
+        "College",
+        "established",
+        "2001"
+      ],
+      [
+        "Kerala",
+        "leaderName",
+        "Kochi"
+      ],
+      [
+        "College",
+        "academicStaffSize",
+        "250"
+      ],
+      [
+        "College",
+        "state",
+        "Kerala"
+      ],
+      [
+        "Kerala",
+        "has to its northwest",
+        "India"
+      ]
+    ]
+  },
+  "493": {
+    "sentence": "In 1928 the School of Business and Social Sciences at the Aarhus University was established in the city of Aarhus , Denmark . There are 737 academic staff and 16000 students and it is affiliated with the European University Association in Brussels .",
+    "triplets": [
+      [
+        "Association",
+        "headquarters",
+        "Brussels"
+      ]
+    ]
+  },
+  "494": {
+    "sentence": "Alan Bean who is American was born in Wheeler , Texas in March 15th 1932 . He served as a test pilot on Apollo 12 before retiring in June in 1981 .",
+    "triplets": [
+      [
+        "Bean",
+        "occupation",
+        "pilot"
+      ],
+      [
+        "Bean",
+        "was a crew member of",
+        "12"
+      ],
+      [
+        "Bean",
+        "birthPlace",
+        "Texas"
+      ]
+    ]
+  },
+  "495": {
+    "sentence": "Alan Shepard was born in New Hampshire and graduated from NWC with an M.A . in 1957 . He worked as a test pilot and was part of Apollo 14 which was run by NASA . Shepard retired on Aug 1 , 1974 and later died in California .",
+    "triplets": [
+      [
+        "Shepard",
+        "was a crew member of",
+        "14"
+      ],
+      [
+        "Shepard",
+        "occupation",
+        "pilot"
+      ],
+      [
+        "Shepard",
+        "deathPlace",
+        "California"
+      ],
+      [
+        "Shepard",
+        "birthPlace",
+        "Hampshire"
+      ],
+      [
+        "14",
+        "operator",
+        "NASA"
+      ]
+    ]
+  },
+  "496": {
+    "sentence": "American Buzz Aldrin was born in Glen Ridge , New Jersey , His real name was Edwin E. Aldrin , Jr. Buzz graduated from Massachusetts Institute of Technology in 1963 with a doctorate in Science , then was selected to work for NASA in 1963 performed as a fighter pilot and was a crew member on Apollo 11 .",
+    "triplets": [
+      [
+        "Aldrin",
+        "birthPlace",
+        "Jersey"
+      ],
+      [
+        "Aldrin",
+        "was selected by NASA",
+        "1963"
+      ],
+      [
+        "Aldrin",
+        "was a crew member of",
+        "11"
+      ],
+      [
+        "Aldrin",
+        "occupation",
+        "pilot"
+      ]
+    ]
+  },
+  "497": {
+    "sentence": "Edwin E. Aldrin Jr , also known as Buzz Aldrin , was born on Jan 20 , 1938 in Glen Ridge , New Jersey . He graduated from MIT with an Sc.D in 1963 . He was a fighter pilot and a member of Apollo 11 . He is now retired .",
+    "triplets": [
+      [
+        "Aldrin",
+        "birthPlace",
+        "Jersey"
+      ],
+      [
+        "Aldrin",
+        "was a crew member of",
+        "11"
+      ],
+      [
+        "Aldrin",
+        "occupation",
+        "pilot"
+      ]
+    ]
+  },
+  "498": {
+    "sentence": "William Anders was born October 17th 1933 and was a member of the Apollo 8 crew operated by NASA . The backup pilot was Buzz Aldrin . William Anders retired on September 1st 1969 .",
+    "triplets": [
+      [
+        "Anders",
+        "was a crew member of",
+        "8"
+      ],
+      [
+        "8",
+        "backup pilot",
+        "Aldrin"
+      ],
+      [
+        "8",
+        "operator",
+        "NASA"
+      ]
+    ]
+  },
+  "499": {
+    "sentence": "William Anders has retired . He was born 17 October 1933 in British Hong Kong and graduated from AFIT with an MS in 1962 . He served as a fighter pilot and was selected by NASA in 1963 .",
+    "triplets": [
+      [
+        "Anders",
+        "was selected by NASA",
+        "1963"
+      ],
+      [
+        "Anders",
+        "occupation",
+        "pilot"
+      ],
+      [
+        "Anders",
+        "birthPlace",
+        "Kong"
+      ]
+    ]
+  }
+}
