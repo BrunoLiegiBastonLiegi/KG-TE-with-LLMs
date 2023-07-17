@@ -18,14 +18,14 @@ if __name__ == "__main__":
     
     slurm_script = """
     #!/bin/bash
-    #SBATCH --job-name=benchmark_{model}         # Job name
+    #SBATCH --job-name=benchmark_{model}_{data}         # Job name
     #SBATCH --mail-type=END,FAIL          # Mail events
     #SBATCH --mail-user=andrea.papaluca@anu.edu.au     # Where to send mail
     #SBATCH --ntasks=1                    # Run on a single CPU
     #SBATCH --mem={mem}                    # Job memory request
     #SBATCH --partition=gpu
     #SBATCH --gres={gres}
-    #SBATCH --output=log/benchmark_{model}.log   # Standard output and error log
+    #SBATCH --output=log/benchmark_{model}_{data}.log   # Standard output and error log
     #SBATCH --time=72:00:00               # Time limit hrs:min:sec
     pwd; hostname; date
     
@@ -43,7 +43,8 @@ if __name__ == "__main__":
         data = [data]
 
     for d in data:
-        kb = f"{d.split('/')[-2]}kb_single_triples_normalized/"
+        data_dir = d.split('/')[-2]
+        kb = f"{data_dir}/kb_single_triples_normalized/"
         for model in args.models:
             name = model[:-5]
             slurm_conf = model2conf[name]
@@ -52,10 +53,14 @@ if __name__ == "__main__":
                     slurm_script.format(
                         mem=slurm_conf['mem'],
                         gres=slurm_conf['gres'],
+                        model=name,
+                        data=data_dir,
                         py_script=py_script
                     )
                 )
             command = f"sbatch benchmark.slurm {d} {model} {args.prompt} {kb} {args.top_k}"
+            print(f'> Submitting job:\n\t> {command}')
+            a
             os.system(command)
             if args.groundtruth: # avoid multiple evaluation of groundtruth
                 break
