@@ -5,7 +5,9 @@ import argparse
 
 from llama_index.indices.knowledge_graph.base import GPTKnowledgeGraphIndex
 from llama_index.prompts.prompts import KnowledgeGraphPrompt
-from llama_index.data_structs.node import Node
+#from llama_index.data_structs.node import Node
+from llama_index.schema import TextNode as Node
+
 
 from tqdm import tqdm
 

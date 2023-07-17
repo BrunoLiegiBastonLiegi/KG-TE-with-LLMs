@@ -42,7 +42,8 @@ llm_predictor, service_context = get_llm(model_id, pipeline, **conf)
 
 # create the index with nodes consisting of all the
 # triples relevant for a specific entity of the graph
-from llama_index.data_structs.node import Node, DocumentRelationship
+#from llama_index.data_structs.node import Node, DocumentRelationship
+from llama_index.schema import TextNode as Node
 from llama_index import GPTListIndex
 from llama_index import GPTVectorStoreIndex
 
@@ -64,8 +65,8 @@ for n in tqdm(list(g.nodes())):
     #id2embedding[n] = service_context.embed_model._get_text_embedding(text)
     nodes.append(node)
 
-for i,n in enumerate(nodes):
-    n.relationships[DocumentRelationship.SOURCE] = n.get_doc_id()
+#for i,n in enumerate(nodes):
+    #n.relationships[DocumentRelationship.SOURCE] = n.get_doc_id()
     #if i < len(nodes) - 1:
     #    n.relationships[DocumentRelationship.NEXT] = nodes[i+1].get_doc_id()
     #if i > 0:
@@ -89,8 +90,8 @@ for i, triple in tqdm(enumerate(kb_triples), total=len(kb_triples)):
     #id2embedding[i] = service_context.embed_model._get_text_embedding(text)
     nodes.append(node)
 
-for i,n in enumerate(nodes):
-    n.relationships[DocumentRelationship.SOURCE] = n.get_doc_id()
+#for i,n in enumerate(nodes):
+    #n.relationships[DocumentRelationship.SOURCE] = n.get_doc_id()
 
 kb_index_single_triples = GPTVectorStoreIndex(
     nodes=nodes,

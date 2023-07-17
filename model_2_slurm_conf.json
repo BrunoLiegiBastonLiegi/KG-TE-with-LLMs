@@ -1,0 +1,42 @@
+{
+  "gpt2": {
+    "gres": "gpu:1",
+    "mem": "16gb"
+  },
+  "gpt2-medium": {
+    "gres": "gpu:1",
+    "mem": "16gb"
+  },
+  "gpt2-large": {
+    "gres": "gpu:1",
+    "mem": "16gb"
+  },
+  "gpt2-xl": {
+    "gres": "gpu:1",
+    "mem": "16gb"
+  },
+  "falcon7b": {
+    "gres": "gpu:1",
+    "mem": "24gb"
+  },
+  "falcon40b": {
+    "gres": "gpu:a6000:1",
+    "mem": "100gb"
+  },
+  "alpaca13b": {
+    "gres": "gpu:3090:1",
+    "mem": "48gb"
+  },
+  "gpt4-x-alpaca": {
+    "gres": "gpu:3090:1",
+    "mem": "48gb"
+  },
+  "llama13b": {
+    "gres": "gpu:3090:1",
+    "mem": "48gb"
+  },
+  "llama65b": {
+    "gres": "gpu:a6000:2",
+    "mem": "100gb"
+  }
+}
