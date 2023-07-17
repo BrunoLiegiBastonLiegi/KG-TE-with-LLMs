@@ -16,25 +16,24 @@ if __name__ == "__main__":
 
     py_script = "python benchmark.py --data $1 --groundtruth" if args.groundtruth else "python benchmark.py --data $1 --conf $2 --prompt $3 --kb $4 --top_k 10"
     
-    slurm_script = """
-    #!/bin/bash
-    #SBATCH --job-name=benchmark_{model}_{data}         # Job name
-    #SBATCH --mail-type=END,FAIL          # Mail events
-    #SBATCH --mail-user=andrea.papaluca@anu.edu.au     # Where to send mail
-    #SBATCH --ntasks=1                    # Run on a single CPU
-    #SBATCH --mem={mem}                    # Job memory request
-    #SBATCH --partition=gpu
-    #SBATCH --gres={gres}
-    #SBATCH --output=log/benchmark_{model}_{data}.log   # Standard output and error log
-    #SBATCH --time=72:00:00               # Time limit hrs:min:sec
-    pwd; hostname; date
+    slurm_script = """#!/bin/bash
+#SBATCH --job-name=benchmark_{model}_{data}         # Job name
+#SBATCH --mail-type=END,FAIL          # Mail events
+#SBATCH --mail-user=andrea.papaluca@anu.edu.au     # Where to send mail
+#SBATCH --ntasks=1                    # Run on a single CPU
+#SBATCH --mem={mem}                    # Job memory request
+#SBATCH --partition=gpu
+#SBATCH --gres={gres}
+#SBATCH --output=log/benchmark_{model}_{data}.log   # Standard output and error log
+#SBATCH --time=72:00:00               # Time limit hrs:min:sec
+pwd; hostname; date
     
-    echo "---- Running Benchmark ----"
-    source activate llama
-    {py_script}
-    echo "---- Done ----"
-    date
-    """
+echo "---- Running Benchmark ----"
+source activate llama
+{py_script}
+echo "---- Done ----"
+date
+"""
 
     if args.data is None:
         data = ['webnlg/test.json', 'webnlg_modified/test.json', 'nyt/test.json']
