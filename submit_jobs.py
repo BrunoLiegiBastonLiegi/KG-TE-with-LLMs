@@ -58,8 +58,7 @@ date
                     )
                 )
             command = f"sbatch benchmark.slurm {d} {model} {args.prompt} {kb} {args.top_k}"
-            print(f'> Submitting job:\n\t> {command}')
-            a
+            print(f'> Submitting job:\n  > {command}')
             os.system(command)
             if args.groundtruth: # avoid multiple evaluation of groundtruth
                 break

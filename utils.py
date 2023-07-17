@@ -7,8 +7,8 @@ def normalize(string):
     string = re.sub(r'\s+', ' ', string).lower()
     return string
 
-sys.path.append('./webnlg/corpus-reader/')
-from benchmark_reader import Benchmark, select_files
+#sys.path.append('./webnlg/corpus-reader/')
+#from benchmark_reader import Benchmark, select_files
 
 def get_data_from_files(infiles):
     sent2triple, triples = {}, []
