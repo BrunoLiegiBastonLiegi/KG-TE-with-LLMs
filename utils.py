@@ -259,6 +259,7 @@ def normalize_triple(triple):
             new_el = re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", element).lower()
             new_el = re.sub(r'_', ' ', new_el).lower()
             new_el = re.sub(r'\s+', ' ', new_el).lower()
+            new_el = new_el.replace(',', '')
             if new_el != ' ' and new_el[0] == ' ':
                 new_el = new_el[1:]
             if new_el != ' ' and new_el[-1] == ' ':
@@ -267,7 +268,6 @@ def normalize_triple(triple):
         manualmodified = re.search(r'^(.*?)(\s\((.*?)\))$', newtriple[-1])
         if manualmodified:
             newtriple[-1] = manualmodified.group(1)
-            newtriple = newtriple.replace(',', '')
     elif isinstance(triple, tuple):
         return normalize_triple(list(triple))    
     else:
