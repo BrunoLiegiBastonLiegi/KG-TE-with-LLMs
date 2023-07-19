@@ -12,6 +12,7 @@ if __name__ == "__main__":
     parser.add_argument('--prompt')
     parser.add_argument('--groundtruth', action='store_true')
     parser.add_argument('--top_k', default=10)
+    parser.add_argument('--bigdata', action='store_true')
     args = parser.parse_args()
 
     py_script = "python benchmark.py --data $1 --groundtruth" if args.groundtruth else "python benchmark.py --data $1 --conf $2 --prompt $3 --kb $4 --top_k 10"
@@ -22,7 +23,13 @@ if __name__ == "__main__":
 #SBATCH --mail-user=andrea.papaluca@anu.edu.au     # Where to send mail
 #SBATCH --ntasks=1                    # Run on a single CPU
 #SBATCH --mem={mem}                    # Job memory request
-#SBATCH --partition=gpu
+"""
+    if args.bigdata:
+        slurm_script += "#SBATCH --partition=bigdata\n#SBATCH --qos=bigdata"
+    else:
+        slurm_script += "#SBATCH --partition=gpu"
+
+    slurm_script += """
 #SBATCH --gres={gres}
 #SBATCH --output=log/benchmark_{model}_{data}.log   # Standard output and error log
 #SBATCH --time=72:00:00               # Time limit hrs:min:sec
@@ -34,7 +41,7 @@ source activate llama
 echo "---- Done ----"
 date
 """
-
+    
     if args.data is None:
         data = ['webnlg/test.json', 'webnlg_modified/test.json', 'nyt/test.json']
         
