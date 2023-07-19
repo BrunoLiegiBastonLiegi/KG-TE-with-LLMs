@@ -75,7 +75,8 @@ def main(path_to_corpus):
     tree = ET.ElementTree(root)
     ET.indent(tree, space="  ", level=0)
     import lxml.etree as etree
-    #print(etree.tostring(tree, pretty_print=True))
+    global model_id
+    model_id = model_id.replace('/','-')
     if args.groundtruth:
         save_name = f"{dataset}/groundtruth_triples"
     else:

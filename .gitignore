@@ -1,3 +1,7 @@
 *.py~
 nyt/kb*/
 webnlg/kb*/
+webnlg_modified/kb*/
+nyt/generated_triples*
+webnlg/generated_triples*
+webnlg_modified/generated_triples*
