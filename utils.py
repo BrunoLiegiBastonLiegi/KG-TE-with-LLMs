@@ -175,7 +175,8 @@ def get_triplet_extraction_prompt(body, examples, answer, sentence=None, kb_retr
     prompt = f"{body}\n{examples}"
     if sentence is not None and kb_retriever is not None:
         triples = get_relevant_triples(sentence, kb_retriever)
-        answer = answer.format(context_triplets=triples)
+        answer = answer.format(text='{text}', context_triplets=triples)
+                
     prompt = f"{prompt}{answer}"
     #prompt = prompt.replace(';',',')
     return KnowledgeGraphPrompt(prompt)
@@ -213,7 +214,7 @@ EXAMPLES = (
     "---------------------\n"
 )
 ANSWER = (
-    "Text: {{text}}\n"
+    "Text: {text}\n"
     "Triplets:\n"
 )
 

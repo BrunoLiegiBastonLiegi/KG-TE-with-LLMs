@@ -113,7 +113,7 @@ if __name__ == '__main__':
 
     model_id, pipeline = conf.pop('model'), conf.pop('pipeline')
     llm_predictor, service_context = get_llm(model_id, pipeline, **conf)
-    max_triplets = 7
+    max_triplets = 22 if dataset == 'nyt' else 7
             
     # prepare the kb
     if args.kb is not None:
