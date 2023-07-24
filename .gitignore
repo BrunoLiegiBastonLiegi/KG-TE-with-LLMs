@@ -1,5 +1,6 @@
 *.py~
 *.conf~
+*.log
 nyt/kb*/
 webnlg/kb*/
 webnlg_modified/kb*/
