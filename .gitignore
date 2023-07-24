@@ -7,3 +7,6 @@ webnlg_modified/kb*/
 nyt/generated_triples*
 webnlg/generated_triples*
 webnlg_modified/generated_triples*
+nyt/groundtruth_triples.xml
+webnlg/groundtruth_triples.xml
+webnlg_modified/groundtruth_triples.xml
