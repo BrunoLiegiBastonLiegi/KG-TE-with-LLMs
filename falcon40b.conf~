@@ -1,7 +1,0 @@
-{
-  "model": "chavinlo/gpt4-x-alpaca",
-  "pipeline": "text-generation",
-  "load_in_8bit": true,
-  "max_new_tokens": 64,
-  "temperature": 0.1
-}
