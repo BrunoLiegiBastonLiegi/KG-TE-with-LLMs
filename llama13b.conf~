@@ -1,7 +1,0 @@
-{
-  "model": "gpt2",
-  "pipeline": "text-generation",
-  "load_in_8bit": true,
-  "max_new_tokens": 64,
-  "temperature": 0.1
-}
