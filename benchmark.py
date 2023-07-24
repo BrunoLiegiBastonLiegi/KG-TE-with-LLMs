@@ -75,16 +75,16 @@ def main(path_to_corpus):
     tree = ET.ElementTree(root)
     ET.indent(tree, space="  ", level=0)
     import lxml.etree as etree
-    global model_id, conf, args
+    global model_id, conf
     model_id = model_id.replace('/','-')
     if args.groundtruth:
         save_name = f"{dataset}/groundtruth_triples"
     else:
-        save_name = f"{dataset}/generated_triples_{model_id}_{conf['temperature']}"
+        save_name = f"{dataset}/generated_triples_{model_id}_temp-{conf['temperature']}"
         if args.kb is not None:
             save_name += f"_kb-top-{args.top_k}"
     if args.run_n is not None:
-        save_name += f'_{args.run_n}'
+        save_name += f'_run-{args.run_n}'
     save_name += '.xml'
     tree.write(save_name)
 
