@@ -861,7 +861,9 @@ def main(reffile, candfile):
     #totalsemevallist, totalsemevallistpertag = calculateAllScores(newreflist, newcandlist)
     #calculateSystemScore(totalsemevallist, totalsemevallistpertag, newreflist, newcandlist)
     print('\n')
-    calculateExactTripleScore(reflist, candlist)
+    
+    print(f"\n#### Macro Averaged ####")
+    avg_p, avg_r, avg_f1 = calculateExactTripleScore(reflist, candlist)
     n_triples_to_instance = { len(ref): {'refs': [], 'cands': []}
                               for ref in reflist }
     for ref, cand in zip(reflist, candlist):
@@ -886,8 +888,9 @@ def main(reffile, candfile):
     recalls = np.array([ v['r'] for v in performance ])
     f1s = np.array([ v['f1'] for v in performance ])
 
-    return n_triples, precisions, recalls, f1s, errs
+    return n_triples, precisions, recalls, f1s, errs, avg_p, avg_r, avg_f1
 
+"""
     plt.figure(figsize=(12,9))
     for metric in (precisions, recalls, f1s):
         plt.plot(n_triples, metric)
@@ -898,9 +901,10 @@ def main(reffile, candfile):
     plt.ylim(0,1)
     plt.savefig('performance_vs_n-triples.pdf', format='pdf', dpi=300)
     plt.show()
+"""
     
 #main(currentpath + '/Refs.xml', currentpath + '/Cands2.xml')
-import argparse, os, re
+import argparse, os, re, json
 import matplotlib.pyplot as plt
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Evaluation + plotting of P,R,F1')
@@ -908,16 +912,25 @@ if __name__ == '__main__':
     parser.add_argument('--groundtruth')
     args = parser.parse_args()
 
+    with open('model_to_n-params.json', 'r') as f:
+        model_2_nparams = json.load(f)
+
     metrics = {'P': [], 'R': [], 'F1': [], 'ERR': []}
-    model_ids = []
+    avg_p, avg_r, avg_f1 = [], [], []
+    model_ids, n_params = [], []
     for pred in args.predictions:
         print(f'> Evaluating predictions found in: {pred}')
         model_id = re.search('(?<=generated_triples_)(.*)(?=_kb)', os.path.basename(pred)).group()
         model_ids.append(model_id)
-        n_triples, p, r, f1, err = main(args.groundtruth, pred)
+        n_params.append(model_2_nparams[model_id])
+        n_triples, p, r, f1, err, *avg = main(args.groundtruth, pred)
+        avg_p.append(avg[0])
+        avg_r.append(avg[1])
+        avg_f1.append(avg[2])
         for metric, vals in zip(metrics.keys(), [p,r,f1,err]):
             metrics[metric].append(vals)
 
+    # plot performance vs n triples in sentence
     plt.figure(figsize=(12,9))
     lines = []
     for f1, err in zip(metrics['F1'], metrics['ERR']):
@@ -929,4 +942,16 @@ if __name__ == '__main__':
     plt.ylabel('F1')
     plt.ylim(0,1)
     plt.savefig('performance_vs_n-triples.pdf', format='pdf', dpi=300)
+    plt.show()
+
+    # plot performance vs n parameters
+    nparams_to_perf = sorted(zip(n_params, avg_p, avg_r, avg_f1), key=lambda x: x[0])
+    plt.figure(figsize=(12,12))
+    plt.plot(n_params_to_perf[0], n_params_to_perf[1], label='Precision')
+    plt.plot(n_params_to_perf[0], n_params_to_perf[2], label='Recall')
+    plt.plot(n_params_to_perf[0], n_params_to_perf[3], label='F1')
+    plt.xlabel('N Parameters')
+    plt.ylabel('Performance', rotation=90)
+    plt.ylim(0,1)
+    plt.savefig('performance_vs_n-params.pdf', format='pdf', dpi=300)
     plt.show()
