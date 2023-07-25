@@ -910,19 +910,30 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Evaluation + plotting of P,R,F1')
     parser.add_argument('--predictions', nargs='+')
     parser.add_argument('--groundtruth')
+    parser.add_argument('--metric', default='F1')
     args = parser.parse_args()
+
+    if args.metric not in ('P', 'R', 'F1'):
+        raise AssertionError('Invalid metric definition, it should be either P, R or F1')
 
     with open('model_to_n-params.json', 'r') as f:
         model_2_nparams = json.load(f)
 
     metrics = {'P': [], 'R': [], 'F1': [], 'ERR': []}
     avg_p, avg_r, avg_f1 = [], [], []
-    model_ids, n_params = [], []
+    model_ids, n_params, temperatures = [], [], []
     for pred in args.predictions:
         print(f'> Evaluating predictions found in: {pred}')
-        model_id = re.search('(?<=generated_triples_)(.*)(?=_kb)', os.path.basename(pred)).group()
+        try:
+            model_id = re.search('(?<=generated_triples_)(.*)(?=_temp)', os.path.basename(pred)).group()
+            n_params.append(model_2_nparams[model_id])
+            t = float(re.search('(?<=_temp-)(.*)(?=_kb)', os.path.basename(pred)).group())
+        except:
+            model_id = re.search('(?<=generated_triples_)(.*)(?=_kb)', os.path.basename(pred)).group()
+            n_params.append(model_2_nparams[model_id])
+            t = 0.1
         model_ids.append(model_id)
-        n_params.append(model_2_nparams[model_id])
+        temperatures.append(t)
         n_triples, p, r, f1, err, *avg = main(args.groundtruth, pred)
         avg_p.append(avg[0])
         avg_r.append(avg[1])
@@ -933,25 +944,48 @@ if __name__ == '__main__':
     # plot performance vs n triples in sentence
     plt.figure(figsize=(12,9))
     lines = []
+    labels = [ f"{mid} (T={temp})" for mid, temp in zip(model_ids, temperatures) ]
+    
     for f1, err in zip(metrics['F1'], metrics['ERR']):
         lines.append(plt.plot(n_triples, f1)[0])
-        plt.fill_between(n_triples, f1 + err, f1 - err, alpha=0.1)
+        upper_lim = f1 + err
+        upper_lim[upper_lim > 1] = 1
+        lower_lim = f1 - err
+        lower_lim[lower_lim < 0] = 0
+        plt.fill_between(n_triples, lower_lim, upper_lim, alpha=0.1)
         
-    plt.legend(lines, model_ids)
+    plt.legend(lines, labels)
     plt.xlabel('N triples in sentence')
-    plt.ylabel('F1')
-    plt.ylim(0,1)
+    plt.ylabel(args.metric)
     plt.savefig('performance_vs_n-triples.pdf', format='pdf', dpi=300)
     plt.show()
 
     # plot performance vs n parameters
-    nparams_to_perf = sorted(zip(n_params, avg_p, avg_r, avg_f1), key=lambda x: x[0])
+    nparams_to_perf = np.asarray(sorted(zip(n_params, avg_p, avg_r, avg_f1), key=lambda x: x[0]))
     plt.figure(figsize=(12,12))
-    plt.plot(n_params_to_perf[0], n_params_to_perf[1], label='Precision')
-    plt.plot(n_params_to_perf[0], n_params_to_perf[2], label='Recall')
-    plt.plot(n_params_to_perf[0], n_params_to_perf[3], label='F1')
+    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,1], marker='x')
+    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,2], marker='x')
+    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,3], marker='x')
+    plt.plot(nparams_to_perf[:,0], nparams_to_perf[:,1], label='Precision')
+    plt.plot(nparams_to_perf[:,0], nparams_to_perf[:,2], label='Recall')
+    plt.plot(nparams_to_perf[:,0], nparams_to_perf[:,3], label='F1')
     plt.xlabel('N Parameters')
-    plt.ylabel('Performance', rotation=90)
-    plt.ylim(0,1)
+    plt.ylabel('Performance')
+    plt.legend()
     plt.savefig('performance_vs_n-params.pdf', format='pdf', dpi=300)
+    plt.show()
+
+    # plot performance vs temperature
+    temp_to_perf = np.asarray(sorted(zip(temperatures, avg_p, avg_r, avg_f1), key=lambda x: x[0]))
+    plt.figure(figsize=(12,12))
+    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,1], marker='x')
+    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,2], marker='x')
+    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,3], marker='x')
+    plt.plot(temp_to_perf[:,0], temp_to_perf[:,1], label='Precision')
+    plt.plot(temp_to_perf[:,0], temp_to_perf[:,2], label='Recall')
+    plt.plot(temp_to_perf[:,0], temp_to_perf[:,3], label='F1')
+    plt.xlabel('Temperature')
+    plt.ylabel('Performance')
+    plt.legend()
+    plt.savefig('temperature_vs_n-params.pdf', format='pdf', dpi=300)
     plt.show()
