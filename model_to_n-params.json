@@ -1,9 +1,9 @@
 {
-  "alpaca13b": 13000000000,
+  "chavinlo-alpaca-13b": 13000000000,
   "tiiuae-falcon-40b-instruct": 40000000000,
   "tiiuae-falcon-7b-instruct": 7000000000,
   "gpt4-x-alpaca": 13000000000,
-  "llama13b": 13000000000,
+  "huggyllama-llama-13b": 13000000000,
   "huggyllama-llama-65b": 65000000000,
   "gpt2-xl": 1500000000,
   "gpt2": 117000000,
