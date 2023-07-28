@@ -11,11 +11,18 @@ if __name__ == "__main__":
     parser.add_argument('--data')
     parser.add_argument('--prompt')
     parser.add_argument('--groundtruth', action='store_true')
+    parser.add_argument('--kb')
     parser.add_argument('--top_k', default=10)
     parser.add_argument('--bigdata', action='store_true')
     args = parser.parse_args()
 
-    py_script = "python benchmark.py --data $1 --groundtruth" if args.groundtruth else "python benchmark.py --data $1 --conf $2 --prompt $3 --kb $4 --top_k 10"
+    py_script = "python benchmark.py --data $1"
+    if args.groundtruth:
+        py_script = f"{py_script} --groundtruth"
+    else:
+        py_script = f"{py_script} --conf $2 --prompt $3"
+        if args.kb is not None:
+            py_script = f"{py_script} --kb $4 --top_k {args.top_k}"
     
     slurm_script = """#!/bin/bash
 #SBATCH --job-name=benchmark_{model}_{data}         # Job name
