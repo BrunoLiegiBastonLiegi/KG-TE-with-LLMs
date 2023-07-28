@@ -11,7 +11,7 @@ if __name__ == "__main__":
     parser.add_argument('--data')
     parser.add_argument('--prompt')
     parser.add_argument('--groundtruth', action='store_true')
-    parser.add_argument('--kb')
+    parser.add_argument('--kb', action='store_true')
     parser.add_argument('--top_k', default=10)
     parser.add_argument('--bigdata', action='store_true')
     args = parser.parse_args()
@@ -21,7 +21,7 @@ if __name__ == "__main__":
         py_script = f"{py_script} --groundtruth"
     else:
         py_script = f"{py_script} --conf $2 --prompt $3"
-        if args.kb is not None:
+        if args.kb:
             py_script = f"{py_script} --kb $4 --top_k {args.top_k}"
     
     slurm_script = """#!/bin/bash
