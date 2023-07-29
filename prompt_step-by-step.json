@@ -1,5 +1,5 @@
 {
-    "body": "Some text is provided below. Procede step by step:\n- Identify the subject in the text\n- Identify the object in the text\n- Identify the predicate between the subject and the object in the text\n- Extract the corresponding (subject, predicate, object) knowledge triplet\n- Repeat up to {max_knowledge_triplets-1} times.\n",
+    "body": "Some text is provided below. Procede step by step:\n- Identify the subject in the text\n- Identify the object in the text\n- Identify the predicate between the subject and the object in the text\n- Extract the corresponding (subject, predicate, object) knowledge triplet\n- Repeat up to {max_knowledge_triplets} times.\n",
   "examples": "\n---------------------\n\nExamples:\nText: Abilene, Texas is in the United States.\nTriplets:\n(abilene texas, country, united states)\nText: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.\nTriplets:\n(abraham a. ribicoff, spouse, casey ribicoff)\n(abraham a. ribicoff, birth place, united states)\n(united states, ethnic group, african americans)\n\n---------------------\n\n",
   "answer": "Text: {text}\nTriplets:\n"
 }

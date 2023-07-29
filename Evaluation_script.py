@@ -927,7 +927,10 @@ if __name__ == '__main__':
         try:
             model_id = re.search('(?<=generated_triples_)(.*)(?=_temp)', os.path.basename(pred)).group()
             n_params.append(model_2_nparams[model_id])
-            t = float(re.search('(?<=_temp-)(.*)(?=_kb)', os.path.basename(pred)).group())
+            try:
+                t = float(re.search('(?<=_temp-)(.*)(?=_kb)', os.path.basename(pred)).group())
+            except:
+                t = float(re.search('(?<=_temp-)(.*)(?=.xml)', os.path.basename(pred)).group())
         except:
             model_id = re.search('(?<=generated_triples_)(.*)(?=_kb)', os.path.basename(pred)).group()
             n_params.append(model_2_nparams[model_id])
