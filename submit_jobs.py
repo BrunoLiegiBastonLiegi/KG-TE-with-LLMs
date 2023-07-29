@@ -53,7 +53,7 @@ date
         data = ['webnlg/test.json', 'webnlg_modified/test.json', 'nyt/test.json']
         
     else:
-        data = [data]
+        data = [args.data]
 
     for d in data:
         data_dir = d.split('/')[-2]
