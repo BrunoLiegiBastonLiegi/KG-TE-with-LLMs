@@ -25,6 +25,22 @@ def get_data_from_files(infiles):
 
     return sent2triple, triples
 
+from bs4 import BeautifulSoup
+
+def get_triples_from_xml(*files):
+    triples = []
+    for file in files:
+        with open(file, 'r') as f:
+            xml = f.read()
+        soup = BeautifulSoup(xml, 'xml')
+        entries = soup.find_all('entry')
+        triples.append([
+            [ e.text for e in entry.find_all('gtriple') ]
+            for entry in entries
+        ])
+    return triples
+        
+
 def get_data_loader(datafile: str):
     sent2triples, _ = get_data_from_files(datafile)
     return sent2triples.items()
