@@ -19,7 +19,15 @@
     "gres": "gpu:1",
     "mem": "24gb"
   },
+  "falcon7b-instruct": {
+    "gres": "gpu:1",
+    "mem": "24gb"
+  },
   "falcon40b": {
+    "gres": "gpu:a6000:1",
+    "mem": "100gb"
+  },
+  "falcon40b-instruct": {
     "gres": "gpu:a6000:1",
     "mem": "100gb"
   },
