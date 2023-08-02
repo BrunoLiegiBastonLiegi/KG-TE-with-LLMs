@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from collections import Counter
 import os
+from utils import load_kb, get_llm, get_relevant_triples, triple_equality
 
 def stats_gen(dataset):
     
@@ -12,6 +13,13 @@ def stats_gen(dataset):
     n_triples_hist = {'test': {}, 'train': {}}
     relations_hist = {'test': {}, 'train': {}}
     entities_hist = {'test': {}, 'train': {}}
+    top_k_to_n_matches = dict(zip([3, 5, 10, 20, 50], [0, 0, 0, 0, 0]))
+    _, service_context = get_llm('gpt2', 'text-generation', max_new_tokens=8, temperature=0.1, load_in_8bit=True)
+    retrievers = {
+        i: load_kb(f'{dataset}/kb_single_triples_normalized', service_context, i)[1]
+        for i in top_k_to_n_matches.keys()
+    }
+    total_number_of_triples = 0
     
     tokenizer = AutoTokenizer.from_pretrained('gpt2')
     
@@ -35,7 +43,21 @@ def stats_gen(dataset):
             # entities histogram
             for t in triples:
                 entities.append(t[0])
-                entities.append(t[2])      
+                entities.append(t[2])
+            if split == 'test':
+                #print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+                #print(triples)
+                for i, retriever in retrievers.items():
+                    #print('-----------------------------')
+                    relevant_triples = get_relevant_triples(sentence, retriever, return_tuple=True)
+                    #print(relevant_triples)
+                    #print('-----------------------------')
+                    for t in triples:
+                        total_number_of_triples += 1
+                        for rt in relevant_triples:
+                            if triple_equality(t, rt):
+                                top_k_to_n_matches[i] += 1
+                                break
 
         # number of tokens per sentence histogram
         tok_sents = tokenizer(text=sentences, padding=False)
@@ -51,6 +73,13 @@ def stats_gen(dataset):
         entities = sorted(Counter(entities).items(), key=lambda x: x[1], reverse=True)
         entities = list(zip(*entities))
         entities_hist[split] = (list(entities[0]), list(entities[1]))
+
+
+    print(top_k_to_n_matches)
+    top_k, n_matches = zip(*top_k_to_n_matches.items())
+    n_matches /= total_number_of_triples
+    plt.scatter(top_k, n_matches)
+    plt.show()
 
     fig, axes = plt.subplots(1,2, figsize=(12,6))
     # number of tokens per sentence histogram   
@@ -116,12 +145,12 @@ def stats_gen(dataset):
     fig.tight_layout()
     plt.savefig(f'relations+entities_distribution_{dataset}.pdf', format='pdf')
     plt.clf()
+
+    print(top_k_to_n_matches)
     
 
 if __name__ == '__main__':
-
-    import argparse
-
+    
     datasets = ['webnlg', 'nyt', 'webnlg_modified']
     for dataset in datasets:
         stats_gen(dataset)
