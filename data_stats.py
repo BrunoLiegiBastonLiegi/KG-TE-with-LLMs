@@ -77,8 +77,14 @@ def stats_gen(dataset):
 
     print(top_k_to_n_matches)
     top_k, n_matches = zip(*top_k_to_n_matches.items())
-    n_matches /= total_number_of_triples
+    n_matches = [ n/total_number_of_triples for n in n_matches ]
+    print(n_matches)
     plt.scatter(top_k, n_matches)
+    plt.plot(top_k, n_matches)
+    plt.ylabel('Probability of Finding the True Triplet')
+    plt.xlabel('Number of Relevant Triplets Retrieved')
+    plt.tight_layout()
+    plt.savefig(f'n-matches_vs_top-k_{dataset}.pdf', format='pdf')
     plt.show()
 
     fig, axes = plt.subplots(1,2, figsize=(12,6))
