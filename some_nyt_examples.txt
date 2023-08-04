@@ -1,0 +1,432 @@
+Some text and some context triplets are provided below. Procede step by step:
+- Identify the subject in the text
+- Identify the object in the text
+- Identify the predicate between the subject and the object in the text
+- Extract the corresponding (subject, predicate, object) knowledge triplet taking inspiration from the context triplets provided that are relevant to the text
+- Repeat from the beginning until all the knowledge triplets in the text have been extracted
+
+---------------------
+
+Examples:
+Text: Abilene, Texas is in the United States.
+Context Triplets:
+(houston texas, country, united states)
+(abilene texas, founded, 1881)
+Triplets:
+(abilene texas, country, united states)
+Text: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.
+Context Triplets:
+(barack obama, birth place, united states)
+(casey ribicoff, birth place, united states)
+(barack obama, spouse, michelle obama)
+(united states, ethnic group, asian americans)
+Triplets:
+(abraham a. ribicoff, spouse, casey ribicoff)
+(abraham a. ribicoff, birth place, united states)
+(united states, ethnic group, african americans)
+
+---------------------
+
+Text: But that spasm of irritation by a master intimidator was minor compared with what Bobby Fischer , the erratic former world chess champion , dished out in March at a news conference in Reykjavik , Iceland .
+Context Triplets:
+(bobby fischer, nationality, iceland)
+(bobby fischer, place of death, reykjavik)
+(joschka fischer, nationality, germany)
+(stanley fischer, nationality, israel)
+(dietrich fischer-dieskau, nationality, germany)
+(kurt waldheim, nationality, austria)
+(carl theodor dreyer, nationality, denmark)
+(albert demtschenko, nationality, russia)
+(bobby houghton, nationality, england)
+(klaus barbie, place of death, lyon)
+Triplets:
+
+
+
+
+ Processing Entry
+  > The final deal was brokered through the major assistance of Annette L. Nazareth , an S.E.C. commissioner who once led its market regulation office , and Frank G. Zarb , the former chairman of NASD and a major presence on Wall Street and in Washington for much of his career .
+
+> Prompt Template:
+Some text and some context triplets are provided below. Procede step by step:
+- Identify the subject in the text
+- Identify the object in the text
+- Identify the predicate between the subject and the object in the text
+- Extract the corresponding (subject, predicate, object) knowledge triplet taking inspiration from the context triplets provided that are relevant to the text
+- Repeat from the beginning until all the knowledge triplets in the text have been extracted
+
+---------------------
+
+Examples:
+Text: Abilene, Texas is in the United States.
+Context Triplets:
+(houston texas, country, united states)
+(abilene texas, founded, 1881)
+Triplets:
+(abilene texas, country, united states)
+Text: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.
+Context Triplets:
+(barack obama, birth place, united states)
+(casey ribicoff, birth place, united states)
+(barack obama, spouse, michelle obama)
+(united states, ethnic group, asian americans)
+Triplets:
+(abraham a. ribicoff, spouse, casey ribicoff)
+(abraham a. ribicoff, birth place, united states)
+(united states, ethnic group, african americans)
+
+---------------------
+
+Text: The final deal was brokered through the major assistance of Annette L. Nazareth , an S.E.C. commissioner who once led its market regulation office , and Frank G. Zarb , the former chairman of NASD and a major presence on Wall Street and in Washington for much of his career .
+Context Triplets:
+(frank g. zarb, company, nasd)
+(robert r. glauber, company, nasd)
+(bank of america, major shareholders, bruce l. hammonds)
+(gary lynch, company, securities and exchange commission)
+(stephen m. cutler, company, securities and exchange commission)
+(bruce l. hammonds, major shareholder of, bank of america)
+(frank g. zarb, company, hellman & friedman)
+(brian l. roberts, major shareholder of, comcast)
+(ralph j. roberts, major shareholder of, comcast)
+(bank of america, major shareholders, charles k. gifford)
+Triplets:
+
+
+----> Extracted Tripets: ['frank g. zarb | company | nasd', 'frank g. zarb | company | bank of america', 'frank g. zarb | company | hellman & friedman', 'frank g. zarb | company | securities and exchange commission']
+
+  > Processed sentence in 31.6553s
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+> WARNING: couldn't find entry category.
+> WARNING: couldn't find entry id.
+> Processing Entry
+  > Mary L. Schapiro , who earlier this year became the new head of NASD , was more amenable to fashioning a deal to the New York Exchange 's liking than her predecessor , Robert R. Glauber .
+
+> Prompt Template:
+Some text and some context triplets are provided below. Procede step by step:
+- Identify the subject in the text
+- Identify the object in the text
+- Identify the predicate between the subject and the object in the text
+- Extract the corresponding (subject, predicate, object) knowledge triplet taking inspiration from the context triplets provided that are relevant to the text
+- Repeat from the beginning until all the knowledge triplets in the text have been extracted
+
+---------------------
+
+Examples:
+Text: Abilene, Texas is in the United States.
+Context Triplets:
+(houston texas, country, united states)
+(abilene texas, founded, 1881)
+Triplets:
+(abilene texas, country, united states)
+Text: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.
+Context Triplets:
+(barack obama, birth place, united states)
+(casey ribicoff, birth place, united states)
+(barack obama, spouse, michelle obama)
+(united states, ethnic group, asian americans)
+Triplets:
+(abraham a. ribicoff, spouse, casey ribicoff)
+(abraham a. ribicoff, birth place, united states)
+(united states, ethnic group, african americans)
+
+---------------------
+
+Text: Mary L. Schapiro , who earlier this year became the new head of NASD , was more amenable to fashioning a deal to the New York Exchange 's liking than her predecessor , Robert R. Glauber .
+Context Triplets:
+(robert r. glauber, company, nasd)
+(mary jo white, company, new york)
+(catherine j. mathis, company, the new york times company)
+(frank g. zarb, company, nasd)
+(amblin entertainment, founders, kathleen kennedy)
+(mona sahlin, nationality, sweden)
+(kathleen kennedy, company, amblin entertainment)
+(lawrence schiffman, company, new york university)
+(mary-kate olsen, company, dualstar)
+(juliet b. schor, company, boston college)
+Triplets:
+
+
+----> Extracted Tripets: ['mary l. schapiro | nationality | united states', 'mary l. schapiro | company | nasd', 'mary l. schapiro | company | new york', 'mary l. schapiro | company | new york university']
+
+  > Processed sentence in 30.9335s
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+> WARNING: couldn't find entry category.
+> WARNING: couldn't find entry id.
+> Processing Entry
+  > Graveside service Monday January 31 , 2:00 P.M. at Riverside Cemetery , Rochelle Park , N.J. Donations may be made to Hospice By The Sea , Boca Raton , Florida .
+
+> Prompt Template:
+Some text and some context triplets are provided below. Procede step by step:
+- Identify the subject in the text
+- Identify the object in the text
+- Identify the predicate between the subject and the object in the text
+- Extract the corresponding (subject, predicate, object) knowledge triplet taking inspiration from the context triplets provided that are relevant to the text
+- Repeat up to {max_knowledge_triplets} times
+
+---------------------
+
+Examples:
+Text: Abilene, Texas is in the United States.
+Context Triplets:
+(houston texas, country, united states)
+(abilene texas, founded, 1881)
+Triplets:
+(abilene texas, country, united states)
+Text: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.
+Context Triplets:
+(barack obama, birth place, united states)
+(casey ribicoff, birth place, united states)
+(barack obama, spouse, michelle obama)
+(united states, ethnic group, asian americans)
+Triplets:
+(abraham a. ribicoff, spouse, casey ribicoff)
+(abraham a. ribicoff, birth place, united states)
+(united states, ethnic group, african americans)
+
+---------------------
+
+Text: {text}
+Context Triplets:
+(medfield, contains, vine lake cemetery)
+(south carolina, contains, magnolia cemetery)
+(los angeles, contains, hollywood forever cemetery)
+(new york, contains, green-wood cemetery)
+(pittsburgh, contains, allegheny cemetery)
+(flushing, contains, mount hebron cemetery)
+(brooklyn, contains, green-wood cemetery)
+(barbara bel geddes, place of death, northeast harbor)
+(hastings-on-hudson, contains, westchester hills cemetery)
+(johns hopkins, place of death, baltimore)
+Triplets:
+
+
+----> Extracted Tripets: ['medfield | contains | vine lake cemetery', 'new york | contains | green-wood cemetery', 'pittsburgh | contains | allegheny cemetery', 'los angeles | contains | hollywood forever cemetery', 'south carolina | contains | magnolia cemetery']
+
+  > Processed sentence in 30.4677s
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+> WARNING: couldn't find entry category.
+> WARNING: couldn't find entry id.
+> Processing Entry
+  > This summer , the United States Embassy in Beirut , Lebanon , once again made its presence felt on the cultural scene by sponsoring a photo exhibition , an experimental jazz performance , a classical music concert and a visit from the Whiffenpoofs , Yale University 's a cappella singers .
+
+> Prompt Template:
+Some text and some context triplets are provided below. Procede step by step:
+- Identify the subject in the text
+- Identify the object in the text
+- Identify the predicate between the subject and the object in the text
+- Extract the corresponding (subject, predicate, object) knowledge triplet taking inspiration from the context triplets provided that are relevant to the text
+- Repeat from the beginning until all the knowledge triplets in the text have been extracted
+
+---------------------
+
+Examples:
+Text: Abilene, Texas is in the United States.
+Context Triplets:
+(houston texas, country, united states)
+(abilene texas, founded, 1881)
+Triplets:
+(abilene texas, country, united states)
+Text: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.
+Context Triplets:
+(barack obama, birth place, united states)
+(casey ribicoff, birth place, united states)
+(barack obama, spouse, michelle obama)
+(united states, ethnic group, asian americans)
+Triplets:
+(abraham a. ribicoff, spouse, casey ribicoff)
+(abraham a. ribicoff, birth place, united states)
+(united states, ethnic group, african americans)
+
+---------------------
+
+Text: This summer , the United States Embassy in Beirut , Lebanon , once again made its presence felt on the cultural scene by sponsoring a photo exhibition , an experimental jazz performance , a classical music concert and a visit from the Whiffenpoofs , Yale University 's a cappella singers .
+Context Triplets:
+(beirut, contains, american university of beirut)
+(beirut, contains, lebanese american university)
+(lebanon, capital, beirut)
+(lebanon, contains, beirut)
+(hassan nasrallah, place lived, beirut)
+(michel pharaon, place lived, beirut)
+(hilal khashan, place of birth, beirut)
+(hassan nasrallah, nationality, lebanon)
+(hilal khashan, place lived, beirut)
+(lebanon, contains, anti-lebanon)
+Triplets:
+
+
+----> Extracted Tripets: ['united states embassy in beirut | contains | united states embassy in beirut']
+
+  > Processed sentence in 31.1894s
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+> WARNING: couldn't find entry category.
+> WARNING: couldn't find entry id.
+> Processing Entry
+  > Sophiline Shapiro , the Cambodian-born artistic director of the Khmer Arts Academy , which has a school in Long Beach , Calif. , and a new dance company in Cambodia , was one of the first dance students at the School of Fine Arts in Phnom Penh after the fall of the Khmer Rouge in 1979 .
+
+> Prompt Template:
+Some text and some context triplets are provided below. Procede step by step:
+- Identify the subject in the text
+- Identify the object in the text
+- Identify the predicate between the subject and the object in the text
+- Extract the corresponding (subject, predicate, object) knowledge triplet taking inspiration from the context triplets provided that are relevant to the text
+- Repeat from the beginning until all the knowledge triplets in the text have been extracted
+
+---------------------
+
+Examples:
+Text: Abilene, Texas is in the United States.
+Context Triplets:
+(houston texas, country, united states)
+(abilene texas, founded, 1881)
+Triplets:
+(abilene texas, country, united states)
+Text: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.
+Context Triplets:
+(barack obama, birth place, united states)
+(casey ribicoff, birth place, united states)
+(barack obama, spouse, michelle obama)
+(united states, ethnic group, asian americans)
+Triplets:
+(abraham a. ribicoff, spouse, casey ribicoff)
+(abraham a. ribicoff, birth place, united states)
+(united states, ethnic group, african americans)
+
+---------------------
+
+Text: Sophiline Shapiro , the Cambodian-born artistic director of the Khmer Arts Academy , which has a school in Long Beach , Calif. , and a new dance company in Cambodia , was one of the first dance students at the School of Fine Arts in Phnom Penh after the fall of the Khmer Rouge in 1979 .
+Context Triplets:
+(pol pot, nationality, cambodia)
+(harold t. shapiro, company, princeton university)
+(norodom sihanouk, nationality, cambodia)
+(phnom penh, country, cambodia)
+(cambodia, capital, phnom penh)
+(cambodia, administrative divisions, phnom penh)
+(manouchehr mottaki, nationality, iran)
+(dith pran, nationality, cambodia)
+(cambodia, contains, phnom penh)
+(san francisco, contains, san francisco art institute)
+Triplets:
+
+
+----> Extracted Tripets: ['sophiline shapiro | company | princeton university', 'sophiline shapiro | school | long beach', 'sophiline shapiro | nationality | cambodia', 'sophiline shapiro | school | california']
+
+  > Processed sentence in 31.4544s
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+> WARNING: couldn't find entry category.
+> WARNING: couldn't find entry id.
+> Processing Entry
+  > Homage to Cambodia '' was performed at Chaktomuk Conference Hall in Phnom Penh on Oct. 21 , attended by the king .
+
+> Prompt Template:
+Some text and some context triplets are provided below. Procede step by step:
+- Identify the subject in the text
+- Identify the object in the text
+- Identify the predicate between the subject and the object in the text
+- Extract the corresponding (subject, predicate, object) knowledge triplet taking inspiration from the context triplets provided that are relevant to the text
+- Repeat up to {max_knowledge_triplets} times
+
+---------------------
+
+Examples:
+Text: Abilene, Texas is in the United States.
+Context Triplets:
+(houston texas, country, united states)
+(abilene texas, founded, 1881)
+Triplets:
+(abilene texas, country, united states)
+Text: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.
+Context Triplets:
+(barack obama, birth place, united states)
+(casey ribicoff, birth place, united states)
+(barack obama, spouse, michelle obama)
+(united states, ethnic group, asian americans)
+Triplets:
+(abraham a. ribicoff, spouse, casey ribicoff)
+(abraham a. ribicoff, birth place, united states)
+(united states, ethnic group, african americans)
+
+---------------------
+
+Text: {text}
+Context Triplets:
+(phnom penh, country, cambodia)
+(cambodia, capital, phnom penh)
+(cambodia, administrative divisions, phnom penh)
+(cambodia, contains, phnom penh)
+(pol pot, place of death, cambodia)
+(sihanoukville, country, cambodia)
+(dith pran, nationality, cambodia)
+(pol pot, nationality, cambodia)
+(norodom sihanouk, nationality, cambodia)
+(cambodia, administrative divisions, sihanoukville)
+Triplets:
+
+
+----> Extracted Tripets: ['homage to cambodia | place of performance | phnom penh', 'homage to cambodia | place of performance | sihanoukville', 'homage to cambodia | place of performance | phnom pen', 'homage to cambodia | place of performance | cambodia']
+
+  > Processed sentence in 29.4839s
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+> WARNING: couldn't find entry category.
+> WARNING: couldn't find entry id.
+> Processing Entry
+  > Mr. Hollander began touring in Asia in the early 1990 's , when he was a Fulbright lecturer in India , talking about dance and touring with his company .
+
+> Prompt Template:
+Some text and some context triplets are provided below. Procede step by step:
+- Identify the subject in the text
+- Identify the object in the text
+- Identify the predicate between the subject and the object in the text
+- Extract the corresponding (subject, predicate, object) knowledge triplet taking inspiration from the context triplets provided that are relevant to the text
+- Repeat up to {max_knowledge_triplets} times
+
+---------------------
+
+Examples:
+Text: Abilene, Texas is in the United States.
+Context Triplets:
+(houston texas, country, united states)
+(abilene texas, founded, 1881)
+Triplets:
+(abilene texas, country, united states)
+Text: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.
+Context Triplets:
+(barack obama, birth place, united states)
+(casey ribicoff, birth place, united states)
+(barack obama, spouse, michelle obama)
+(united states, ethnic group, asian americans)
+Triplets:
+(abraham a. ribicoff, spouse, casey ribicoff)
+(abraham a. ribicoff, birth place, united states)
+(united states, ethnic group, african americans)
+
+---------------------
+
+Text: {text}
+Context Triplets:
+(yuri van gelder, nationality, netherlands)
+(ayaan hirsi ali, nationality, netherlands)
+(chandrika kumaratunga, place of birth, sri lanka)
+(johan neeskens, nationality, netherlands)
+(jan timman, nationality, netherlands)
+(richard krajicek, nationality, netherlands)
+(theo van gogh, nationality, netherlands)
+(marco van basten, nationality, netherlands)
+(khalid boulahrouz, nationality, netherlands)
+(michael ondaatje, place of birth, sri lanka)
+Triplets:
+
+
+----> Extracted Tripets: ['yuri van gelder | nationality | netherlands', 'chandrika kumaratunga | place of birth | sri lanka', 'johan neeskens | nationality | netherlands', 'ayaan hirsi ali | nationality | netherlands']
+
