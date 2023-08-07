@@ -1,4 +1,4 @@
-import sys, json, time
+import sys, json, time, os
 sys.path.append('./webnlg-dataset_v3.0/corpus-reader/')
 
 import argparse
@@ -29,7 +29,7 @@ def main(path_to_corpus):
     
     print('> Extracting triples from corpus')
     data = get_data_loader(path_to_corpus)
-    for i, (sentence, triples) in tqdm(enumerate(data), total=len(data)):
+    for i, (sentence, triples) in tqdm(enumerate(list(data)[:2]), total=len(data)):
         print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
         try:
             cat = entry.category
@@ -76,11 +76,14 @@ def main(path_to_corpus):
     ET.indent(tree, space="  ", level=0)
     import lxml.etree as etree
     global model_id, conf
-    model_id = model_id.replace('/','-')
+    model_id = os.path.basename(model_id)#model_id.replace('/','-')
     if args.groundtruth:
         save_name = f"{dataset}/groundtruth_triples"
     else:
-        save_name = f"{dataset}/generated_triples_{model_id}_temp-{conf['temperature']}"
+        save_dir = f"{dataset}/{model_id}/{args.prompt.replace('.json','')}/"
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
+        save_name = f"{save_dir}/generated_triples_{model_id}_temp-{conf['temperature']}"
         if args.kb is not None:
             save_name += f"_kb-top-{args.top_k}"
     if args.run_n is not None:
