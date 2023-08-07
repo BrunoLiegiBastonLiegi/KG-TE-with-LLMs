@@ -48,6 +48,8 @@ def main(path_to_corpus):
             category=cat,
             eid=eid
         )
+        sent_el = ET.SubElement(e, "sentence")
+        sent_el.text = sentence
         tripleset = ET.SubElement(e, "generatedtripleset")
         print('> Processing Entry')
         t = time.time()
@@ -69,6 +71,7 @@ def main(path_to_corpus):
         triples = [ f"{t[0]} | {t[1]} | {t[2]}" for t in triples ]
         print(f"\n----> Extracted Tripets: {triples}\n")
         print(f'  > Processed sentence in {time.time()-t:.4f}s\n')
+        
         for triple in triples:
             ET.SubElement(tripleset, "gtriple").text = triple
 
