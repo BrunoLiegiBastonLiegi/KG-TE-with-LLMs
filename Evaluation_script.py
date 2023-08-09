@@ -906,6 +906,9 @@ def main(reffile, candfile):
 #main(currentpath + '/Refs.xml', currentpath + '/Cands2.xml')
 import argparse, os, re, json
 import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Evaluation + plotting of P,R,F1')
     parser.add_argument('--predictions', nargs='+')
@@ -935,6 +938,8 @@ if __name__ == '__main__':
             model_id = re.search('(?<=generated_triples_)(.*)(?=_kb)', os.path.basename(pred)).group()
             n_params.append(model_2_nparams[model_id])
             t = 0.1
+        for pattern in ('huggyllama-', 'tiiuae-', 'chavinlo-'):
+            model_id = model_id.replace(pattern, '')
         model_ids.append(model_id)
         temperatures.append(t)
         n_triples, p, r, f1, err, *avg = main(args.groundtruth, pred)
@@ -945,7 +950,8 @@ if __name__ == '__main__':
             metrics[metric].append(vals)
 
     # plot performance vs n triples in sentence
-    plt.figure(figsize=(12,9))
+    plt.rcParams.update({'font.size': 18})
+    plt.figure(figsize=(12,12))
     lines = []
     labels = [ f"{mid} (T={temp})" for mid, temp in zip(model_ids, temperatures) ]
     
@@ -955,7 +961,7 @@ if __name__ == '__main__':
         upper_lim[upper_lim > 1] = 1
         lower_lim = f1 - err
         lower_lim[lower_lim < 0] = 0
-        plt.fill_between(n_triples, lower_lim, upper_lim, alpha=0.1)
+        #plt.fill_between(n_triples, lower_lim, upper_lim, alpha=0.1)
         
     plt.legend(lines, labels)
     plt.xlabel('N triples in sentence')
@@ -965,13 +971,17 @@ if __name__ == '__main__':
 
     # plot performance vs n parameters
     nparams_to_perf = np.asarray(sorted(zip(n_params, avg_p, avg_r, avg_f1), key=lambda x: x[0]))
+    plt.rcParams.update({'font.size': 24})
     plt.figure(figsize=(12,12))
-    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,1], marker='x', label='Precision')
-    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,2], marker='x', label='Recall')
-    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,3], marker='x', label='F1')
-    #plt.plot(nparams_to_perf[:,0], nparams_to_perf[:,1], label='Precision')
-    #plt.plot(nparams_to_perf[:,0], nparams_to_perf[:,2], label='Recall')
-    #plt.plot(nparams_to_perf[:,0], nparams_to_perf[:,3], label='F1')
+    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,1], marker='x', c='blue')
+    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,2], marker='x', c='orange')
+    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,3], marker='x', c='green')
+    for i, curve in zip(range(1,4), [('Precision', 'blue'), ('Recall', 'orange'), ('F1', 'green')]):
+        coeff = np.polyfit(nparams_to_perf[:,0], nparams_to_perf[:,i], deg=1)
+        f = lambda x: coeff[0]*x + coeff[1]
+        plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label=curve[0], c=curve[1])
+    #plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label='Recall')
+    #plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label='F1')
     plt.xlabel('N Parameters')
     plt.ylabel('Performance')
     plt.legend()
@@ -980,6 +990,7 @@ if __name__ == '__main__':
 
     # plot performance vs temperature
     temp_to_perf = np.asarray(sorted(zip(temperatures, avg_p, avg_r, avg_f1), key=lambda x: x[0]))
+    plt.rcParams.update({'font.size': 24})
     plt.figure(figsize=(12,12))
     plt.scatter(temp_to_perf[:,0], temp_to_perf[:,1], marker='x')
     plt.scatter(temp_to_perf[:,0], temp_to_perf[:,2], marker='x')

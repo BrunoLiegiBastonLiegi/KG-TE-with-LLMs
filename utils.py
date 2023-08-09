@@ -181,12 +181,21 @@ def load_kb(kb_path, service_context, similarity_top_k=10):
     return kb_index, retriever
 
 
-def get_relevant_triples(query, retriever, return_tuple=False):
+def get_relevant_triples(query, retriever, return_tuple=False, n_triplets_per_predicate=None):
     kb_triples = [ node.node.text for node in retriever.retrieve(query) ]
-    if return_tuple:
-        kb_triples = [ tuple(t[1:-1].split(', ')) for t in kb_triples ]
-    else:
+    if n_triplets_per_predicate is None and not return_tuple:
         kb_triples = '\n'.join(kb_triples)
+    else:
+        kb_triples = [ tuple(t[1:-1].split(', ')) for t in kb_triples ]
+        if n_triplets_per_predicate is not None:
+            predicates = set([ t[1] for t in kb_triples ])
+            predicates = dict(zip(predicates, [0 for i in range(len(predicates))]))
+            new_triples = []
+            for t in kb_triples:
+                if predicates[t[1]] < n_triplets_per_predicate:
+                    new_triples.append(t)
+                    predicates[t[1]] += 1
+            kb_triples = new_triples
     return kb_triples
 
 
