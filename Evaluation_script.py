@@ -909,18 +909,23 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 def get_model_info(filename):
+    kb = False
     try:
         model_id = re.search('(?<=generated_triples_)(.*)(?=_temp)', os.path.basename(filename)).group()
         try:
             t = float(re.search('(?<=_temp-)(.*)(?=_kb)', os.path.basename(filename)).group())
+            kb = True
         except:
             t = float(re.search('(?<=_temp-)(.*)(?=.xml)', os.path.basename(filename)).group())
     except:
         model_id = re.search('(?<=generated_triples_)(.*)(?=_kb)', os.path.basename(filename)).group()
         t = 0.1
+        kb = True
     for pattern in ('huggyllama-', 'tiiuae-', 'chavinlo-'):
         model_id = model_id.replace(pattern, '')
     n_params = model_2_nparams[model_id]
+    if kb:
+        model_id += ' (KB)'
     return model_id, n_params, t
 
 if __name__ == '__main__':
@@ -958,11 +963,11 @@ if __name__ == '__main__':
     lines = []
     labels = [ f"{mid} (T={temp})" for mid, temp in zip(model_ids, temperatures) ]
     
-    for f1, err in zip(metrics['F1'], metrics['ERR']):
-        lines.append(plt.plot(n_triples, f1)[0])
-        upper_lim = f1 + err
+    for metric, err in zip(metrics[args.metric], metrics['ERR']):
+        lines.append(plt.plot(n_triples, metric)[0])
+        upper_lim = metric + err
         upper_lim[upper_lim > 1] = 1
-        lower_lim = f1 - err
+        lower_lim = metric - err
         lower_lim[lower_lim < 0] = 0
         #plt.fill_between(n_triples, lower_lim, upper_lim, alpha=0.1)
         
