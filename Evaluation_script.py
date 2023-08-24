@@ -918,12 +918,19 @@ def get_model_info(filename):
         except:
             t = float(re.search('(?<=_temp-)(.*)(?=.xml)', os.path.basename(filename)).group())
     except:
-        model_id = re.search('(?<=generated_triples_)(.*)(?=_kb)', os.path.basename(filename)).group()
-        t = 0.1
-        kb = True
+        try:
+            model_id = re.search('(?<=generated_triples_)(.*)(?=_kb)', os.path.basename(filename)).group()
+            t = 0.1
+            kb = True
+        except:
+            model_id = 'Groundtruth'
+            t = None
     for pattern in ('huggyllama-', 'tiiuae-', 'chavinlo-'):
         model_id = model_id.replace(pattern, '')
-    n_params = model_2_nparams[model_id]
+    if model_id != 'Groundtruth':
+        n_params = model_2_nparams[model_id]
+    else:
+        n_params = None
     if kb:
         model_id += ' (KB)'
     return model_id, n_params, t
@@ -957,6 +964,12 @@ if __name__ == '__main__':
         for metric, vals in zip(metrics.keys(), [p,r,f1,err]):
             metrics[metric].append(vals)
 
+    performance_summary = {}
+    for model, p, r, f1 in zip(model_ids, avg_p, avg_r, avg_f1):
+        performance_summary[model] = {'P': p, 'R': r, 'F1': f1}
+    with open('performance_summary.json','w') as f:
+        json.dump(performance_summary, f, indent=2)
+        
     # plot performance vs n triples in sentence
     plt.rcParams.update({'font.size': 18})
     plt.figure(figsize=(12,12))
