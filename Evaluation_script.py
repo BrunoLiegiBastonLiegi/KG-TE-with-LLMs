@@ -908,6 +908,20 @@ import argparse, os, re, json
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
+def get_model_info(filename):
+    try:
+        model_id = re.search('(?<=generated_triples_)(.*)(?=_temp)', os.path.basename(filename)).group()
+        try:
+            t = float(re.search('(?<=_temp-)(.*)(?=_kb)', os.path.basename(filename)).group())
+        except:
+            t = float(re.search('(?<=_temp-)(.*)(?=.xml)', os.path.basename(filename)).group())
+    except:
+        model_id = re.search('(?<=generated_triples_)(.*)(?=_kb)', os.path.basename(filename)).group()
+        t = 0.1
+    for pattern in ('huggyllama-', 'tiiuae-', 'chavinlo-'):
+        model_id = model_id.replace(pattern, '')
+    n_params = model_2_nparams[model_id]
+    return model_id, n_params, t
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Evaluation + plotting of P,R,F1')
@@ -927,21 +941,10 @@ if __name__ == '__main__':
     model_ids, n_params, temperatures = [], [], []
     for pred in args.predictions:
         print(f'> Evaluating predictions found in: {pred}')
-        try:
-            model_id = re.search('(?<=generated_triples_)(.*)(?=_temp)', os.path.basename(pred)).group()
-            n_params.append(model_2_nparams[model_id])
-            try:
-                t = float(re.search('(?<=_temp-)(.*)(?=_kb)', os.path.basename(pred)).group())
-            except:
-                t = float(re.search('(?<=_temp-)(.*)(?=.xml)', os.path.basename(pred)).group())
-        except:
-            model_id = re.search('(?<=generated_triples_)(.*)(?=_kb)', os.path.basename(pred)).group()
-            n_params.append(model_2_nparams[model_id])
-            t = 0.1
-        for pattern in ('huggyllama-', 'tiiuae-', 'chavinlo-'):
-            model_id = model_id.replace(pattern, '')
+        model_id, n, t = get_model_info(pred)
         model_ids.append(model_id)
         temperatures.append(t)
+        n_params.append(n)
         n_triples, p, r, f1, err, *avg = main(args.groundtruth, pred)
         avg_p.append(avg[0])
         avg_r.append(avg[1])
