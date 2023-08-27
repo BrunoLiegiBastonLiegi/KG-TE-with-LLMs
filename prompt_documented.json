@@ -1,0 +1,5 @@
+{
+  "body": "Some text is provided below. The text might contain one or more predicates expressing a relation between a subject and an object. The subject is the entity that takes or undergo the action expressed by the predicate. The object is the entity which is the factual object of the action. The information provided by each predicate can be summarized  as a knowledge triplet of the form (subject, predicate, object). Extract all the information contained in the text in the form of knowledge triplets. Extract no more than {max_knowledge_triplets} knowledge triplets.",
+  "examples": "\n\n---------------------\n\nExamples:\nText: Abilene, Texas is in the United States.\nTriplets:\n(abilene texas, country, united states)\nText: The United States includes the ethnic group of African Americans and is the birthplace of Abraham A Ribicoff who is married to Casey Ribicoff.\nTriplets:\n(abraham a. ribicoff, spouse, casey ribicoff)\n(abraham a. ribicoff, birth place, united states)\n(united states, ethnic group, african americans)\n\n---------------------\n\n",
+  "answer": "Text: {text}\nTriplets:\n"
+}
