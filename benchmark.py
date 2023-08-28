@@ -29,7 +29,7 @@ def main(path_to_corpus):
     
     print('> Extracting triples from corpus')
     data = get_data_loader(path_to_corpus)
-    for i, (sentence, triples) in tqdm(enumerate(data), total=len(data)):
+    for i, (sentence, triples) in tqdm(enumerate(list(data)[:2]), total=len(data)):
         print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
         try:
             cat = entry.category

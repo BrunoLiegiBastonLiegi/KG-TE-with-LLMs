@@ -1,6 +1,12 @@
 import json, re, torch, time, sys
 from tqdm import tqdm
 
+import os, openai
+with open('openai_key.txt', 'r') as f:
+    api_key = f.read().replace('\n','')
+os.environ["OPENAI_API_KEY"] = api_key
+openai.api_key = api_key
+
 def normalize(string):
     string = re.sub(r"([a-z])([A-Z])", "\g<1> \g<2>", string).lower()
     string = re.sub(r'_', ' ', string).lower()
@@ -104,7 +110,8 @@ def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', **model
 
     print(f"> Preparing model: {model_id}")
     t = time.time()
-    if model_id != 'gpt-4':
+    is_openai = True if 'openai' in model_kwargs.keys() else False
+    if not is_openai:
         try:
             tokenizer = AutoTokenizer.from_pretrained(model_id)
         except:
@@ -144,14 +151,12 @@ def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', **model
 
         llm = HuggingFacePipeline(pipeline=pipe)
     else:
-        import os
-        with open('openai_key.txt', 'r') as f:
-            os.environ["OPENAI_API_KEY"] = f.read().replace('\n','')
         print(os.environ["OPENAI_API_KEY"])
         llm = OpenAI(
             model = model_id,
             temperature = model_kwargs['temperature'],
-            max_tokens = model_kwargs['max_new_tokens']
+            max_tokens = model_kwargs['max_new_tokens'],
+            openai_api_key=api_key
         )
     llm_predictor = LLMPredictor(llm = llm)
     emb = HuggingFaceEmbeddings(model_name=sentence_transformer)
@@ -260,7 +265,7 @@ def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=Non
             max_knowledge_triplets=max_knowledge_triplets
         )
         print('> Prompt Template:')
-        print(kg_index.kg_triple_extract_template.prompt.template)
+        print(kg_index.kg_triple_extract_template.template)
         for t in kg_index._extract_triplets(sent):
             triples.add(t)
     return list(triples)
