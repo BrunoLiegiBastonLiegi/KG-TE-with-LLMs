@@ -95,6 +95,7 @@ from llama_index import LLMPredictor, StorageContext, load_index_from_storage
 from llama_index.embeddings.langchain import LangchainEmbedding
 from llama_index.retrievers import VectorIndexRetriever
 from llama_index.prompts.prompts import KnowledgeGraphPrompt
+from llama_index.llms import OpenAI
 from functools import partial
 from collections import defaultdict
 
@@ -103,62 +104,55 @@ def get_llm(model_id, pipeline, sentence_transformer='all-MiniLM-L6-v2', **model
 
     print(f"> Preparing model: {model_id}")
     t = time.time()
-    try:
-        tokenizer = AutoTokenizer.from_pretrained(model_id)
-    except:
-        tokenizer = LlamaTokenizer.from_pretrained(model_id)
-    print(f'> Loaded tokenizer in {time.time()-t:.4f}s')
-    """
-    t = time.time()
-    model = AutoModelForCausalLM.from_pretrained(
-        model_id,
-        device_map='auto',
-        torch_dtype=torch.float16,
-        low_cpu_mem_usage=True,
-        load_in_4bit=load_in_4bit,
-    )
-    print(f'> Loaded model in {time.time()-t:.4f}s')
-    
-    model_kwargs = {
-        "torch_dtype": torch.bfloat16,
-        "device_map": 'auto',
-        "low_cpu_mem_usage": True,
-    }
-    if load_in_4bit:
-        model_kwargs["load_in_8bit"] = load_in_4bit
-    """
-    if 'load_in_4bit' not in model_kwargs:
-        model_kwargs['load_in_4bit'] = False
-    if 'load_in_8bit' not in model_kwargs:        
-        model_kwargs['load_in_8bit'] = False
-    if model_kwargs['load_in_4bit'] and model_kwargs['load_in_8bit']:
-        raise AssertionError("Both 8bit and 4bit model loading specified, pick one.")
-    else:
-        if not (model_kwargs['load_in_4bit'] or model_kwargs['load_in_8bit']):
-            model_kwargs["torch_dtype"] = torch.bfloat16
+    if model_id != 'gpt-4':
+        try:
+            tokenizer = AutoTokenizer.from_pretrained(model_id)
+        except:
+            tokenizer = LlamaTokenizer.from_pretrained(model_id)
+            print(f'> Loaded tokenizer in {time.time()-t:.4f}s')
+
+        if 'load_in_4bit' not in model_kwargs:
+            model_kwargs['load_in_4bit'] = False
+        if 'load_in_8bit' not in model_kwargs:        
+            model_kwargs['load_in_8bit'] = False
+        if model_kwargs['load_in_4bit'] and model_kwargs['load_in_8bit']:
+            raise AssertionError("Both 8bit and 4bit model loading specified, pick one.")
+        else:
+            if not (model_kwargs['load_in_4bit'] or model_kwargs['load_in_8bit']):
+                model_kwargs["torch_dtype"] = torch.bfloat16
             
-    if 'device_map' not in model_kwargs:
-        model_kwargs['device_map'] = 'auto'
-    max_new_tokens = model_kwargs.pop('max_new_tokens')
-    temperature = model_kwargs.pop('temperature')
+        if 'device_map' not in model_kwargs:
+            model_kwargs['device_map'] = 'auto'
+        max_new_tokens = model_kwargs.pop('max_new_tokens')
+        temperature = model_kwargs.pop('temperature')
     
-    t = time.time()
-    pipe = Pipeline(
-        pipeline,
-        model=model_id,
-        tokenizer=tokenizer,
-        max_new_tokens=max_new_tokens,
-        model_kwargs=model_kwargs,
-        temperature=temperature,
-        trust_remote_code=True
-    )
-    print(f'> Created pipeline in {time.time()-t:.4f}s')
+        t = time.time()
+        pipe = Pipeline(
+            pipeline,
+            model=model_id,
+            tokenizer=tokenizer,
+            max_new_tokens=max_new_tokens,
+            model_kwargs=model_kwargs,
+            temperature=temperature,
+            trust_remote_code=True
+        )
+        print(f'> Created pipeline in {time.time()-t:.4f}s')
 
-    print(f'> Model data type: {pipe.model.dtype}')
+        print(f'> Model data type: {pipe.model.dtype}')
 
-    print(f'> Using device: {set(pipe.model.hf_device_map.values())}')
+        print(f'> Using device: {set(pipe.model.hf_device_map.values())}')
 
-    llm = HuggingFacePipeline(pipeline=pipe)
+        llm = HuggingFacePipeline(pipeline=pipe)
+    else:
+        import os
+        with open('openai_key.txt', 'r') as f:
+            os.environ["OPENAI_API_KEY"] = f.read().replace('\n','')
+        print(os.environ["OPENAI_API_KEY"])
+        llm = OpenAI(
+            model = model_id,
+            temperature = model_kwargs['temperature'],
+            max_tokens = model_kwargs['max_new_tokens']
+        )
     llm_predictor = LLMPredictor(llm = llm)
     emb = HuggingFaceEmbeddings(model_name=sentence_transformer)
     emb = LangchainEmbedding(emb)

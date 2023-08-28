@@ -13,7 +13,7 @@ from nervaluate import Evaluator
 import nltk
 from nltk.util import ngrams
 import string
-from sklearn.metrics import precision_score, recall_score, f1_score
+from sklearn.metrics import precision_score, recall_score, f1_score, multilabel_confusion_matrix
 from sklearn import preprocessing
 from tqdm import tqdm
 
@@ -843,6 +843,10 @@ def calculateExactTripleScore(reflist, candlist):
     lb = preprocessing.MultiLabelBinarizer(classes=allclasses)
     mcbin = lb.fit_transform(newcandlist)
     mrbin = lb.fit_transform(newreflist)
+    print(newcandlist[0])
+    print(newreflist[0])
+    print(mcbin[0])
+    print(mrbin[0])
 
     precision = precision_score(mrbin, mcbin, average='macro')
     recall = recall_score(mrbin, mcbin, average='macro')
@@ -863,7 +867,7 @@ def main(reffile, candfile):
     print('\n')
     
     print(f"\n#### Macro Averaged ####")
-    avg_p, avg_r, avg_f1 = calculateExactTripleScore(reflist, candlist)
+    avg_p, avg_r, avg_f1, confusion_matrix = calculateExactTripleScore(reflist, candlist)
     n_triples_to_instance = { len(ref): {'refs': [], 'cands': []}
                               for ref in reflist }
     for ref, cand in zip(reflist, candlist):
@@ -876,11 +880,9 @@ def main(reffile, candfile):
         refs = refs_cands['refs']
         cands = refs_cands['cands']
         print(f"\n#### {n} Triples Sentences ####")
-        p, r, f1 = calculateExactTripleScore(refs, cands)
+        p, r, f1, _ = calculateExactTripleScore(refs, cands)
         n_triples_to_performance[n] = dict(zip(['p','r','f1'], [p,r,f1]))
         n_triples_to_err[n] = 1 / np.sqrt(len(refs))
-
-    import matplotlib.pyplot as plt
     
     n_triples, performance = zip(*sorted(n_triples_to_performance.items(), key=lambda x: x[0]))
     _, errs = zip(*sorted(n_triples_to_err.items(), key=lambda x: x[0]))
@@ -888,7 +890,7 @@ def main(reffile, candfile):
     recalls = np.array([ v['r'] for v in performance ])
     f1s = np.array([ v['f1'] for v in performance ])
 
-    return n_triples, precisions, recalls, f1s, errs, avg_p, avg_r, avg_f1
+    return n_triples, precisions, recalls, f1s, errs, avg_p, avg_r, avg_f1, confusion_matrix
 
 """
     plt.figure(figsize=(12,9))
