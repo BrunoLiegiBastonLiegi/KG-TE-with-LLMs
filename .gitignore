@@ -12,3 +12,4 @@ webnlg_modified/generated_triples*
 nyt/groundtruth_triples.xml
 webnlg/groundtruth_triples.xml
 webnlg_modified/groundtruth_triples.xml
+openai_key.txt
