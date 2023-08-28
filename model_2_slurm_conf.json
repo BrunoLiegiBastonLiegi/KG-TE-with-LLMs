@@ -46,7 +46,7 @@
   "llama65b": {
     "gres": "gpu:a6000:2",
     "mem": "100gb"
-  }
+  },
   "gpt3.5-turbo": {
     "gres": "gpu:1",
     "mem": "32gb"

@@ -59,7 +59,7 @@ date
         data_dir = d.split('/')[-2]
         kb = f"{data_dir}/kb_single_triples_normalized/"
         for model in args.models:
-            name = model[:-5]
+            name = os.path.basename(model)[:-5]
             slurm_conf = model2conf[name]
             with open('benchmark.slurm', 'w') as f:
                 f.write(
