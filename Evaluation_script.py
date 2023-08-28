@@ -867,7 +867,7 @@ def main(reffile, candfile):
     print('\n')
     
     print(f"\n#### Macro Averaged ####")
-    avg_p, avg_r, avg_f1, confusion_matrix = calculateExactTripleScore(reflist, candlist)
+    avg_p, avg_r, avg_f1 = calculateExactTripleScore(reflist, candlist)
     n_triples_to_instance = { len(ref): {'refs': [], 'cands': []}
                               for ref in reflist }
     for ref, cand in zip(reflist, candlist):
@@ -880,7 +880,7 @@ def main(reffile, candfile):
         refs = refs_cands['refs']
         cands = refs_cands['cands']
         print(f"\n#### {n} Triples Sentences ####")
-        p, r, f1, _ = calculateExactTripleScore(refs, cands)
+        p, r, f1 = calculateExactTripleScore(refs, cands)
         n_triples_to_performance[n] = dict(zip(['p','r','f1'], [p,r,f1]))
         n_triples_to_err[n] = 1 / np.sqrt(len(refs))
     
@@ -890,7 +890,7 @@ def main(reffile, candfile):
     recalls = np.array([ v['r'] for v in performance ])
     f1s = np.array([ v['f1'] for v in performance ])
 
-    return n_triples, precisions, recalls, f1s, errs, avg_p, avg_r, avg_f1, confusion_matrix
+    return n_triples, precisions, recalls, f1s, errs, avg_p, avg_r, avg_f1
 
 """
     plt.figure(figsize=(12,9))
@@ -912,6 +912,7 @@ from scipy.optimize import curve_fit
 
 def get_model_info(filename):
     kb = False
+    prompt = filename.split('/')[-2].replace('_kb','').replace('prompt_','')
     try:
         model_id = re.search('(?<=generated_triples_)(.*)(?=_temp)', os.path.basename(filename)).group()
         try:
@@ -935,7 +936,7 @@ def get_model_info(filename):
         n_params = None
     if kb:
         model_id += ' (KB)'
-    return model_id, n_params, t
+    return model_id, n_params, t, prompt
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Evaluation + plotting of P,R,F1')
@@ -952,13 +953,14 @@ if __name__ == '__main__':
 
     metrics = {'P': [], 'R': [], 'F1': [], 'ERR': []}
     avg_p, avg_r, avg_f1 = [], [], []
-    model_ids, n_params, temperatures = [], [], []
+    model_ids, n_params, temperatures, prompts = [], [], [], []
     for pred in args.predictions:
         print(f'> Evaluating predictions found in: {pred}')
-        model_id, n, t = get_model_info(pred)
+        model_id, n, t, prompt = get_model_info(pred)
         model_ids.append(model_id)
         temperatures.append(t)
         n_params.append(n)
+        prompts.append(prompt)
         n_triples, p, r, f1, err, *avg = main(args.groundtruth, pred)
         avg_p.append(avg[0])
         avg_r.append(avg[1])
@@ -967,8 +969,8 @@ if __name__ == '__main__':
             metrics[metric].append(vals)
 
     performance_summary = {}
-    for model, p, r, f1 in zip(model_ids, avg_p, avg_r, avg_f1):
-        performance_summary[model] = {'P': p, 'R': r, 'F1': f1}
+    for model, t, prompt, p, r, f1 in zip(model_ids, temperatures, prompts, avg_p, avg_r, avg_f1):
+        performance_summary[f"{model} T={t} prompt={prompt}"] = {'P': p, 'R': r, 'F1': f1}
     with open('performance_summary.json','w') as f:
         json.dump(performance_summary, f, indent=2)
         
