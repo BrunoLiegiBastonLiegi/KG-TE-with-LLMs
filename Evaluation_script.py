@@ -876,6 +876,10 @@ def main(reffile, candfile):
         n_triples_to_instance[n]['cands'].append(cand)
         
     n_triples_to_performance, n_triples_to_err = {}, {}
+    n_triples_to_n_generated_triples = dict(
+        n_triples_to_instance.keys(),
+        [0 for i in range(len(n_triples_to_instance))]
+    )
     for n, refs_cands in n_triples_to_instance.items():
         refs = refs_cands['refs']
         cands = refs_cands['cands']
@@ -883,6 +887,7 @@ def main(reffile, candfile):
         p, r, f1 = calculateExactTripleScore(refs, cands)
         n_triples_to_performance[n] = dict(zip(['p','r','f1'], [p,r,f1]))
         n_triples_to_err[n] = 1 / np.sqrt(len(refs))
+        n_triples_to_n_generated_triples[n] = len(cands)
     
     n_triples, performance = zip(*sorted(n_triples_to_performance.items(), key=lambda x: x[0]))
     _, errs = zip(*sorted(n_triples_to_err.items(), key=lambda x: x[0]))
@@ -978,8 +983,13 @@ if __name__ == '__main__':
     plt.rcParams.update({'font.size': 18})
     plt.figure(figsize=(12,12))
     lines = []
-    labels = [ f"{mid} (T={temp})" for mid, temp in zip(model_ids, temperatures) ]
-    
+    if len(set(temperatures)) == 1:
+        labels = [ f"{mid}" for mid, temp in zip(model_ids, temperatures) ]
+        title = f"T = {temperatures[0]}"
+    else:
+        labels = [ f"{mid} (T={temp})" for mid, temp in zip(model_ids, temperatures) ]
+        title = ""
+        
     for metric, err in zip(metrics[args.metric], metrics['ERR']):
         lines.append(plt.plot(n_triples, metric)[0])
         upper_lim = metric + err
@@ -989,6 +999,7 @@ if __name__ == '__main__':
         #plt.fill_between(n_triples, lower_lim, upper_lim, alpha=0.1)
         
     plt.legend(lines, labels)
+    plt.title(title)
     plt.xlabel('N triples in sentence')
     plt.ylabel(args.metric)
     plt.savefig('performance_vs_n-triples.pdf', format='pdf', dpi=300)
