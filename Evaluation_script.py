@@ -876,10 +876,10 @@ def main(reffile, candfile):
         n_triples_to_instance[n]['cands'].append(cand)
         
     n_triples_to_performance, n_triples_to_err = {}, {}
-    n_triples_to_n_generated_triples = dict(
+    n_triples_to_n_generated_triples = dict(zip(
         n_triples_to_instance.keys(),
         [0 for i in range(len(n_triples_to_instance))]
-    )
+    ))
     for n, refs_cands in n_triples_to_instance.items():
         refs = refs_cands['refs']
         cands = refs_cands['cands']
@@ -978,6 +978,19 @@ if __name__ == '__main__':
         performance_summary[f"{model} T={t} prompt={prompt}"] = {'P': p, 'R': r, 'F1': f1}
     with open('performance_summary.json','w') as f:
         json.dump(performance_summary, f, indent=2)
+
+    print('Model\t\t\t\t\tP\tR\tF1')
+    print('-------------------------------------------------------------------------------')
+    for model, met in performance_summary.items():
+        p, r, f1 = (f'{m:.3f}' for m in met.values())
+        print(f'{model}\t|\t{p}\t{r}\t{f1}')
+    print('-------------------------------------------------------------------------------\n')
+
+    print('# Standard Deviations:')
+    stds = []
+    for met, val in metrics.items():
+        stds.append(np.std(val))
+    print('  > P: {:.4f}, R: {:.4f}, F1: {:.4f}'.format(*stds))
         
     # plot performance vs n triples in sentence
     plt.rcParams.update({'font.size': 18})
@@ -989,7 +1002,7 @@ if __name__ == '__main__':
     else:
         labels = [ f"{mid} (T={temp})" for mid, temp in zip(model_ids, temperatures) ]
         title = ""
-        
+
     for metric, err in zip(metrics[args.metric], metrics['ERR']):
         lines.append(plt.plot(n_triples, metric)[0])
         upper_lim = metric + err
