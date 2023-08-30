@@ -196,6 +196,7 @@ def get_relevant_triples(query, retriever, return_tuple=False, n_triplets_per_pr
                     predicates[t[1]] += 1
             kb_triples = new_triples
         if not return_tuple:
+            kb_triples = ['({}, {}, {})'.format(*t) for t in kb_triples]
             kb_triples = '\n'.join(kb_triples)
     return kb_triples
 
