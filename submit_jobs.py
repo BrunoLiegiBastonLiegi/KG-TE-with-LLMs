@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Submit slurm jobs.')
     parser.add_argument('models', nargs='+')
-    parser.add_argument('--data')
+    parser.add_argument('--data', nargs='*')
     parser.add_argument('--prompt')
     parser.add_argument('--groundtruth', action='store_true')
     parser.add_argument('--kb', action='store_true')
@@ -53,7 +53,9 @@ date
         data = ['webnlg/test.json', 'webnlg_modified/test.json', 'nyt/test.json']
         
     else:
-        data = [args.data]
+        data = args.data
+        if not isinstance(data, list):
+            data = [data]
 
     for d in data:
         data_dir = d.split('/')[-2]
