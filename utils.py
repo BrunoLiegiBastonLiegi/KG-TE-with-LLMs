@@ -201,7 +201,7 @@ def get_relevant_triples(query, retriever, return_tuple=False, n_triplets_per_pr
 def get_triplet_extraction_prompt(body, examples, answer, sentence=None, kb_retriever=None):
     prompt = f"{body}{examples}"
     if sentence is not None and kb_retriever is not None:
-        triples = get_relevant_triples(sentence, kb_retriever)
+        triples = get_relevant_triples(sentence, kb_retriever, n_triplets_per_predicate=2)
         answer = answer.format(text='{text}', context_triplets=triples)
                 
     prompt = f"{prompt}{answer}"
