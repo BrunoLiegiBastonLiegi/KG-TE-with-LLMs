@@ -48,11 +48,11 @@
     "mem": "100gb"
   },
   "gpt3.5-turbo": {
-    "gres": "gpu:1",
+    "gres": "gpu:0",
     "mem": "32gb"
   },
   "gpt4": {
-    "gres": "gpu:1",
+    "gres": "gpu:0",
     "mem": "32gb"
   }
 }

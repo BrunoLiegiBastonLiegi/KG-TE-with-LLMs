@@ -100,7 +100,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Benchmarking triplet extraction.')
     parser.add_argument('--data')
     parser.add_argument('--prompt')
-    parser.add_argument('--conf', default='llm.conf')
+    parser.add_argument('--conf', default='model_conf/gpt2.conf')
     parser.add_argument('--kb')
     parser.add_argument('--top_k', default=2, type=int)
     parser.add_argument('--groundtruth', action='store_true')

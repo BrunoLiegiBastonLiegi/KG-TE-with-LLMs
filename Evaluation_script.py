@@ -888,6 +888,8 @@ def main(reffile, candfile):
         n_triples_to_instance.keys(),
         [0 for i in range(len(n_triples_to_instance))]
     ))
+    # !!!! PLOT THE DISTRIBUTION OF N GENERATED TRIPLES TO UNDERSTAND WHETHER
+    # THE KB ADDITION LEADS TO MORE TRIPLES EXTRACTED !!!!
     for n, refs_cands in n_triples_to_instance.items():
         refs = refs_cands['refs']
         cands = refs_cands['cands']
@@ -895,7 +897,7 @@ def main(reffile, candfile):
         p, r, f1 = calculateExactTripleScore(refs, cands, classes=classes, avg=args.avg)
         n_triples_to_performance[n] = dict(zip(['p','r','f1'], [p,r,f1]))
         n_triples_to_err[n] = 1 / np.sqrt(len(refs))
-        n_triples_to_n_generated_triples[n] = len(cands)
+        n_triples_to_n_generated_triples[n] = [ len(c) for c in cands ]
     
     n_triples, performance = zip(*sorted(n_triples_to_performance.items(), key=lambda x: x[0]))
     _, errs = zip(*sorted(n_triples_to_err.items(), key=lambda x: x[0]))
@@ -903,7 +905,7 @@ def main(reffile, candfile):
     recalls = np.array([ v['r'] for v in performance ])
     f1s = np.array([ v['f1'] for v in performance ])
 
-    return n_triples, precisions, recalls, f1s, errs, avg_p, avg_r, avg_f1
+    return n_triples, precisions, recalls, f1s, errs, n_triples_to_n_generated_triples, avg_p, avg_r, avg_f1
 
     
 #main(currentpath + '/Refs.xml', currentpath + '/Cands2.xml')
@@ -959,6 +961,7 @@ if __name__ == '__main__':
     metrics = {'P': [], 'R': [], 'F1': [], 'ERR': []}
     avg_p, avg_r, avg_f1 = [], [], []
     model_ids, n_params, temperatures, prompts = [], [], [], []
+    total_n_gen_triples = {}
     for pred in args.predictions:
         print(f'> Evaluating predictions found in: {pred}')
         model_id, n, t, prompt = get_model_info(pred)
@@ -966,20 +969,37 @@ if __name__ == '__main__':
         temperatures.append(t)
         n_params.append(n)
         prompts.append(prompt)
-        n_triples, p, r, f1, err, *avg = main(args.groundtruth, pred)
+        n_triples, p, r, f1, err, n_gen_triples, *avg = main(args.groundtruth, pred)
         avg_p.append(avg[0])
         avg_r.append(avg[1])
         avg_f1.append(avg[2])
         for metric, vals in zip(metrics.keys(), [p,r,f1,err]):
             metrics[metric].append(vals)
+        for n, n_gen in n_gen_triples.items():
+            if n not in total_n_gen_triples:
+                total_n_gen_triples[n] = n_gen
+            else:
+                total_n_gen_triples[n] += n_gen
+    
+    #print(total_n_gen_triples)
+    counts, bins = np.histogram(total_n_gen_triples[1], density=True)
+    plt.stairs(counts, bins)
+    plt.show()
 
+    n_gen_triples = []
+    for n_gen in total_n_gen_triples.values():
+        n_gen_triples += n_gen
+    counts, bins = np.histogram(n_gen_triples, density=True)
+    plt.stairs(counts, bins)
+    plt.show()
+    
     performance_summary = {}
     for model, t, prompt, p, r, f1 in zip(model_ids, temperatures, prompts, avg_p, avg_r, avg_f1):
         performance_summary[f"{model} T={t} prompt={prompt}"] = {'P': p, 'R': r, 'F1': f1}
     with open('performance_summary.json','w') as f:
         json.dump(performance_summary, f, indent=2)
 
-    print('Model\t\t\t\t\t\t\tP\tR\tF1')
+    print('\nModel\t\t\t\t\t\t\tP\tR\tF1')
     print('-------------------------------------------------------------------------------')
     for model, met in performance_summary.items():
         p, r, f1 = (f'{m:.3f}' for m in met.values())
