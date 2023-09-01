@@ -832,14 +832,21 @@ def calculateSystemScore(totalsemevallist, totalsemevallistpertag, newreflist, n
           ' Recall: ' + str(objexactrecall) + '\nF1: ' + str(objexactf1))
     print('-----------------------------------------------------------------')
 
-def calculateExactTripleScore(reflist, candlist):
-    newreflist = [[string.lower() for string in sublist] for sublist in reflist]
-    newcandlist = [[string.lower() for string in sublist] for sublist in candlist]
-    #First get all the classes by combining the triples in the candidatelist and referencelist
+def get_classes(newreflist, newcandlist):
     allclasses = newcandlist + newreflist
     allclasses = [item for items in allclasses for item in items]
     allclasses = list(set(allclasses))
+    return allclasses
 
+def calculateExactTripleScore(reflist, candlist, classes=None, avg='macro'):
+    newreflist = [[string.lower() for string in sublist] for sublist in reflist]
+    newcandlist = [[string.lower() for string in sublist] for sublist in candlist]
+    #First get all the classes by combining the triples in the candidatelist and referencelist
+    if classes is None:
+        allclasses = get_classes(newreflist, newcandlist)
+    else:
+        allclasses = classes
+        
     lb = preprocessing.MultiLabelBinarizer(classes=allclasses)
     mcbin = lb.fit_transform(newcandlist)
     mrbin = lb.fit_transform(newreflist)
@@ -848,9 +855,9 @@ def calculateExactTripleScore(reflist, candlist):
     print(mcbin[0])
     print(mrbin[0])
 
-    precision = precision_score(mrbin, mcbin, average='macro')
-    recall = recall_score(mrbin, mcbin, average='macro')
-    f1 = f1_score(mrbin, mcbin, average='macro')
+    precision = precision_score(mrbin, mcbin, average=avg)
+    recall = recall_score(mrbin, mcbin, average=avg)
+    f1 = f1_score(mrbin, mcbin, average=avg)
 
     print('Full triple scores')
     print('-----------------------------------------------------------------')
@@ -864,10 +871,11 @@ def main(reffile, candfile):
     candlist, newcandlist = getCands(candfile)
     #totalsemevallist, totalsemevallistpertag = calculateAllScores(newreflist, newcandlist)
     #calculateSystemScore(totalsemevallist, totalsemevallistpertag, newreflist, newcandlist)
+    classes = get_classes(newreflist, newcandlist)
     print('\n')
     
     print(f"\n#### Macro Averaged ####")
-    avg_p, avg_r, avg_f1 = calculateExactTripleScore(reflist, candlist)
+    avg_p, avg_r, avg_f1 = calculateExactTripleScore(reflist, candlist, classes=classes, avg=args.avg)
     n_triples_to_instance = { len(ref): {'refs': [], 'cands': []}
                               for ref in reflist }
     for ref, cand in zip(reflist, candlist):
@@ -884,7 +892,7 @@ def main(reffile, candfile):
         refs = refs_cands['refs']
         cands = refs_cands['cands']
         print(f"\n#### {n} Triples Sentences ####")
-        p, r, f1 = calculateExactTripleScore(refs, cands)
+        p, r, f1 = calculateExactTripleScore(refs, cands, classes=classes, avg=args.avg)
         n_triples_to_performance[n] = dict(zip(['p','r','f1'], [p,r,f1]))
         n_triples_to_err[n] = 1 / np.sqrt(len(refs))
         n_triples_to_n_generated_triples[n] = len(cands)
@@ -897,18 +905,6 @@ def main(reffile, candfile):
 
     return n_triples, precisions, recalls, f1s, errs, avg_p, avg_r, avg_f1
 
-"""
-    plt.figure(figsize=(12,9))
-    for metric in (precisions, recalls, f1s):
-        plt.plot(n_triples, metric)
-        plt.fill_between(n_triples, metric + errs, metric - errs, alpha=0.2)
-
-    plt.xlabel('N triples in sentence')
-    plt.ylabel('Performance')
-    plt.ylim(0,1)
-    plt.savefig('performance_vs_n-triples.pdf', format='pdf', dpi=300)
-    plt.show()
-"""
     
 #main(currentpath + '/Refs.xml', currentpath + '/Cands2.xml')
 import argparse, os, re, json
@@ -948,7 +944,11 @@ if __name__ == '__main__':
     parser.add_argument('--predictions', nargs='+')
     parser.add_argument('--groundtruth')
     parser.add_argument('--metric', default='F1')
+    parser.add_argument('--avg', default='macro')
     args = parser.parse_args()
+
+    if args.avg not in ('micro','macro'):
+        raise AssertionError('Invalid averaging method, it should be either \'micro\' or \'macro\'')
 
     if args.metric not in ('P', 'R', 'F1'):
         raise AssertionError('Invalid metric definition, it should be either P, R or F1')
@@ -979,7 +979,7 @@ if __name__ == '__main__':
     with open('performance_summary.json','w') as f:
         json.dump(performance_summary, f, indent=2)
 
-    print('Model\t\t\t\t\tP\tR\tF1')
+    print('Model\t\t\t\t\t\t\tP\tR\tF1')
     print('-------------------------------------------------------------------------------')
     for model, met in performance_summary.items():
         p, r, f1 = (f'{m:.3f}' for m in met.values())
@@ -1004,7 +1004,7 @@ if __name__ == '__main__':
         title = ""
 
     for metric, err in zip(metrics[args.metric], metrics['ERR']):
-        lines.append(plt.plot(n_triples, metric)[0])
+        lines.append(plt.plot(n_triples, metric, marker='*', markersize=15, linewidth=2)[0])
         upper_lim = metric + err
         upper_lim[upper_lim > 1] = 1
         lower_lim = metric - err
@@ -1022,13 +1022,13 @@ if __name__ == '__main__':
     nparams_to_perf = np.asarray(sorted(zip(n_params, avg_p, avg_r, avg_f1), key=lambda x: x[0]))
     plt.rcParams.update({'font.size': 24})
     plt.figure(figsize=(12,12))
-    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,1], marker='x', c='blue')
-    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,2], marker='x', c='orange')
-    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,3], marker='x', c='green')
+    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,1], marker='*', c='blue', s=100)
+    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,2], marker='*', c='orange', s=100)
+    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,3], marker='*', c='green', s=100)
     for i, curve in zip(range(1,4), [('Precision', 'blue'), ('Recall', 'orange'), ('F1', 'green')]):
         coeff = np.polyfit(nparams_to_perf[:,0], nparams_to_perf[:,i], deg=1)
         f = lambda x: coeff[0]*x + coeff[1]
-        plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label=curve[0], c=curve[1])
+        plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label=curve[0], c=curve[1], linewidth=2)
     #plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label='Recall')
     #plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label='F1')
     plt.xlabel('N Parameters')
@@ -1041,12 +1041,12 @@ if __name__ == '__main__':
     temp_to_perf = np.asarray(sorted(zip(temperatures, avg_p, avg_r, avg_f1), key=lambda x: x[0]))
     plt.rcParams.update({'font.size': 24})
     plt.figure(figsize=(12,12))
-    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,1], marker='x')
-    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,2], marker='x')
-    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,3], marker='x')
-    plt.plot(temp_to_perf[:,0], temp_to_perf[:,1], label='Precision')
-    plt.plot(temp_to_perf[:,0], temp_to_perf[:,2], label='Recall')
-    plt.plot(temp_to_perf[:,0], temp_to_perf[:,3], label='F1')
+    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,1], marker='*', s=100)
+    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,2], marker='*', s=100)
+    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,3], marker='*', s=100)
+    plt.plot(temp_to_perf[:,0], temp_to_perf[:,1], label='Precision', linewidth=2)
+    plt.plot(temp_to_perf[:,0], temp_to_perf[:,2], label='Recall', linewidth=2)
+    plt.plot(temp_to_perf[:,0], temp_to_perf[:,3], label='F1', linewidth=2)
     plt.xlabel('Temperature')
     plt.ylabel('Performance')
     plt.legend()
