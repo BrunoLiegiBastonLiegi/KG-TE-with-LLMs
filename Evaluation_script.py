@@ -988,8 +988,8 @@ if __name__ == '__main__':
 
     print('# Standard Deviations:')
     stds = []
-    for met, val in metrics.items():
-        stds.append(np.std(val))
+    for met in (avg_p, avg_r, avg_f1):
+        stds.append(np.std(met))
     print('  > P: {:.4f}, R: {:.4f}, F1: {:.4f}'.format(*stds))
         
     # plot performance vs n triples in sentence
@@ -1022,9 +1022,9 @@ if __name__ == '__main__':
     nparams_to_perf = np.asarray(sorted(zip(n_params, avg_p, avg_r, avg_f1), key=lambda x: x[0]))
     plt.rcParams.update({'font.size': 24})
     plt.figure(figsize=(12,12))
-    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,1], marker='*', c='blue', s=100)
-    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,2], marker='*', c='orange', s=100)
-    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,3], marker='*', c='green', s=100)
+    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,1], marker='*', c='blue', s=150)
+    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,2], marker='*', c='orange', s=150)
+    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,3], marker='*', c='green', s=150)
     for i, curve in zip(range(1,4), [('Precision', 'blue'), ('Recall', 'orange'), ('F1', 'green')]):
         coeff = np.polyfit(nparams_to_perf[:,0], nparams_to_perf[:,i], deg=1)
         f = lambda x: coeff[0]*x + coeff[1]
@@ -1041,9 +1041,9 @@ if __name__ == '__main__':
     temp_to_perf = np.asarray(sorted(zip(temperatures, avg_p, avg_r, avg_f1), key=lambda x: x[0]))
     plt.rcParams.update({'font.size': 24})
     plt.figure(figsize=(12,12))
-    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,1], marker='*', s=100)
-    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,2], marker='*', s=100)
-    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,3], marker='*', s=100)
+    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,1], marker='*', s=150)
+    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,2], marker='*', s=150)
+    plt.scatter(temp_to_perf[:,0], temp_to_perf[:,3], marker='*', s=150)
     plt.plot(temp_to_perf[:,0], temp_to_perf[:,1], label='Precision', linewidth=2)
     plt.plot(temp_to_perf[:,0], temp_to_perf[:,2], label='Recall', linewidth=2)
     plt.plot(temp_to_perf[:,0], temp_to_perf[:,3], label='F1', linewidth=2)
