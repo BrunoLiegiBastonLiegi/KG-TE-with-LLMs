@@ -1002,7 +1002,7 @@ if __name__ == '__main__':
     print('\nModel\t\t\t\t\t\t\tP\tR\tF1')
     print('-------------------------------------------------------------------------------')
     for model, met in performance_summary.items():
-        p, r, f1 = (f'{m:.3f}' for m in met.values())
+        p, r, f1 = (f'{m:.4f}' for m in met.values())
         print(f'{model}\t|\t{p}\t{r}\t{f1}')
     print('-------------------------------------------------------------------------------\n')
 
