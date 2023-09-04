@@ -4,13 +4,16 @@ from tqdm import tqdm
 parser = argparse.ArgumentParser(description='KB Construction.')
 parser.add_argument('--data', nargs='+')
 parser.add_argument('--save')
-parser.add_argument('--conf', default='llm.conf')
+parser.add_argument('--conf', default='model_conf/gpt2.conf')
 parser.add_argument('--normalize', action='store_true')
 args = parser.parse_args()
 
 dataset_dir = args.data[0].split('/')[0]
 if args.save is None:
     args.save = f"{dataset_dir}/kb"
+
+splits = [ d.split('/')[-1][:-5] for d in args.data ]
+complete = True if 'test' in splits else False
 
 # import the triples
 from utils import get_data_from_files, normalize_triple
@@ -119,6 +122,9 @@ save_name_single_triples = f"{args.save}_single_triples"
 if args.normalize:
     save_name += "_normalized"
     save_name_single_triples += "_normalized"
+if complete:
+    save_name += "_complete"
+    save_name_single_triples += "_complete"
 print(f"> Saving index to {save_name}/.")
 kb_index.storage_context.persist(save_name)
 print(f"> Saving index to {save_name_single_triples}/.")
