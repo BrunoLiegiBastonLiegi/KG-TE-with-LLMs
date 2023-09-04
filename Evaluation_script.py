@@ -911,6 +911,7 @@ def main(reffile, candfile):
 #main(currentpath + '/Refs.xml', currentpath + '/Cands2.xml')
 import argparse, os, re, json
 import matplotlib.pyplot as plt
+import matplotlib
 from scipy.optimize import curve_fit
 
 def get_model_info(filename):
@@ -937,9 +938,10 @@ def get_model_info(filename):
         n_params = model_2_nparams[model_id]
     else:
         n_params = None
+    color = model_2_color(model_id)
     if kb:
         model_id += ' (KB)'
-    return model_id, n_params, t, prompt
+    return model_id, n_params, t, prompt, color
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Evaluation + plotting of P,R,F1')
@@ -958,17 +960,21 @@ if __name__ == '__main__':
     with open('model_to_n-params.json', 'r') as f:
         model_2_nparams = json.load(f)
 
+    with open('model_to_color.json', 'r') as f:
+        model_2_color = json.load(f)
+
     metrics = {'P': [], 'R': [], 'F1': [], 'ERR': []}
     avg_p, avg_r, avg_f1 = [], [], []
-    model_ids, n_params, temperatures, prompts = [], [], [], []
+    model_ids, n_params, temperatures, prompts, colors = [], [], [], [], []
     total_n_gen_triples = {}
     for pred in args.predictions:
         print(f'> Evaluating predictions found in: {pred}')
-        model_id, n, t, prompt = get_model_info(pred)
+        model_id, n, t, prompt, c = get_model_info(pred)
         model_ids.append(model_id)
         temperatures.append(t)
         n_params.append(n)
         prompts.append(prompt)
+        colors.append(c)
         n_triples, p, r, f1, err, n_gen_triples, *avg = main(args.groundtruth, pred)
         avg_p.append(avg[0])
         avg_r.append(avg[1])
@@ -1023,8 +1029,8 @@ if __name__ == '__main__':
         labels = [ f"{mid} (T={temp})" for mid, temp in zip(model_ids, temperatures) ]
         title = ""
 
-    for metric, err in zip(metrics[args.metric], metrics['ERR']):
-        lines.append(plt.plot(n_triples, metric, marker='*', markersize=15, linewidth=2)[0])
+    for metric, err, c in zip(metrics[args.metric], metrics['ERR'], colors):
+        lines.append(plt.plot(n_triples, metric, marker='*', markersize=15, linewidth=2, c=c, cmap=matplotlib.colormaps['Accent'])[0])
         upper_lim = metric + err
         upper_lim[upper_lim > 1] = 1
         lower_lim = metric - err

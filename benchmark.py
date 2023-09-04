@@ -130,7 +130,9 @@ if __name__ == '__main__':
     # prepare the kb
     if args.kb is not None:
         kb_index, kb_retriever = load_kb(args.kb, service_context, similarity_top_k=args.top_k)
-        kb_complete = True if 'complete' in args.kb.split('/')[-1] else False
+        tmp = args.kb.split('/')
+        tmp = tmp[-2] if tmp[-1] == '' else tmp[-1]
+        kb_complete = True if 'complete' in tmp else False
     else:
         kb_index, kb_retriever = None, None
     main(args.data)
