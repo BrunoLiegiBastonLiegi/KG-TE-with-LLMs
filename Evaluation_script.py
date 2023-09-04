@@ -938,7 +938,7 @@ def get_model_info(filename):
         n_params = model_2_nparams[model_id]
     else:
         n_params = None
-    color = model_2_color(model_id)
+    color = model_2_color[model_id]
     if kb:
         model_id += ' (KB)'
     return model_id, n_params, t, prompt, color
@@ -1029,8 +1029,10 @@ if __name__ == '__main__':
         labels = [ f"{mid} (T={temp})" for mid, temp in zip(model_ids, temperatures) ]
         title = ""
 
+    cmap = matplotlib.colormaps['Accent']
+
     for metric, err, c in zip(metrics[args.metric], metrics['ERR'], colors):
-        lines.append(plt.plot(n_triples, metric, marker='*', markersize=15, linewidth=2, c=c, cmap=matplotlib.colormaps['Accent'])[0])
+        lines.append(plt.plot(n_triples, metric, marker='*', markersize=15, linewidth=2, c=cmap(c))[0])
         upper_lim = metric + err
         upper_lim[upper_lim > 1] = 1
         lower_lim = metric - err
