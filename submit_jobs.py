@@ -13,6 +13,7 @@ if __name__ == "__main__":
     parser.add_argument('--groundtruth', action='store_true')
     parser.add_argument('--kb', action='store_true')
     parser.add_argument('--top_k', default=10)
+    parser.add_argument('--complete', action='store_true')
     parser.add_argument('--bigdata', action='store_true')
     args = parser.parse_args()
 
@@ -59,7 +60,11 @@ date
 
     for d in data:
         data_dir = d.split('/')[-2]
-        kb = f"{data_dir}/kb_single_triples_normalized/"
+        kb = f"{data_dir}/kb_single_triples_normalized"
+        if args.complete:
+            kb += "_complete/"
+        else:
+            kb += "/"
         for model in args.models:
             name = os.path.basename(model)[:-5]
             slurm_conf = model2conf[name]

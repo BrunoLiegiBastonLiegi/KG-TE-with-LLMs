@@ -88,7 +88,10 @@ def main(path_to_corpus):
             os.makedirs(save_dir)
         save_name = f"{save_dir}/generated_triples_{model_id}_temp-{conf['temperature']}"
         if args.kb is not None:
-            save_name += f"_kb-top-{args.top_k}"
+            save_name += "_kb"
+            if complete:
+                save_name += "-complete"
+            save_name += f"-top-{args.top_k}"
     if args.run_n is not None:
         save_name += f'_run-{args.run_n}'
     save_name += '.xml'
@@ -127,6 +130,7 @@ if __name__ == '__main__':
     # prepare the kb
     if args.kb is not None:
         kb_index, kb_retriever = load_kb(args.kb, service_context, similarity_top_k=args.top_k)
+        kb_complete = True if 'complete' in args.kb.split('/')[-1] else False
     else:
         kb_index, kb_retriever = None, None
     main(args.data)
