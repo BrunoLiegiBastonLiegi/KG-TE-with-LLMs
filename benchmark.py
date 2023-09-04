@@ -89,7 +89,7 @@ def main(path_to_corpus):
         save_name = f"{save_dir}/generated_triples_{model_id}_temp-{conf['temperature']}"
         if args.kb is not None:
             save_name += "_kb"
-            if complete:
+            if kb_complete:
                 save_name += "-complete"
             save_name += f"-top-{args.top_k}"
     if args.run_n is not None:
