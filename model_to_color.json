@@ -1,16 +1,14 @@
 {
   "alpaca-13b": 0,
-  "falcon-40b-instruct": 1,
-  "falcon-7b-instruct": 2,
+  "falcon-40b-instruct": 3,
+  "falcon-7b-instruct": 4,
   "falcon-40b": 3,
   "falcon-7b": 4,
-  "gpt4-x-alpaca": 5,
-  "llama-13b": 6,
+  "gpt4-x-alpaca": 0,
+  "llama-13b": 0,
   "llama-65b": 7,
   "gpt2-xl": 8,
   "gpt2": 9,
-  "gpt2-medium": 10,
-  "gpt2-large": 11,
   "gpt-3.5-turbo": 12,
   "gpt-4": 13
 }

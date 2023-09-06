@@ -940,7 +940,11 @@ def get_model_info(filename):
         n_params = None
     color = model_2_color[model_id]
     if kb:
-        model_id += ' (KB)'
+        model_id += ' (KB'
+        if 'complete' in  os.path.basename(filename):
+            model_id += ' complete'
+        top_k = re.search('(?<=-top-)([0-9]+)(?=\.xml)', os.path.basename(filename))
+        model_id += f' top_k={top_k})'
     return model_id, n_params, t, prompt, color
 
 if __name__ == '__main__':
