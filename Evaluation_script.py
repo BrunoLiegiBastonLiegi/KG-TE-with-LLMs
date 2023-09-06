@@ -943,7 +943,7 @@ def get_model_info(filename):
         model_id += ' (KB'
         if 'complete' in  os.path.basename(filename):
             model_id += ' complete'
-        top_k = re.search('(?<=-top-)([0-9]+)(?=\.xml)', os.path.basename(filename))
+        top_k = re.search('(?<=-top-)([0-9]+)(?=\.xml)', os.path.basename(filename)).group(0)
         model_id += f' top_k={top_k})'
     return model_id, n_params, t, prompt, color
 
