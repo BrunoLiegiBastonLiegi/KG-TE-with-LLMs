@@ -23,11 +23,13 @@ if args.normalize:
     # get rid of all the specifications location/location/contains etc...
     if dataset_dir == 'nyt':
         kb_triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in kb_triples ]
-    kb_triples = [ normalize_triple(t) for t in kb_triples ]
+    kb_triples = set([ tuple(normalize_triple(t)) for t in kb_triples ])
+
 edges = [
     (t[0], t[2], {'title': t[1]})
     for t in kb_triples
 ]
+
 
 # build the networkx graph
 import networkx as nx

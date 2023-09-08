@@ -953,6 +953,7 @@ if __name__ == '__main__':
     parser.add_argument('--groundtruth')
     parser.add_argument('--metric', default='F1')
     parser.add_argument('--avg', default='macro')
+    parser.add_argument('--colors', nargs='+')
     args = parser.parse_args()
 
     if args.avg not in ('micro','macro'):
@@ -990,6 +991,10 @@ if __name__ == '__main__':
                 total_n_gen_triples[n] = n_gen
             else:
                 total_n_gen_triples[n] += n_gen
+    if args.colors is not None:
+        colors = [ int(c) for c in args.colors ]
+    print(colors)
+    #a
     
     #print(total_n_gen_triples)
     counts, bins = np.histogram(total_n_gen_triples[1], density=True)
@@ -1033,7 +1038,7 @@ if __name__ == '__main__':
         labels = [ f"{mid} (T={temp})" for mid, temp in zip(model_ids, temperatures) ]
         title = ""
 
-    cmap = matplotlib.colormaps['Accent']
+    cmap = matplotlib.colormaps['tab20'] # Alternatively 'Accent'
 
     for metric, err, c in zip(metrics[args.metric], metrics['ERR'], colors):
         lines.append(plt.plot(n_triples, metric, marker='*', markersize=15, linewidth=2, c=cmap(c))[0])

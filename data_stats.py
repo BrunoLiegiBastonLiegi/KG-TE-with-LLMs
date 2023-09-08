@@ -23,14 +23,21 @@ def stats_gen(dataset):
     n_triples_hist = {'test': {}, 'train': {}}
     relations_hist = {'test': {}, 'train': {}}
     entities_hist = {'test': {}, 'train': {}}
-    top_k_to_n_matches = dict(zip([3, 5, 10, 20, 50], [0, 0, 0, 0, 0]))
+    top_k_to_n_matches = {
+        'standard': dict(zip([3, 5, 10, 20, 50], [0, 0, 0, 0, 0])),
+        'complete': dict(zip([3, 5, 10, 20, 50], [0, 0, 0, 0, 0])),
+    }
     _, service_context = get_llm('gpt2', 'text-generation', max_new_tokens=8, temperature=0.1, load_in_8bit=True)
     kb_path = f'{dataset}/kb_single_triples_normalized'
-    if args.complete:
-        kb_path += '_complete'
     retrievers = {
-        i: load_kb(kb_path, service_context, i)[1]
-        for i in top_k_to_n_matches.keys()
+        'standard': {
+            i: load_kb(kb_path, service_context, i)[1]
+            for i in top_k_to_n_matches['standard'].keys()
+        },
+        'complete': {
+            i: load_kb(kb_path + '_complete', service_context, i)[1]
+            for i in top_k_to_n_matches['complete'].keys()
+        }
     }
     total_number_of_triples = 0
     
@@ -46,14 +53,13 @@ def stats_gen(dataset):
             data = get_data_loader(f'{dataset}/test.json')
 
         sentences, n_triples, relations, entities = [], [], [], []
-        for sentence, triples in tqdm(list(data)[:50], total=len(data)):
+        for sentence, triples in tqdm(data, total=len(data)):
             if dataset == 'nyt':
                 triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in triples ]
             triples = [normalize_triple(t) for t in triples]
             sentences.append(sentence)
             # number of triples per sentence histogram
             n_triples.append(len(triples))
-            total_number_of_triples += len(triples)
             # relation types histogram
             relations += [os.path.basename(t[1]) for t in triples]
             # entities histogram
@@ -61,25 +67,27 @@ def stats_gen(dataset):
                 entities.append(t[0])
                 entities.append(t[2])
             if split == 'test':
-                for i, retriever in retrievers.items():
-                    relevant_triples = set(get_relevant_triples(sentence, retriever, return_tuple=True))
-                    #if i == 5:
-                    #    print(f'True Triples:\n{triples}')
-                    #    print(f'Context Triples:\n{relevant_triples}')
-                    relevant_triples = triples_to_id(relevant_triples)
-                    triples_ids = triples_to_id(triples)
-                    for t in triples_ids:
-                        count = len((relevant_triples == t).all(-1).nonzero()[0])
-                        if count == 1:
-                            top_k_to_n_matches[i] += 1
-                        elif count == 0:
-                            continue
-                        else:
-                            print('> Warning')
-                            print(f'Retrieved Triplets:\n{relevant_triples}')
-                            print(f'True Triplet:\n{t}')
-                            #raise AssertionError('Incompatible matching of triplets.')
-                            continue
+                total_number_of_triples += len(triples)
+                for case in ('standard', 'complete'):
+                    for i, retriever in retrievers[case].items():
+                        relevant_triples = set(get_relevant_triples(sentence, retriever, return_tuple=True))
+                        #if i == 3:
+                        #    print(f'True Triples:\n{triples}')
+                        #    print(f'Context Triples:\n{relevant_triples}')
+                        relevant_triples = triples_to_id(relevant_triples)
+                        triples_ids = triples_to_id(triples)
+                        for t in triples_ids:
+                            count = len((relevant_triples == t).all(-1).nonzero()[0])
+                            if count == 1:
+                                top_k_to_n_matches[case][i] += 1
+                            elif count == 0:
+                                continue
+                            else:
+                                print('> Warning')
+                                print(f'Retrieved Triplets:\n{relevant_triples}')
+                                print(f'True Triplet:\n{t}')
+                                #raise AssertionError('Incompatible matching of triplets.')
+                                continue
 
         # number of tokens per sentence histogram
         tok_sents = tokenizer(text=sentences, padding=False)
@@ -98,19 +106,34 @@ def stats_gen(dataset):
 
     plt.rcParams.update({'font.size': 24})
 
+    print('--> TOT: ', total_number_of_triples)
+    # calculate overlapping between test and train triples
+    from utils import get_data_from_files
+    _, train_triples = get_data_from_files(f'{dataset}/train.json')
+    _, valid_triples = get_data_from_files(f'{dataset}/valid.json')
+    _, test_triples = get_data_from_files(f'{dataset}/test.json')
+    train_triples = set([tuple(normalize_triple(t)) for t in train_triples])
+    valid_triples = set([tuple(normalize_triple(t)) for t in valid_triples])
+    test_triples = set([tuple(normalize_triple(t)) for t in test_triples])
+    overlap = train_triples.union(valid_triples).intersection(test_triples)
+    overlap = len(overlap)/len(test_triples)
     print(top_k_to_n_matches)
-    top_k, n_matches = zip(*top_k_to_n_matches.items())
-    n_matches = [ n/total_number_of_triples for n in n_matches ]
-    print(n_matches)
-    plt.scatter(top_k, n_matches)
-    plt.plot(top_k, n_matches)
+    for case in ('standard', 'complete'):
+        top_k, n_matches = zip(*top_k_to_n_matches[case].items())
+        n_matches = [ n/total_number_of_triples for n in n_matches ]
+        print(n_matches)
+        #plt.scatter(top_k, n_matches)
+        label = 'train + valid'
+        if case == 'complete':
+            label += ' + test'
+        plt.plot(top_k, n_matches, markersize=15, linewidth=2, marker='.', label=label)
+
+    plt.axhline(y=overlap, c='black', linestyle='--', linewidth=2)
     plt.ylabel('Probability of Finding the True Triplet')
-    plt.xlabel('Number of Context Triplets Retrieved')
+    plt.xlabel('Number of Context Triplets Retrieved')    
     plt.tight_layout()
-    figname = f'n-matches_vs_top-k_{dataset}'
-    if args.complete:
-        figname += '_complete'
-    figname += '.pdf'
+    figname = f'n-matches_vs_top-k_{dataset}.pdf'
+    plt.legend()
     plt.savefig(figname, format='pdf')
     plt.show()
 
