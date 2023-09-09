@@ -1055,6 +1055,30 @@ if __name__ == '__main__':
     plt.savefig('performance_vs_n-triples.pdf', format='pdf', dpi=300)
     plt.show()
 
+    non_kb_perf = []
+    kb_perf = {}
+    for metric, model in zip(metrics[args.metric], model_ids):
+        if 'KB' in model:
+            top_k = re.search('(?<=top_k=)([0-9]+)(?=\))', os.path.basename(model)).group(0)
+            if top_k in kb_perf.keys():
+                kb_perf[top_k].append(metric)
+            else:
+                kb_perf[top_k] = [metric]
+        else:
+            non_kb_perf.append(metric)
+    kb_perf = {k: np.asarray(v) for k,v in kb_perf.items()}
+    non_kb_perf = np.asarray(non_kb_perf)
+    print(kb_perf)
+    print(n_triples)
+    for top_k, data in kb_perf.items():
+        plt.violinplot(data, positions=n_triples, showmeans=True)
+        plt.scatter(n_triples, data.mean(0))
+    plt.violinplot(non_kb_perf, positions=n_triples, showmeans=True)
+    plt.scatter(n_triples, non_kb_perf.mean(0))
+    plt.show()
+
+    
+            
     # plot performance vs n parameters
     nparams_to_perf = np.asarray(sorted(zip(n_params, avg_p, avg_r, avg_f1), key=lambda x: x[0]))
     plt.rcParams.update({'font.size': 24})

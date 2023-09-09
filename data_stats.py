@@ -6,7 +6,6 @@ import numpy as np
 from collections import Counter
 import os, json
 from utils import load_kb, get_llm, get_relevant_triples, triple_equality
-import argparse
 
 
 def triples_to_id(triples):
@@ -53,7 +52,7 @@ def stats_gen(dataset):
             data = get_data_loader(f'{dataset}/test.json')
 
         sentences, n_triples, relations, entities = [], [], [], []
-        for sentence, triples in tqdm(data, total=len(data)):
+        for sentence, triples in tqdm(list(data)[:50], total=len(data)):
             if dataset == 'nyt':
                 triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in triples ]
             triples = [normalize_triple(t) for t in triples]
@@ -70,7 +69,7 @@ def stats_gen(dataset):
                 total_number_of_triples += len(triples)
                 for case in ('standard', 'complete'):
                     for i, retriever in retrievers[case].items():
-                        relevant_triples = set(get_relevant_triples(sentence, retriever, return_tuple=True))
+                        relevant_triples = set(get_relevant_triples(sentence, retriever, return_tuple=True, n_triplets_per_predicate=2))
                         #if i == 3:
                         #    print(f'True Triples:\n{triples}')
                         #    print(f'Context Triples:\n{relevant_triples}')
@@ -105,6 +104,7 @@ def stats_gen(dataset):
         entities_hist[split] = (list(entities[0]), list(entities[1]))
 
     plt.rcParams.update({'font.size': 24})
+    plt.figure(figsize=(12,12))
 
     print('--> TOT: ', total_number_of_triples)
     # calculate overlapping between test and train triples
@@ -134,7 +134,7 @@ def stats_gen(dataset):
     plt.tight_layout()
     figname = f'n-matches_vs_top-k_{dataset}.pdf'
     plt.legend()
-    plt.savefig(figname, format='pdf')
+    plt.savefig(figname, format='pdf', dpi=300)
     plt.show()
 
     fig, axes = plt.subplots(1,2, figsize=(12,6))
@@ -210,10 +210,6 @@ def stats_gen(dataset):
     
 
 if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser(description='KB Construction.')
-    parser.add_argument('--complete', action='store_true')
-    args = parser.parse_args()
 
     
     datasets = ['webnlg_modified', 'webnlg', 'nyt']
