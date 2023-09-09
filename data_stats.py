@@ -52,7 +52,7 @@ def stats_gen(dataset):
             data = get_data_loader(f'{dataset}/test.json')
 
         sentences, n_triples, relations, entities = [], [], [], []
-        for sentence, triples in tqdm(list(data)[:50], total=len(data)):
+        for sentence, triples in tqdm(data, total=len(data)):
             if dataset == 'nyt':
                 triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in triples ]
             triples = [normalize_triple(t) for t in triples]
