@@ -1,4 +1,4 @@
-import sys, json, time, os
+import sys, json, time, os, random
 sys.path.append('./webnlg-dataset_v3.0/corpus-reader/')
 
 import argparse
@@ -8,12 +8,17 @@ from llama_index.prompts.prompts import KnowledgeGraphPrompt
 #from llama_index.data_structs.node import Node
 from llama_index.schema import TextNode as Node
 
-
 from tqdm import tqdm
 
 import xml.etree.cElementTree as ET
 
-from utils import get_llm, load_kb, get_triplet_extraction_prompt, extract_triples, normalize_triple, get_data_loader
+from utils import get_llm, load_kb, get_triplet_extraction_prompt, extract_triples, normalize_triple, get_data_loader, get_relevant_triples
+
+
+def random_model(context_triplets, max_triplets):
+    n_triplets = min(random.randint(1, max_triplets), len(context_triplets))
+    return random.sample(context_triplets, n_triplets)
+
 
 def main(path_to_corpus):
 
@@ -60,6 +65,9 @@ def main(path_to_corpus):
             if dataset == 'nyt':
                 triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in triples ]
             triples = [ normalize_triple(triple) for triple in triples ]
+        elif args.random:
+            triples = get_relevant_triples(sentence, kb_retriever, return_tuple=True, n_triplets_per_predicate=2)
+            triples = random_model(triples, max_triplets)
         else:
             triples = extract_triples(
                 sentences=sentence,
@@ -82,6 +90,8 @@ def main(path_to_corpus):
     model_id = os.path.basename(model_id)#model_id.replace('/','-')
     if args.groundtruth:
         save_name = f"{dataset}/groundtruth_triples"
+    elif args.random:
+        save_name = f"{dataset}/random_triples_top-{args.top_k}"
     else:
         save_dir = f"{dataset}/{model_id}/{args.prompt.replace('.json','')}/"
         if not os.path.exists(save_dir):
@@ -107,11 +117,14 @@ if __name__ == '__main__':
     parser.add_argument('--kb')
     parser.add_argument('--top_k', default=2, type=int)
     parser.add_argument('--groundtruth', action='store_true')
+    parser.add_argument('--random', action='store_true')
     parser.add_argument('--run_n', default=None)
     
     args = parser.parse_args()
 
     dataset = args.data.split('/')[0]
+
+    max_triplets = 7 if (dataset == 'webnlg' or dataset == 'webnlg_modified') else 25
     
     if args.prompt is not None:
         with open(args.prompt, 'r') as f:

@@ -10,5 +10,6 @@
   "gpt2-xl": 8,
   "gpt2": 9,
   "gpt-3.5-turbo": 12,
-  "gpt-4": 13
+  "gpt-4": 13,
+  "Random": 14
 }

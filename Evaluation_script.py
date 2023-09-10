@@ -930,11 +930,12 @@ def get_model_info(filename):
             t = 0.1
             kb = True
         except:
-            model_id = 'Groundtruth'
+            model_id = 'Random'
+            kb = True
             t = None
     for pattern in ('huggyllama-', 'tiiuae-', 'chavinlo-'):
         model_id = model_id.replace(pattern, '')
-    if model_id != 'Groundtruth':
+    if model_id != 'Random':
         n_params = model_2_nparams[model_id]
     else:
         n_params = None
@@ -943,7 +944,7 @@ def get_model_info(filename):
         model_id += ' (KB'
         if 'complete' in  os.path.basename(filename):
             model_id += ' complete'
-        top_k = re.search('(?<=-top-)([0-9]+)(?=\.xml)', os.path.basename(filename)).group(0)
+        top_k = re.search('(?<=top-)([0-9]+)(?=\.xml)', os.path.basename(filename)).group(0)
         model_id += f' top_k={top_k})'
     return model_id, n_params, t, prompt, color
 
