@@ -993,8 +993,6 @@ if __name__ == '__main__':
                 total_n_gen_triples[n] += n_gen
     if args.colors is not None:
         colors = [ int(c) for c in args.colors ]
-    print(colors)
-    #a
     
     #print(total_n_gen_triples)
     counts, bins = np.histogram(total_n_gen_triples[1], density=True)
@@ -1055,6 +1053,7 @@ if __name__ == '__main__':
     plt.savefig('performance_vs_n-triples.pdf', format='pdf', dpi=300)
     plt.show()
 
+    # violin plot kb vs no-kb
     non_kb_perf = []
     kb_perf = {}
     for metric, model in zip(metrics[args.metric], model_ids):
@@ -1068,13 +1067,17 @@ if __name__ == '__main__':
             non_kb_perf.append(metric)
     kb_perf = {k: np.asarray(v) for k,v in kb_perf.items()}
     non_kb_perf = np.asarray(non_kb_perf)
-    print(kb_perf)
-    print(n_triples)
+
+    plt.figure(figsize=(8,6))
     for top_k, data in kb_perf.items():
-        plt.violinplot(data, positions=n_triples, showmeans=True)
-        plt.scatter(n_triples, data.mean(0))
-    plt.violinplot(non_kb_perf, positions=n_triples, showmeans=True)
-    plt.scatter(n_triples, non_kb_perf.mean(0))
+        plt.violinplot(data, positions=n_triples, showmeans=False)
+        plt.scatter(n_triples, data.mean(0), label='LLM + KB')
+    plt.violinplot(non_kb_perf, positions=n_triples, showmeans=False)
+    plt.scatter(n_triples, non_kb_perf.mean(0), label='LLM')
+    plt.xlabel('N triples in sentence')
+    plt.ylabel(args.metric)
+    plt.legend()
+    plt.savefig('violin_plot.pdf', format='pdf', dpi=300)
     plt.show()
 
     
