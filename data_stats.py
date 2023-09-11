@@ -4,16 +4,19 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 import numpy as np
 from collections import Counter
-import os, json
+import os, json, sys
 from utils import load_kb, get_llm, get_relevant_triples, triple_equality
 
 
 def triples_to_id(triples):
     ids = []
     for t in triples:
-        ids.append(
-            [ ent2id[t[0]], pred2id[t[1]], ent2id[t[2]] ]
-        )
+        try:
+            ids.append(
+                [ ent2id[t[0]], pred2id[t[1]], ent2id[t[2]] ]
+            )
+        except:
+            print(f'>> Warning: could not map triplet {t}, please check ent2id.json and pred2id.json.')
     return np.asarray(ids)
 
 def stats_gen(dataset):
@@ -56,6 +59,7 @@ def stats_gen(dataset):
             if dataset == 'nyt':
                 triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in triples ]
             triples = [normalize_triple(t) for t in triples]
+            print(triples)
             sentences.append(sentence)
             # number of triples per sentence histogram
             n_triples.append(len(triples))
@@ -212,8 +216,12 @@ def stats_gen(dataset):
 if __name__ == '__main__':
 
     
-    datasets = ['webnlg_modified', 'webnlg', 'nyt']
+    datasets = sys.argv[1:]
+    if len(datasets) == 0:
+        datasets = ['webnlg_modified', 'webnlg', 'nyt']
     for dataset in datasets:
+        if dataset[-1] == '/':
+            dataset = dataset[:-1]
         with open(f"{dataset}/ent2id.json", 'r') as f:
             ent2id = json.load(f)
         with open(f"{dataset}/pred2id.json", 'r') as f:
