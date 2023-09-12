@@ -180,12 +180,23 @@ def load_kb(kb_path, service_context, similarity_top_k=10):
     return kb_index, retriever
 
 
-def get_relevant_triples(query, retriever, return_tuple=False, n_triplets_per_predicate=None):
-    kb_triples = [ node.node.text for node in retriever.retrieve(query) ]
-    if n_triplets_per_predicate is None and not return_tuple:
-        kb_triples = '\n'.join(kb_triples)
+def prepare_triples(retrieved_nodes, few_shots=False, n_triplets_per_predicate=None, return_tuple=False):
+    if few_shots:
+        sents, kb_triples = [], []
+        for node in retrieved_nodes:
+            node = node.node.text.split('\n')
+            sents.append(node[0])
+            triples = node[1:]
+            if return_tuple:
+                triples = [ tuple(t[1:-1].split(', ')) for t in triples ]
+            else:
+                triples = '\n'.join(triples)
+            kb_triples.append(triples)
+        return sents, kb_triples
     else:
-        kb_triples = [ tuple(t[1:-1].split(', ')) for t in kb_triples ]
+        kb_triples = [ node.node.text for node in retrieved_nodes ]
+        if return_tuple or n_triplets_per_predicate is not None:
+            kb_triples = [ tuple(t[1:-1].split(', ')) for t in kb_triples ]
         if n_triplets_per_predicate is not None:
             predicates = set([ t[1] for t in kb_triples ])
             predicates = dict(zip(predicates, [0 for i in range(len(predicates))]))
@@ -195,19 +206,35 @@ def get_relevant_triples(query, retriever, return_tuple=False, n_triplets_per_pr
                     new_triples.append(t)
                     predicates[t[1]] += 1
             kb_triples = new_triples
+            if not return_tuple:
+                kb_triples = ['({}, {}, {})'.format(*t) for t in kb_triples]
         if not return_tuple:
-            kb_triples = ['({}, {}, {})'.format(*t) for t in kb_triples]
             kb_triples = '\n'.join(kb_triples)
-    return kb_triples
+        return None, kb_triples
 
 
-def get_triplet_extraction_prompt(body, examples, answer, sentence=None, kb_retriever=None):
-    prompt = f"{body}{examples}"
+def get_relevant_triples(query, retriever, return_tuple=False, n_triplets_per_predicate=None, few_shots=False):
+    retrieved_nodes = retriever.retrieve(query)
+    sents, kb_triples = prepare_triples(
+        retrieved_nodes,
+        few_shots=few_shots,
+        n_triplets_per_predicate=n_triplets_per_predicate,
+        return_tuple=return_tuple
+    )
+    return sents, kb_triples
+    
+
+def get_triplet_extraction_prompt(body, examples, answer, sentence=None, kb_retriever=None, few_shots=False):
+    #prompt = f"{body}"
     if sentence is not None and kb_retriever is not None:
-        triples = get_relevant_triples(sentence, kb_retriever, n_triplets_per_predicate=2)
-        answer = answer.format(text='{text}', context_triplets=triples)
+        sents, triples = get_relevant_triples(sentence, kb_retriever, n_triplets_per_predicate=2, few_shots=few_shots)
+        if few_shots:
+            sent_triples = '\n'.join([ f"Text: {s}\nTriplets:\n{t}" for s,t in zip(sents,triples) ])
+            examples = examples.format(examples=sent_triples)
+        else:
+            answer = answer.format(text='{text}', context_triplets=triples)
                 
-    prompt = f"{prompt}{answer}"
+    prompt = f"{body}{examples}{answer}"
     #prompt = prompt.replace(';',',')
     return KnowledgeGraphPrompt(prompt)
 
@@ -248,7 +275,7 @@ ANSWER = (
     "Triplets:\n"
 )
 
-def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=None, kb_retriever=None):
+def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=None, kb_retriever=None, few_shots=False):
     if not isinstance(sentences, list):
         sentences = [sentences]
     triples = set()
@@ -256,7 +283,7 @@ def extract_triples(sentences, kg_index, max_knowledge_triplets=None, prompt=Non
         max_knowledge_triplets = kg_index.max_triplets_per_chunk
     for sent in sentences:
         if prompt is not None:
-            prompt = get_triplet_extraction_prompt(prompt['body'], prompt['examples'], prompt['answer'], sent, kb_retriever)
+            prompt = get_triplet_extraction_prompt(prompt['body'], prompt['examples'], prompt['answer'], sent, kb_retriever, few_shots=few_shots)
         else:
             global BODY, EXAMPLES, ANSWER
             prompt = get_triplet_extraction_prompt(

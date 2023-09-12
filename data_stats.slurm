@@ -6,14 +6,14 @@
 #SBATCH --mem=16gb                    # Job memory request
 #SBATCH --partition=bigdata
 #SBATCH --qos=bigdata
-#SBATCH --gres=gpu:0
+#SBATCH --gres=gpu:1
 #SBATCH --output=log/data_stats.log   # Standard output and error log
 #SBATCH --time=120:00:00               # Time limit hrs:min:sec
 pwd; hostname; date
     
 echo "---- Generating Data Statistics ----"
 source activate llama
-python data_stats.py	
+python data_stats.py 	
 echo "---- Done ----"
 date
     

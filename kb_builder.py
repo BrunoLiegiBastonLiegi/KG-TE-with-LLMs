@@ -24,6 +24,11 @@ if args.normalize:
     if dataset_dir == 'nyt':
         kb_triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in kb_triples ]
     kb_triples = set([ tuple(normalize_triple(t)) for t in kb_triples ])
+    for sent, triples in sent2triples.items():
+        if dataset_dir == 'nyt':
+            triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in triples ]
+        triples = set([ tuple(normalize_triple(t)) for t in triples ])
+        sent2triples[sent] = triples
 
 edges = [
     (t[0], t[2], {'title': t[1]})
@@ -102,12 +107,34 @@ kb_index_single_triples = GPTVectorStoreIndex(
     nodes=nodes,
     service_context=service_context,
 )
-    
+
+
+# kb index with each node composed by:
+# sentence\n
+# triple_1\n
+# triple_2\n
+# ...
+
+nodes = []
+for i, (sentence, triples) in tqdm(enumerate(sent2triples.items()), total=len(sent2triples)):
+    triples = '\n'.join([ f"({t[0]}, {t[1]}, {t[2]})" for t in triples ])
+    text = f"{sentence}\n{triples}"
+    node = Node(
+        text=text,
+        doc_id=str(i),
+    )
+    nodes.append(node)
+
+kb_index_few_shots = GPTVectorStoreIndex(
+    nodes=nodes,
+    service_context=service_context,
+)
+
 
 # test retrieval
 from llama_index.retrievers import VectorIndexRetriever
 
-for index in (kb_index, kb_index_single_triples):
+for index in (kb_index, kb_index_single_triples, kb_index_few_shots):
     print(f"\n> Testing index retriever\n")
     retriever = VectorIndexRetriever(
         index=index,
@@ -121,16 +148,22 @@ for index in (kb_index, kb_index_single_triples):
 
 save_name = f"{args.save}"
 save_name_single_triples = f"{args.save}_single_triples"
+save_name_few_shots = f"{args.save}_few-shots"
 if args.normalize:
     save_name += "_normalized"
     save_name_single_triples += "_normalized"
+    save_name_few_shots += "_normalized"
 if complete:
     save_name += "_complete"
     save_name_single_triples += "_complete"
+    save_name_few_shots += "_complete"
 print(f"> Saving index to {save_name}/.")
 kb_index.storage_context.persist(save_name)
 print(f"> Saving index to {save_name_single_triples}/.")
 kb_index_single_triples.storage_context.persist(save_name_single_triples)
+print(f"> Saving index to {save_name_few_shots}/.")
+kb_index_few_shots.storage_context.persist(save_name_few_shots)
+
 
 #import matplotlib.pyplot as plt
 #nx.draw(g)

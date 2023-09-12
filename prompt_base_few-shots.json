@@ -1,0 +1,5 @@
+{
+  "body": "Some text is provided below. Extract up to {max_knowledge_triplets} knowledge triplets in the form of (subject, predicate, object) from the text. Avoid stopwords.",
+  "examples": "\n\n---------------------\n\nExamples:\n{examples}\n\n---------------------\n\n",
+  "answer": "Text: {text}\nTriplets:\n"
+}

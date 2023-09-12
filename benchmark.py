@@ -74,7 +74,8 @@ def main(path_to_corpus):
                 prompt=prompt,
                 kg_index=index,
                 #max_knowledge_triplets=max_triplets,
-                kb_retriever=kb_retriever
+                kb_retriever=kb_retriever,
+                few_shots=few_shots
             )
         triples = [ f"{t[0]} | {t[1]} | {t[2]}" for t in triples ]
         print(f"\n----> Extracted Tripets: {triples}\n")
@@ -125,7 +126,11 @@ if __name__ == '__main__':
     dataset = args.data.split('/')[0]
 
     max_triplets = 7 if (dataset == 'webnlg' or dataset == 'webnlg_modified') else 25
-    
+
+    few_shots = 'few-shots' in args.kb
+    if few_shots:
+        assert 'few-shots' in args.prompt
+        
     if args.prompt is not None:
         with open(args.prompt, 'r') as f:
             prompt = json.load(f)
