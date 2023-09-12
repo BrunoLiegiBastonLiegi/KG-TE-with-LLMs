@@ -60,7 +60,10 @@ date
 
     for d in data:
         data_dir = d.split('/')[-2]
-        kb = f"{data_dir}/kb_single_triples_normalized"
+        if 'few-shots' in args.prompt:
+            kb = f"{data_dir}/kb_few-shots_normalized"
+        else:
+            kb = f"{data_dir}/kb_single_triples_normalized"
         if args.complete:
             kb += "_complete/"
         else:
