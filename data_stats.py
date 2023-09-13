@@ -59,7 +59,7 @@ def stats_gen(dataset):
             if dataset == 'nyt':
                 triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in triples ]
             triples = [normalize_triple(t) for t in triples]
-            print(triples)
+            #print(triples)
             sentences.append(sentence)
             # number of triples per sentence histogram
             n_triples.append(len(triples))
@@ -73,7 +73,8 @@ def stats_gen(dataset):
                 total_number_of_triples += len(triples)
                 for case in ('standard', 'complete'):
                     for i, retriever in retrievers[case].items():
-                        relevant_triples = set(get_relevant_triples(sentence, retriever, return_tuple=True, n_triplets_per_predicate=2))
+                        _, relevant_triples = get_relevant_triples(sentence, retriever, return_tuple=True, n_triplets_per_predicate=2)
+                        relevant_triples = set(relevant_triples)
                         #if i == 3:
                         #    print(f'True Triples:\n{triples}')
                         #    print(f'Context Triples:\n{relevant_triples}')
