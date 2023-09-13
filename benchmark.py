@@ -66,7 +66,7 @@ def main(path_to_corpus):
                 triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in triples ]
             triples = [ normalize_triple(triple) for triple in triples ]
         elif args.random:
-            triples = get_relevant_triples(sentence, kb_retriever, return_tuple=True, n_triplets_per_predicate=2)
+            _, triples = get_relevant_triples(sentence, kb_retriever, return_tuple=True, n_triplets_per_predicate=2)
             triples = random_model(triples, max_triplets)
         else:
             triples = extract_triples(
