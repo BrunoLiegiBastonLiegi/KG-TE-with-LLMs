@@ -54,5 +54,13 @@
   "gpt4": {
     "gres": "gpu:0",
     "mem": "32gb"
+  },
+  "davinci-002": {
+    "gres": "gpu:0",
+    "mem": "32gb"
+  },
+  "davinci-003": {
+    "gres": "gpu:0",
+    "mem": "32gb"
   }
 }
