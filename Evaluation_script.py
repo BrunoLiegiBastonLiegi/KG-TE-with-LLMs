@@ -944,8 +944,13 @@ def get_model_info(filename):
         model_id += ' (KB'
         if 'complete' in  os.path.basename(filename):
             model_id += ' complete'
-        top_k = re.search('(?<=top-)([0-9]+)(?=\.xml)', os.path.basename(filename)).group(0)
-        model_id += f' top_k={top_k})'
+        if 'few-shots' in filename:
+            model_id += ' few-shots'
+        try:
+            top_k = re.search('(?<=top-)([0-9]+)(?=\.xml)', os.path.basename(filename)).group(0)
+        except:
+            top_k = re.search('(?<=top-)([0-9]+)(?=_)', os.path.basename(filename)).group(0)
+        model_id += f' top-{top_k})'
     return model_id, n_params, t, prompt, color
 
 if __name__ == '__main__':
@@ -1038,18 +1043,27 @@ if __name__ == '__main__':
         title = ""
 
     cmap = matplotlib.colormaps['tab20'] # Alternatively 'Accent'
-
+    width = 0.2 #1 / len(model_ids)
+    multiplier = 0
+    x_val = np.arange(len(n_triples))
+    
     for metric, err, c in zip(metrics[args.metric], metrics['ERR'], colors):
-        lines.append(plt.plot(n_triples, metric, marker='*', markersize=15, linewidth=2, c=cmap(c))[0])
-        upper_lim = metric + err
-        upper_lim[upper_lim > 1] = 1
-        lower_lim = metric - err
-        lower_lim[lower_lim < 0] = 0
+        offset = width * multiplier
+        rects = plt.bar(x_val + offset, metric, width, label=labels[multiplier])
+        multiplier += 1
+        #plt.bar_label(rects, padding=3)
+        #lines.append(plt.plot(n_triples, metric, marker='*', markersize=15, linewidth=2, c=cmap(c))[0])
+        #upper_lim = metric + err
+        #upper_lim[upper_lim > 1] = 1
+        #lower_lim = metric - err
+        #lower_lim[lower_lim < 0] = 0
         #plt.fill_between(n_triples, lower_lim, upper_lim, alpha=0.1)
-        
-    plt.legend(lines, labels)
-    plt.title(title)
+
+    plt.legend()
+    #plt.legend(lines, labels)
+    #plt.title(title)
     plt.xlabel('N triples in sentence')
+    plt.xticks(x_val + width, n_triples)
     plt.ylabel(args.metric)
     plt.savefig('performance_vs_n-triples.pdf', format='pdf', dpi=300)
     plt.show()
@@ -1057,24 +1071,32 @@ if __name__ == '__main__':
     # violin plot kb vs no-kb
     non_kb_perf = []
     kb_perf = {}
+    kb_few_shots = {}
     for metric, model in zip(metrics[args.metric], model_ids):
         if 'KB' in model:
-            top_k = re.search('(?<=top_k=)([0-9]+)(?=\))', os.path.basename(model)).group(0)
-            if top_k in kb_perf.keys():
-                kb_perf[top_k].append(metric)
+            top_k = re.search('(?<=top-)([0-9]+)(?=\))', os.path.basename(model)).group(0)
+            key = 'kb_few_shots' if 'few-shots' in model else 'kb_perf'
+            var = vars()[key]
+            if top_k in var.keys():
+                var[top_k].append(metric)
             else:
-                kb_perf[top_k] = [metric]
+                var[top_k] = [metric]
         else:
             non_kb_perf.append(metric)
     kb_perf = {k: np.asarray(v) for k,v in kb_perf.items()}
+    kb_few_shots = {k: np.asarray(v) for k,v in kb_few_shots.items()}
     non_kb_perf = np.asarray(non_kb_perf)
 
-    plt.figure(figsize=(8,6))
+    plt.figure(figsize=(12,9))
+    if len(non_kb_perf) > 0:
+        plt.violinplot(non_kb_perf, positions=n_triples, showmeans=False)
+        plt.scatter(n_triples, non_kb_perf.mean(0), label='Zero-Shot')
     for top_k, data in kb_perf.items():
         plt.violinplot(data, positions=n_triples, showmeans=False)
-        plt.scatter(n_triples, data.mean(0), label='LLM + KB')
-    plt.violinplot(non_kb_perf, positions=n_triples, showmeans=False)
-    plt.scatter(n_triples, non_kb_perf.mean(0), label='LLM')
+        plt.scatter(n_triples, data.mean(0), label='Zero-Shot + KB')
+    for top_k, data in kb_few_shots.items():
+        plt.violinplot(data, positions=n_triples, showmeans=False)
+        plt.scatter(n_triples, data.mean(0), label='Few-Shots')
     plt.xlabel('N triples in sentence')
     plt.ylabel(args.metric)
     plt.legend()
