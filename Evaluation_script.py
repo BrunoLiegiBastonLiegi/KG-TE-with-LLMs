@@ -1070,21 +1070,23 @@ if __name__ == '__main__':
 
     # violin plot kb vs no-kb
     non_kb_perf = []
-    kb_perf = {}
-    kb_few_shots = {}
+    kb_perf = [] #{}
+    kb_few_shots = [] #{}
     for metric, model in zip(metrics[args.metric], model_ids):
         if 'KB' in model:
-            top_k = re.search('(?<=top-)([0-9]+)(?=\))', os.path.basename(model)).group(0)
+            #top_k = re.search('(?<=top-)([0-9]+)(?=\))', os.path.basename(model)).group(0)
             key = 'kb_few_shots' if 'few-shots' in model else 'kb_perf'
             var = vars()[key]
-            if top_k in var.keys():
-                var[top_k].append(metric)
-            else:
-                var[top_k] = [metric]
+            print(var)
+            var.append(metric)
+            #if top_k in var.keys():
+            #    var[top_k].append(metric)
+            #else:
+            #    var[top_k] = [metric]
         else:
             non_kb_perf.append(metric)
-    kb_perf = {k: np.asarray(v) for k,v in kb_perf.items()}
-    kb_few_shots = {k: np.asarray(v) for k,v in kb_few_shots.items()}
+    kb_perf = np.asarray(kb_perf) #{k: np.asarray(v) for k,v in kb_perf.items()}
+    kb_few_shots = np.asarray(kb_few_shots) #{k: np.asarray(v) for k,v in kb_few_shots.items()}
     non_kb_perf = np.asarray(non_kb_perf)
 
     plt.rcParams.update({'font.size': 24})
@@ -1092,12 +1094,14 @@ if __name__ == '__main__':
     if len(non_kb_perf) > 0:
         plt.violinplot(non_kb_perf, positions=n_triples, showmeans=False)
         plt.scatter(n_triples, non_kb_perf.mean(0), label='Zero-Shot')
-    for top_k, data in kb_perf.items():
-        plt.violinplot(data, positions=n_triples, showmeans=False)
-        plt.scatter(n_triples, data.mean(0), label='Zero-Shot + KB')
-    for top_k, data in kb_few_shots.items():
-        plt.violinplot(data, positions=n_triples, showmeans=False)
-        plt.scatter(n_triples, data.mean(0), label='Few-Shots')
+    #for top_k, data in kb_perf.items():
+    if len(kb_perf) > 0:
+        plt.violinplot(kb_perf, positions=n_triples, showmeans=False)
+        plt.scatter(n_triples, kb_perf.mean(0), label='Zero-Shot + KB')
+    #for top_k, data in kb_few_shots.items():
+    if len(kb_few_shots) > 0:
+        plt.violinplot(kb_few_shots, positions=n_triples, showmeans=False)
+        plt.scatter(n_triples, kb_few_shots.mean(0), label='Few-Shots')
     plt.xlabel('N triples in sentence')
     plt.ylabel(args.metric)
     plt.legend()
