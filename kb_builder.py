@@ -1,4 +1,4 @@
-import argparse, json
+import argparse, json, random
 from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description='KB Construction.')
@@ -6,6 +6,7 @@ parser.add_argument('--data', nargs='+')
 parser.add_argument('--save')
 parser.add_argument('--conf', default='model_conf/gpt2.conf')
 parser.add_argument('--normalize', action='store_true')
+parser.add_argument('--scale', default=1., type=float)
 args = parser.parse_args()
 
 dataset_dir = args.data[0].split('/')[0]
@@ -34,7 +35,9 @@ edges = [
     (t[0], t[2], {'title': t[1]})
     for t in kb_triples
 ]
-
+n = int(args.scale * len(edges))
+if n != len(edges):
+    edges = random.sample(edges, n)
 
 # build the networkx graph
 import networkx as nx
@@ -116,6 +119,10 @@ kb_index_single_triples = GPTVectorStoreIndex(
 # ...
 
 nodes = []
+n = int(args.scale * len(sent2triples.items()))
+if n != len(sent2triples.items()):
+    sent2triples = dict(random.sample(list(sent2triples.items()), n))
+
 for i, (sentence, triples) in tqdm(enumerate(sent2triples.items()), total=len(sent2triples)):
     triples = '\n'.join([ f"({t[0]}, {t[1]}, {t[2]})" for t in triples ])
     text = f"{sentence}\n{triples}"
@@ -157,6 +164,11 @@ if complete:
     save_name += "_complete"
     save_name_single_triples += "_complete"
     save_name_few_shots += "_complete"
+if args.scale != 1.:
+    save_name += '_scale-0.5'
+    save_name_single_triples += '_scale-0.5'
+    save_name_few_shots += '_scale-0.5'
+
 print(f"> Saving index to {save_name}/.")
 kb_index.storage_context.persist(save_name)
 print(f"> Saving index to {save_name_single_triples}/.")
