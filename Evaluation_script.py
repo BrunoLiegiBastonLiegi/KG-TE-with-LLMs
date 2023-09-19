@@ -1087,6 +1087,7 @@ if __name__ == '__main__':
     kb_few_shots = {k: np.asarray(v) for k,v in kb_few_shots.items()}
     non_kb_perf = np.asarray(non_kb_perf)
 
+    plt.rcParams.update({'font.size': 24})
     plt.figure(figsize=(12,9))
     if len(non_kb_perf) > 0:
         plt.violinplot(non_kb_perf, positions=n_triples, showmeans=False)
