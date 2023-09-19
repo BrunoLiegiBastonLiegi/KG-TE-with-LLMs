@@ -12,6 +12,7 @@ if __name__ == "__main__":
     parser.add_argument('--prompt')
     parser.add_argument('--groundtruth', action='store_true')
     parser.add_argument('--kb', action='store_true')
+    parser.add_argument('--scale', default=None)
     parser.add_argument('--top_k', default=10)
     parser.add_argument('--complete', action='store_true')
     parser.add_argument('--bigdata', action='store_true')
@@ -65,9 +66,10 @@ date
         else:
             kb = f"{data_dir}/kb_single_triples_normalized"
         if args.complete:
-            kb += "_complete/"
-        else:
-            kb += "/"
+            kb += "_complete"
+        if args.scale is not None:
+            kb += f"_scale-{args.scale}"
+        kb += '/'
         for model in args.models:
             name = os.path.basename(model)[:-5]
             slurm_conf = model2conf[name]
