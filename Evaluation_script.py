@@ -1120,7 +1120,7 @@ if __name__ == '__main__':
     for i, curve in zip(range(1,4), [('Precision', 'blue'), ('Recall', 'orange'), ('F1', 'green')]):
         coeff = np.polyfit(nparams_to_perf[:,0], nparams_to_perf[:,i], deg=1)
         f = lambda x: coeff[0]*x + coeff[1]
-        plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label=curve[0], c=curve[1], linewidth=2)
+        plt.plot(np.log(nparams_to_perf[:,0]), f(nparams_to_perf[:,0]), label=curve[0], c=curve[1], linewidth=2)
     #plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label='Recall')
     #plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label='F1')
     plt.xlabel('N Parameters')
