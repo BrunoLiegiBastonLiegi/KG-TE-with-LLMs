@@ -1,4 +1,4 @@
-import sys, json, time, os, random
+import sys, json, time, os, random, re
 sys.path.append('./webnlg-dataset_v3.0/corpus-reader/')
 
 import argparse
@@ -106,6 +106,8 @@ def main(path_to_corpus):
             save_name += "_kb"
             if kb_complete:
                 save_name += "-complete"
+            if scale is not None:
+                save_name += f"-scale-{scale}"
             save_name += f"-top-{args.top_k}"
     if args.run_n is not None:
         save_name += f'_run-{args.run_n}'
@@ -128,12 +130,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     dataset = args.data.split('/')[0]
-
-    max_triplets = 7 if (dataset == 'webnlg' or dataset == 'webnlg_modified') else 25
-
-    few_shots = 'few-shots' in args.kb
-    if few_shots:
-        assert 'few-shots' in args.prompt
         
     if args.prompt is not None:
         with open(args.prompt, 'r') as f:
@@ -151,6 +147,12 @@ if __name__ == '__main__':
             
     # prepare the kb
     if args.kb is not None:
+
+        few_shots = 'few-shots' in args.kb
+        if few_shots:
+            assert 'few-shots' in args.prompt
+        scale = float(re.search('scale-0.[1-9]', args.kb).group(0)[-3:]) if 'scale' in args.kb else None
+        
         kb_index, kb_retriever = load_kb(args.kb, service_context, similarity_top_k=args.top_k)
         tmp = args.kb.split('/')
         tmp = tmp[-2] if tmp[-1] == '' else tmp[-1]
