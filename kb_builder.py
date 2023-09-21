@@ -31,13 +31,15 @@ if args.normalize:
         triples = set([ tuple(normalize_triple(t)) for t in triples ])
         sent2triples[sent] = triples
 
+n = int(args.scale * len(kb_triples))
+if n != len(kb_triples):
+    print(f'> Sampling {n} triples out of the original {len(kb_triples)}')
+    kb_triples = random.sample(list(kb_triples), n)
+        
 edges = [
     (t[0], t[2], {'title': t[1]})
     for t in kb_triples
 ]
-n = int(args.scale * len(edges))
-if n != len(edges):
-    edges = random.sample(edges, n)
 
 # build the networkx graph
 import networkx as nx
@@ -121,6 +123,7 @@ kb_index_single_triples = GPTVectorStoreIndex(
 nodes = []
 n = int(args.scale * len(sent2triples.items()))
 if n != len(sent2triples.items()):
+    print(f'> Sampling {n} examples out of the original {len(sent2triples)}')
     sent2triples = dict(random.sample(list(sent2triples.items()), n))
 
 for i, (sentence, triples) in tqdm(enumerate(sent2triples.items()), total=len(sent2triples)):
@@ -165,9 +168,9 @@ if complete:
     save_name_single_triples += "_complete"
     save_name_few_shots += "_complete"
 if args.scale != 1.:
-    save_name += '_scale-0.5'
-    save_name_single_triples += '_scale-0.5'
-    save_name_few_shots += '_scale-0.5'
+    save_name += f'_scale-{args.scale}'
+    save_name_single_triples += f'_scale-{args.scale}'
+    save_name_few_shots += f'_scale-{args.scale}'
 
 print(f"> Saving index to {save_name}/.")
 kb_index.storage_context.persist(save_name)

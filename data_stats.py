@@ -25,21 +25,30 @@ def stats_gen(dataset):
     n_triples_hist = {'test': {}, 'train': {}}
     relations_hist = {'test': {}, 'train': {}}
     entities_hist = {'test': {}, 'train': {}}
+    Nkb = [1, 2, 3, 5, 8] if args.few_shots else [3, 5, 10, 20, 50]
     top_k_to_n_matches = {
-        'standard': dict(zip([3, 5, 10, 20, 50], [0, 0, 0, 0, 0])),
-        'complete': dict(zip([3, 5, 10, 20, 50], [0, 0, 0, 0, 0])),
+        'standard': dict(zip(Nkb, [0, 0, 0, 0, 0])),
+        'complete': dict(zip(Nkb, [0, 0, 0, 0, 0])),
     }
     _, service_context = get_llm('gpt2', 'text-generation', max_new_tokens=8, temperature=0.1, load_in_8bit=True)
-    kb_path = f'{dataset}/kb_single_triples_normalized'
+    kb_path = f'{dataset}/kb'
+    if args.few_shots:
+        kb_path += '_few-shots_normalized'
+    else:
+        kb_path += '_single_triples_normalized'
+    if args.scale is not None:
+        kb_path += f'_scale-{args.scale}'
+    print(f'> Using KB: {kb_path}')
     retrievers = {
         'standard': {
             i: load_kb(kb_path, service_context, i)[1]
             for i in top_k_to_n_matches['standard'].keys()
         },
-        'complete': {
-            i: load_kb(kb_path + '_complete', service_context, i)[1]
-            for i in top_k_to_n_matches['complete'].keys()
-        }
+        'complete': None # Uncomment this if you want to test on the complete KB
+        #{
+        #    i: load_kb(kb_path + '_complete', service_context, i)[1]
+        #    for i in top_k_to_n_matches['complete'].keys()
+        #}
     }
     total_number_of_triples = 0
     
@@ -71,9 +80,12 @@ def stats_gen(dataset):
                 entities.append(t[2])
             if split == 'test':
                 total_number_of_triples += len(triples)
-                for case in ('standard', 'complete'):
+                for case in ('standard',): #('standard', 'complete'): # Uncomment this to also test the complete KB
                     for i, retriever in retrievers[case].items():
-                        _, relevant_triples = get_relevant_triples(sentence, retriever, return_tuple=True, n_triplets_per_predicate=2)
+                        _, relevant_triples = get_relevant_triples(sentence, retriever, return_tuple=True, n_triplets_per_predicate=2, few_shots=args.few_shots)
+                        if args.few_shots:
+                            relevant_triples = [t for group in relevant_triples for t in group]
+                        
                         relevant_triples = set(relevant_triples)
                         #if i == 3:
                         #    print(f'True Triples:\n{triples}')
@@ -123,7 +135,7 @@ def stats_gen(dataset):
     overlap = train_triples.union(valid_triples).intersection(test_triples)
     overlap = len(overlap)/len(test_triples)
     print(top_k_to_n_matches)
-    for case in ('standard', 'complete'):
+    for case in ('standard',): # ('standard', 'complete'):
         top_k, n_matches = zip(*top_k_to_n_matches[case].items())
         n_matches = [ n/total_number_of_triples for n in n_matches ]
         print(n_matches)
@@ -132,6 +144,13 @@ def stats_gen(dataset):
         if case == 'complete':
             label += ' + test'
         plt.plot(top_k, n_matches, markersize=15, linewidth=2, marker='.', label=label)
+        name = f'{dataset}/P_Nkb'
+        if args.few_shots:
+            name += '_few-shots'
+        if args.scale is not None:
+            name += f'_scale-{args.scale}'
+        with open(name+'.json', 'w') as f:
+            json.dump(dict(zip(top_k, n_matches)), f)
 
     plt.axhline(y=overlap, c='black', linestyle='--', linewidth=2)
     plt.ylabel('Probability of Finding the True Triplet')
@@ -216,8 +235,16 @@ def stats_gen(dataset):
 
 if __name__ == '__main__':
 
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Data statistics.')
+    parser.add_argument('datasets', nargs='+')
+    parser.add_argument('--few_shots', action='store_true')
+    parser.add_argument('--scale', default=None)
+    args = parser.parse_args()
+
     
-    datasets = sys.argv[1:]
+    datasets = args.datasets 
     if len(datasets) == 0:
         datasets = ['webnlg_modified', 'webnlg', 'nyt']
     for dataset in datasets:
