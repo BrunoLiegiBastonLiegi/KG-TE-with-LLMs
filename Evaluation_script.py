@@ -1117,13 +1117,13 @@ if __name__ == '__main__':
     nparams_to_perf = np.asarray(sorted(zip(n_params, avg_p, avg_r, avg_f1), key=lambda x: x[0]))
     plt.rcParams.update({'font.size': 24})
     plt.figure(figsize=(12,12))
-    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,1], marker='*', c='blue', s=150)
-    plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,2], marker='*', c='orange', s=150)
+    #plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,1], marker='*', c='blue', s=150)
+    #plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,2], marker='*', c='orange', s=150)
     plt.scatter(nparams_to_perf[:,0], nparams_to_perf[:,3], marker='*', c='green', s=150)
-    for i, curve in zip(range(1,4), [('Precision', 'blue'), ('Recall', 'orange'), ('F1', 'green')]):
-        coeff = np.polyfit(nparams_to_perf[:,0], nparams_to_perf[:,i], deg=1)
-        f = lambda x: coeff[0]*x + coeff[1]
-        plt.plot(np.log(nparams_to_perf[:,0]), f(nparams_to_perf[:,0]), label=curve[0], c=curve[1], linewidth=2)
+    #for i, curve in zip(range(1,4), [('Precision', 'blue'), ('Recall', 'orange'), ('F1', 'green')]):
+        #coeff = np.polyfit(nparams_to_perf[:,0], nparams_to_perf[:,i], deg=1)
+        #f = lambda x: coeff[0]*x + coeff[1]
+        #plt.plot(np.log(nparams_to_perf[:,0]), f(nparams_to_perf[:,0]), label=curve[0], c=curve[1], linewidth=2)
     #plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label='Recall')
     #plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label='F1')
     plt.xlabel('N Parameters')
