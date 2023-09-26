@@ -1126,6 +1126,7 @@ if __name__ == '__main__':
         #plt.plot(np.log(nparams_to_perf[:,0]), f(nparams_to_perf[:,0]), label=curve[0], c=curve[1], linewidth=2)
     #plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label='Recall')
     #plt.plot(nparams_to_perf[:,0], f(nparams_to_perf[:,0]), label='F1')
+    plt.xscale('log')
     plt.xlabel('N Parameters')
     plt.ylabel('Performance')
     plt.legend()
