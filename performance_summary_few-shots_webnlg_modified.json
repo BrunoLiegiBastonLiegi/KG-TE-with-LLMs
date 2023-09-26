@@ -1,0 +1,42 @@
+{
+  "falcon-7b (KB few-shots top-5) T=0.1 prompt=base_few-shots": {
+    "P": 0.5275843599357257,
+    "R": 0.6137071651090342,
+    "F1": 0.5673963133640553
+  },
+  "falcon-40b (KB few-shots top-5) T=0.1 prompt=base_few-shots": {
+    "P": 0.5560583207642031,
+    "R": 0.6890965732087228,
+    "F1": 0.6154702281580413
+  },
+  "llama-13b (KB few-shots top-5) T=0.1 prompt=base_few-shots": {
+    "P": 0.5825740318906606,
+    "R": 0.6373831775700934,
+    "F1": 0.6087473966081522
+  },
+  "llama-65b (KB few-shots top-5) T=0.1 prompt=base_few-shots": {
+    "P": 0.6682867557715675,
+    "R": 0.6853582554517134,
+    "F1": 0.6767148569670871
+  },
+  "gpt-3.5-turbo (KB few-shots top-5) T=0.1 prompt=base_few-shots": {
+    "P": 0.46322454943984415,
+    "R": 0.5925233644859813,
+    "F1": 0.5199562602515035
+  },
+  "gpt-4 (KB few-shots top-5) T=0.1 prompt=base_few-shots": {
+    "P": 0.46886446886446886,
+    "R": 0.5582554517133956,
+    "F1": 0.5096700796359499
+  },
+  "gpt2 (KB few-shots top-4) T=0.1 prompt=base_few-shots": {
+    "P": 0.43783783783783786,
+    "R": 0.40373831775700936,
+    "F1": 0.420097244732577
+  },
+  "gpt2-xl (KB few-shots top-4) T=0.1 prompt=base_few-shots": {
+    "P": 0.48144163528778916,
+    "R": 0.557632398753894,
+    "F1": 0.5167436489607391
+  }
+}
