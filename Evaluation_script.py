@@ -944,12 +944,15 @@ def get_model_info(filename):
         model_id += ' (KB'
         if 'complete' in  os.path.basename(filename):
             model_id += ' complete'
+        if 'scale' in os.path.basename(filename):
+            scale = re.search('(?<=scale-0.)([0-9]+)(?=-)', os.path.basename(filename)).group(0)
+            model_id += f' scale=0.{scale}'
         if 'few-shots' in filename:
             model_id += ' few-shots'
         try:
             top_k = re.search('(?<=top-)([0-9]+)(?=\.xml)', os.path.basename(filename)).group(0)
         except:
-            top_k = re.search('(?<=top-)([0-9]+)(?=_)', os.path.basename(filename)).group(0)
+            top_k = re.search('(?<=scale-)([0-9]+)(?=_)', os.path.basename(filename)).group(0)
         model_id += f' top-{top_k})'
     return model_id, n_params, t, prompt, color
 
