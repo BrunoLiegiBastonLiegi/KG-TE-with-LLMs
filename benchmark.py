@@ -145,13 +145,13 @@ if __name__ == '__main__':
     llm_predictor, service_context = get_llm(model_id, pipeline, **conf)
     max_triplets = 22 if dataset == 'nyt' else 7
 
-    few_shots = 'few-shots' in args.kb
-    if few_shots:
-        assert 'few-shots' in args.prompt
     
     # prepare the kb
     if args.kb is not None:
 
+        few_shots = 'few-shots' in args.kb
+        if few_shots:
+            assert 'few-shots' in args.prompt
         scale = float(re.search('scale-0.[1-9]+', args.kb).group(0)[-3:]) if 'scale' in args.kb else None
         
         kb_index, kb_retriever = load_kb(args.kb, service_context, similarity_top_k=args.top_k)
@@ -159,5 +159,6 @@ if __name__ == '__main__':
         tmp = tmp[-2] if tmp[-1] == '' else tmp[-1]
         kb_complete = True if 'complete' in tmp else False
     else:
+        few_shots = False
         kb_index, kb_retriever = None, None
     main(args.data)
