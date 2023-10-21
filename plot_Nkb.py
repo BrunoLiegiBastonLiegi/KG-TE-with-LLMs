@@ -5,7 +5,7 @@ from scipy.optimize import curve_fit
 
 def get_P_Nkb(dataset, few_shots=False):
     
-    scales = [0.5, 0.25]
+    scales = [0.5, 0.25, 0.1]
     P_Nkb = {}
     name = f'{dataset}/P_Nkb'
     if few_shots:
@@ -149,8 +149,8 @@ if __name__ == '__main__':
 
     plt.figure(figsize=(10,10))
 
-    llama65_zs_perf = {0: 0.219, 0.25: 0.243, 0.5: 0.299, 1: 0.372}
-    llama65_fs_perf = {0: 0.219, 0.25: 0.608, 0.5: 0.639, 1: 0.677}
+    llama65_zs_perf = {0: 0.219, 0.1: 0.210, 0.25: 0.243, 0.5: 0.299, 1: 0.372}
+    llama65_fs_perf = {0: 0.219, 0.1: 0.548, 0.25: 0.608, 0.5: 0.639, 1: 0.677}
     
     for P, perf, setting in zip((P_Nkb, P_Nkb_fs), (llama65_zs_perf, llama65_fs_perf), ('Zero-Shot', 'Few-Shots')):
         probs = {0: 0}
