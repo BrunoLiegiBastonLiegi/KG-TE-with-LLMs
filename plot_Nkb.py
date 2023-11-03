@@ -71,13 +71,13 @@ if __name__ == '__main__':
 
     P = P_Nkb_fs if args.few_shots else P_Nkb
         
-    plt.rcParams.update({'font.size': 24})
+    plt.rcParams.update({'font.size': 44})
         
-    fig = plt.figure(figsize=(10,10))
+    fig = plt.figure(figsize=(10,8))
 
     for dataset in datasets:
         label = 'WebNLG' if dataset == 'webnlg_modified' or dataset == 'webnlg' else 'NYT'
-        plt.plot(P[dataset][1.][0], P[dataset][1.][1], label=label, linewidth=2, marker='.', markersize=15)
+        plt.plot(P[dataset][1.][0], P[dataset][1.][1], label=label, linewidth=5, marker='.', markersize=30)
         
         # fit the P(Nkb) with a 1/x shape
         P_f = lambda n, a, b: - a/ n + b
@@ -85,11 +85,12 @@ if __name__ == '__main__':
         #plt.plot(Nkb,P, marker='.')
         P_pars, _ = curve_fit(P_f, Nkb, prob)
         Nkb = np.linspace(min(Nkb), max(Nkb), num=100)
-        plt.plot(Nkb, [P_f(n, *P_pars) for n in Nkb])
+        #plt.plot(Nkb, [P_f(n, *P_pars) for n in Nkb])
         
     plt.xlabel(r'$N_{KB}$')
     plt.ylabel(r'$P$')
-    plt.legend()
+    #plt.legend()
+    plt.tight_layout()
     savefile = 'P_Nkb'
     if args.few_shots:
         savefile += '_few-shots'
@@ -99,16 +100,17 @@ if __name__ == '__main__':
     
     for dataset in datasets:
         
-        plt.figure(figsize=(10,10))
+        plt.figure(figsize=(10,8))
         
         for scale, element in P[dataset].items():
             if element is not None:
                 Nkb, prob = element
-                plt.plot(Nkb, prob, label=rf'$S = {scale}$', linewidth=2, marker='.', markersize=15)
+                plt.plot(Nkb, prob, label=rf'$S = {scale}$', linewidth=5, marker='.', markersize=35)
             
         plt.xlabel(r'$N_{KB}$')
         plt.ylabel(r'$P$')
-        plt.legend()
+        #plt.legend()
+        plt.tight_layout()
         plt.savefig('P_Nkb_different_scales.pdf', format='pdf', dpi=300)
         plt.show()
 
@@ -121,24 +123,25 @@ if __name__ == '__main__':
         plt.plot(Nkb, [P_f(n, *P_pars) for n in Nkb])
         plt.show()
 
-        plt.figure(figsize=(10,10))
+        plt.figure(figsize=(10,8))
 
         N = 1
         random_f = lambda n, a, b, c: a * np.power(P_f(n, *P_pars)/n, b*N) + c
         d = get_random_comparison(dataset, few_shots=args.few_shots)
         model_name = {'random': 'Random', 'llama65b':'LLaMA 65b'}
         for model, (Nkb, F1) in d.items():
-            plt.plot(Nkb, F1, label=model_name[model], linewidth=2, marker='.', markersize=15)
+            plt.plot(Nkb, F1, label=model_name[model], linewidth=5, marker='.', markersize=30)
             if model == 'random': # and not args.few_shots:
                 F1_pars, _ = curve_fit(random_f, Nkb, F1, maxfev=5000)
                 print(f'> Optimal F1 parameters: {F1_pars}')
                 Nkb = np.linspace(min(Nkb), max(Nkb), num=100)
                 F1 = [ random_f(n, *F1_pars) for n in Nkb ]
-                plt.plot(Nkb, F1, label=r'$\alpha\cdot\left(\frac{P(N_{KB})}{N_{KB}}\right)^n+\beta$', linewidth=2, linestyle='--')
+                plt.plot(Nkb, F1, label=r'$\alpha\cdot\left(\frac{P(N_{KB})}{N_{KB}}\right)^n+\beta$', linewidth=5, linestyle='--')
                             
         plt.xlabel(r'$N_{KB}$')
         plt.ylabel(r'$F1$')
-        plt.legend()
+        #plt.legend()
+        plt.tight_layout()
         savename = 'random_f1'
         if args.few_shots:
             savename += '_few-shots'
@@ -147,7 +150,7 @@ if __name__ == '__main__':
         plt.show()
 
 
-    plt.figure(figsize=(10,10))
+    plt.figure(figsize=(10,8))
 
     llama65_zs_perf = {0: 0.219, 0.1: 0.210, 0.25: 0.243, 0.5: 0.299, 1: 0.372}
     llama65_fs_perf = {0: 0.219, 0.1: 0.548, 0.25: 0.608, 0.5: 0.639, 1: 0.677}
@@ -163,15 +166,16 @@ if __name__ == '__main__':
         probs = [ probs[scale] for scale in perf.keys() ]
         perf = list(perf.values())
         marker = '^' if setting == 'Few-Shots' else 'v'
-        plt.scatter(probs, perf, s=50, label=setting, marker=marker)
+        plt.scatter(probs, perf, s=200, label=setting, marker=marker)
         fit_pars = np.polyfit(probs, perf, deg=1)
         line = lambda x, a, b: a*x + b
         space = np.linspace(0,1)
-        plt.plot(space, line(space, *fit_pars), linestyle='--', linewidth=2)
+        plt.plot(space, line(space, *fit_pars), linestyle='--', linewidth=5)
 
     plt.xlabel(r'$P_{S}(N_{KB}=5)$')
     plt.ylabel(r'$F1$')
-    plt.legend()
+    #plt.legend()
+    plt.tight_layout()
     plt.savefig('F1_vs_scale.pdf', format='pdf', dpi=300)
     plt.show()        
 

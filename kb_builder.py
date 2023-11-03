@@ -6,6 +6,7 @@ parser.add_argument('--data', nargs='+')
 parser.add_argument('--save')
 parser.add_argument('--conf', default='model_conf/gpt2.conf')
 parser.add_argument('--normalize', action='store_true')
+parser.add_argument('--no_overlap', action='store_true')
 parser.add_argument('--scale', default=1., type=float)
 args = parser.parse_args()
 
@@ -19,12 +20,15 @@ complete = True if 'test' in splits else False
 # import the triples
 from utils import get_data_from_files, normalize_triple
 
+_, test_triples = get_data_from_files(infiles=f"{dataset_dir}/test.json")
+
 sent2triples, kb_triples = get_data_from_files(infiles=args.data)
 if args.normalize:
     # get rid of all the specifications location/location/contains etc...
     if dataset_dir == 'nyt':
         kb_triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in kb_triples ]
     kb_triples = set([ tuple(normalize_triple(t)) for t in kb_triples ])
+    test_triples = set([ tuple(normalize_triple(t)) for t in test_triples ])
     for sent, triples in sent2triples.items():
         if dataset_dir == 'nyt':
             triples = [ (t[0], t[1].split('/')[-1], t[2]) for t in triples ]
@@ -35,7 +39,12 @@ n = int(args.scale * len(kb_triples))
 if n != len(kb_triples):
     print(f'> Sampling {n} triples out of the original {len(kb_triples)}')
     kb_triples = random.sample(list(kb_triples), n)
-        
+
+print(len(kb_triples))
+if args.no_overlap:
+    kb_triples = [t for t in kb_triples if t not in test_triples]
+print(len(kb_triples))
+
 edges = [
     (t[0], t[2], {'title': t[1]})
     for t in kb_triples
@@ -171,6 +180,9 @@ if args.scale != 1.:
     save_name += f'_scale-{args.scale}'
     save_name_single_triples += f'_scale-{args.scale}'
     save_name_few_shots += f'_scale-{args.scale}'
+if args.no_overlap:
+    save_name += '_no-overlap'
+    save_name_single_triples += '_no-overlap'
 
 print(f"> Saving index to {save_name}/.")
 kb_index.storage_context.persist(save_name)
