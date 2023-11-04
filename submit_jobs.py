@@ -16,6 +16,7 @@ if __name__ == "__main__":
     parser.add_argument('--top_k', default=10)
     parser.add_argument('--complete', action='store_true')
     parser.add_argument('--bigdata', action='store_true')
+    parser.add_argument('--no_overlap', action='store_true')
     args = parser.parse_args()
 
     py_script = "python benchmark.py --data $1"
@@ -69,6 +70,8 @@ date
             kb += "_complete"
         if args.scale is not None:
             kb += f"_scale-{args.scale}"
+        if args.no_overlap:
+            kb += "_no-overlap"
         kb += '/'
         for model in args.models:
             name = os.path.basename(model)[:-5]

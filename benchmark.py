@@ -34,7 +34,7 @@ def main(path_to_corpus):
     
     print('> Extracting triples from corpus')
     data = get_data_loader(path_to_corpus)
-    for i, (sentence, triples) in tqdm(enumerate(data), total=len(data)):
+    for i, (sentence, triples) in tqdm(enumerate(list(data)[:3]), total=len(data)):
         print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
         try:
             cat = entry.category
@@ -108,6 +108,8 @@ def main(path_to_corpus):
                 save_name += "-complete"
             if scale is not None:
                 save_name += f"-scale-{scale}"
+            if no_overlap:
+                save_name += "-no_overlap"
             save_name += f"-top-{args.top_k}"
     if args.run_n is not None:
         save_name += f'_run-{args.run_n}'
@@ -158,6 +160,7 @@ if __name__ == '__main__':
         tmp = args.kb.split('/')
         tmp = tmp[-2] if tmp[-1] == '' else tmp[-1]
         kb_complete = True if 'complete' in tmp else False
+        no_overlap = 'no-overlap' in args.kb 
     else:
         few_shots = False
         kb_index, kb_retriever = None, None
