@@ -150,14 +150,20 @@ if __name__ == '__main__':
         plt.show()
 
 
-    plt.figure(figsize=(10,8))
-
+    plt.figure(figsize=(17,8))
+    ax = plt.subplot(111)
+    
     llama65_zs_perf = {0: 0.219, 0.1: 0.210, 0.25: 0.243, 0.5: 0.299, 1: 0.372}
     llama65_fs_perf = {0: 0.219, 0.1: 0.548, 0.25: 0.608, 0.5: 0.639, 1: 0.677}
+
+    #m = max(llama65_zs_perf.values())
+    #llama65_zs_perf = {k: v/m for k,v in llama65_zs_perf.items()}
+    #m = max(llama65_fs_perf.values())
+    #llama65_fs_perf = {k: v/m for k,v in llama65_fs_perf.items()}
+    label = {'Zero-Shot': '0.5-Shots (KB)', 'Few-Shots': '5-Shots (KB)'}
     
     for P, perf, setting in zip((P_Nkb, P_Nkb_fs), (llama65_zs_perf, llama65_fs_perf), ('Zero-Shot', 'Few-Shots')):
         probs = {0: 0}
-        print(P)
         for scale, element in P['webnlg_modified'].items():
             if element is not None:
                 Nkb, P = element
@@ -165,14 +171,24 @@ if __name__ == '__main__':
                 probs[scale] = P[idx]
         probs = [ probs[scale] for scale in perf.keys() ]
         perf = list(perf.values())
-        marker = '^' if setting == 'Few-Shots' else 'v'
-        plt.scatter(probs, perf, s=200, label=setting, marker=marker)
-        fit_pars = np.polyfit(probs, perf, deg=1)
+        marker = 'o'#'^' if setting == 'Few-Shots' else 'v'
+        color = "#ff7f0e" if setting == 'Zero-Shot' else "#2ca02c"
+        plt.scatter(probs, perf, s=200, label=label[setting], marker=marker, c=color)
+        fit_pars, r2, *_ = np.polyfit(probs, perf, deg=1, full=True)
+        def get_r2(y_pred, y_true):
+            ss_res = ((y_pred - y_true)**2).sum()
+            ss_tot = ((y_true - y_true.mean())**2).sum()
+            return 1 - (ss_res/ss_tot)
         line = lambda x, a, b: a*x + b
+        r2 = get_r2(line(np.array(probs), *fit_pars), np.array(perf))
+        print(f'> Fit r^2: {r2}')
         space = np.linspace(0,1)
-        plt.plot(space, line(space, *fit_pars), linestyle='--', linewidth=5)
+        plt.plot(space, line(space, *fit_pars), linestyle='--', linewidth=5, c=color)
 
+    box = ax.get_position()
+    ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
     plt.xlabel(r'$P_{S}(N_{KB}=5)$')
+    #plt.ylabel(r'Normalized $F1$')
     plt.ylabel(r'$F1$')
     #plt.legend()
     plt.tight_layout()

@@ -1092,8 +1092,8 @@ if __name__ == '__main__':
     kb_few_shots = np.asarray(kb_few_shots) #{k: np.asarray(v) for k,v in kb_few_shots.items()}
     non_kb_perf = np.asarray(non_kb_perf)
 
-    plt.rcParams.update({'font.size': 24})
-    plt.figure(figsize=(12,9))
+    plt.rcParams.update({'font.size': 44})
+    plt.figure(figsize=(10,8))
     if len(non_kb_perf) > 0:
         plt.violinplot(non_kb_perf, positions=n_triples, showmeans=False)
         plt.scatter(n_triples, non_kb_perf.mean(0), label='Zero-Shot')
@@ -1105,9 +1105,10 @@ if __name__ == '__main__':
     if len(kb_few_shots) > 0:
         plt.violinplot(kb_few_shots, positions=n_triples, showmeans=False)
         plt.scatter(n_triples, kb_few_shots.mean(0), label='Few-Shots')
-    plt.xlabel('N triples in sentence')
+    plt.xlabel('N triplets in sentence')
     plt.ylabel(args.metric)
-    plt.legend()
+    #plt.legend()
+    plt.tight_layout()
     plt.savefig('violin_plot.pdf', format='pdf', dpi=300)
     plt.show()
 
