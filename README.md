@@ -23,10 +23,10 @@ transformers
 ```
 
 ## Datasets
-# WebNLG
+### WebNLG
  - `webnlg/`: original data of the 2020 `WebNLG` challenge [https://gitlab.com/shimorina/webnlg-dataset/-/tree/master/release_v3.0](https://gitlab.com/shimorina/webnlg-dataset/-/tree/master/release_v3.0).
  - `webnlg_modified/`: adaptation of the `WebNLG` data by [Zheng et al](https://aclanthology.org/P17-1113/).
-# NYT
+### NYT
  - `nyt/`: the New York Times dataset by Riedel et al
 
 ## Building the Knowledge Base
@@ -51,8 +51,7 @@ the second one stores in each node the original sentence followed by the triplet
 ```
 Node-1
 ------
-    Atlantic City International Airport in Egg Harbor Township , New Jersey is in the U.S.A . 
-	The airport has a runway that is 1,873 long .
+    Atlantic City International Airport in Egg Harbor Township , New Jersey is in the U.S.A . The airport has a runway that is 1,873 long .
     (Egg Harbor Township , New Jersey, isPartOf, Atlantic)
 	(Egg Harbor Township , New Jersey, isPartOf, New Jersey)
 	(Atlantic City International Airport, location, Egg Harbor Township , New Jersey)
@@ -65,7 +64,7 @@ The `benchmark.py` script, instead, runs the triplet extraction pipeline on the 
 ```
 python benchmark.py \
     --data webnlg_modified/test.json \
-	--conf model_conf/gpt2.conf \
+--conf model_conf/gpt2.conf \
 	--prompt prompts/prompt_base.json
 ```
 The configurations of the different LLMs can be found under `model_conf/`. Note that for the `gpt3-turbo` and `gpt4` models, an OpenAI key is required, please place it in the `openai_key.txt` file as the only line.
