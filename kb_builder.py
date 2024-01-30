@@ -86,15 +86,7 @@ for n in tqdm(list(g.nodes())):
         text=text,
         doc_id=n,
     )
-    #id2embedding[n] = service_context.embed_model._get_text_embedding(text)
     nodes.append(node)
-
-#for i,n in enumerate(nodes):
-    #n.relationships[DocumentRelationship.SOURCE] = n.get_doc_id()
-    #if i < len(nodes) - 1:
-    #    n.relationships[DocumentRelationship.NEXT] = nodes[i+1].get_doc_id()
-    #if i > 0:
-    #    n.relationships[DocumentRelationship.PREVIOUS] = nodes[i-1].get_doc_id()
 
 kb_index = GPTVectorStoreIndex(
     nodes=nodes,
@@ -111,11 +103,8 @@ for i, triple in tqdm(enumerate(kb_triples), total=len(kb_triples)):
         text=text,
         doc_id=str(i),
     )
-    #id2embedding[i] = service_context.embed_model._get_text_embedding(text)
     nodes.append(node)
 
-#for i,n in enumerate(nodes):
-    #n.relationships[DocumentRelationship.SOURCE] = n.get_doc_id()
 
 kb_index_single_triples = GPTVectorStoreIndex(
     nodes=nodes,
@@ -165,9 +154,9 @@ for index in (kb_index, kb_index_single_triples, kb_index_few_shots):
     triples = '\n'.join(triples)
     print(triples)
 
-save_name = f"{args.save}"
-save_name_single_triples = f"{args.save}_single_triples"
-save_name_few_shots = f"{args.save}_few-shots"
+save_name = f"{args.save}_nodes"
+save_name_single_triples = f"{args.save}_triplets"
+save_name_few_shots = f"{args.save}_sentence-triplets"
 if args.normalize:
     save_name += "_normalized"
     save_name_single_triples += "_normalized"
@@ -191,7 +180,3 @@ kb_index_single_triples.storage_context.persist(save_name_single_triples)
 print(f"> Saving index to {save_name_few_shots}/.")
 kb_index_few_shots.storage_context.persist(save_name_few_shots)
 
-
-#import matplotlib.pyplot as plt
-#nx.draw(g)
-#plt.show()

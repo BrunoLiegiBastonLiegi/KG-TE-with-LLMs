@@ -34,7 +34,7 @@ def main(path_to_corpus):
     
     print('> Extracting triples from corpus')
     data = get_data_loader(path_to_corpus)
-    for i, (sentence, triples) in tqdm(enumerate(list(data)[:3]), total=len(data)):
+    for i, (sentence, triples) in tqdm(enumerate(data), total=len(data)):
         print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
         try:
             cat = entry.category
@@ -90,7 +90,7 @@ def main(path_to_corpus):
     ET.indent(tree, space="  ", level=0)
     import lxml.etree as etree
     global model_id, conf
-    model_id = os.path.basename(model_id)#model_id.replace('/','-')
+    model_id = os.path.basename(model_id)
     if args.groundtruth:
         save_name = f"{dataset}/groundtruth_triples"
     elif args.random:
