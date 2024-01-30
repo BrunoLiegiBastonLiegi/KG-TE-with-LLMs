@@ -20,6 +20,14 @@ If you find this useful please consider citing us:
 llama-index
 langchain
 transformers
+bs4
+nltk
+sklearn
+tqdm
+matplotlib
+lxml
+networkx
+torch
 ```
 
 ## Datasets
@@ -64,7 +72,7 @@ The `benchmark.py` script, instead, runs the triplet extraction pipeline on the 
 ```
 python benchmark.py \
     --data webnlg_modified/test.json \
---conf model_conf/gpt2.conf \
+	--conf model_conf/gpt2.conf \
 	--prompt prompts/prompt_base.json
 ```
 The configurations of the different LLMs can be found under `model_conf/`. Note that for the `gpt3-turbo` and `gpt4` models, an OpenAI key is required, please place it in the `openai_key.txt` file as the only line.
