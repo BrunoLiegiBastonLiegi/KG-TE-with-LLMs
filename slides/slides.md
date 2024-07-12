@@ -1,9 +1,11 @@
 ---
 # try also 'default' to start simple
 theme: seriph
+colorSchema: light
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
+background: 
+#background: https://cover.sli.dev
 # apply any unocss classes to the current slide
 class: 'text-center'
 # https://sli.dev/custom/highlighters.html
@@ -15,13 +17,163 @@ info: |
 
   Learn more at [Sli.dev](https://sli.dev)
 transition: slide-left
-title: Welcome to Slidev
+title: Zero- and Few-Shots Knowledge Graph Triplet Extraction with Large Language Models
 mdc: true
 ---
 
 ## Zero- and Few-Shots Knowledge Graph Triplet Extraction with Large Language Models
 
 **Andrea Papaluca**, Daniel Krefl, Sergio Mendez Rodriguez, Artem Lensky, Hanna Suominen
+
+<img src="https://download.logo.wine/logo/Australian_National_University/Australian_National_University-Logo.wine.png" style="position:relative; left:275px; top:40px" width="300" height="300" />
+
+<div class="abs-br m-6 flex gap-2">
+  <a href="https://github.com/BrunoLiegiBastonLiegi/KG-TE-with-LLMs" target="_blank" alt="GitHub" title="Open in GitHub"
+    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+    <carbon-logo-github />
+  </a>
+</div>
+
+---
+
+# Triplet Extraction
+
+#### <p style="text-align: center;"> The 44th president of the US, Obama, was born in Honolulu, Hawaii, in 1961. </p>
+
+<div v-click="1">
+
+```mermaid
+graph LR;
+
+A(("Barack\n Obama")) 
+B(("Honolulu"))
+C(("Hawaii"))
+D(("1961"))
+E(("USA"))
+A --birthplace--> B
+A --birthdate--> D
+B --located_in--> C
+E --president--> A
+```
+
+- (USA, president, Barack Obama)
+- (Barack Obama, birthdate, 1961)
+- (Barack Obama, birthplace, Honolulu)
+- (Honolulu, located_in, Hawaii)
+
+</div>
+
+<div v-click="2">
+
+$$
+\rm{(unstructured)}\;\rm{Text}\longrightarrow \rm{Knowledge\;Graph}\;\rm{(structured)}
+$$
+
+</div>
+
+---
+
+# Triplet Extraction
+
+<br>
+
+SOTA &rarr; *End-to-End* supervised models 
+
+&emsp; &rarr; Need labeled data <br>
+&emsp; &rarr; Trained on a closed set of entities and relations <br>
+&emsp; &rarr; Incapable of handling *OOD* instances <br>
+
+<img src="/neural_net.jpeg" style="position:absolute; left:640px; top:140px" width="170" height="170" />
+
+
+<div v-click="1">
+
+Large Language Models (LLM) &rarr; *In-context* learning
+
+&emsp; &rarr; No training or finetuning necessary <br>
+&emsp; &rarr; Zero-Shot: no data, internal knowledge alone <br>
+&emsp; &rarr; Few-Shots: a handful of examples <br>
+&emsp; &rarr; Capable of handling *OOD* instances <br>
+
+<img src="/openai-logo.webp" style="position:absolute; left:540px; top:290px" width="100" height="100" />
+<img src="/meta-logo.svg" style="position:absolute; left:665px; top:290px" width="130" height="130" />
+<img src="/falcon-logo.webp" style="position:absolute; left:830px; top:290px" width="100" height="100" />
+
+</div>
+
+<br> 
+
+<div v-click="2">
+
+### <p style="text-align: center;"> How competitive are they?</p>
+
+</div>
+
+---
+
+# LLM prompting
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+### <p style="text-align: center;"> Zero-Shot </p>
+
+</div>
+
+<div>
+
+### <p style="text-align: center;"> 2-Shots </p>
+
+<img src="/prompt.svg" style="position:absolute; left:530px; top:150px" width="400" height="400" />
+
+</div>
+
+</div>
+
+---
+
+# Zero and 2-Shots TE
+
+<div class="grid grid-cols-[500px_400px] gap-8">
+<div>
+
+| **Model** | | **WebNLG** | | **NYT** | |
+| - | - | - | - | - | - |
+|  | | *0-Shot* | *2-Shots* | *0-Shot* | *2-Shots* |
+| **GPT2** | *base* | 0.000 | 0.006 | 0.000 | 0.000 |
+| | *xl* | 0.000 | 0.037 | 0.000 | 0.000 |
+| **Falcon** | *7b* | 0.000 | 0.066 | 0.000 | 0.002 |
+| | *40b* | 0.021 | 0.158 | 0.000 | 0.007 |
+| **LLaMA** | *13b* | 0.006 | 0.129 | 0.000  |0.002 |
+| | *65b* | 0.041 | **0.219** | 0.000 | **0.017** |
+
+</div>
+<div>
+
+<div v-click="1">
+
+| **Model** | **WebNLG** | **NYT** |
+| - | - | - |
+| NovelTagging | 0.283 | 0.420 | 
+| CopyRE | 0.371 | 0.587 |
+| GraphRel | 0.429 | 0.619 |
+| OrderCopyRE | 0.616 | 0.721 |
+| UniRel | **0.947** | **0.937** | 
+
+<p style="text-align: center;"> &#8593; </p>
+
+### <p style="text-align: center;"> Fully trained </p>
+
+</div>
+
+</div>
+</div>
+
+---
+
+# KB aided TE
+
+<img src="/kb_retriever.svg" style="position:absolute; left:530px; top:150px" width="400" height="400" />
 
 ---
 
