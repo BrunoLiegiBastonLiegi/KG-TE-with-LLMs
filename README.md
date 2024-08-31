@@ -1,16 +1,30 @@
 #  Knowledge Graph Triplet Extraction with LLMs
 
-A pipeline for extracting knoweldge triplets from text using LLMs and Knowledge Bases. Refer to [Zero- and Few-Shots Knowledge Graph Triplet Extraction with Large Language Models](https://arxiv.org/abs/2312.01954) for the details.
+A pipeline for extracting knoweldge triplets from text using LLMs and Knowledge Bases. Refer to [Zero- and Few-Shots Knowledge Graph Triplet Extraction with Large Language Models](https://aclanthology.org/2024.kallm-1.2/) for the details.
 If you find this useful please consider citing us:
 
 ```
-@misc{papaluca2023zero,
-      title={Zero- and Few-Shots Knowledge Graph Triplet Extraction with Large Language Models}, 
-      author={Andrea Papaluca and Daniel Krefl and Sergio Mendez Rodriguez and Artem Lensky and Hanna Suominen},
-      year={2023},
-      eprint={2312.01954},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@inproceedings{papaluca-etal-2024-zero,
+    title = "Zero- and Few-Shots Knowledge Graph Triplet Extraction with Large Language Models",
+    author = "Papaluca, Andrea  and
+      Krefl, Daniel  and
+      Rodr{\'\i}guez M{\'e}ndez, Sergio  and
+      Lensky, Artem  and
+      Suominen, Hanna",
+    editor = "Biswas, Russa  and
+      Kaffee, Lucie-Aim{\'e}e  and
+      Agarwal, Oshin  and
+      Minervini, Pasquale  and
+      Singh, Sameer  and
+      de Melo, Gerard",
+    booktitle = "Proceedings of the 1st Workshop on Knowledge Graphs and Large Language Models (KaLLM 2024)",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.kallm-1.2",
+    pages = "12--23",
+    abstract = "In this work, we tested the Triplet Extraction (TE) capabilities of a variety of Large Language Models (LLMs) of different sizes in the Zero- and Few-Shots settings. In detail, we proposed a pipeline that dynamically gathers contextual information from a Knowledge Base (KB), both in the form of context triplets and of (sentence, triplets) pairs as examples, and provides it to the LLM through a prompt. The additional context allowed the LLMs to be competitive with all the older fully trained baselines based on the Bidirectional Long Short-Term Memory (BiLSTM) Network architecture. We further conducted a detailed analysis of the quality of the gathered KB context, finding it to be strongly correlated with the final TE performance of the model. In contrast, the size of the model appeared to only logarithmically improve the TE capabilities of the LLMs. We release the code on GitHub for reproducibility.",
 }
 ```
 
